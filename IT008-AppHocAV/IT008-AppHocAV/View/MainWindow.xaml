@@ -53,8 +53,15 @@
                         </StackPanel>
                     </Button>
                     
-                    <Border DockPanel.Dock="Bottom" Margin="0 0 0 0 " CornerRadius="12" Background="White" Width="560" Height="40">
-                        <TextBox Width="500" VerticalAlignment="Center" FontSize="18" BorderThickness="0" Background="Transparent"  ></TextBox>
+                    <Border x:Name="SearchTextContainer" DockPanel.Dock="Bottom" Margin="0 0 0 0 " 
+                            CornerRadius="12" Background="White" Width="560" Height="40"
+                            BorderThickness="1 1 1 1" BorderBrush="Transparent"
+                            >
+                        
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBox Margin="10 0 10 0 " Width="490" VerticalAlignment="Center" FontSize="18" BorderThickness="0" Background="Transparent"  ></TextBox>
+                            <Button x:Name="Search" Width="40" Height="35" BorderThickness="1 0 0 0" BorderBrush="Black" Background="Transparent"> </Button>
+                        </StackPanel>
                     </Border>
                     
                 </DockPanel>
@@ -86,7 +93,7 @@
                         </Button>
                     </StackPanel>
                     
-                    <Frame Margin="10 0 10 0 " DockPanel.Dock="Bottom"  x:Name="Content" />
+                    <Frame BorderThickness="0 1 0 0" BorderBrush="Black" Margin="10 0 10 0 " DockPanel.Dock="Bottom"  x:Name="Content" />
                         
             </DockPanel>
             
