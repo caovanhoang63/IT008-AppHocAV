@@ -164,12 +164,18 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Icon\BookIcon.png" />
-    <Content Include="Assets\Icon\CheckIcon.png" />
-    <Content Include="Assets\Icon\FlashCard.png" />
-    <Content Include="Assets\Icon\menuIcon.png" />
-    <Content Include="Assets\Icon\SearchIcon.png" />
-    <Content Include="Assets\Icon\TakeNoteIcon.png" />
+    <Resource Include="Assets\Icon\BookIcon.png" />
+    <Resource Include="Assets\Icon\CheckIcon.png" />
+    <Resource Include="Assets\Icon\FlashCard.png" />
+    <Resource Include="Assets\Icon\menuIcon.png" />
+    <Resource Include="Assets\Icon\SearchIcon.png" />
+    <Resource Include="Assets\Icon\SearchIcon2.png" />
+    <Resource Include="Assets\Icon\TakeNoteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\AvatarIcon.png" />
+    <Resource Include="Assets\Icon\NotifyICon.png" />
+    <Resource Include="Assets\Icon\SettingIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

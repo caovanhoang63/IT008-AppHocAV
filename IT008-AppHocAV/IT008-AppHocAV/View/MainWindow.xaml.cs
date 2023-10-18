@@ -79,6 +79,35 @@ namespace IT008_AppHocAV
         {
             
         }
-        
+
+        private void SearchTextContainer_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            SearchTextContainer.BorderBrush = Brushes.CornflowerBlue;
+        }
+
+        private void SearchTextContainer_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            SearchTextContainer.BorderBrush = Brushes.Transparent;
+        }
+
+        private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (textBoxSearching.Text != string.Empty)
+            {
+                TextBlockPlaceHolder.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBlockPlaceHolder.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBoxSearching_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && textBoxSearching.Text != string.Empty)
+            {
+                MessageBox.Show("Search " + textBoxSearching.Text);
+            }
+        }
     }
 }

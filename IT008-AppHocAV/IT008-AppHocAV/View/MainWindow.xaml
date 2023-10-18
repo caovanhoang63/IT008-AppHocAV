@@ -40,9 +40,15 @@
                 <DockPanel DockPanel.Dock="Top" Height="85">
                     
                     <StackPanel DockPanel.Dock="Right" Margin="0 0 0 0 " Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0"></Button>
-                        <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0"></Button>
-                        <Button x:Name="btnAvatar" Click="btnAvatar_Click" Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0"></Button>
+                        <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0">
+                            <Image Source="../Assets/Icon/SettingIcon.png"></Image>
+                        </Button>
+                        <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0">
+                            <Image Source="../Assets/Icon/NotifyICon.png"></Image>
+                        </Button>
+                        <Button x:Name="btnAvatar" Click="btnAvatar_Click" Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0">
+                            <Image Source="../Assets/Icon/AvatarIcon.png"></Image>
+                        </Button>
                     </StackPanel>
                     
                     <Button DockPanel.Dock="Left" Height="40" Width="50" Margin="68 0 0 0" Background="Transparent" BorderThickness="0">
@@ -56,12 +62,25 @@
                     <Border x:Name="SearchTextContainer" DockPanel.Dock="Bottom" Margin="0 0 0 0 " 
                             CornerRadius="12" Background="White" Width="560" Height="40"
                             BorderThickness="1 1 1 1" BorderBrush="Transparent"
+                            GotFocus="SearchTextContainer_OnGotFocus"
+                            LostFocus="SearchTextContainer_OnLostFocus"
                             >
-                        
-                        <StackPanel Orientation="Horizontal" >
-                            <TextBox Margin="10 0 10 0 " Width="490" VerticalAlignment="Center" FontSize="18" BorderThickness="0" Background="Transparent"  ></TextBox>
-                            <Button x:Name="Search" Width="40" Height="35" BorderThickness="1 0 0 0" BorderBrush="Black" Background="Transparent"> </Button>
-                        </StackPanel>
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox x:Name="textBoxSearching"  Margin="10 0 10 0 " Width="490" VerticalAlignment="Center" 
+                                          FontSize="18" BorderThickness="0" Background="Transparent" 
+                                          TextChanged="TextBoxBase_OnTextChanged"
+                                          KeyDown="TextBoxSearching_OnKeyDown"/>
+                                <Button x:Name="Search" Width="40" Height="35" BorderThickness="1 0 0 0" BorderBrush="Black" Background="Transparent">
+                                    <Image Width="30" Height="30" Source="../Assets/Icon/SearchIcon2.png"></Image>
+                                </Button>
+                            </StackPanel>
+                            <TextBlock x:Name="TextBlockPlaceHolder" IsHitTestVisible="False" Text="Search..." VerticalAlignment="Center"
+                                        HorizontalAlignment="Left" Foreground="DarkGray"
+                                        Margin="20 0 0  0"
+                                        FontSize="18">
+                            </TextBlock>
+                        </Grid>
                     </Border>
                     
                 </DockPanel>
