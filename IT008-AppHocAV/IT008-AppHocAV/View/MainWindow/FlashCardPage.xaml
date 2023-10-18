@@ -1,0 +1,12 @@
+﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.FlashCardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
+      mc:Ignorable="d"
+      Title="FlashCardPage" Height="450" Width="800">
+    <Grid>
+        <Label Content="Hello Flash Card Page"></Label>
+    </Grid>
+</Page>

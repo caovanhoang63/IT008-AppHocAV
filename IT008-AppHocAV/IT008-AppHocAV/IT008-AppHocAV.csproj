@@ -98,6 +98,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\MainWindow\ExamPage.xaml.cs">
+      <DependentUpon>ExamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\FlashCardPage.xaml.cs">
+      <DependentUpon>FlashCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\SearchingPage.xaml.cs">
+      <DependentUpon>SearchingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\WritingPage.xaml.cs">
+      <DependentUpon>WritingPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -133,16 +145,31 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Assets\Styles\MainStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\MainWindow\ExamPage.xaml" />
+    <Page Include="View\MainWindow\FlashCardPage.xaml" />
+    <Page Include="View\MainWindow\SearchingPage.xaml" />
+    <Page Include="View\MainWindow\WritingPage.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\" />
     <Folder Include="DataAccess\" />
     <Folder Include="Repositories\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Icon\BookIcon.png" />
+    <Content Include="Assets\Icon\CheckIcon.png" />
+    <Content Include="Assets\Icon\FlashCard.png" />
+    <Content Include="Assets\Icon\menuIcon.png" />
+    <Content Include="Assets\Icon\SearchIcon.png" />
+    <Content Include="Assets\Icon\TakeNoteIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
