@@ -16,13 +16,14 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Background="Beige">
+    <Grid Background="Beige" x:Name="Container">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="680"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>  
         
-        <Border Grid.Row="0"  Background="Beige">
+        <Border Grid.Row="0" Background="Beige" x:Name="TitleBar">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="Transparent">
                 <Button x:Name="BtnMinimize" Content="_" Width="40" Height="40"
                         BorderBrush="Transparent" Background="Transparent" Click="BtnMinimize_OnClick"></Button>
@@ -34,12 +35,10 @@
         </Border>
 
         <Border Grid.Row="1" Margin="5,0,5,40" Background="#D3E2F0" CornerRadius="12 12 0 0 ">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="85"/>
-                    <RowDefinition Height="555"/>
-                </Grid.RowDefinitions>
-                <DockPanel Grid.Row="0">
+            
+            <DockPanel x:Name="WorkSpace" LastChildFill="True">
+                <DockPanel DockPanel.Dock="Top" Height="85">
+                    
                     <StackPanel DockPanel.Dock="Right" Margin="0 0 0 0 " Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0"></Button>
                         <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0"></Button>
@@ -53,12 +52,33 @@
                             <Border CornerRadius="2.5" Margin="0 7 0 0" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
                         </StackPanel>
                     </Button>
+                    
                     <Border DockPanel.Dock="Bottom" Margin="0 0 0 0 " CornerRadius="12" Background="White" Width="560" Height="40">
                         <TextBox Width="500" VerticalAlignment="Center" FontSize="18" BorderThickness="0" Background="Transparent"  ></TextBox>
                     </Border>
+                    
                 </DockPanel>
                 
-                <DockPanel Grid.Row="1">
+                
+                <StackPanel DockPanel.Dock="Left" Width="50" Margin="68 0 0 0 " Background="Transparent">
+                    
+                    <Button x:Name="NavToSearching" Height="50" Background="Transparent" Click="NavToSearching_OnClick">
+                        <Image Source="../Assets/Icon/SearchIcon.png"></Image>
+                    </Button>
+                    
+                    <Button x:Name="NavToWriting" Height="50" Background="Transparent" Click="NavToWriting_OnClick">
+                        <Image Source="../Assets/Icon/BookIcon.png"></Image>
+                    </Button>
+                    
+                    <Button x:Name="NavToExam" Height="50" Background="Transparent" Click="NavToExam_OnClick">
+                        <Image Source="../Assets/Icon/CheckIcon.png"></Image>
+                    </Button>
+                    
+                    <Button x:Name="NavToFlashCard" Height="50" Background="Transparent" Click="NavToFlashCard_OnClick">
+                        <Image Source="../Assets/Icon/FlashCard.png"></Image>
+                    </Button>
+                    
+                </StackPanel>
                     
                     <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" Margin="0 0 40 0" >
                         <Button Height="50" x:Name="ShowTakeNote" Click="ShowTakeNote_OnClick">
@@ -66,26 +86,13 @@
                         </Button>
                     </StackPanel>
                     
-                    <StackPanel DockPanel.Dock="Left" Width="50" Margin="68 0 0 0 " Background="Transparent">
-                        <Button x:Name="NavToSearching" Height="50" Background="Transparent" Click="NavToSearching_OnClick">
-                            <Image Source="../Assets/Icon/SearchIcon.png"></Image>
-                        </Button>
-                        <Button x:Name="NavToWriting" Height="50" Background="Transparent" Click="NavToWriting_OnClick">
-                            <Image Source="../Assets/Icon/BookIcon.png"></Image>
-                        </Button>
-                        <Button x:Name="NavToExam" Height="50" Background="Transparent" Click="NavToExam_OnClick">
-                            <Image Source="../Assets/Icon/CheckIcon.png"></Image>
-                        </Button>
-                        <Button x:Name="NavToFlashCard" Height="50" Background="Transparent" Click="NavToFlashCard_OnClick">
-                            <Image Source="../Assets/Icon/FlashCard.png"></Image>
-                        </Button>
-                    </StackPanel>
-                    
-                    <Frame Margin="10 0 10 0 " DockPanel.Dock="Bottom"  x:Name="Content" >
+                    <Frame Margin="10 0 10 0 " DockPanel.Dock="Bottom"  x:Name="Content" />
                         
-                    </Frame>
-                </DockPanel>                    
-            </Grid>
+            </DockPanel>
+            
+                
+                
+                                   
         </Border>
         
         
