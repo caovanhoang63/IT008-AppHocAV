@@ -9,6 +9,8 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="MainWindow" Width="1080" Height="720"
         >
+    
+    <!-- Style -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,13 +18,16 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+
+    
     <Grid Background="Beige" x:Name="Container">
-        
+        <!-- Define Container Grid Row -->
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>  
-        
+        <!-- Define TitleBar -->
         <Border Grid.Row="0" Background="Beige" x:Name="TitleBar">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="Transparent">
                 <Button x:Name="BtnMinimize" Content="_" Width="40" Height="40"
@@ -34,11 +39,13 @@
             </StackPanel>
         </Border>
 
-        <Border Grid.Row="1" Margin="5,0,5,40" Background="#D3E2F0" CornerRadius="12 12 0 0 ">
+        <!-- WorkSpace -->
+        <Border Grid.Row="1" Margin="5,0,5,0" Background="#D3E2F0" CornerRadius="12 12 0 0 ">
             
             <DockPanel x:Name="WorkSpace" LastChildFill="True">
+                
+                <!-- User, Notify and Setting Button -->
                 <DockPanel DockPanel.Dock="Top" Height="85">
-                    
                     <StackPanel DockPanel.Dock="Right" Margin="0 0 0 0 " Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0">
                             <Image Source="../Assets/Icon/SettingIcon.png"></Image>
@@ -51,27 +58,29 @@
                         </Button>
                     </StackPanel>
                     
-                    <Button DockPanel.Dock="Left" Height="40" Width="50" Margin="68 0 0 0" Background="Transparent" BorderThickness="0">
-                        <StackPanel Margin="0 7 0 0" Height="40" Width="40">
-                            <Border CornerRadius="2.5" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
-                            <Border CornerRadius="2.5" Margin="0 7 0 0" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
-                            <Border CornerRadius="2.5" Margin="0 7 0 0" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
-                        </StackPanel>
-                    </Button>
+                <!-- Menu Button -->
+                <Button DockPanel.Dock="Left" Height="40" Width="50" Margin="68 0 0 0" Background="Transparent" BorderThickness="0">
+                    <StackPanel Margin="0 7 0 0" Height="40" Width="40">
+                        <Border CornerRadius="2.5" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
+                        <Border CornerRadius="2.5" Margin="0 7 0 0" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
+                        <Border CornerRadius="2.5" Margin="0 7 0 0" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
+                    </StackPanel>
+                </Button>
                     
-                    <Border x:Name="SearchTextContainer" DockPanel.Dock="Bottom" Margin="0 0 0 0 " 
-                            CornerRadius="12" Background="White" Width="560" Height="40"
-                            BorderThickness="1 1 1 1" BorderBrush="Transparent"
-                            GotFocus="SearchTextContainer_OnGotFocus"
-                            LostFocus="SearchTextContainer_OnLostFocus"
-                            >
+                <!-- Searching Bar -->
+                <Border x:Name="SearchTextContainer" DockPanel.Dock="Bottom" Margin="0 0 0 0 " 
+                        CornerRadius="12" Background="White" Width="560" Height="40"
+                        BorderThickness="1 1 1 1" BorderBrush="Transparent"
+                        GotFocus="SearchTextContainer_OnGotFocus"
+                        LostFocus="SearchTextContainer_OnLostFocus">
                         <Grid>
                             <StackPanel Orientation="Horizontal" >
                                 <TextBox x:Name="textBoxSearching"  Margin="10 0 10 0 " Width="490" VerticalAlignment="Center" 
                                           FontSize="18" BorderThickness="0" Background="Transparent" 
                                           TextChanged="TextBoxBase_OnTextChanged"
                                           KeyDown="TextBoxSearching_OnKeyDown"/>
-                                <Button x:Name="Search" Width="40" Height="35" BorderThickness="1 0 0 0" BorderBrush="Black" Background="Transparent">
+                                <Button x:Name="BtnSearch" Width="40" Height="35" BorderThickness="1 0 0 0" BorderBrush="Black" Background="Transparent"
+                                        Click="BtnSearch_OnClick">
                                     <Image Width="30" Height="30" Source="../Assets/Icon/SearchIcon2.png"></Image>
                                 </Button>
                             </StackPanel>
@@ -82,45 +91,55 @@
                             </TextBlock>
                         </Grid>
                     </Border>
-                    
                 </DockPanel>
                 
-                
+                <!-- Navbar -->
                 <StackPanel DockPanel.Dock="Left" Width="50" Margin="68 0 0 0 " Background="Transparent">
                     
-                    <Button x:Name="NavToSearching" Height="50" Background="Transparent" Click="NavToSearching_OnClick">
+                    <Button x:Name="NavToSearching" Height="50" Background="Transparent" Click="NavToSearching_OnClick"
+                            BorderThickness="0">
                         <Image Source="../Assets/Icon/SearchIcon.png"></Image>
                     </Button>
                     
-                    <Button x:Name="NavToWriting" Height="50" Background="Transparent" Click="NavToWriting_OnClick">
+                    <Button x:Name="NavToWriting" Height="50" Background="Transparent" Click="NavToWriting_OnClick"
+                            BorderThickness="0">
                         <Image Source="../Assets/Icon/BookIcon.png"></Image>
                     </Button>
                     
-                    <Button x:Name="NavToExam" Height="50" Background="Transparent" Click="NavToExam_OnClick">
+                    <Button x:Name="NavToExam" Height="50" Background="Transparent" Click="NavToExam_OnClick"
+                            BorderThickness="0">
                         <Image Source="../Assets/Icon/CheckIcon.png"></Image>
                     </Button>
                     
-                    <Button x:Name="NavToFlashCard" Height="50" Background="Transparent" Click="NavToFlashCard_OnClick">
+                    <Button x:Name="NavToFlashCard" Height="50" Background="Transparent" Click="NavToFlashCard_OnClick"
+                            BorderThickness="0">
                         <Image Source="../Assets/Icon/FlashCard.png"></Image>
                     </Button>
                     
                 </StackPanel>
                     
-                    <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" Margin="0 0 40 0" >
-                        <Button Height="50" x:Name="ShowTakeNote" Click="ShowTakeNote_OnClick">
-                            <Image Source="../Assets/Icon/TakeNoteIcon.png"></Image>
-                        </Button>
-                    </StackPanel>
+                <!-- Right NavBar and Show Take Note Button -->
+                <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" Margin="0 0 40 0" >
+                    <Button Height="50" x:Name="ShowTakeNote" Click="ShowTakeNote_OnClick">
+                        <Image Source="../Assets/Icon/TakeNoteIcon.png"></Image>
+                    </Button>
+                </StackPanel>
                     
-                    <Frame BorderThickness="0 1 0 0" BorderBrush="Black" Margin="10 0 10 0 " DockPanel.Dock="Bottom"  x:Name="Content" />
-                        
+                <!-- Content Frame -->
+                <Frame BorderThickness="0 1 0 0" BorderBrush="Black" Margin="10 0 10 0 " 
+                       DockPanel.Dock="Bottom" 
+                       x:Name="Content" 
+                       NavigationUIVisibility="Hidden"/>
             </DockPanel>
-            
-                
-                
-                                   
         </Border>
         
+        <!-- StatusBar -->
+        <StatusBar Grid.Row="2" x:Name="sBar" Background="Bisque" 
+                   Margin="5 0 5 5" >
+            <StatusBarItem Margin="5 0 0 0" >
+                <TextBlock x:Name="sBarCurrentPage">Searching</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
         
     </Grid>
 </Window>

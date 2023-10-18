@@ -8,5 +8,10 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             InitializeComponent();
         }
+
+        public void ChangeLabelText(string text)
+        {
+            textLabel.Content = text;
+        }
     }
 }

@@ -5,8 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="WritingPage" Height="450" Width="800">
+      Title="WritingPage" MinHeight="500" Height="auto" Width="900"
+      >
     <Grid>
         <Label Content="Hello Writing page"></Label>
+        <TextBox Width="200" Height="40"></TextBox>
     </Grid>
 </Page>
