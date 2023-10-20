@@ -91,6 +91,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\DictionaryEntry.cs" />
+    <Compile Include="Models\FlashCard.cs" />
+    <Compile Include="Models\ListFlashCard.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
