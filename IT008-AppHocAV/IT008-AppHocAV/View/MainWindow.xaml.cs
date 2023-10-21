@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Services;
 using IT008_AppHocAV.View.MainWindow;
 
@@ -24,11 +25,12 @@ namespace IT008_AppHocAV
     public partial class MainWindow : Window
     {
         private Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
-        
-        
+
         public MainWindow()
         {
             InitializeComponent();
+            Page defaultPage = new SearchingPage();
+            pageCache["Searching"] = defaultPage;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -62,25 +64,21 @@ namespace IT008_AppHocAV
         private void NavToSearching_OnClick(object sender, RoutedEventArgs e)
         {
             NavigateToPage("Searching");
-            sBarCurrentPage.Text = "Searching";
         }
 
         private void NavToWriting_OnClick(object sender, RoutedEventArgs e)
         {
             NavigateToPage("Writing");
-            sBarCurrentPage.Text = "Writing";
         }
 
         private void NavToExam_OnClick(object sender, RoutedEventArgs e)
         {
             NavigateToPage("Exam");
-            sBarCurrentPage.Text = "Exam";
         }
 
         private void NavToFlashCard_OnClick(object sender, RoutedEventArgs e)
         {
             NavigateToPage("FlashCard");
-            sBarCurrentPage.Text = "FlashCard";
         }
 
         private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
@@ -98,6 +96,8 @@ namespace IT008_AppHocAV
             SearchTextContainer.BorderBrush = Brushes.Transparent;
         }
 
+        
+        
         private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             if (textBoxSearching.Text != string.Empty)
@@ -110,20 +110,16 @@ namespace IT008_AppHocAV
             }
         }
 
-        private void TextBoxSearching_OnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                Search(textBoxSearching.Text);
-            }
-        }
+
+        
+        
         
         private Page CreatePage(string pageName)
         {
             Page page = null;
             if (pageName == "Searching")
             {
-                page = new Searching_page(); 
+                page = new SearchingPage(); 
             }
             else if (pageName == "Writing")
             {
@@ -138,8 +134,11 @@ namespace IT008_AppHocAV
             }
             return page;
         }
+        
+        
         private void NavigateToPage(string pageName)
         {
+            sBarCurrentPage.Text = pageName; 
             if (pageCache.TryGetValue(pageName, out var value))
             {
                 Content.Navigate(value);
@@ -150,21 +149,34 @@ namespace IT008_AppHocAV
                 pageCache[pageName] = newPage; 
                 Content.Navigate(newPage); 
             }
+                    
         }
 
-        private void BtnSearch_OnClick(object sender, RoutedEventArgs e)
+        
+        private async void TextBoxSearching_OnKeyDown(object sender, KeyEventArgs e)
         {
-            Search(textBoxSearching.Text);
-        }
-
-        private async Task Search(string text)
-        {
-            NavigateToPage("Searching");
-            if (Content.Content is Searching_page page)
+            if (e.Key == Key.Enter)
             {
-                var result = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
-                page.ChangeLabelText(result);
+                await DisplaySearchPage();
             }
         }
+        private async void BtnSearch_OnClick(object sender, RoutedEventArgs e)
+        {
+            await DisplaySearchPage();
+        }
+
+        private async Task DisplaySearchPage()
+        {
+            NavigateToPage("Searching");
+            while (!(Content.Content is SearchingPage))
+            {
+                await Task.Delay(10);
+            }
+            if (Content.Content is SearchingPage page)
+            {
+                await page.Search(textBoxSearching.Text);
+            }
+        }
+        
     }
 }
