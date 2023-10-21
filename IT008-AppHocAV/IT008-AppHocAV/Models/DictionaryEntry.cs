@@ -32,7 +32,7 @@ namespace IT008_AppHocAV.Models
 
     public class Phonetic
     {
-        public string text;
-        public string audio;
+        public string text { get; set; }
+        public string audio { get; set; }
     }
 }

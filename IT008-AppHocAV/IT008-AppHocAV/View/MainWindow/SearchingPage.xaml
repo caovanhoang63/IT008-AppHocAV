@@ -1,13 +1,108 @@
-﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.Searching_page"
+﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.SearchingPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="Searching_page" MinHeight="500" Height="auto" Width="900">
-    <Grid>
-        <Label Name="textLabel" Content="Hello Searching"></Label>
-        <TextBox Width="200" Height="40"></TextBox>
-    </Grid>
+      FontFamily="Comic Sans MS"
+      Title="Searching_page" MinHeight="500" Height="auto" Width="800"
+      Margin="0 20 0  0">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/SearchingPageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
+    </Page.Resources>
+    <ScrollViewer Style="{DynamicResource FavsScrollViewer}" >
+        
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Name="DicApiResultContainer">
+            <!-- Meaning Header -->
+                <Border x:Name="MeaningHeader" BorderThickness="0 0 0 1" BorderBrush="Black">
+                    
+                    <Grid Margin="0 0 0 0">
+                        <!-- Column Define -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition ></ColumnDefinition>
+                            <ColumnDefinition ></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0" >
+                            <StackPanel Orientation="Horizontal" Margin="0 60 0 0 " >
+                                <TextBox FontSize="25" Name="Word">Word</TextBox>
+                                <TextBox FontSize="25"> - </TextBox>
+                                <TextBox Name="VnWord" FontSize="25"> VnWord</TextBox>
+                            </StackPanel>
+                            <!-- Phonetics -->
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                <!-- Uk Phonetic -->
+                                <StackPanel Name="UkPhoneticContainer" Orientation="Horizontal" Margin="0 0 10 0 ">
+                                    <TextBox FontSize="14" Name="TextBoxUk" >UK</TextBox>
+                                    <Button  Name="BtnUkSpeaker" Width="18" Height="18" Background="Transparent" 
+                                            Click="BtnUkSpeaker_OnClick" BorderThickness="0">
+                                        <StackPanel>
+                                            <TextBox FontSize="14" Visibility="Collapsed"  x:Name='UkSpeakerUri'></TextBox>
+                                            <Image Source="../../Assets/Icon/SpeakerIcon.png"></Image>
+                                        </StackPanel>
+                                    </Button>
+                                    <TextBox FontSize="14" Name="UkPhonetic">UkPhonetic</TextBox>
+                                </StackPanel>
+                                <!-- Us Phonetic -->
+                                <StackPanel  Name="UsPhoneticContainer" Orientation="Horizontal" Margin="0 0 10 0 ">
+                                    <TextBox FontSize="14" Name="TextBoxUs">US</TextBox>
+                                    <Button Name="BtnUsSpeaker" Width="18" Height="18" Background="Transparent"
+                                            Click="BtnUsSpeaker_OnClick" BorderThickness="0"> 
+                                        <StackPanel>
+                                            <TextBox FontSize="14" Visibility="Collapsed"  x:Name='UsSpeakerUri'></TextBox>
+                                            <Image Source="../../Assets/Icon/SpeakerIcon.png"></Image>
+                                        </StackPanel>
+                                    </Button>
+                                    <TextBox FontSize="14" Name="UsPhonetic">UsPhonetic</TextBox>
+                                </StackPanel>
+                                <!-- Ua and default Phonetic -->
+                                <StackPanel  Name="AuPhoneticContainer" Orientation="Horizontal">
+                                    <Button FontSize="14" Name="BtnUaSpeaker" Width="18" Height="18" Background="Transparent"
+                                            Click="BtnUaSpeaker_OnClick" BorderThickness="0"> 
+                                        <StackPanel>
+                                            <TextBox FontSize="14" Visibility="Collapsed" x:Name='AuSpeakerUri'></TextBox>
+                                            <Image Source="../../Assets/Icon/SpeakerIcon.png"></Image>
+                                        </StackPanel>
+                                    </Button>
+                                    <TextBox FontSize="14" Name="AuPhonetic">UaPhonetic</TextBox>
+                                </StackPanel>
+                            </StackPanel>
+                           
+                            
+                        </StackPanel>
+                        <!--Word Image -->
+                        <Image Grid.Column="1" Margin="0 0 0 20" Name="WordImage" Width="auto" Height="200"
+                               Source="../../Assets/Image/MockResultImage.jpg"></Image>
+                    </Grid>
+                </Border>
+            <!-- End Phonetic -->
+            
+                <!-- Meanings Container  -->
+                <StackPanel x:Name="MeaningsContainer" Margin="0 20 0 0 ">
+                </StackPanel>
+                
+            </StackPanel>
+            
+            <DockPanel Grid.Row="1" x:Name="GoogleTranslateContainer" LastChildFill="True" Height="350" Margin="0 20 0 0 ">
+                <RichTextBox x:Name="GTransSlText" DockPanel.Dock="Left" Width="350"></RichTextBox>
+                <RichTextBox x:Name="GTransTlText" DockPanel.Dock="Right" Margin="100 0 0 0 "></RichTextBox>
+            </DockPanel>
+            
+        </Grid>
+        
+    </ScrollViewer>
+    
 </Page>

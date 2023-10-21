@@ -12,7 +12,6 @@ namespace IT008_AppHocAV.Services
     {
         public static async Task<List<DictionaryEntry>> SearchDictionary(string query)
         {
-            Console.WriteLine("Searching " + query + "...");
 
             using (HttpClient client = new HttpClient())
             {
@@ -25,7 +24,6 @@ namespace IT008_AppHocAV.Services
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
                     return null;
                 }
             }
