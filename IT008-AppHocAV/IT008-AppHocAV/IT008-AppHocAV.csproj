@@ -126,6 +126,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\DictionaryEntry.cs" />
+    <Compile Include="Models\Pair.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
@@ -230,7 +231,10 @@
     <Resource Include="Assets\Icon\SpeakerIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Icon\DropDownBtnIcon.png" />
+    <Resource Include="Assets\Icon\DropDownBtnIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\GoogleTranslateIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
+using System.Windows.Media;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Services;
 using NAudio.Wave;
@@ -21,28 +22,49 @@ namespace IT008_AppHocAV.View.MainWindow
             DicApiResultContainer.Visibility = Visibility.Hidden;
             GoogleTranslateContainer.Visibility = Visibility.Hidden;
         }
+
+        private Dictionary<string, Pair<TextBox,bool>> definitionTextBoxList = new Dictionary<string,Pair<TextBox,bool>>();
         
-        public async Task Search(string text)
+        private int definitionCount = 0;
+
+        //Clean UI for new Search
+        public void ResetPage()
         {
+            definitionCount = 0;
             this.DicApiResultContainer.Visibility = Visibility.Collapsed;
             this.WordImage.Visibility = Visibility.Hidden;
             this.GoogleTranslateContainer.Visibility = Visibility.Hidden;
             this.MeaningsContainer.Children.Clear();
+            definitionTextBoxList.Clear();
+        }
+        
+        public async Task Search(string text)
+        {
+            if (text == this.Word.Text)
+                return;
+            
+            ResetPage();
+            
             try
             {
+                //Call DictionaryApi
                 List<DictionaryEntry> words = await DictionaryApi.SearchDictionary(text);
-                this.VnWord.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
+                //Create header of page 
                 this.Word.Text = text;
+                this.VnWord.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
                 PhoneticHandler(words[0]);
 
+                //Generate meanings xaml
                 string meaningXaml = GenerateWordDictionaryEntry(words);
-                
-                
                 UIElement generatedElement = (UIElement)XamlReader.Parse(meaningXaml);
-
+                //Write meanings xaml to page
                 this.MeaningsContainer.Children.Add(generatedElement);
-                
+
                 this.DicApiResultContainer.Visibility = Visibility.Visible;
+                
+                //Add click event for drop down translate definition buttons
+                FindButtonsInStackPanels(MeaningsContainer);
+                
                 var imageApi = await PexelsImageAPI.GetImages(text);
                 if (imageApi != null)
                 {
@@ -58,6 +80,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 this.GTransSlText.Selection.Text = text;
                 this.GTransTlText.Selection.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
             }
+            //if Image error, hidden WordImage
             catch (ArgumentOutOfRangeException e)
             {
                 this.WordImage.Visibility = Visibility.Hidden;
@@ -65,12 +88,12 @@ namespace IT008_AppHocAV.View.MainWindow
         }
 
 
+        //Handle Phonetic from DictionaryApi to display on Header of page
         public void  PhoneticHandler(DictionaryEntry word)
         {
             string usPhonetic = "";
             string ukPhonetic = "";
             string auPhonetic = "";
-            
             
             foreach (Phonetic phonetic in word.phonetics)
             {
@@ -141,6 +164,7 @@ namespace IT008_AppHocAV.View.MainWindow
             
         }
 
+        //Generate xaml for all result from dictionaryApi by call GenerateWordMeangs
         private string GenerateWordDictionaryEntry(List<DictionaryEntry> words)
         {
             string xaml = @"<StackPanel xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"">";
@@ -151,11 +175,11 @@ namespace IT008_AppHocAV.View.MainWindow
                     xaml += GenerateWordMeaningsXaml(meaning);
                 }
             }
-            
             xaml += @"</StackPanel>";
             return xaml;
         }
         
+        //Generate xaml for each word from dictionaryApi
         private string GenerateWordMeaningsXaml(Meaning meaning)
         {
             string xaml = $@"
@@ -165,7 +189,6 @@ namespace IT008_AppHocAV.View.MainWindow
                     <StackPanel Margin=""20 0 0 0 "">
             ";
             int meanCount = 1;
-            
             foreach (var definition in meaning.definitions)
             {
                 if (meanCount > 5)
@@ -176,10 +199,25 @@ namespace IT008_AppHocAV.View.MainWindow
                 {
                     meanCount++;
                 }
+                
+                
+                string Endefinition = "Endefinition" + definitionCount;
+                string Transdefinition = "Transdefinition" + definitionCount;
+                string Vndefinition = "Vndefinition" + definitionCount;
+                
                 xaml +=$@"
-                    <TextBox Foreground=""#3B6449"" FontSize=""16"">
-                        {definition.definition}
-                    </TextBox>
+                    <StackPanel>
+                        <TextBox Name=""{Endefinition}"" Foreground=""#3B6449"" FontSize=""16"">
+                           {definition.definition}
+                        </TextBox>
+                        <Button Name=""{Transdefinition}"" FontSize=""14"" Width=""18"" Height=""auto"" Background=""Transparent"" BorderThickness=""0""
+                                Margin=""0 0 730 0"" > 
+                                <Image  Source=""../../Assets/Icon/DropDownBtnIcon.png""></Image>
+                        </Button>
+                        <TextBox  Name=""{Vndefinition}"" Foreground=""#3B6449"" FontSize=""16"" Visibility=""Collapsed"">
+                           {(definition.definition)}
+                        </TextBox>
+                    </StackPanel>
                 ";
 
                 if (!string.IsNullOrEmpty(definition.example))
@@ -244,6 +282,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 xaml+=$@"
                     <Border Margin=""0 30 0 0"" BorderThickness=""0 0 0 1 "" BorderBrush=""Black"" Width=""750""></Border>
                     ";
+                definitionCount++;
             }
             xaml += @"
                     </StackPanel>
@@ -282,6 +321,60 @@ namespace IT008_AppHocAV.View.MainWindow
                 {
                     await Task.Delay(1000);
                 }
+            }
+        }
+
+        private async void TransDefinitionBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                string textBoxName = "Vndefinition" + button.Name[button.Name.Length - 1];
+                TextBox textBox = definitionTextBoxList[textBoxName].first;
+                if (textBox != null)
+                {
+                    if (textBox.Visibility == Visibility.Collapsed)
+                    {
+                        if (!definitionTextBoxList[textBoxName].second)
+                        {
+                            textBox.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", textBox.Text);
+                            definitionTextBoxList[textBoxName].second = true;
+                        }
+                        textBox.Visibility = Visibility.Visible;    
+                    }
+                    else
+                    {
+                        textBox.Visibility = Visibility.Collapsed;
+                    }
+                    
+                }
+            }
+        }
+
+        private void FindButtonsInStackPanels(DependencyObject parent)
+        {
+            if (parent != null)
+            {
+                int countChild = VisualTreeHelper.GetChildrenCount(parent);
+                for (int i = 0; i < countChild; i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                    if (child is StackPanel stackPanel)
+                    {
+                        foreach (UIElement stackPanelChild in stackPanel.Children)
+                        {
+                            if (stackPanelChild is Button button)
+                            {
+                                button.Click += TransDefinitionBtn_OnClick;
+                            } else if (stackPanelChild is TextBox textBox)
+                            {
+                                definitionTextBoxList[textBox.Name] = new Pair<TextBox, bool>(textBox, false);
+                            }
+                        }
+                    }
+                    //if this child is not a button, find buttons in this child
+                    FindButtonsInStackPanels(child);
+                }
+                
             }
         }
     }

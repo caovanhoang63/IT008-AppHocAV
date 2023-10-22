@@ -40,7 +40,7 @@
                             <StackPanel Orientation="Horizontal" Margin="0 60 0 0 " >
                                 <TextBox FontSize="25" Name="Word">Word</TextBox>
                                 <TextBox FontSize="25"> - </TextBox>
-                                <TextBox Name="VnWord" FontSize="25"> VnWord</TextBox>
+                                <TextBox  Name="VnWord" FontSize="25"> VnWord</TextBox>
                             </StackPanel>
                             <!-- Phonetics -->
                             <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
@@ -54,7 +54,7 @@
                                             <Image Source="../../Assets/Icon/SpeakerIcon.png"></Image>
                                         </StackPanel>
                                     </Button>
-                                    <TextBox FontSize="14" Name="UkPhonetic">UkPhonetic</TextBox>
+                                    <TextBox FontFamily="Arial" FontSize="14" Name="UkPhonetic">UkPhonetic</TextBox>
                                 </StackPanel>
                                 <!-- Us Phonetic -->
                                 <StackPanel  Name="UsPhoneticContainer" Orientation="Horizontal" Margin="0 0 10 0 ">
@@ -66,7 +66,7 @@
                                             <Image Source="../../Assets/Icon/SpeakerIcon.png"></Image>
                                         </StackPanel>
                                     </Button>
-                                    <TextBox FontSize="14" Name="UsPhonetic">UsPhonetic</TextBox>
+                                    <TextBox FontFamily="Arial" FontSize="14" Name="UsPhonetic">UsPhonetic</TextBox>
                                 </StackPanel>
                                 <!-- Ua and default Phonetic -->
                                 <StackPanel  Name="AuPhoneticContainer" Orientation="Horizontal">
@@ -77,11 +77,9 @@
                                             <Image Source="../../Assets/Icon/SpeakerIcon.png"></Image>
                                         </StackPanel>
                                     </Button>
-                                    <TextBox FontSize="14" Name="AuPhonetic">UaPhonetic</TextBox>
+                                    <TextBox FontFamily="Arial" FontSize="14" Name="AuPhonetic">UaPhonetic</TextBox>
                                 </StackPanel>
                             </StackPanel>
-                           
-                            
                         </StackPanel>
                         <!--Word Image -->
                         <Image Grid.Column="1" Margin="0 0 0 20" Name="WordImage" Width="auto" Height="200"
