@@ -48,16 +48,24 @@ namespace IT008_AppHocAV.View
         
         private void LoginBtn_OnClick(object sender, RoutedEventArgs e)
         {
+           Login();
+        }
+
+        private void Login()
+        {
             if (VisiblePasswordBox.Visibility == Visibility.Visible)
             {
                 PasswordBox.Password = VisiblePasswordBox.Text;
             }
             if (UserNameBox.Text != String.Empty && PasswordBox.Password != String.Empty )
             {
-                Console.WriteLine(PasswordBox.Password);
+                if (UserNameBox.Text == "admin" && PasswordBox.Password == "admin")
+                {
+                    IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow();
+                    mainWindow.Show();
+                }
             }
         }
-
         private void BoxBorder_OnGotFocus(object sender, RoutedEventArgs e)
         {
             if (sender is Border bd)
@@ -79,7 +87,17 @@ namespace IT008_AppHocAV.View
         {
             SignUpWindow a = new SignUpWindow(this);
             a.Show();
-            this.Hide();
+            Hide();
         }
+
+        private void LoginWindow_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Login();
+            }
+        }
+
+
     }
 }

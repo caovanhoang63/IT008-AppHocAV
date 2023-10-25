@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        KeyDown="LoginWindow_OnKeyDown"
         >
     <!-- import style -->
     <Window.Resources>
@@ -82,7 +83,7 @@
                     </StackPanel>
                 </Border>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <CheckBox Margin="0 7 0 0 " ></CheckBox>
+                    <CheckBox Margin="0 7 0 0" ></CheckBox>
                     <Label FontSize="13">Remember me</Label>
                 </StackPanel>
                 <Border Width="400" Height="42" CornerRadius="12" BorderThickness="1"

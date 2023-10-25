@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Services;
+using IT008_AppHocAV.View;
 using IT008_AppHocAV.View.MainWindow;
 
 namespace IT008_AppHocAV
@@ -25,12 +26,20 @@ namespace IT008_AppHocAV
     public partial class MainWindow : Window
     {
         private Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
-
+        private readonly LoginWindow _loginWindow;
         public MainWindow()
         {
             InitializeComponent();
             Page defaultPage = new SearchingPage();
             pageCache["Searching"] = defaultPage;
+        }
+        
+        public MainWindow(LoginWindow loginWindow)
+        {
+            InitializeComponent();
+            Page defaultPage = new SearchingPage();
+            pageCache["Searching"] = defaultPage;
+            _loginWindow = loginWindow;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
