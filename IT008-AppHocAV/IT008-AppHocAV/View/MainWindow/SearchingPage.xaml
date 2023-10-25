@@ -91,13 +91,47 @@
                 <!-- Meanings Container  -->
                 <StackPanel x:Name="MeaningsContainer" Margin="0 20 0 0 ">
                 </StackPanel>
-                
             </StackPanel>
             
-            <DockPanel Grid.Row="1" x:Name="GoogleTranslateContainer" LastChildFill="True" Height="350" Margin="0 20 0 0 ">
-                <RichTextBox x:Name="GTransSlText" DockPanel.Dock="Left" Width="350"></RichTextBox>
-                <RichTextBox x:Name="GTransTlText" DockPanel.Dock="Right" Margin="100 0 0 0 "></RichTextBox>
-            </DockPanel>
+            <Grid Grid.Row="1" x:Name="GoogleTranslateContainer" Height="350" Margin="0 20 0 0"
+                  HorizontalAlignment="Center">
+                <!-- Grid define -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"></ColumnDefinition>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
+                    <ColumnDefinition Width="320"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="300"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!-- End grid define -->
+                
+                <Border Grid.Row="0" Grid.Column="0" BorderThickness="1" BorderBrush="Black" CornerRadius="12"
+                        Margin="0 0 0  20" >
+                    <Label Name="GtslLabel" HorizontalAlignment="Center">English</Label>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black" CornerRadius="12"  
+                        Background="White">
+                    <RichTextBox  x:Name="GTransSlText" Background="Transparent" BorderThickness="0" Margin="0 12 0 12"
+                                  TextChanged="GTransSlText_OnTextChanged" AcceptsReturn="False"></RichTextBox>
+                </Border>
+                
+                <Button Name="SwitchLanBtn" Grid.Row="0" Grid.Column="1"
+                        Margin="10 0 10  20" Background="Transparent"
+                        BorderThickness="0" Click="SwitchLanBtn_OnClick">
+                    <Image Source="../../Assets/Icon/switchIcon.png"></Image>
+                </Button>
+                
+                <Border Grid.Row="0" Grid.Column="2"  BorderThickness="1" BorderBrush="Black" CornerRadius="12"
+                        Margin="0 0 0  20">
+                    <Label Name="GttlLabel" HorizontalAlignment="Center"> Vietnamese </Label>
+                </Border>
+                
+                <Border Grid.Row="1" Grid.Column="2" BorderThickness="1" BorderBrush="Black" CornerRadius="12" Background="White" >
+                    <RichTextBox x:Name="GTransTlText"  Background="Transparent" BorderThickness="0"  Margin="0 12 0  12"></RichTextBox>
+                </Border>
+            </Grid>
             
         </Grid>
         

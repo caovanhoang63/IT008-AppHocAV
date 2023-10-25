@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Threading;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Threading;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Services;
 using NAudio.Wave;
@@ -21,30 +21,30 @@ namespace IT008_AppHocAV.View.MainWindow
             InitializeComponent();
             DicApiResultContainer.Visibility = Visibility.Hidden;
             GoogleTranslateContainer.Visibility = Visibility.Hidden;
+            _languages.Add("English","en");
+            _languages.Add("Vietnamese","vi");
         }
-
-        private Dictionary<string, Pair<TextBox,bool>> definitionTextBoxList = new Dictionary<string,Pair<TextBox,bool>>();
         
-        private int definitionCount = 0;
+        private DispatcherTimer _debounceTimer;
+        private readonly Dictionary<string, string> _languages = new Dictionary<string, string>();
+        private readonly Dictionary<string, Pair<TextBox,bool>> _definitionTextBoxList = new Dictionary<string,Pair<TextBox,bool>>();
+        private int _definitionCount = 0;
 
         //Clean UI for new Search
-        public void ResetPage()
+        private void ResetPage()
         {
-            definitionCount = 0;
+            _definitionCount = 0;
             this.DicApiResultContainer.Visibility = Visibility.Collapsed;
             this.WordImage.Visibility = Visibility.Hidden;
             this.GoogleTranslateContainer.Visibility = Visibility.Hidden;
             this.MeaningsContainer.Children.Clear();
-            definitionTextBoxList.Clear();
+            _definitionTextBoxList.Clear();
         }
-        
         public async Task Search(string text)
         {
             if (text == this.Word.Text)
                 return;
-            
             ResetPage();
-            
             try
             {
                 //Call DictionaryApi
@@ -53,18 +53,14 @@ namespace IT008_AppHocAV.View.MainWindow
                 this.Word.Text = text;
                 this.VnWord.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
                 PhoneticHandler(words[0]);
-
                 //Generate meanings xaml
                 string meaningXaml = GenerateWordDictionaryEntry(words);
                 UIElement generatedElement = (UIElement)XamlReader.Parse(meaningXaml);
                 //Write meanings xaml to page
                 this.MeaningsContainer.Children.Add(generatedElement);
-
                 this.DicApiResultContainer.Visibility = Visibility.Visible;
-                
                 //Add click event for drop down translate definition buttons
                 FindButtonsInStackPanels(MeaningsContainer);
-                
                 var imageApi = await PexelsImageAPI.GetImages(text);
                 if (imageApi != null)
                 {
@@ -75,7 +71,6 @@ namespace IT008_AppHocAV.View.MainWindow
             //if Dictionary Api response null result, show google translate instead
             catch (NullReferenceException e)
             {
-                Console.WriteLine(e.Message);
                 this.GoogleTranslateContainer.Visibility = Visibility.Visible;
                 this.GTransSlText.Selection.Text = text;
                 this.GTransTlText.Selection.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
@@ -86,10 +81,9 @@ namespace IT008_AppHocAV.View.MainWindow
                 this.WordImage.Visibility = Visibility.Hidden;
             }
         }
-
-
+        
         //Handle Phonetic from DictionaryApi to display on Header of page
-        public void  PhoneticHandler(DictionaryEntry word)
+        private void  PhoneticHandler(DictionaryEntry word)
         {
             string usPhonetic = "";
             string ukPhonetic = "";
@@ -116,7 +110,6 @@ namespace IT008_AppHocAV.View.MainWindow
                     }
                 }
             }
-            
             //If auPhonetic == "", auPhonetic = default phonetic
             if (auPhonetic == String.Empty)
             {
@@ -127,9 +120,7 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 BtnUaSpeaker.Visibility = Visibility.Visible;
             }
-
             AuPhonetic.Text = auPhonetic;
-            
             //If ukPhonetic != "", show it
             if (ukPhonetic != string.Empty)
             {
@@ -140,7 +131,6 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 this.UkPhoneticContainer.Visibility = Visibility.Collapsed;
             }
-            
             //If usPhonetic != "", show it
             if (usPhonetic != string.Empty)
             {
@@ -151,7 +141,6 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 this.UsPhoneticContainer.Visibility = Visibility.Collapsed;
             }
-            
             //if usPhonetic and ukPhonetic neither == "", show auPhonetic
             if (usPhonetic == string.Empty && ukPhonetic == string.Empty )
             {
@@ -163,7 +152,7 @@ namespace IT008_AppHocAV.View.MainWindow
             }
             
         }
-
+        
         //Generate xaml for all result from dictionaryApi by call GenerateWordMeangs
         private string GenerateWordDictionaryEntry(List<DictionaryEntry> words)
         {
@@ -192,18 +181,13 @@ namespace IT008_AppHocAV.View.MainWindow
             foreach (var definition in meaning.definitions)
             {
                 if (meanCount > 5)
-                {
                     break;
-                }
                 else
-                {
                     meanCount++;
-                }
                 
-                
-                string Endefinition = "Endefinition" + definitionCount;
-                string Transdefinition = "Transdefinition" + definitionCount;
-                string Vndefinition = "Vndefinition" + definitionCount;
+                string Endefinition = "Endefinition" + _definitionCount;
+                string Transdefinition = "Transdefinition" + _definitionCount;
+                string Vndefinition = "Vndefinition" + _definitionCount;
                 
                 xaml +=$@"
                     <StackPanel>
@@ -219,7 +203,6 @@ namespace IT008_AppHocAV.View.MainWindow
                         </TextBox>
                     </StackPanel>
                 ";
-
                 if (!string.IsNullOrEmpty(definition.example))
                 {
                     xaml += $@"
@@ -230,7 +213,6 @@ namespace IT008_AppHocAV.View.MainWindow
                                 Example: {definition.example}
                            </TextBox>";
                 }
-
                 string synonyms = "";
                 for (int i = 0; i < definition.synonyms.Length; i++)
                 {
@@ -243,8 +225,6 @@ namespace IT008_AppHocAV.View.MainWindow
                         synonyms += definition.synonyms[i] + ". ";
                     }
                 }
-
-                
                 string antonyms = "";
                 for (int i = 0; i < definition.antonyms.Length; i++)
                 {
@@ -257,7 +237,6 @@ namespace IT008_AppHocAV.View.MainWindow
                         antonyms += definition.antonyms[i] + ". ";
                     }
                 }
-
                 if (synonyms.Trim() != "")
                 {
                     xaml += $@"
@@ -268,7 +247,6 @@ namespace IT008_AppHocAV.View.MainWindow
                             Synonym: {synonyms}
                     </TextBox>";
                 }
-
                 if (antonyms.Trim() != "")
                 {
                     xaml += $@"<TextBox FontStyle=""Italic"" Margin=""0 5 0 0"">
@@ -278,11 +256,10 @@ namespace IT008_AppHocAV.View.MainWindow
                             Antonym: {antonyms}
                     </TextBox>";
                 }
-                
                 xaml+=$@"
                     <Border Margin=""0 30 0 0"" BorderThickness=""0 0 0 1 "" BorderBrush=""Black"" Width=""750""></Border>
                     ";
-                definitionCount++;
+                _definitionCount++;
             }
             xaml += @"
                     </StackPanel>
@@ -290,25 +267,21 @@ namespace IT008_AppHocAV.View.MainWindow
                 </StackPanel>";
             return xaml;
         }
-            
-        
         
         //play Pronunciation sound
         private async void BtnUkSpeaker_OnClick(object sender, RoutedEventArgs e)
         {
             await PlaySound(UkSpeakerUri.Text.ToString());
         }
-
         private async void BtnUsSpeaker_OnClick(object sender, RoutedEventArgs e)
         {
             await PlaySound(UsSpeakerUri.Text.ToString());
         }
-
         private async void BtnUaSpeaker_OnClick(object sender, RoutedEventArgs e)
         {
              await PlaySound(AuSpeakerUri.Text.ToString());
         }
-
+        
         // Play sound with https://github.com/naudio/NAudio/blob/master/Docs/PlayAudioFromUrl.md?fbclid=IwAR23AvVfary9oc8IpOIFh_en6wkbLptkKvxDNLxyJeR1VVjZ3FvZG9smGPA
         private static async Task PlaySound(string url)
         {
@@ -323,21 +296,21 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
             }
         }
-
+        
         private async void TransDefinitionBtn_OnClick(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
             {
-                string textBoxName = "Vndefinition" + button.Name[button.Name.Length - 1];
-                TextBox textBox = definitionTextBoxList[textBoxName].first;
+                string textBoxName = "Vndefinition" + button.Name.Substring(15);
+                TextBox textBox = _definitionTextBoxList[textBoxName].First;
                 if (textBox != null)
                 {
                     if (textBox.Visibility == Visibility.Collapsed)
                     {
-                        if (!definitionTextBoxList[textBoxName].second)
+                        if (!_definitionTextBoxList[textBoxName].Second)
                         {
                             textBox.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", textBox.Text);
-                            definitionTextBoxList[textBoxName].second = true;
+                            _definitionTextBoxList[textBoxName].Second = true;
                         }
                         textBox.Visibility = Visibility.Visible;    
                     }
@@ -345,11 +318,10 @@ namespace IT008_AppHocAV.View.MainWindow
                     {
                         textBox.Visibility = Visibility.Collapsed;
                     }
-                    
                 }
             }
         }
-
+        
         private void FindButtonsInStackPanels(DependencyObject parent)
         {
             if (parent != null)
@@ -367,7 +339,7 @@ namespace IT008_AppHocAV.View.MainWindow
                                 button.Click += TransDefinitionBtn_OnClick;
                             } else if (stackPanelChild is TextBox textBox)
                             {
-                                definitionTextBoxList[textBox.Name] = new Pair<TextBox, bool>(textBox, false);
+                                _definitionTextBoxList[textBox.Name] = new Pair<TextBox, bool>(textBox, false);
                             }
                         }
                     }
@@ -375,6 +347,52 @@ namespace IT008_AppHocAV.View.MainWindow
                     FindButtonsInStackPanels(child);
                 }
                 
+            }
+        }
+
+        private void GTransSlText_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Cancel all previously expected commands (if any)
+            if (_debounceTimer != null)
+            {
+                _debounceTimer.Stop();
+            }
+            // create new timer
+            _debounceTimer = new DispatcherTimer();
+            _debounceTimer.Interval = TimeSpan.FromMilliseconds(500); // Wait 500ms after no more changes
+            _debounceTimer.Tick += async (s, args) =>
+            {
+                _debounceTimer.Stop();
+                TranslateRtb();
+            };
+
+            // start countdown after 500ms when nothing change
+            _debounceTimer.Start();
+        }
+
+        private void SwitchLanBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            string temp = GtslLabel.Content.ToString();
+            GtslLabel.Content =GttlLabel.Content;
+            GttlLabel.Content = temp;
+            TranslateRtb();
+        }
+
+        private async void TranslateRtb()
+        {
+            string sltext = new TextRange(GTransSlText.Document.ContentStart, GTransSlText.Document.ContentEnd).Text;
+            if (!string.IsNullOrEmpty(sltext.Trim()))
+            {
+                string sl = _languages[GtslLabel.Content.ToString()];
+                string tl = _languages[GttlLabel.Content.ToString()];
+                string tltext = await GoogleTranslateApi.GoogleTranslate(sl, tl, sltext);
+                Console.WriteLine(tltext);
+                GTransTlText.Document.Blocks.Clear();
+                GTransTlText.Document.Blocks.Add(new Paragraph(new Run(tltext)));
+            }
+            else
+            {
+                GTransTlText.Document.Blocks.Clear();
             }
         }
     }

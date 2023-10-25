@@ -16,6 +16,7 @@ namespace IT008_AppHocAV.Services
                     sl, tl, Uri.EscapeUriString(text));
                 HttpClient client = new HttpClient();
                 var response = await client.GetStringAsync(url);
+                Console.WriteLine(response);
                 int first = response.IndexOf('"');
                 int second = response.Substring(first + 1).IndexOf('"');
                 string result = response.Substring(first + 1, second);

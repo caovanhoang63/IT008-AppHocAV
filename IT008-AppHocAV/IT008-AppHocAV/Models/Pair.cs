@@ -1,18 +1,24 @@
 ﻿namespace IT008_AppHocAV.Models
 {
-    public class Pair<T,U>
+    public class Pair<T,TU>
     {
         public Pair()
         {
             
         }
 
-        public Pair(T first,U second)
+        public Pair(T first,TU second)
         {
-            this.first = first;
-            this.second = second;
+            this.First = first;
+            this.Second = second;
         }
-        public T first { get; set; }
-        public U second { get; set; }
+
+        public TU this[T first]
+        {
+            get => Second;
+            set => Second = value;
+        } 
+        public T First { get; set; }
+        public TU Second { get; set; }
     }
 }

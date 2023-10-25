@@ -75,7 +75,8 @@
                         LostFocus="SearchTextContainer_OnLostFocus">
                         <Grid>
                             <StackPanel Orientation="Horizontal" >
-                                <TextBox x:Name="textBoxSearching"  Margin="10 0 10 0 " Width="490" VerticalAlignment="Center" 
+                                <TextBox x:Name="textBoxSearching"  Margin="10 0 10 0 "
+                                          Width="490" VerticalAlignment="Center" 
                                           FontSize="18" BorderThickness="0" Background="Transparent" 
                                           TextChanged="TextBoxBase_OnTextChanged"
                                           KeyDown="TextBoxSearching_OnKeyDown"/>
@@ -84,7 +85,8 @@
                                     <Image Width="30" Height="30" Source="../Assets/Icon/SearchIcon2.png"></Image>
                                 </Button>
                             </StackPanel>
-                            <TextBlock x:Name="TextBlockPlaceHolder" IsHitTestVisible="False" Text="Search..." VerticalAlignment="Center"
+                            <TextBlock x:Name="TextBlockPlaceHolder" IsHitTestVisible="False" Text="Search..."
+                                        VerticalAlignment="Center"
                                         HorizontalAlignment="Left" Foreground="DarkGray"
                                         Margin="20 0 0  0"
                                         FontSize="18">

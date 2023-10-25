@@ -236,5 +236,8 @@
   <ItemGroup>
     <Resource Include="Assets\Icon\GoogleTranslateIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\switchIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
