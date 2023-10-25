@@ -128,9 +128,13 @@
     <Compile Include="Models\DictionaryEntry.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
+    <Compile Include="View\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -152,6 +156,9 @@
     </Compile>
     <Compile Include="View\MainWindow\WritingPage.xaml.cs">
       <DependentUpon>WritingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SignUpWindow.xaml.cs">
+      <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -188,12 +195,15 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Assets\Styles\LoginPageStyle.xaml" />
     <Page Include="Assets\Styles\MainStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Styles\ScrollBarStyle.xaml" />
     <Page Include="Assets\Styles\SearchingPageStyle.xaml" />
+    <Page Include="Assets\Styles\SignUpPageStyle.xaml" />
+    <Page Include="View\LoginWindow.xaml" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -204,6 +214,7 @@
     <Page Include="View\MainWindow\MakeFlashCard.xaml" />
     <Page Include="View\MainWindow\SearchingPage.xaml" />
     <Page Include="View\MainWindow\WritingPage.xaml" />
+    <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Buffer\" />
@@ -233,6 +244,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Icon\DropDownBtnIcon.png" />
+    <Resource Include="Assets\Icon\hidepwdIcon.png" />
+    <Resource Include="Assets\Icon\showpwdIcon.png" />
+    <Resource Include="Assets\Image\Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
