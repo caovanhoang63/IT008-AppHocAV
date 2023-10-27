@@ -1,0 +1,110 @@
+﻿<Window x:Class="IT008_AppHocAV.View.SignUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:IT008_AppHocAV.View"
+        mc:Ignorable="d"
+        Title="SignUpPage" Height="700" Width="800"
+        WindowStyle="None"
+        MouseLeftButtonDown="SignUpPage_OnMouseLeftButtonDown"
+        WindowStartupLocation="CenterScreen"
+        >
+    <!-- import style -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Assets/Styles/SignUpPageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="3" Background="Beige"></Border>
+        
+        <!-- Define TitleBar -->
+        <Border Grid.Row="0" Background="Beige" x:Name="TitleBar">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="Transparent">
+                <Button x:Name="BtnClose" Content="X" Width="40" Height="40"
+                        BorderBrush="Transparent" Background="Transparent" Click="BtnClose_OnClick" ></Button>
+            </StackPanel>
+        </Border>
+        
+        
+        
+        <StackPanel Grid.Row="2">
+            
+            <Border Margin="130 0 130 10" BorderThickness=" 0 0 0 1" BorderBrush="Black">
+                <StackPanel>
+                    <Label Height="auto" 
+                           FontSize="50" FontWeight="Medium" Margin="0 0 0 0">Sign Up</Label>
+                    <Label Height="auto" FontStyle="Italic" Foreground="Gray">Quick and easy!</Label>
+                </StackPanel>
+            </Border>
+            
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="1" Grid.Column="0">
+                    <Label>Full name:</Label>
+                    <Label>Email:</Label>
+                    <Label>Phone number:</Label>
+                    <Label>Date of birth:</Label>
+                    <Label>Gender:</Label>
+                    <Label>User name:</Label>
+                    <Label>Password:</Label>
+                    <Label>Confirm password:</Label>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1">
+                    <TextBox Name="FullName"></TextBox>
+                    <TextBox Name="Email"></TextBox>
+                    <TextBox Name="PhoneNumber"></TextBox>
+                    <Border Height="35" Margin="0 0 0 8 " BorderThickness="1" BorderBrush="Black"
+                            CornerRadius="12" >
+                        <DatePicker Name="DateOfBirth" BorderThickness="0" Margin=" 12 0 12 0" VerticalAlignment="Center"></DatePicker>
+                    </Border>
+                    <Border Height="35" Margin="0 0 0 8" BorderBrush="Black" 
+                            BorderThickness=" 0 0 0 1 ">
+                        <StackPanel  Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <RadioButton GroupName="Gender">Male</RadioButton>
+                            <RadioButton GroupName="Gender">Female</RadioButton>
+                            <RadioButton GroupName="Gender">Other</RadioButton>
+                        </StackPanel>
+                    </Border>
+                    <TextBox Name="UserName"></TextBox>
+                    <PasswordBox Name="Password"></PasswordBox>
+                    <PasswordBox></PasswordBox>
+                </StackPanel>
+            </Grid>
+            
+                <StackPanel  Orientation="Horizontal" Margin="130 0 0 0" 
+                            HorizontalAlignment="Center">
+                    <Border Width="200" Height="35" CornerRadius="12" BorderThickness="1"
+                            Background="#D3E2F0" BorderBrush="Black" Margin="0 15 0 0 ">
+                        <Button Name="SignUpBtn" BorderThickness="0" Background="Transparent"
+                                FontWeight="Medium" FontSize="15" Click="SignUpBtn_OnClick" >Login</Button>
+                    </Border>
+                </StackPanel>
+            
+            
+        </StackPanel>
+        
+        
+    </Grid>
+</Window>
