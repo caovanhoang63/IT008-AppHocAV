@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT008_AppHocAV"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         WindowStyle="None"
         mc:Ignorable="d"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
@@ -53,8 +54,31 @@
                         <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0">
                             <Image Source="../Assets/Icon/NotifyICon.png"></Image>
                         </Button>
-                        <Button x:Name="btnAvatar" Click="btnAvatar_Click" Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0">
+                        <Button x:Name="btnAvatar" Click="btnAvatar_Click"   Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0">
+                            <Button.ContextMenu>
+                                <ContextMenu x:Name="MainContextMenu" PlacementRectangle="{Binding RelativeSource={RelativeSource Self}}">
+                                        <MenuItem Header="Info" />
+                                        <MenuItem Header="Log out" />
+                                </ContextMenu>
+                            </Button.ContextMenu>
+
+                            <Button.Triggers>
+                                <EventTrigger SourceName="btnAvatar" RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainContextMenu" Storyboard.TargetProperty="(ContextMenu.IsOpen)">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <system:Boolean>True</system:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
                             <Image Source="../Assets/Icon/AvatarIcon.png"></Image>
+
                         </Button>
                     </StackPanel>
                     

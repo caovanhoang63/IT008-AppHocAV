@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -47,7 +48,7 @@ namespace IT008_AppHocAV
 
         private void btnAvatar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This is avatar");
+
         }
 
         private void NavToSearching_OnClick(object sender, RoutedEventArgs e)
