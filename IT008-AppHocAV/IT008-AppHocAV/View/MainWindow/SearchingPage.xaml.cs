@@ -24,6 +24,15 @@ namespace IT008_AppHocAV.View.MainWindow
             _languages.Add("English","en");
             _languages.Add("Vietnamese","vi");
         }
+
+        public SearchingPage(IT008_AppHocAV.MainWindow _mainWindow )
+        {
+            InitializeComponent();
+            DicApiResultContainer.Visibility = Visibility.Hidden;
+            GoogleTranslateContainer.Visibility = Visibility.Hidden;
+            _languages.Add("English","en");
+            _languages.Add("Vietnamese","vi");
+        }
         
         private DispatcherTimer _debounceTimer;
         private readonly Dictionary<string, string> _languages = new Dictionary<string, string>();
@@ -74,6 +83,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 this.GoogleTranslateContainer.Visibility = Visibility.Visible;
                 this.GTransSlText.Selection.Text = text;
                 this.GTransTlText.Selection.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
+
             }
             //if Image error, hidden WordImage
             catch (ArgumentOutOfRangeException e)

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View;
 using IT008_AppHocAV.View.MainWindow;
 
@@ -17,6 +19,9 @@ namespace IT008_AppHocAV
     {
         private Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
         private readonly LoginWindow _loginWindow;
+        private bool isInternectConnected;
+        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +35,7 @@ namespace IT008_AppHocAV
             Page defaultPage = new SearchingPage();
             pageCache["Searching"] = defaultPage;
             _loginWindow = loginWindow;
+            _loginWindow._internetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -37,6 +43,7 @@ namespace IT008_AppHocAV
             DragMove();
         }
 
+        
         private void BtnMinimize_OnClick(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -126,6 +133,9 @@ namespace IT008_AppHocAV
             } else if (pageName == "FlashCard")
             {
                 page = new FlashCardPage();
+            } else if (pageName == "NoInternet")
+            {
+                page = new NoInternetPage();
             }
             return page;
         }
@@ -155,19 +165,24 @@ namespace IT008_AppHocAV
         }
         private async void BtnSearch_OnClick(object sender, RoutedEventArgs e)
         {
-            await DisplaySearchPage();
+                await DisplaySearchPage();
         }
 
         private async Task DisplaySearchPage()
         {
-            NavigateToPage("Searching");
-            while (!(Content.Content is SearchingPage))
+            if (!InternetAvailability.IsInternetAvailable())
+                NavigateToPage("NoInternet");
+            else
             {
-                await Task.Delay(10);
-            }
-            if (Content.Content is SearchingPage page)
-            {
-                await page.Search(textBoxSearching.Text);
+                NavigateToPage("Searching");
+                while (!(Content.Content is SearchingPage))
+                {
+                    await Task.Delay(10);
+                }
+                if (Content.Content is SearchingPage page)
+                {
+                    await page.Search(textBoxSearching.Text);
+                }
             }
         }
 
@@ -181,6 +196,17 @@ namespace IT008_AppHocAV
             }
         }
 
-
+        private void ChangedInternectConnectionStatusBar(bool isConnected)
+        {
+            if (!isConnected)
+            {
+                InternetConnectionStatusBarItem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                InternetConnectionStatusBarItem.Visibility = Visibility.Collapsed;
+            }
+        }
+        
     }
 }

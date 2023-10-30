@@ -172,8 +172,15 @@
         <!-- StatusBar -->
         <StatusBar Grid.Row="2" x:Name="sBar" Background="Bisque" 
                    Margin="5 0 5 5" >
-            <StatusBarItem Margin="5 0 0 0" >
-                <TextBlock x:Name="sBarCurrentPage">Searching</TextBlock>
+            <StatusBarItem Margin="5" BorderThickness="0 0 1 0"
+                           BorderBrush="Black" >
+                <TextBlock x:Name="sBarCurrentPage">Searching</TextBlock> 
+            </StatusBarItem>
+            <StatusBarItem Name="InternetConnectionStatusBarItem" Visibility="Collapsed" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center">No internet</TextBlock>
+                    <Image Width="20" Margin="5 0 0 0" Source="../Assets/Icon/NoInternetIcon.png"></Image>
+                </StackPanel>
             </StatusBarItem>
         </StatusBar>
         

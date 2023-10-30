@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Mime;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using IT008_AppHocAV.Repositories;
 
 namespace IT008_AppHocAV.View
 {
@@ -13,16 +16,20 @@ namespace IT008_AppHocAV.View
         public LoginWindow()
         {
             InitializeComponent();
+            
+            _internetConnectionManager = new InternetConnectionManager();
+            _internetConnectionManager.CheckInternetConnection();
         }
+        
+        private readonly BitmapImage _showPwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/showpwdIcon.png"));
+        private readonly BitmapImage _hidePwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/hidepwdIcon.png"));
+        public InternetConnectionManager _internetConnectionManager;
         
         private void BtnClose_OnClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        private readonly BitmapImage _showPwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/showpwdIcon.png"));
-        private readonly BitmapImage _hidePwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/hidepwdIcon.png"));
-        
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             DragMove();
@@ -62,6 +69,7 @@ namespace IT008_AppHocAV.View
                 if (UserNameBox.Text == "admin" && PasswordBox.Password == "admin")
                 {
                     IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow(this);
+                    Hide();
                     mainWindow.Show();
                 }
             }
@@ -82,7 +90,7 @@ namespace IT008_AppHocAV.View
 
             }
         }
-
+        
         private void UIElement_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             SignUpWindow a = new SignUpWindow(this);
@@ -97,7 +105,6 @@ namespace IT008_AppHocAV.View
                 Login();
             }
         }
-
-
+        
     }
 }
