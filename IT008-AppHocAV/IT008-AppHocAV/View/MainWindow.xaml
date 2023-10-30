@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="MainWindow" Width="1080" Height="720"
+        WindowStartupLocation="CenterScreen"
         >
     
     <!-- Style -->
@@ -58,7 +59,7 @@
                             <Button.ContextMenu>
                                 <ContextMenu x:Name="MainContextMenu" PlacementRectangle="{Binding RelativeSource={RelativeSource Self}}">
                                         <MenuItem Header="Info" />
-                                        <MenuItem Header="Log out" />
+                                        <MenuItem Header="Log out" Click="LogOutMenuItem_OnClick" />
                                 </ContextMenu>
                             </Button.ContextMenu>
 
@@ -83,7 +84,7 @@
                     </StackPanel>
                     
                 <!-- Menu Button -->
-                <Button DockPanel.Dock="Left" Height="40" Width="50" Margin="68 0 0 0" Background="Transparent" BorderThickness="0">
+                <Button DockPanel.Dock="Left" Height="40" Width="50" Margin="38 0 30 0" Background="Transparent" BorderThickness="0">
                     <StackPanel Margin="0 7 0 0" Height="40" Width="40">
                         <Border CornerRadius="2.5" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
                         <Border CornerRadius="2.5" Margin="0 7 0 0" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
@@ -120,29 +121,38 @@
                 </DockPanel>
                 
                 <!-- Navbar -->
-                <StackPanel DockPanel.Dock="Left" Width="50" Margin="68 0 0 0 " Background="Transparent">
+                <Canvas DockPanel.Dock="Left" Width="50" Margin="38 0 30 0"
+                            Background="Transparent" >
                     
-                    <Button x:Name="NavToSearching" Height="50" Background="Transparent" Click="NavToSearching_OnClick"
-                            BorderThickness="0">
-                        <Image Source="../Assets/Icon/SearchIcon.png"></Image>
+                    <Button  x:Name="NavToSearching"  Click="NavToSearching_OnClick" 
+                             Style="{DynamicResource NavigateButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Assets/Icon/SearchIcon.png" Width="50" ></Image>
+                            <Label FontSize="15" VerticalAlignment="Center">Search</Label>
+                        </StackPanel>
                     </Button>
                     
-                    <Button x:Name="NavToWriting" Height="50" Background="Transparent" Click="NavToWriting_OnClick"
-                            BorderThickness="0">
-                        <Image Source="../Assets/Icon/BookIcon.png"></Image>
+                    <Button Canvas.Top="50" x:Name="NavToWriting"  Click="NavToWriting_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Assets/Icon/BookIcon.png"></Image>
+                            <Label FontSize="15" VerticalAlignment="Center">Writing</Label>
+                        </StackPanel>
                     </Button>
                     
-                    <Button x:Name="NavToExam" Height="50" Background="Transparent" Click="NavToExam_OnClick"
-                            BorderThickness="0">
-                        <Image Source="../Assets/Icon/CheckIcon.png"></Image>
+                    <Button Canvas.Top="100" x:Name="NavToExam" Click="NavToExam_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Assets/Icon/CheckIcon.png"></Image>
+                            <Label FontSize="15" VerticalAlignment="Center">Exam</Label>
+                        </StackPanel>
                     </Button>
                     
-                    <Button x:Name="NavToFlashCard" Height="50" Background="Transparent" Click="NavToFlashCard_OnClick"
-                            BorderThickness="0">
-                        <Image Source="../Assets/Icon/FlashCard.png"></Image>
+                    <Button  Canvas.Top="150" x:Name="NavToFlashCard"  Click="NavToFlashCard_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Assets/Icon/FlashCard.png"></Image>
+                            <Label FontSize="15" VerticalAlignment="Center">FlashCard</Label>
+                        </StackPanel>
                     </Button>
-                    
-                </StackPanel>
+                </Canvas>
                     
                 <!-- Right NavBar and Show Take Note Button -->
                 <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" Margin="0 0 40 0" >

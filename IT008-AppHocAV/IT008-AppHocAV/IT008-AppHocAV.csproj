@@ -244,17 +244,16 @@
     <Resource Include="Assets\Icon\SpeakerIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icon\DropDownBtnIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\GoogleTranslateIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\switchIcon.png" />
-    <Content Include="Assets\Icon\DropDownBtnIcon.png" />
     <Resource Include="Assets\Icon\hidepwdIcon.png" />
     <Resource Include="Assets\Icon\showpwdIcon.png" />
     <Resource Include="Assets\Image\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\DropDownBtnIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

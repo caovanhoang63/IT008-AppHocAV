@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -169,5 +170,17 @@ namespace IT008_AppHocAV
                 await page.Search(textBoxSearching.Text);
             }
         }
+
+        private void LogOutMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to sign out?","",MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                _loginWindow.Show();
+                Close();
+            }
+        }
+
+
     }
 }

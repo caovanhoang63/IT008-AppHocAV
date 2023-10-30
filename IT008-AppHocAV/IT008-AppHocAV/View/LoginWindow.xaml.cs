@@ -61,7 +61,7 @@ namespace IT008_AppHocAV.View
             {
                 if (UserNameBox.Text == "admin" && PasswordBox.Password == "admin")
                 {
-                    IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow();
+                    IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow(this);
                     mainWindow.Show();
                 }
             }
