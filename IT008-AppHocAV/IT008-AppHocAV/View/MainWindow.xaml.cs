@@ -207,6 +207,27 @@ namespace IT008_AppHocAV
                 InternetConnectionStatusBarItem.Visibility = Visibility.Collapsed;
             }
         }
-        
+
+        private void MenuButton_OnChecked(object sender, RoutedEventArgs e)
+        {
+            foreach (var child in NavBar.Children)
+            {
+                if (child is Button btn)
+                {
+                    btn.Width = 130;
+                }                
+            }
+        }
+
+        private void MenuButton_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            foreach (var child in NavBar.Children)
+            {
+                if (child is Button btn)
+                {
+                    btn.Width = 50;
+                }                
+            }
+        }
     }
 }
