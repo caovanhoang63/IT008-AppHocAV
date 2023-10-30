@@ -101,7 +101,7 @@
     
     
     <!-- Navigator Style  -->
-    <Style x:Key="NavigateButtonStyle" TargetType="Button">
+    <Style x:Key="RoundedButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Height" Value="50" />
         <Setter Property="Width" Value="50"></Setter>
@@ -144,6 +144,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    
     
 
 </ResourceDictionary>

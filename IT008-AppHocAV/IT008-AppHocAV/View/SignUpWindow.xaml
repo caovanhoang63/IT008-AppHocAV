@@ -15,6 +15,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Assets/Styles/SignUpPageStyle.xaml"/>
+                <ResourceDictionary Source="../Assets/Styles/MainStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -95,13 +96,11 @@
             
                 <StackPanel  Orientation="Horizontal" Margin="130 0 0 0" 
                             HorizontalAlignment="Center">
-                    <Border Width="200" Height="35" CornerRadius="12" BorderThickness="1"
-                            Background="#D3E2F0" BorderBrush="Black" Margin="0 15 0 0 ">
-                        <Button Name="SignUpBtn" BorderThickness="0" Background="Transparent"
-                                FontWeight="Medium" FontSize="15" Click="SignUpBtn_OnClick" >Login</Button>
-                    </Border>
+                    <Button Name="SignUpBtn" Style="{DynamicResource RoundedButtonStyle}"
+                            Width="200" Height="35" Margin="0 15 0 0 "
+                            Background="#D3E2F0" FontWeight="Medium" BorderThickness="0"
+                            FontSize="15" Click="SignUpBtn_OnClick" >Sign up</Button>
                 </StackPanel>
-            
             
         </StackPanel>
         

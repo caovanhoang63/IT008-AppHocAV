@@ -108,7 +108,7 @@
                                           TextChanged="TextBoxBase_OnTextChanged"
                                           KeyDown="TextBoxSearching_OnKeyDown"/>
                                 <Button x:Name="BtnSearch" Width="40" Height="35" BorderThickness="1 0 0 0" BorderBrush="Black" Background="Transparent"
-                                        Click="BtnSearch_OnClick">
+                                        Click="BtnSearch_OnClick" IsHitTestVisible="False">
                                     <Image Width="30" Height="30" Source="../Assets/Icon/SearchIcon2.png"></Image>
                                 </Button>
                             </StackPanel>
@@ -127,28 +127,28 @@
                             Background="Transparent" HorizontalAlignment="Left" >
                     
                     <Button x:Name="NavToSearching"  Click="NavToSearching_OnClick" 
-                             Style="{DynamicResource NavigateButtonStyle}">
+                             Style="{DynamicResource RoundedButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Assets/Icon/SearchIcon.png" Width="50" ></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Search</Label>
                         </StackPanel>
                     </Button>
                     
-                    <Button Canvas.Top="50" x:Name="NavToWriting"  Click="NavToWriting_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                    <Button Canvas.Top="50" x:Name="NavToWriting"  Click="NavToWriting_OnClick" Style="{DynamicResource RoundedButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Assets/Icon/BookIcon.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Writing</Label>
                         </StackPanel>
                     </Button>
                     
-                    <Button Canvas.Top="100" x:Name="NavToExam" Click="NavToExam_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                    <Button Canvas.Top="100" x:Name="NavToExam" Click="NavToExam_OnClick" Style="{DynamicResource RoundedButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Assets/Icon/CheckIcon.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Exam</Label>
                         </StackPanel>
                     </Button>
                     
-                    <Button  Canvas.Top="150" x:Name="NavToFlashCard"  Click="NavToFlashCard_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                    <Button  Canvas.Top="150" x:Name="NavToFlashCard"  Click="NavToFlashCard_OnClick" Style="{DynamicResource RoundedButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Assets/Icon/FlashCard.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">FlashCard</Label>
