@@ -78,7 +78,8 @@
                                      Width="340" FontSize="18" VerticalAlignment="Center"
                                      Visibility="Collapsed" ></TextBox>
                         <Button Name="ShowPassWordBtn" Width="35" Height="35" Background="Transparent" BorderThickness="1 0 0 0"
-                                      Click="ShowPassWordBtn_OnClick"  Margin="8 0 0 0">
+                                      Click="ShowPassWordBtn_OnClick"  Margin="8 0 0 0" 
+                                      >
                             <Image Name="ShowPassWordIcon" Source="../Assets/Icon/showpwdIcon.png"></Image>
                         </Button>
                     </StackPanel>

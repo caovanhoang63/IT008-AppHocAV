@@ -16,13 +16,14 @@ namespace IT008_AppHocAV.View
         public LoginWindow()
         {
             InitializeComponent();
-            
+            _isShowPassword = false;
             _internetConnectionManager = new InternetConnectionManager();
             _internetConnectionManager.CheckInternetConnection();
         }
         
         private readonly BitmapImage _showPwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/showpwdIcon.png"));
         private readonly BitmapImage _hidePwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/hidepwdIcon.png"));
+        private bool _isShowPassword;
         public InternetConnectionManager _internetConnectionManager;
         
         private void BtnClose_OnClick(object sender, RoutedEventArgs e)
@@ -37,12 +38,13 @@ namespace IT008_AppHocAV.View
 
         private void ShowPassWordBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            if (VisiblePasswordBox.Visibility == Visibility.Collapsed)
+            if (!_isShowPassword)
             {
                 VisiblePasswordBox.Visibility = Visibility.Visible;
                 PasswordBox.Visibility = Visibility.Collapsed;
                 ShowPassWordIcon.Source = _showPwdIcon;
                 VisiblePasswordBox.Text = PasswordBox.Password;
+                _isShowPassword = true;
             }
             else
             {
@@ -50,6 +52,7 @@ namespace IT008_AppHocAV.View
                 PasswordBox.Visibility = Visibility.Visible;
                 ShowPassWordIcon.Source = _hidePwdIcon;
                 PasswordBox.Password = VisiblePasswordBox.Text;
+                _isShowPassword = false;
             }
         }
         
@@ -105,6 +108,6 @@ namespace IT008_AppHocAV.View
                 Login();
             }
         }
-        
+
     }
 }
