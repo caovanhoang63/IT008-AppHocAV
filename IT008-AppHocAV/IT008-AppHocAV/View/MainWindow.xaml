@@ -136,21 +136,21 @@
                     
                     <Button Canvas.Top="50" x:Name="NavToWriting"  Click="NavToWriting_OnClick" Style="{DynamicResource RoundedButtonStyle}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../Assets/Icon/BookIcon.png"></Image>
+                            <Image  Source="../Assets/Icon/WritingIcon4.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Writing</Label>
                         </StackPanel>
                     </Button>
                     
                     <Button Canvas.Top="100" x:Name="NavToExam" Click="NavToExam_OnClick" Style="{DynamicResource RoundedButtonStyle}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../Assets/Icon/CheckIcon.png"></Image>
+                            <Image Margin="3 0 0 0" Source="../Assets/Icon/WritingIcon2.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Exam</Label>
                         </StackPanel>
                     </Button>
                     
                     <Button  Canvas.Top="150" x:Name="NavToFlashCard"  Click="NavToFlashCard_OnClick" Style="{DynamicResource RoundedButtonStyle}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../Assets/Icon/FlashCard.png"></Image>
+                            <Image Source="../Assets/Icon/FlashCardIcon2.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">FlashCard</Label>
                         </StackPanel>
                     </Button>
@@ -158,7 +158,8 @@
                     
                 <!-- Right NavBar and Show Take Note Button -->
                 <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" Margin="0 0 40 0" >
-                    <Button Height="50" x:Name="ShowTakeNote" Click="ShowTakeNote_OnClick">
+                    <Button Height="50" x:Name="ShowTakeNote" Click="ShowTakeNote_OnClick"
+                            Background="Transparent" BorderThickness="0">
                         <Image Source="../Assets/Icon/TakeNoteIcon.png"></Image>
                     </Button>
                 </StackPanel>

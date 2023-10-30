@@ -263,5 +263,23 @@
   <ItemGroup>
     <Resource Include="Assets\Icon\NoInternetIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\FlashCardIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\WritingIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\ExamIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\WritingIcon3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\WritingIcon4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Icon\NoteBookIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
