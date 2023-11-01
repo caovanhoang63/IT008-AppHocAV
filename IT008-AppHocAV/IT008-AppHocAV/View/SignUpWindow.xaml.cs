@@ -102,69 +102,57 @@ namespace IT008_AppHocAV.View
             return gender;
         }
         
-
-
         private bool CheckValidateValue()
         {
             
             bool flag = true;
-            
             if (GetRadioButonsValue() == String.Empty)
             {
                 InvalidGenderLabel.Visibility = Visibility.Visible;
                 flag = false;
             }
-
             if (FullName.Text == String.Empty)
             {
                 FullName.BorderBrush = Brushes.Red;
                 InvalidFullNameLabel.Visibility = Visibility.Visible;
                 flag = false;
             }
-
             if (ConfirmPasswordBox.Password == String.Empty)
             {
                 ConfirmPasswordBox.BorderBrush = Brushes.Red;
                 InvalidConfirmPasswordLabel.Visibility = Visibility.Visible;
                 flag = false;
             }
-            
             if (DateOfBirth.Text == "")
             {
                 DatePickerBorder.BorderBrush = Brushes.Red;
                 InvalidDateOfBirthLabel.Visibility = Visibility.Visible;
                 flag = false;
             }
-            
             if (!CheckValidate.IsEmail(Email.Text))
             {
                 Email.BorderBrush = Brushes.Red;
                 InvalidEmailLabel.Visibility = Visibility.Visible;
                 flag = false;
             }
-
             if (!CheckValidate.IsPhoneNumber(PhoneNumber.Text))
             {
                 PhoneNumber.BorderBrush = Brushes.Red;
                 InvalidPhoneNumberLabel.Visibility = Visibility.Visible;
                 flag = false;
             }
-
             if (!CheckValidate.IsValidUserName(UserName.Text))
             {
                 UserName.BorderBrush = Brushes.Red;
                 InvalidUserNameLabel.Visibility = Visibility.Visible;
                 flag = false;
             }
-            
             if (!CheckValidate.IsValidPassword(PasswordBox.Password))
             {
                 PasswordBox.BorderBrush = Brushes.Red;
                 InvalidPasswordLabel.Visibility = Visibility.Visible;
                 flag = false;
             }
-            
-            
             return flag;
         }
 

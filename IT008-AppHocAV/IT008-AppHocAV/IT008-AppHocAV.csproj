@@ -129,11 +129,14 @@
     <Compile Include="Models\Pair.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
-    <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Repositories\DbConnection.cs" />
     <Compile Include="Repositories\InternetConnectionManager.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
+    <Compile Include="Util\CheckValidate.cs" />
+    <Compile Include="Util\Hashing.cs" />
     <Compile Include="Util\InternetAvailability.cs" />
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>

@@ -78,6 +78,20 @@ namespace IT008_AppHocAV.View
                 {
                     Console.WriteLine(UserId);
                     IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow(this);
+                    if (RememberMeCheckBox.IsChecked != null && RememberMeCheckBox.IsChecked.Value)
+                    {
+                        Properties.Settings.Default.UserName = UserNameBox.Text;
+                        Properties.Settings.Default.Password = PasswordBox.Password;
+                        Properties.Settings.Default.RememberMe = true;
+                        Properties.Settings.Default.Save();
+                    }
+                    else
+                    {
+                        Properties.Settings.Default.UserName = "";
+                        Properties.Settings.Default.Password = "";
+                        Properties.Settings.Default.RememberMe = false;
+                        Properties.Settings.Default.Save();
+                    }
                     Hide();
                     mainWindow.Show();
                 }
@@ -86,6 +100,10 @@ namespace IT008_AppHocAV.View
                     MessageBox.Show("Invalide user name or password! \n" +
                                     "Try again!","Fail to login",MessageBoxButton.OK);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please enter your user name and password!","",MessageBoxButton.OK);
             }
         }
         private void BoxBorder_OnGotFocus(object sender, RoutedEventArgs e)
@@ -120,5 +138,15 @@ namespace IT008_AppHocAV.View
             }
         }
 
+
+        private void LoginWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (Properties.Settings.Default.RememberMe == true)
+            {
+                RememberMeCheckBox.IsChecked = true;
+                UserNameBox.Text = Properties.Settings.Default.UserName;
+                PasswordBox.Password = Properties.Settings.Default.Password;
+            }
+        }
     }
 }
