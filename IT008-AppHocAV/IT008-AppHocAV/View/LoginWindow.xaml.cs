@@ -19,11 +19,15 @@ namespace IT008_AppHocAV.View
             _isShowPassword = false;
             _internetConnectionManager = new InternetConnectionManager();
             _internetConnectionManager.CheckInternetConnection();
+            DbConnection = new DbConnection();
+            UserId = 0;
         }
         
         private readonly BitmapImage _showPwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/showpwdIcon.png"));
         private readonly BitmapImage _hidePwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/hidepwdIcon.png"));
         private bool _isShowPassword;
+        public DbConnection DbConnection;
+        public int UserId;
         public InternetConnectionManager _internetConnectionManager;
         
         private void BtnClose_OnClick(object sender, RoutedEventArgs e)
@@ -69,11 +73,18 @@ namespace IT008_AppHocAV.View
             }
             if (UserNameBox.Text != String.Empty && PasswordBox.Password != String.Empty )
             {
-                if (UserNameBox.Text == "admin" && PasswordBox.Password == "admin")
+                UserId = DbConnection.Authentication(UserNameBox.Text, PasswordBox.Password);
+                if (UserId != 0)
                 {
+                    Console.WriteLine(UserId);
                     IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow(this);
                     Hide();
                     mainWindow.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Invalide user name or password! \n" +
+                                    "Try again!","Fail to login",MessageBoxButton.OK);
                 }
             }
         }
