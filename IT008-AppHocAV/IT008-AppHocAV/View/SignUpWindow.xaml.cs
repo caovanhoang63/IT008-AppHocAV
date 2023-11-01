@@ -2,7 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.Util;
 
 namespace IT008_AppHocAV.View
 {
@@ -33,14 +35,12 @@ namespace IT008_AppHocAV.View
 
         private void SignUpBtn_OnClick(object sender, RoutedEventArgs e)
         {
+                        
+            if (!CheckValidateValue())
+                return;
+            
             string gender = GetRadioButonsValue();
 
-            if (HasEmptyField() || gender == "")
-            {
-                MessageBox.Show("Fill all field!");
-                return;
-            }
-            
             if (PasswordBox.Password != ConfirmPasswordBox.Password)
             {
                 MessageBox.Show(
@@ -48,7 +48,7 @@ namespace IT008_AppHocAV.View
                     MessageBoxButton.OK);
                 return;
             }
-            
+
             User user = new User(
                 FullName.Text,
                 DateOfBirth.DisplayDate,
@@ -102,20 +102,170 @@ namespace IT008_AppHocAV.View
             return gender;
         }
         
-        private bool HasEmptyField()
-        {
 
-            foreach (var child in InputStackPanel.Children)
+
+        private bool CheckValidateValue()
+        {
+            
+            bool flag = true;
+            
+            if (GetRadioButonsValue() == String.Empty)
             {
-                if (child is TextBox textBox)
-                    if (textBox.Text == String.Empty)
-                        return true;
-                
-                if (child is PasswordBox passwordBox)
-                    if (passwordBox.Password == String.Empty)
-                        return true;
+                InvalidGenderLabel.Visibility = Visibility.Visible;
+                flag = false;
             }
-            return false;
+
+            if (FullName.Text == String.Empty)
+            {
+                FullName.BorderBrush = Brushes.Red;
+                InvalidFullNameLabel.Visibility = Visibility.Visible;
+                flag = false;
+            }
+
+            if (ConfirmPasswordBox.Password == String.Empty)
+            {
+                ConfirmPasswordBox.BorderBrush = Brushes.Red;
+                InvalidConfirmPasswordLabel.Visibility = Visibility.Visible;
+                flag = false;
+            }
+            
+            if (DateOfBirth.Text == "")
+            {
+                DatePickerBorder.BorderBrush = Brushes.Red;
+                InvalidDateOfBirthLabel.Visibility = Visibility.Visible;
+                flag = false;
+            }
+            
+            if (!CheckValidate.IsEmail(Email.Text))
+            {
+                Email.BorderBrush = Brushes.Red;
+                InvalidEmailLabel.Visibility = Visibility.Visible;
+                flag = false;
+            }
+
+            if (!CheckValidate.IsPhoneNumber(PhoneNumber.Text))
+            {
+                PhoneNumber.BorderBrush = Brushes.Red;
+                InvalidPhoneNumberLabel.Visibility = Visibility.Visible;
+                flag = false;
+            }
+
+            if (!CheckValidate.IsValidUserName(UserName.Text))
+            {
+                UserName.BorderBrush = Brushes.Red;
+                InvalidUserNameLabel.Visibility = Visibility.Visible;
+                flag = false;
+            }
+            
+            if (!CheckValidate.IsValidPassword(PasswordBox.Password))
+            {
+                PasswordBox.BorderBrush = Brushes.Red;
+                InvalidPasswordLabel.Visibility = Visibility.Visible;
+                flag = false;
+            }
+            
+            
+            return flag;
+        }
+
+
+        private void Email_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!CheckValidate.IsEmail(Email.Text))
+            {
+                Email.BorderBrush = Brushes.Red;
+                InvalidEmailLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Email.BorderBrush = Brushes.Black;
+                InvalidEmailLabel.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void PhoneNumber_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!CheckValidate.IsPhoneNumber(PhoneNumber.Text))
+            {
+                PhoneNumber.BorderBrush = Brushes.Red;
+                InvalidPhoneNumberLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PhoneNumber.BorderBrush = Brushes.Black;
+                InvalidPhoneNumberLabel.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void UserName_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!CheckValidate.IsValidUserName(UserName.Text))
+            {
+                UserName.BorderBrush = Brushes.Red;
+                InvalidUserNameLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                UserName.BorderBrush = Brushes.Black;
+                InvalidUserNameLabel.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (!CheckValidate.IsValidPassword(UserName.Text))
+            {
+                PasswordBox.BorderBrush = Brushes.Red;
+                InvalidPasswordLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PasswordBox.BorderBrush = Brushes.Black;
+                InvalidPasswordLabel.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void FullName_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (FullName.Text == String.Empty)
+            {
+                FullName.BorderBrush = Brushes.Red;
+                InvalidFullNameLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                FullName.BorderBrush = Brushes.Black;
+                InvalidFullNameLabel.Visibility = Visibility.Hidden;
+            }
+        }
+
+
+        private void DateOfBirth_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DateOfBirth.Text == String.Empty)
+            {
+                DatePickerBorder.BorderBrush = Brushes.Red;
+                InvalidDateOfBirthLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DatePickerBorder.BorderBrush = Brushes.Black;
+                InvalidDateOfBirthLabel.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ConfirmPasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (ConfirmPasswordBox.Password == String.Empty)
+            {
+                ConfirmPasswordBox.BorderBrush = Brushes.Red;
+                InvalidConfirmPasswordLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ConfirmPasswordBox.BorderBrush = Brushes.Black;
+                InvalidConfirmPasswordLabel.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
