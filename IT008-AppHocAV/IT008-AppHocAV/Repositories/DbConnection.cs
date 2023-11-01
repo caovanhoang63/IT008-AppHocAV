@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.Util;
 
 namespace IT008_AppHocAV.Repositories
 {
@@ -27,7 +28,7 @@ namespace IT008_AppHocAV.Repositories
             {
                 string passwordResult;
                 int userId = 0;
-                var hashbytes = CalculateSHA256(password);
+                var hashbytes = Hashing.CalculateSHA256(password);
                 string hashpass = "";
                 foreach (byte item in hashbytes)
                 {
@@ -84,7 +85,7 @@ namespace IT008_AppHocAV.Repositories
                                " @phone_number,@gender,@user_name,@pwd, " +
                                "1,0,null, GETDATE(), GETDATE())";
 
-                byte[] hashvalue = CalculateSHA256(user.Password);
+                byte[] hashvalue = Hashing.CalculateSHA256(user.Password);
                 string hashpass = "";
                 foreach (byte item in hashvalue)
                 {
@@ -116,16 +117,5 @@ namespace IT008_AppHocAV.Repositories
                 _sqlConnection.Close();
             }
         }
-        
-        private byte[] CalculateSHA256(string str)
-        {
-            SHA256 sha256 = SHA256Managed.Create();
-            byte[] hashValue;
-            UTF8Encoding objUtf8 = new UTF8Encoding();
-            hashValue = sha256.ComputeHash(objUtf8.GetBytes(str));
-
-            return hashValue;
-        }
-        
     }
 }
