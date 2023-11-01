@@ -29,7 +29,7 @@ namespace IT008_AppHocAV
             pageCache["Searching"] = defaultPage;
         }
         
-        public MainWindow(LoginWindow loginWindow)
+        public MainWindow(LoginWindow loginWindow,int userId)
         {
             InitializeComponent();
             Page defaultPage = new SearchingPage();

@@ -76,8 +76,7 @@ namespace IT008_AppHocAV.View
                 UserId = DbConnection.Authentication(UserNameBox.Text, PasswordBox.Password);
                 if (UserId != 0)
                 {
-                    Console.WriteLine(UserId);
-                    IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow(this);
+                    IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow(this,UserId);
                     if (RememberMeCheckBox.IsChecked != null && RememberMeCheckBox.IsChecked.Value)
                     {
                         Properties.Settings.Default.UserName = UserNameBox.Text;

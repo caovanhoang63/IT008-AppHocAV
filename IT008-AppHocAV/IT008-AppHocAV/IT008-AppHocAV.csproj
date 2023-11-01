@@ -227,11 +227,6 @@
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Buffer\" />
-    <Folder Include="DataAccess\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\BookIcon.png" />
     <Resource Include="Assets\Icon\CheckIcon.png" />
     <Resource Include="Assets\Icon\FlashCard.png" />
