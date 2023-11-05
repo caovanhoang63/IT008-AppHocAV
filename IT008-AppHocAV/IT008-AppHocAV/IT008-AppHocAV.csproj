@@ -201,6 +201,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Assets\Styles\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Styles\LoginPageStyle.xaml" />
     <Page Include="Assets\Styles\MainStyles.xaml">
       <SubType>Designer</SubType>
@@ -262,6 +266,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\NoInternetIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\EditIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\Addicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\DeleteIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

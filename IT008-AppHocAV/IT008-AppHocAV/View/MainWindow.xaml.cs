@@ -140,7 +140,8 @@ namespace IT008_AppHocAV
             return page;
         }
         
-        private void NavigateToPage(string pageName)
+       
+ private void NavigateToPage(string pageName)
         {
             sBarCurrentPage.Text = pageName; 
             if (pageCache.TryGetValue(pageName, out var value))
@@ -154,7 +155,6 @@ namespace IT008_AppHocAV
                 Content.Navigate(newPage); 
             }
         }
-
         
         private async void TextBoxSearching_OnKeyDown(object sender, KeyEventArgs e)
         {
