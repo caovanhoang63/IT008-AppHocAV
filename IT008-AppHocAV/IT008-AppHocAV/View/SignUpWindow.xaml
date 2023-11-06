@@ -82,16 +82,16 @@
                     <Border Name="DatePickerBorder" Height="35" Margin="0 0 0 0 " BorderThickness="1" BorderBrush="Black"
                             CornerRadius="12" >
                         <DatePicker Name="DateOfBirth" BorderThickness="0" Margin=" 12 0 12 0" 
-                                    VerticalAlignment="Center" DisplayDate="" SelectedDateChanged="DateOfBirth_OnSelectedDateChanged"></DatePicker>
+                                    VerticalAlignment="Center" SelectedDateChanged="DateOfBirth_OnSelectedDateChanged"></DatePicker>
                     </Border>
                     <Label Name="InvalidGenderLabel" Style="{DynamicResource InvalidLabel}" Visibility="Hidden">This field cannot be left blank.</Label>
                     <Border Height="35" Margin="0 0 0 0" BorderBrush="Black" 
                             BorderThickness=" 0 0 0 1 ">
-                        <StackPanel  Orientation="Horizontal"
-                                    VerticalAlignment="Center">
-                            <RadioButton x:Name="MaleRadioButton" GroupName="Gender">Male</RadioButton>
-                            <RadioButton x:Name="FemaleRadioButton" GroupName="Gender">Female</RadioButton>
-                            <RadioButton x:Name="OtherGenderRadioButton" GroupName="Gender">Other</RadioButton>
+                        <StackPanel  Name="RadioButtonsStack" Orientation="Horizontal"
+                                    VerticalAlignment="Center" >
+                            <RadioButton x:Name="MaleRadioButton" GroupName="Gender" Checked="GenderRadioButton_OnChecked">Male</RadioButton>
+                            <RadioButton x:Name="FemaleRadioButton" GroupName="Gender"  Checked="GenderRadioButton_OnChecked">Female</RadioButton>
+                            <RadioButton x:Name="OtherGenderRadioButton" GroupName="Gender"  Checked="GenderRadioButton_OnChecked">Other</RadioButton>
                         </StackPanel>
                     </Border>
                     <Label  Name="InvalidUserNameLabel" Style="{DynamicResource InvalidLabel}" Visibility="Hidden">Username must be 8-20 characters long and cannot start with a . or _.</Label>

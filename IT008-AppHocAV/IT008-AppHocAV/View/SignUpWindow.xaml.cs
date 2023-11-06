@@ -201,7 +201,7 @@ namespace IT008_AppHocAV.View
 
         private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (!CheckValidate.IsValidPassword(UserName.Text))
+            if (!CheckValidate.IsValidPassword(PasswordBox.Password))
             {
                 PasswordBox.BorderBrush = Brushes.Red;
                 InvalidPasswordLabel.Visibility = Visibility.Visible;
@@ -254,6 +254,12 @@ namespace IT008_AppHocAV.View
                 ConfirmPasswordBox.BorderBrush = Brushes.Black;
                 InvalidConfirmPasswordLabel.Visibility = Visibility.Hidden;
             }
+        }
+
+
+        private void GenderRadioButton_OnChecked(object sender, RoutedEventArgs e)
+        {
+            InvalidGenderLabel.Visibility = Visibility.Hidden;
         }
     }
 }
