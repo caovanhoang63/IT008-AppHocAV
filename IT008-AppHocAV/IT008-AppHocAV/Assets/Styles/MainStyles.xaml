@@ -137,12 +137,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Width" Value="130"></Setter>
-            </Trigger>
-        </Style.Triggers>
     </Style>
     
     

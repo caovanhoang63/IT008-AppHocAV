@@ -86,7 +86,8 @@
                 <!-- Menu Button -->
                 <ToggleButton x:Name="MenuButton" DockPanel.Dock="Left" Height="45" Width="50" Margin="38 0 30 0"
                         Background="Transparent" BorderThickness="0"
-                        Checked="MenuButton_OnChecked" Unchecked="MenuButton_OnUnchecked" >
+                        Checked="MenuButton_OnChecked" 
+                        Unchecked="MenuButton_OnUnchecked">
                     <StackPanel Margin="0 7 0 0" Height="40" Width="40">
                         <Border CornerRadius="2.5" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
                         <Border CornerRadius="2.5" Margin="0 7 0 0" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
@@ -127,28 +128,36 @@
                             Background="Transparent" HorizontalAlignment="Left" >
                     
                     <Button x:Name="NavToSearching"  Click="NavToSearching_OnClick" 
-                             Style="{DynamicResource RoundedButtonStyle}">
+                             Style="{DynamicResource RoundedButtonStyle}"
+                             MouseEnter="NavButton_OnMouseEnter"
+                             MouseLeave="NavButton_OnMouseLeave">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Assets/Icon/SearchIcon.png" Width="50" ></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Search</Label>
                         </StackPanel>
                     </Button>
                     
-                    <Button Canvas.Top="50" x:Name="NavToWriting"  Click="NavToWriting_OnClick" Style="{DynamicResource RoundedButtonStyle}">
+                    <Button Canvas.Top="50" x:Name="NavToWriting"  Click="NavToWriting_OnClick" Style="{DynamicResource RoundedButtonStyle}"
+                            MouseEnter="NavButton_OnMouseEnter"
+                            MouseLeave="NavButton_OnMouseLeave">
                         <StackPanel Orientation="Horizontal">
                             <Image  Source="../Assets/Icon/WritingIcon4.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Writing</Label>
                         </StackPanel>
                     </Button>
                     
-                    <Button Canvas.Top="100" x:Name="NavToExam" Click="NavToExam_OnClick" Style="{DynamicResource RoundedButtonStyle}">
+                    <Button Canvas.Top="100" x:Name="NavToExam" Click="NavToExam_OnClick" Style="{DynamicResource RoundedButtonStyle}"
+                            MouseEnter="NavButton_OnMouseEnter"
+                            MouseLeave="NavButton_OnMouseLeave">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin="3 0 0 0" Source="../Assets/Icon/WritingIcon2.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Exam</Label>
                         </StackPanel>
                     </Button>
                     
-                    <Button  Canvas.Top="150" x:Name="NavToFlashCard"  Click="NavToFlashCard_OnClick" Style="{DynamicResource RoundedButtonStyle}">
+                    <Button  Canvas.Top="150" x:Name="NavToFlashCard"  Click="NavToFlashCard_OnClick" Style="{DynamicResource RoundedButtonStyle}"
+                             MouseEnter="NavButton_OnMouseEnter"
+                             MouseLeave="NavButton_OnMouseLeave">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Assets/Icon/FlashCardIcon2.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">FlashCard</Label>

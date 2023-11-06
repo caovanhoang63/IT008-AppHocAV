@@ -188,7 +188,7 @@ namespace IT008_AppHocAV
 
         private void LogOutMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to sign out?","",MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to log out!?","",MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 _loginWindow.Show();
@@ -208,26 +208,31 @@ namespace IT008_AppHocAV
             }
         }
 
+        private void NavButton_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is Button btn)
+                btn.Width = 130;
+        }
+
+        private void NavButton_OnMouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is Button btn)
+                if (MenuButton.IsChecked != null && !MenuButton.IsChecked.Value)
+                    btn.Width = 50;
+        }
+
         private void MenuButton_OnChecked(object sender, RoutedEventArgs e)
         {
             foreach (var child in NavBar.Children)
-            {
                 if (child is Button btn)
-                {
                     btn.Width = 130;
-                }                
-            }
         }
 
         private void MenuButton_OnUnchecked(object sender, RoutedEventArgs e)
         {
             foreach (var child in NavBar.Children)
-            {
                 if (child is Button btn)
-                {
                     btn.Width = 50;
-                }                
-            }
         }
     }
 }
