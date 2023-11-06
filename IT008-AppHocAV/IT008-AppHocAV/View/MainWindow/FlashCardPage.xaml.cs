@@ -9,7 +9,7 @@ namespace IT008_AppHocAV.View.MainWindow
         public FlashCardPage()
         {
             InitializeComponent();
-            data= new List<string>() { "flashcard 1", "flashcarh 2" , "flashcard 3"    };
+            data= new List<string>() { "flashcard 1", "flashcarh 2" , "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3" };
             lvListFlash.ItemsSource = data;
             
         }
