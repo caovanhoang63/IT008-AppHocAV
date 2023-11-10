@@ -1,0 +1,43 @@
+﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.WritingContentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
+      mc:Ignorable="d"
+      Title="WritingContentPage" MinHeight="500" Height="auto" MinWidth="800" Width="800"
+      HorizontalAlignment="Center">
+    
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Assets/Styles/MainStyles.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <Grid HorizontalAlignment="Center">
+        <ScrollViewer Style="{DynamicResource FavsScrollViewer}">
+            <StackPanel Width="750" Margin="0 20 0 0">
+                <TextBlock Margin="0 0 0 10" FontSize="18" FontWeight="Medium"> Title</TextBlock>
+                <TextBlock Margin="0 0 0 20" TextWrapping="Wrap" 
+                           LineStackingStrategy="BlockLineHeight" LineHeight="30">
+                    You should spend about 20 minutes on this task.
+
+                    The bar chart below describes some changes about the percentage of people were born in Australia and who were born outside Australia living in urban, rural and town between 1995 and 2010.
+
+                    Summarise the information by selecting and reporting the main features and make comparisons where relevant.
+
+                    You should write at least 150 words.
+                </TextBlock>
+                <RichTextBox Height="350" Margin="0 0 0 30"> </RichTextBox>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{DynamicResource RoundedButtonStyle}" >Submit</Button>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" >Enhence</Button>
+                </StackPanel>
+            </StackPanel>            
+        </ScrollViewer>
+    </Grid>
+</Page>
