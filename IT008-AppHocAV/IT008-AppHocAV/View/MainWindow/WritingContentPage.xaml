@@ -5,8 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="WritingContentPage" MinHeight="500" Height="auto" MinWidth="800" Width="800"
-      HorizontalAlignment="Center">
+      Title="WritingContentPage" MinHeight="500" Height="auto" MinWidth="800" Width="auto"
+      HorizontalAlignment="Center"
+      Loaded="WritingContentPage_OnLoaded"
+      >
     
     <Page.Resources>
         <ResourceDictionary>
@@ -20,22 +22,34 @@
     <Grid HorizontalAlignment="Center">
         <ScrollViewer Style="{DynamicResource FavsScrollViewer}">
             <StackPanel Width="750" Margin="0 20 0 0">
-                <TextBlock Margin="0 0 0 10" FontSize="18" FontWeight="Medium"> Title</TextBlock>
-                <TextBlock Margin="0 0 0 20" TextWrapping="Wrap" 
-                           LineStackingStrategy="BlockLineHeight" LineHeight="30">
-                    You should spend about 20 minutes on this task.
-
-                    The bar chart below describes some changes about the percentage of people were born in Australia and who were born outside Australia living in urban, rural and town between 1995 and 2010.
-
-                    Summarise the information by selecting and reporting the main features and make comparisons where relevant.
-
-                    You should write at least 150 words.
+                <TextBlock x:Name="TitleTextBlock"  Margin="0 0 0 10" FontSize="24" FontWeight="Medium"></TextBlock>
+                <TextBlock x:Name="TopicTextBlock" Margin="0 0 0 20" TextWrapping="Wrap" 
+                           LineStackingStrategy="BlockLineHeight" LineHeight="30" FontSize="16">
                 </TextBlock>
-                <RichTextBox Height="350" Margin="0 0 0 30"> </RichTextBox>
                 
-                <StackPanel Orientation="Horizontal">
-                    <Button Style="{DynamicResource RoundedButtonStyle}" >Submit</Button>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" >Enhence</Button>
+                <Image Name="WritingImage"  Height="300"  Margin="0 0 0 20"></Image>
+
+                
+                <Border Height="350" BorderThickness="1" BorderBrush="Black" CornerRadius="6"  
+                        Background="White">
+                    <RichTextBox  Name="ContetnRichTextBox" Background="Transparent" 
+                                  BorderThickness="0" 
+                                  Margin="0 6 0 6"
+                                  FontSize="16"
+                                  AcceptsReturn="True"
+                                  ></RichTextBox>
+                </Border>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">  
+                    <Button Style="{DynamicResource RoundedButtonStyle}" 
+                            Background="#55AF6E"
+                            Margin="0 0 20 0"
+                            Width="80"
+                            >Submit</Button>
+                    <Button Style="{DynamicResource RoundedButtonStyle }" 
+                            Background="#DADD44"
+                            Width="80"
+                            >Enhence</Button>
                 </StackPanel>
             </StackPanel>            
         </ScrollViewer>

@@ -11,7 +11,8 @@
         <Setter Property="FontSize" Value="14"></Setter>
         <Setter Property="BorderBrush" Value="Black"></Setter>
         <Setter Property="TextWrapping" Value="Wrap"></Setter>
-        <Setter Property="Margin" Value="0 0 0 10 "></Setter>
+        <Setter Property="Margin" Value="0 0 0 5 "></Setter>
+        <Setter Property="AcceptsReturn" Value="True"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBoxBase"> 

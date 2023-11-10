@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="WritingPage" MinHeight="500" Height="auto" Width="800"
+      Title="WritingPage" MinHeight="600" Height="auto" Width="800"
       >
     
     <Page.Resources>
@@ -20,22 +20,45 @@
     <Grid HorizontalAlignment="Center">
         <StackPanel HorizontalAlignment="Center" >
             <Label FontSize="40" HorizontalAlignment="Center"
-                   Margin="0 0 0 30 ">Write your Essay!</Label>
+                   Margin="0 0 0 10 ">Write your Essay!</Label>
         
             <Label>Title</Label>
             
-            <TextBox Height="40" VerticalAlignment="Center"></TextBox>
+            <TextBox x:Name="TitleTextBox"  Height="40" VerticalAlignment="Center"></TextBox>
             
             <Label >Topic</Label>
             
-            <TextBox Height="80"></TextBox>
+            <TextBox  x:Name="TopicTextBox" Height="80"></TextBox>
 
             <Label>More description</Label>
             
-            <TextBox Height="120"></TextBox>
+            <TextBox x:Name="DescriptionTextBox" Height="80"></TextBox>
+            
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 20">
+                <Button x:Name="AddImageButton" Click="AddImageButton_OnClick" HorizontalAlignment="Left" Width="auto" Height="30"
+                        Background="Transparent" BorderThickness="0" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="30" Source="../../Assets/Icon/AddImageIcon.png"></Image>
+                        <TextBlock TextDecorations="Underline" FontSize="14" VerticalAlignment="Center">Add image</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <TextBlock  x:Name="ImagePath"
+                            Margin="20 0 20 0" 
+                            TextDecorations="Underline"  
+                            Visibility="Hidden"
+                            Foreground="Blue"
+                            FontSize="14" VerticalAlignment="Center"/>
+                <Image x:Name="WritingImage"  Height="30" Visibility="Hidden"/>
+                
+            </StackPanel>
+            
+            
             
             <Button x:Name="StartWritingButton" HorizontalAlignment="Center" Style="{DynamicResource RoundedButtonStyle}" 
                     Width="120" Height="40" Background="#55AF6E" Click="StartWritingButton_OnClick">  Let's write!</Button>
+            
+            
             
         </StackPanel>
         
