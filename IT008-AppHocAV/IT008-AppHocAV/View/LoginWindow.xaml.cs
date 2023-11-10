@@ -19,17 +19,36 @@ namespace IT008_AppHocAV.View
             _isShowPassword = false;
             _internetConnectionManager = new InternetConnectionManager();
             _internetConnectionManager.CheckInternetConnection();
-            DbConnection = new DbConnection();
-            UserId = 0;
+            _dbConnection = new DbConnection();
         }
         
+        //Declare attributes
         private readonly BitmapImage _showPwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/showpwdIcon.png"));
         private readonly BitmapImage _hidePwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/hidepwdIcon.png"));
         private bool _isShowPassword;
-        public DbConnection DbConnection;
-        public int UserId;
-        public InternetConnectionManager _internetConnectionManager;
+        private int _userId;
+        private DbConnection _dbConnection;
+        private readonly InternetConnectionManager _internetConnectionManager;
+
         
+        
+        //Declare properties
+        public DbConnection DbConnection
+        {
+            get => _dbConnection;
+        }
+        public int UserId { get => _userId;}
+        
+        public InternetConnectionManager InternetConnectionManager
+        {
+            get => _internetConnectionManager;
+        }
+        
+        /// <summary>
+        /// Handle click event of close button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnClose_OnClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -40,6 +59,12 @@ namespace IT008_AppHocAV.View
             DragMove();
         }
 
+        /// <summary>
+        /// ShowPassWordBtn click event handler
+        /// Show password 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowPassWordBtn_OnClick(object sender, RoutedEventArgs e)
         {
             if (!_isShowPassword)
@@ -60,11 +85,20 @@ namespace IT008_AppHocAV.View
             }
         }
         
+        /// <summary>
+        /// LoginBtn click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoginBtn_OnClick(object sender, RoutedEventArgs e)
         {
            Login();
         }
 
+        
+        /// <summary>
+        /// Login authenticates user
+        /// </summary>
         private void Login()
         {
             if (VisiblePasswordBox.Visibility == Visibility.Visible)
@@ -73,10 +107,10 @@ namespace IT008_AppHocAV.View
             }
             if (UserNameBox.Text != String.Empty && PasswordBox.Password != String.Empty )
             {
-                UserId = DbConnection.Authentication(UserNameBox.Text, PasswordBox.Password);
+                _userId = DbConnection.Authentication(UserNameBox.Text, PasswordBox.Password);
                 if (UserId != 0)
                 {
-                    IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow(this,UserId);
+                    IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow(this);
                     if (RememberMeCheckBox.IsChecked != null && RememberMeCheckBox.IsChecked.Value)
                     {
                         Properties.Settings.Default.UserName = UserNameBox.Text;
@@ -96,7 +130,7 @@ namespace IT008_AppHocAV.View
                 }
                 else
                 {
-                    MessageBox.Show("Invalide user name or password! \n" +
+                    MessageBox.Show("Invalite user name or password! \n" +
                                     "Try again!","Fail to login",MessageBoxButton.OK);
                 }
             }
@@ -105,6 +139,9 @@ namespace IT008_AppHocAV.View
                 MessageBox.Show("Please enter your user name and password!","",MessageBoxButton.OK);
             }
         }
+        
+        
+
         private void BoxBorder_OnGotFocus(object sender, RoutedEventArgs e)
         {
             if (sender is Border bd)

@@ -16,14 +16,6 @@ namespace IT008_AppHocAV.View.MainWindow
 {
     public partial class SearchingPage : Page
     {
-        public SearchingPage()
-        {
-            InitializeComponent();
-            DicApiResultContainer.Visibility = Visibility.Hidden;
-            GoogleTranslateContainer.Visibility = Visibility.Hidden;
-            _languages.Add("English","en");
-            _languages.Add("Vietnamese","vi");
-        }
 
         public SearchingPage(IT008_AppHocAV.MainWindow _mainWindow )
         {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,33 +15,28 @@ namespace IT008_AppHocAV
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
-        private readonly LoginWindow _loginWindow;
-        private bool isInternectConnected;
-        
-
-        public MainWindow()
+        public MainWindow(LoginWindow loginWindow)
         {
             InitializeComponent();
-            Page defaultPage = new SearchingPage();
-            pageCache["Searching"] = defaultPage;
-        }
-        
-        public MainWindow(LoginWindow loginWindow,int userId)
-        {
-            InitializeComponent();
-            Page defaultPage = new SearchingPage();
-            pageCache["Searching"] = defaultPage;
+            Page defaultPage = new SearchingPage(this);
+            _pageCache["Searching"] = defaultPage;
             _loginWindow = loginWindow;
-            _loginWindow._internetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
+            _loginWindow.InternetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
         }
+        
+        //Declare attributes
+        private readonly Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
+        private readonly LoginWindow _loginWindow;
 
+        //Declare properties
+        public int UserId => _loginWindow.UserId;
+
+        
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
         }
 
-        
         private void BtnMinimize_OnClick(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -67,26 +60,33 @@ namespace IT008_AppHocAV
 
         }
 
-        private void NavToSearching_OnClick(object sender, RoutedEventArgs e)
-        {
-            NavigateToPage("Searching");
-        }
+        #region Define Navigate Buttons
+        
+            private void NavToSearching_OnClick(object sender, RoutedEventArgs e)
+            {
+                NavigateToPage("Searching");
+            }
 
-        private void NavToWriting_OnClick(object sender, RoutedEventArgs e)
-        {
-            NavigateToPage("Writing");
-        }
+            private void NavToWriting_OnClick(object sender, RoutedEventArgs e)
+            {
+                NavigateToPage("Writing");
+            }
 
-        private void NavToExam_OnClick(object sender, RoutedEventArgs e)
-        {
-            NavigateToPage("Exam");
-        }
+            private void NavToExam_OnClick(object sender, RoutedEventArgs e)
+            {
+                NavigateToPage("Exam");
+            }
 
-        private void NavToFlashCard_OnClick(object sender, RoutedEventArgs e)
-        {
-            NavigateToPage("FlashCard");
-        }
+            private void NavToFlashCard_OnClick(object sender, RoutedEventArgs e)
+            {
+                NavigateToPage("FlashCard");
+            }
 
+        #endregion
+
+
+        
+        
         private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
         {
             
@@ -121,7 +121,7 @@ namespace IT008_AppHocAV
             Page page = null;
             if (pageName == "Searching")
             {
-                page = new SearchingPage(); 
+                page = new SearchingPage(this); 
             }
             else if (pageName == "Writing")
             {
@@ -129,7 +129,7 @@ namespace IT008_AppHocAV
             }
             else if (pageName == "Exam")
             {
-                page = new ExamPage();
+                page = new ExamPage(this);
             } else if (pageName == "FlashCard")
             {
                 page = new FlashCardPage();
@@ -138,7 +138,8 @@ namespace IT008_AppHocAV
                 page = new NoInternetPage();
             } else if (pageName == "WritingContentPage")
             {
-                page = new WritingContentPage();
+                if (_pageCache["Writing"] is  WritingPage writingPage )
+                    page = new WritingContentPage(this,writingPage);
             }
             return page;
         }
@@ -146,14 +147,14 @@ namespace IT008_AppHocAV
         public void NavigateToPage(string pageName)
         {
             StatusBarCurrentPage.Text = pageName; 
-            if (pageCache.TryGetValue(pageName, out var value))
+            if (_pageCache.TryGetValue(pageName, out var value))
             {
                 Content.Navigate(value);
             }
             else
             {
                 Page newPage = CreatePage(pageName); 
-                pageCache[pageName] = newPage; 
+                _pageCache[pageName] = newPage; 
                 Content.Navigate(newPage); 
             }
         }
