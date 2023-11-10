@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Security.Cryptography;
-using System.Security.Policy;
-using System.Text;
+using System.IO;
+using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Util;
 
@@ -116,6 +115,88 @@ namespace IT008_AppHocAV.Repositories
             {
                 _sqlConnection.Close();
             }
+        }
+
+
+        public int CreateEssay(Essay essay )
+        {
+            try
+            {
+                string query = " INSERT INTO Essay (user_id, title, topic,image, description, content, updated_at, created_at) " +
+                               " output inserted.id " +
+                               " VALUES " +
+                               " (@user_id, @title, @topic , @image , @description, @content, GETDATE(), GETDATE()) ";
+
+                var data = ConvertToByteFromBitmapImage(essay.Image);
+                
+                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@user_id", essay.UserId);
+                    command.Parameters.AddWithValue("@title", essay.Title);
+                    command.Parameters.AddWithValue("@topic", essay.Topic);
+                    command.Parameters.AddWithValue("@image", essay.Image);
+                    command.Parameters.AddWithValue("@description", essay.Description);
+                    command.Parameters.AddWithValue("@content", essay.Content);
+                    _sqlConnection.Open();
+                    int modified = (int)command.ExecuteScalar();
+                    if (_sqlConnection.State == System.Data.ConnectionState.Open)
+                        _sqlConnection.Close();
+                    return modified;
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return 0;
+            }
+            
+            finally
+            {
+                _sqlConnection.Close();
+            }
+
+        }
+
+        public void  UpdateEssayContent(int id, string content)
+        {
+            try
+            {
+                string query = "UPDATE essay " +
+                               "SET content = @content, updated_at = GETDATE() " +
+                               "WHERE id = @id ";
+                using ( SqlCommand command = new SqlCommand(query,_sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@content", content);
+                    _sqlConnection.Open();
+                    command.ExecuteScalar();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+        }
+        
+        
+        public static Byte[] ConvertToByteFromBitmapImage(BitmapImage bitmapImage)
+        {
+            byte[] data;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+
+            encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+            using(MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                data = ms.ToArray();
+            }
+
+            return data;
         }
     }
 }
