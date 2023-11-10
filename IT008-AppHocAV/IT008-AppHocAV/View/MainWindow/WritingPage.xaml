@@ -5,10 +5,39 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="WritingPage" MinHeight="500" Height="auto" Width="900"
+      Title="WritingPage" MinHeight="500" Height="auto" Width="800"
       >
-    <Grid>
-        <Label Content="Hello Writing page"></Label>
-        <TextBox Width="200" Height="40"></TextBox>
+    
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Assets/Styles/WritingPageStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/MainStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <Grid HorizontalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" >
+            <Label FontSize="40" HorizontalAlignment="Center"
+                   Margin="0 0 0 30 ">Write your Essay!</Label>
+        
+            <Label>Title</Label>
+            
+            <TextBox Height="40" VerticalAlignment="Center"></TextBox>
+            
+            <Label >Topic</Label>
+            
+            <TextBox Height="80"></TextBox>
+
+            <Label>More description</Label>
+            
+            <TextBox Height="120"></TextBox>
+            
+            <Button x:Name="StartWritingButton" HorizontalAlignment="Center" Style="{DynamicResource RoundedButtonStyle}" 
+                    Width="120" Height="40" Background="#55AF6E" Click="StartWritingButton_OnClick">  Let's write!</Button>
+            
+        </StackPanel>
+        
     </Grid>
 </Page>
