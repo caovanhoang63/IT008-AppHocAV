@@ -6,7 +6,15 @@ namespace IT008_AppHocAV.Models
 {
     public class Essay
     {
-        public Essay(){}
+        public Essay()
+        {
+            this._title = "";
+            this._topic = "";
+            this._description = "";
+            this._imagePath = null;
+            this._image = null;
+            this._content = "";
+        }
         public Essay(string title, string topic, string description, string imagePath, BitmapImage image, DateTime updatedAt, DateTime createdAt)
         {
             this._title = title;
@@ -14,11 +22,11 @@ namespace IT008_AppHocAV.Models
             this._description = description;
             this._imagePath = imagePath;
             this._image = image;
-            this._updatedAt = updatedAt;
-            this._createdAt = createdAt;
         }
 
 
+        private int _id;
+        private int _userId;
         private string _title;
         private string _topic;
         private string _description;
@@ -27,6 +35,20 @@ namespace IT008_AppHocAV.Models
         private string _content;
         private DateTime _updatedAt;
         private DateTime _createdAt;
+        
+        
+        
+        public int Id
+        {
+            get => _id;
+            set => _id = value;
+        }
+        
+        public int UserId
+        {
+            get => _userId;
+            set => _userId = value;
+        }
         
         
         public string Title
