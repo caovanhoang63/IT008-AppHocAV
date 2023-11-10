@@ -22,7 +22,7 @@ namespace IT008_AppHocAV.Repositories
             _sqlConnection = new SqlConnection(builder.ConnectionString);
         }
 
-        public int Authentication(string user_name,string password)
+        public int Authentication(string userName,string password)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace IT008_AppHocAV.Repositories
 
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
-                    command.Parameters.AddWithValue("@un", user_name);
+                    command.Parameters.AddWithValue("@un", userName);
                     _sqlConnection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
