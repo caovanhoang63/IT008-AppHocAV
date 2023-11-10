@@ -125,7 +125,7 @@ namespace IT008_AppHocAV
             }
             else if (pageName == "Writing")
             {
-                page = new WritingPage();
+                page = new WritingPage(this);
             }
             else if (pageName == "Exam")
             {
@@ -136,13 +136,16 @@ namespace IT008_AppHocAV
             } else if (pageName == "NoInternet")
             {
                 page = new NoInternetPage();
+            } else if (pageName == "WritingContentPage")
+            {
+                page = new WritingContentPage();
             }
             return page;
         }
         
-        private void NavigateToPage(string pageName)
+        public void NavigateToPage(string pageName)
         {
-            sBarCurrentPage.Text = pageName; 
+            StatusBarCurrentPage.Text = pageName; 
             if (pageCache.TryGetValue(pageName, out var value))
             {
                 Content.Navigate(value);
