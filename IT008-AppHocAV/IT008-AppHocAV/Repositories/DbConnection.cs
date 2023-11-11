@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.IO;
 using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Models;
@@ -127,14 +130,21 @@ namespace IT008_AppHocAV.Repositories
                                " VALUES " +
                                " (@user_id, @title, @topic , @image , @description, @content, GETDATE(), GETDATE()) ";
 
-                var data = ConvertToByteFromBitmapImage(essay.Image);
+                byte[] data = essay.Image == null ? null : ConvertToByteFromBitmapImage(essay.Image); 
+ 
                 
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     command.Parameters.AddWithValue("@user_id", essay.UserId);
                     command.Parameters.AddWithValue("@title", essay.Title);
                     command.Parameters.AddWithValue("@topic", essay.Topic);
-                    command.Parameters.AddWithValue("@image", essay.Image);
+                    
+                    if (data != null)
+                        command.Parameters.AddWithValue("@image",data);
+                    else 
+                        command.Parameters.AddWithValue("@image",SqlBinary.Null);
+                        
+                    
                     command.Parameters.AddWithValue("@description", essay.Description);
                     command.Parameters.AddWithValue("@content", essay.Content);
                     _sqlConnection.Open();
@@ -182,7 +192,77 @@ namespace IT008_AppHocAV.Repositories
                 _sqlConnection.Close();
             }
         }
-        
+
+
+        public List<Essay> SelectListEssayByUserId(int UserId)
+        {
+            List<Essay> result = new List<Essay>();
+
+            try
+            {
+
+                string query = " SELECT *" +
+                               " FROM [essay] " +
+                               " WHERE user_id = @UserId";
+                using (SqlCommand command = new SqlCommand(query,_sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@UserId", UserId);
+                    _sqlConnection.Open();
+
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            BitmapImage image = null;
+
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("image")))
+                            {
+                                long len = reader.GetBytes(reader.GetOrdinal("image"), 0, null, 0, 0);
+
+                                Byte[] buffer = new byte[len];
+                                
+                                
+                                reader.GetBytes(reader.GetOrdinal("image") , 0, buffer, 0, (int)len);
+
+                                image = ToImage(buffer);
+
+                            } 
+                           
+                            
+                            Essay essay = new Essay(
+                                reader.GetInt32(reader.GetOrdinal("id")),
+                                reader.GetInt32(reader.GetOrdinal("user_id")),
+                                reader.GetString(reader.GetOrdinal("title")),
+                                reader.GetString(reader.GetOrdinal("topic")),
+                                reader.GetString(reader.GetOrdinal("description")),
+                                image,
+                                reader.GetString(reader.GetOrdinal("content")),
+                                reader.GetDateTime(reader.GetOrdinal("created_at")),
+                                reader.GetDateTime(reader.GetOrdinal("updated_at"))
+                                );
+                            result.Add(essay);
+                        }
+                    }
+
+                }
+                return result;
+            } 
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+            
+
+        }
         
         public static Byte[] ConvertToByteFromBitmapImage(BitmapImage bitmapImage)
         {
@@ -197,6 +277,19 @@ namespace IT008_AppHocAV.Repositories
             }
 
             return data;
+        }
+        
+        public BitmapImage ToImage(byte[] array)
+        {
+            using (var ms = new MemoryStream(array))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
         }
     }
 }
