@@ -130,7 +130,7 @@ namespace IT008_AppHocAV.View
                 }
                 else
                 {
-                    MessageBox.Show("Invalite user name or password! \n" +
+                    MessageBox.Show("Invalid user name or password! \n" +
                                     "Try again!","Fail to login",MessageBoxButton.OK);
                 }
             }
@@ -177,7 +177,7 @@ namespace IT008_AppHocAV.View
 
         private void LoginWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (Properties.Settings.Default.RememberMe == true)
+            if (Properties.Settings.Default.RememberMe)
             {
                 RememberMeCheckBox.IsChecked = true;
                 UserNameBox.Text = Properties.Settings.Default.UserName;
