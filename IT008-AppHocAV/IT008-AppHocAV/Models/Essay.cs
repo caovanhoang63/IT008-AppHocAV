@@ -24,6 +24,19 @@ namespace IT008_AppHocAV.Models
             this._image = image;
         }
 
+        public Essay(int id, int userId, string title, string topic, string description, BitmapImage image, string content, DateTime updatedAt, DateTime createdAt)
+        {
+            _id = id;
+            _userId = userId;
+            _title = title;
+            _topic = topic;
+            _description = description;
+            _image = image;
+            _content = content;
+            _updatedAt = updatedAt;
+            _createdAt = createdAt;
+        }
+
 
         private int _id;
         private int _userId;
