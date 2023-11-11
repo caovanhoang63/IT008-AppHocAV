@@ -37,6 +37,15 @@ namespace IT008_AppHocAV.Models
             _createdAt = createdAt;
         }
 
+        public Essay(int id, string title, string topic, DateTime updatedAt, DateTime createdAt)
+        {
+            _id = id;
+            _title = title;
+            _topic = topic;
+            _updatedAt = updatedAt;
+            _createdAt = createdAt;
+        }
+
 
         private int _id;
         private int _userId;

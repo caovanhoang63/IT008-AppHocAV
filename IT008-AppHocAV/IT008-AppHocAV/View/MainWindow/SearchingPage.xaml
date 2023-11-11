@@ -14,7 +14,6 @@
                 <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/SearchingPageStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
         </ResourceDictionary>
     </Page.Resources>
     <ScrollViewer Style="{DynamicResource FavsScrollViewer}" >

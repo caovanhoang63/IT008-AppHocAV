@@ -74,5 +74,15 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
             }
         }
+
+        private void CloseButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure want to continue?","",MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                _mainWindow.NavigateToPage("ListEssayPage");
+                _mainWindow.PageCache.Remove("Writing");
+            }
+        }
     }
 }

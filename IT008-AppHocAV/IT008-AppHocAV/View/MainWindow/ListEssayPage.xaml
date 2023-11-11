@@ -12,19 +12,18 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Assets/Styles/MainStyles.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
     
         <StackPanel>
-            
             <Grid Height="80" Margin="20 0" >
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-            
             
                 <Label Grid.Column="0" FontWeight="Medium" FontSize="30" VerticalAlignment="Center">Writing</Label>
                 <StackPanel  Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
@@ -59,10 +58,12 @@
                     <ListView.ItemTemplate >
 
                         <DataTemplate>
-                            <Button Height="80" Width="700"  Background="#F4EEEE"
-                                Style="{DynamicResource RoundedButtonStyle}"
-                                Margin="  0 8 "
-                                >
+                            <Button Height="80" Width="700"
+                                    Background="#F4EEEE"
+                                    Style="{DynamicResource RoundedButtonStyle}"
+                                    Margin="  0 8 "
+                                    Click="ShowEssayButton_OnClick"
+                                    >
                                 <Grid Width="660">
                                     
                                     <Grid.ColumnDefinitions>
@@ -78,16 +79,14 @@
                                                 Padding="0 2" FontSize="15"
                                                 Content="{Binding Topic}"/>
                                             
-                                        
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Padding="0 2" Margin="0 0 2 0" FontSize="10" >Created at: </Label>
+                                            <Label Padding="0 2" Margin="0 0 2 0" FontSize="10">Created at: </Label>
                                             <Label Padding="0 2" Margin="0 0 40 0" FontSize="10" Content="{Binding CreatedAt }"></Label>
                                             <Label Padding="0 2" Margin="0 0 2 0" FontSize="10" >Last modified: </Label>
                                             <Label Padding="0 2" FontSize="10" Content="{Binding UpdatedAt}"></Label>
                                         </StackPanel>
                                          
                                     </StackPanel>
-                                    
                                     
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <Button Style="{DynamicResource TransparentButtonStyle }">
@@ -96,7 +95,8 @@
                                         <Button Style="{DynamicResource TransparentButtonStyle }">
                                             <Image Source="../../Assets/Icon/ModifiedIcon.png"></Image>
                                         </Button>
-                                        <Button Style="{DynamicResource TransparentButtonStyle }">
+                                        <Button Name="DeleteEssayButton" Style="{DynamicResource TransparentButtonStyle }"
+                                                Click="DeleteEssayButton_OnClick">
                                             <Image Source="../../Assets/Icon/BinIcon.png"></Image>
                                         </Button>
 
@@ -111,8 +111,6 @@
                     </ListView.ItemTemplate>
 
                 </ListView>
-           
-            
         </StackPanel>
         
         

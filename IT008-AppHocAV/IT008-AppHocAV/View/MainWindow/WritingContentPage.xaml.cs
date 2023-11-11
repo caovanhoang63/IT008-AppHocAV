@@ -11,35 +11,37 @@ namespace IT008_AppHocAV.View.MainWindow
     public partial class WritingContentPage : Page
     {
         private readonly IT008_AppHocAV.MainWindow _mainWindow;
-        private readonly WritingPage _writingPage;
-        public WritingContentPage(IT008_AppHocAV.MainWindow mainWindow, WritingPage writingPage)
+        private Essay _essay;
+        public WritingContentPage(IT008_AppHocAV.MainWindow mainWindow, Essay essay)
         {
             InitializeComponent();
             this._mainWindow = mainWindow;
-            this._writingPage = writingPage;
+            this._essay = essay;
         }
 
         private void WritingContentPage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            TitleTextBlock.Text = _writingPage.Essay.Title;
-            TopicTextBlock.Text = _writingPage.Essay.Topic;
+            TitleTextBlock.Text = _essay.Title;
+            TopicTextBlock.Text = _essay.Topic;
             
-            if (_writingPage.Essay.Image != null)
+            if (_essay.Image != null)
             {
-                WritingImage.Source = _writingPage.Essay.Image;
+                WritingImage.Source = _essay.Image;
             }
             else
             {
                 WritingImage.Visibility = Visibility.Collapsed;
             }
-            
+
+            ContentRichTextBox.Document.Blocks.Add(new Paragraph(new Run(_essay.Content)));
+
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             string richText = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
             
-            _mainWindow.DbConnection.UpdateEssayContent(_writingPage.Essay.Id,richText);
+            _mainWindow.DbConnection.UpdateEssayContent(_essay.Id,richText);
             
         }
     }

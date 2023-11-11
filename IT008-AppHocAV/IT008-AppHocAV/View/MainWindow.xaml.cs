@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,13 +28,25 @@ namespace IT008_AppHocAV
         }
         
         //Declare attributes
-        private readonly Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
+        private Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
         private readonly LoginWindow _loginWindow;
 
         //Declare properties
         public int UserId => _loginWindow.UserId;
         public DbConnection DbConnection => _loginWindow.DbConnection;
-        
+
+        public Dictionary<string, Page> PageCache
+        {
+            get => _pageCache;
+            set => _pageCache = value;
+        }
+
+        public bool ContentLoaded
+        {
+            get => _contentLoaded;
+            set => _contentLoaded = value;
+        }
+
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
@@ -120,6 +134,7 @@ namespace IT008_AppHocAV
         private Page CreatePage(string pageName)
         {
             Page page = null;
+
             if (pageName == "Searching")
             {
                 page = new SearchingPage(this); 
@@ -131,26 +146,45 @@ namespace IT008_AppHocAV
             else if (pageName == "Exam")
             {
                 page = new ExamPage(this);
-            } else if (pageName == "FlashCard")
+            } 
+            else if (pageName == "FlashCard")
             {
                 page = new FlashCardPage();
-            } else if (pageName == "NoInternet")
+            } 
+            else if (pageName == "NoInternet")
             {
                 page = new NoInternetPage();
-            } else if (pageName == "WritingContentPage")
+            }
+            else if (pageName == "WritingContentPage")
             {
-                if (_pageCache["Writing"] is  WritingPage writingPage )
-                    page = new WritingContentPage(this,writingPage);
-            } else if (pageName == "ListEssayPage")
+                if (_pageCache.ContainsKey("Writing"))
+                {
+                    var writingPage = (WritingPage)_pageCache["Writing"];
+                    page = new WritingContentPage(this,writingPage.Essay );
+                }
+                else
+                {
+                    var writingPage = (ShowEssayPage)_pageCache["ShowEssay"];
+                    page = new WritingContentPage(this,writingPage.Essay );
+                }
+
+            } 
+            else if (pageName == "ListEssayPage")
             {
                 page = new ListEssayPage(this);
+            } 
+            else if (pageName == "ShowEssay")
+            {
+                if (_pageCache["ListEssayPage"] is  ListEssayPage listEssayPage )
+                    page = new ShowEssayPage(this,listEssayPage);
             }
             return page;
         }
         
         public void NavigateToPage(string pageName)
         {
-            StatusBarCurrentPage.Text = pageName; 
+            StatusBarCurrentPage.Text = pageName;
+            
             if (_pageCache.TryGetValue(pageName, out var value))
             {
                 Content.Navigate(value);
