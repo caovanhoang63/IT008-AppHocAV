@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using IT008_AppHocAV.Repositories;
 using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View;
 using IT008_AppHocAV.View.MainWindow;
@@ -30,7 +31,7 @@ namespace IT008_AppHocAV
 
         //Declare properties
         public int UserId => _loginWindow.UserId;
-
+        public DbConnection DbConnection => _loginWindow.DbConnection;
         
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -69,7 +70,7 @@ namespace IT008_AppHocAV
 
             private void NavToWriting_OnClick(object sender, RoutedEventArgs e)
             {
-                NavigateToPage("Writing");
+                NavigateToPage("ListEssayPage");
             }
 
             private void NavToExam_OnClick(object sender, RoutedEventArgs e)
@@ -140,6 +141,9 @@ namespace IT008_AppHocAV
             {
                 if (_pageCache["Writing"] is  WritingPage writingPage )
                     page = new WritingContentPage(this,writingPage);
+            } else if (pageName == "ListEssayPage")
+            {
+                page = new ListEssayPage(this);
             }
             return page;
         }
