@@ -32,7 +32,7 @@
                 
                 <Border Height="350" BorderThickness="1" BorderBrush="Black" CornerRadius="6"  
                         Background="White">
-                    <RichTextBox  Name="ContetnRichTextBox" Background="Transparent" 
+                    <RichTextBox  Name="ContentRichTextBox" Background="Transparent" 
                                   BorderThickness="0" 
                                   Margin="0 6 0 6"
                                   FontSize="16"
@@ -45,6 +45,7 @@
                             Background="#55AF6E"
                             Margin="0 0 20 0"
                             Width="80"
+                            Click="ButtonBase_OnClick"
                             >Submit</Button>
                     <Button Style="{DynamicResource RoundedButtonStyle }" 
                             Background="#DADD44"

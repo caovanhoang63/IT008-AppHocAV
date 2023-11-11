@@ -35,13 +35,21 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void StartWritingButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _mainWindow.NavigateToPage("WritingContentPage");
-
+            _essay.UserId = _mainWindow.UserId;
             _essay.Title = TitleTextBox.Text;
             _essay.Topic = TopicTextBox.Text;
             _essay.Description = DescriptionTextBox.Text;
             _essay.CreatedAt =  DateTime.Now; 
             _essay.UpdatedAt =  DateTime.Now;
+            
+            _essay.Id =  _mainWindow.DbConnection.CreateEssay(_essay);
+            if (_essay.Id == 0)
+            {
+                MessageBox.Show("Fail to create new essay!");
+                return;
+            }
+            _mainWindow.NavigateToPage("WritingContentPage");
+
         }
 
 

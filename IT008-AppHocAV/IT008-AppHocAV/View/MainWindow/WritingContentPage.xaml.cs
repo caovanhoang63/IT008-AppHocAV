@@ -32,6 +32,15 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 WritingImage.Visibility = Visibility.Collapsed;
             }
+            
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            string richText = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
+            
+            _mainWindow.DbConnection.UpdateEssayContent(_writingPage.Essay.Id,richText);
+            
         }
     }
 }
