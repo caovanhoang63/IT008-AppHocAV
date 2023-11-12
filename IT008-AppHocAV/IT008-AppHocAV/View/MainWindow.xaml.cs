@@ -20,13 +20,17 @@ namespace IT008_AppHocAV
         private Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
         private readonly LoginWindow _loginWindow;
         private bool isInternectConnected;
-        
+        private bool isDragging = false;
+        private Point originalMousePosition;
 
         public MainWindow()
         {
             InitializeComponent();
             Page defaultPage = new SearchingPage();
             pageCache["Searching"] = defaultPage;
+            ShowTakeNote.PreviewMouseLeftButtonDown += ShowTakeNote_PreviewMouseLeftButtonDown;
+            ShowTakeNote.PreviewMouseLeftButtonUp += ShowTakeNote_PreviewMouseLeftButtonUp;
+            MouseMove += Window_MouseMove;
         }
         
         public MainWindow(LoginWindow loginWindow)
@@ -89,7 +93,7 @@ namespace IT008_AppHocAV
 
         private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            NavigateToPage("TakeNote");
         }
 
         private void SearchTextContainer_OnGotFocus(object sender, RoutedEventArgs e)
@@ -121,7 +125,7 @@ namespace IT008_AppHocAV
             Page page = null;
             if (pageName == "Searching")
             {
-                page = new SearchingPage(); 
+                page = new SearchingPage();
             }
             else if (pageName == "Writing")
             {
@@ -130,10 +134,16 @@ namespace IT008_AppHocAV
             else if (pageName == "Exam")
             {
                 page = new ExamPage();
-            } else if (pageName == "FlashCard")
+            }
+            else if (pageName == "FlashCard")
             {
                 page = new FlashCardPage();
-            } else if (pageName == "NoInternet")
+            }
+            else if (pageName == "TakeNote")
+            {
+                page = new TakeNote();
+            }
+            else if (pageName == "NoInternet")
             {
                 page = new NoInternetPage();
             }
@@ -229,5 +239,41 @@ namespace IT008_AppHocAV
                 }                
             }
         }
+        private void ShowTakeNote_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                isDragging = true;
+                originalMousePosition = e.GetPosition(this);
+                ShowTakeNote.CaptureMouse();
+                e.Handled = true;
+            }
+        }
+
+        private void ShowTakeNote_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (isDragging)
+            {
+                isDragging = false;
+                ShowTakeNote.ReleaseMouseCapture();
+                e.Handled = true;
+            }
+        }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                Point currentPosition = e.GetPosition(this);
+                double offsetX = currentPosition.X - originalMousePosition.X;
+                double offsetY = currentPosition.Y - originalMousePosition.Y;
+                Canvas.SetLeft(ShowTakeNote, Canvas.GetLeft(ShowTakeNote) + offsetX);
+                Canvas.SetTop(ShowTakeNote, Canvas.GetTop(ShowTakeNote) + offsetY);
+                originalMousePosition = currentPosition;
+                e.Handled = true;
+            }
+        }
+
     }
 }
+

@@ -10,6 +10,7 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="MainWindow" Width="1080" Height="720"
         WindowStartupLocation="CenterScreen"
+        MouseMove="Window_MouseMove"
         >
     
     <!-- Style -->
@@ -129,7 +130,7 @@
                     <Button x:Name="NavToSearching"  Click="NavToSearching_OnClick" 
                              Style="{DynamicResource RoundedButtonStyle}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../Assets/Icon/SearchIcon.png" Width="50" ></Image>
+                            <Image Source="../Assets/Icon/SearchIcon.png" Width="50" RenderTransformOrigin="0.52,0.5" ></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Search</Label>
                         </StackPanel>
                     </Button>
@@ -157,12 +158,18 @@
                 </Canvas>
                     
                 <!-- Right NavBar and Show Take Note Button -->
-                <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" Margin="0 0 40 0" >
-                    <Button Height="50" x:Name="ShowTakeNote" Click="ShowTakeNote_OnClick">
+                <Grid VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" Margin="0 0 40 0" >
+                    <Button Height="50" x:Name="ShowTakeNote" Click="ShowTakeNote_OnClick"
+                            Background="Transparent" BorderThickness="0">
                         <Image Source="../Assets/Icon/TakeNoteIcon.png"></Image>
                     </Button>
-                </StackPanel>
-                    
+                </Grid>
+
+
+
+
+
+
                 <!-- Content Frame -->
                 <Frame BorderThickness="0 1 0 0" BorderBrush="Black" Margin="10 0 10 0 " 
                        DockPanel.Dock="Bottom" 
