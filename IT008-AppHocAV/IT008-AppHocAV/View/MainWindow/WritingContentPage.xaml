@@ -13,7 +13,7 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/MainStyles.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -22,36 +22,51 @@
     <Grid HorizontalAlignment="Center">
         <ScrollViewer Style="{DynamicResource FavsScrollViewer}">
             <StackPanel Width="750" Margin="0 20 0 0">
-                <TextBlock x:Name="TitleTextBlock"  Margin="0 0 0 10" FontSize="24" FontWeight="Medium"></TextBlock>
-                <TextBlock x:Name="TopicTextBlock" Margin="0 0 0 20" TextWrapping="Wrap" 
-                           LineStackingStrategy="BlockLineHeight" LineHeight="30" FontSize="16">
-                </TextBlock>
                 
-                <Image Name="WritingImage"  Height="300"  Margin="0 0 0 20"></Image>
+                <!-- Title -->
+                <TextBlock x:Name="TitleTextBlock"  FontSize="24" FontWeight="Medium"/>
+                
+                <Border Style="{DynamicResource Splitter}" ></Border>
 
+                <!-- Topic -->
+                <TextBlock x:Name="TopicTextBlock" Margin="0 0 0 0" TextWrapping="Wrap" 
+                             FontSize="16"/>
                 
+                <Border Style="{DynamicResource Splitter}" ></Border>
+
+                <!-- Writing Image -->
+                <Image Name="WritingImage"  Height="300"  />
+                
+                <Border Style="{DynamicResource Splitter}" ></Border>
+
+                <!-- Writing Content RichTextBox -->
                 <Border Height="350" BorderThickness="1" BorderBrush="Black" CornerRadius="6"  
                         Background="White">
                     <RichTextBox  Name="ContentRichTextBox" Background="Transparent" 
                                   BorderThickness="0" 
-                                  Margin="0 6 0 6"
+                                  Margin="6"
                                   FontSize="16"
                                   AcceptsReturn="True"
                                   ></RichTextBox>
                 </Border>
                 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">  
+                <Border Style="{DynamicResource Splitter}"/>
+                
+                <!-- Submit and Enhance Button -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >  
                     <Button Style="{DynamicResource RoundedButtonStyle}" 
                             Background="#55AF6E"
                             Margin="0 0 20 0"
                             Width="80"
-                            Click="ButtonBase_OnClick"
+                            Click="SubmitButton_OnClick"
                             >Submit</Button>
                     <Button Style="{DynamicResource RoundedButtonStyle }" 
                             Background="#DADD44"
                             Width="80"
-                            >Enhence</Button>
+                            >Enhance</Button>
                 </StackPanel>
+                <!--End submit and Enhance Button -->
+
             </StackPanel>            
         </ScrollViewer>
     </Grid>

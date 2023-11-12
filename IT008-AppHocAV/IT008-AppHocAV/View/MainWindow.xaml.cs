@@ -18,64 +18,70 @@ namespace IT008_AppHocAV
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(LoginWindow loginWindow)
-        {
-            InitializeComponent();
-            Page defaultPage = new SearchingPage(this);
-            _pageCache["Searching"] = defaultPage;
-            _loginWindow = loginWindow;
-            _loginWindow.InternetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
-        }
         
-        //Declare attributes
-        private Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
-        private readonly LoginWindow _loginWindow;
+        #region Declare Fields
+            private Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
+            private readonly LoginWindow _loginWindow;
+        #endregion
+        
+        #region Declare Constructors
+            public MainWindow(LoginWindow loginWindow)
+            {
+                InitializeComponent();
+                Page defaultPage = new SearchingPage(this);
+                _pageCache["Searching"] = defaultPage;
+                _loginWindow = loginWindow;
+                _loginWindow.InternetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
+            }
+        #endregion
 
-        //Declare properties
-        public int UserId => _loginWindow.UserId;
-        public DbConnection DbConnection => _loginWindow.DbConnection;
+        #region Declare properties
 
-        public Dictionary<string, Page> PageCache
-        {
-            get => _pageCache;
-            set => _pageCache = value;
-        }
+            public int UserId => _loginWindow.UserId;
+            public DbConnection DbConnection => _loginWindow.DbConnection;
 
-        public bool ContentLoaded
-        {
-            get => _contentLoaded;
-            set => _contentLoaded = value;
-        }
+            public Dictionary<string, Page> PageCache
+            {
+                get => _pageCache;
+                set => _pageCache = value;
+            }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
+            public bool ContentLoaded
+            {
+                get => _contentLoaded;
+                set => _contentLoaded = value;
+            }
 
-        private void BtnMinimize_OnClick(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
+        #endregion
 
-        private void BtnMaximize_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (WindowState == WindowState.Maximized)
-                WindowState = WindowState.Normal;
-            else
-                WindowState = WindowState.Maximized;
-        }
+        #region Define CLick Event of DockBar Buttons
 
-        private void BtnClose_OnClick(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
+            private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+            {
+                DragMove();
+            }
 
-        private void btnAvatar_Click(object sender, RoutedEventArgs e)
-        {
+            private void BtnMinimize_OnClick(object sender, RoutedEventArgs e)
+            {
+                WindowState = WindowState.Minimized;
+            }
 
-        }
+            private void BtnMaximize_OnClick(object sender, RoutedEventArgs e)
+            {
+                if (WindowState == WindowState.Maximized)
+                    WindowState = WindowState.Normal;
+                else
+                    WindowState = WindowState.Maximized;
+            }
+            
+            private void BtnClose_OnClick(object sender, RoutedEventArgs e)
+            {
+                Application.Current.Shutdown();
+            }
 
-        #region Define Navigate Buttons
+        #endregion        
+        
+        #region Define Click Event of Left Navigator 
         
             private void NavToSearching_OnClick(object sender, RoutedEventArgs e)
             {
@@ -84,7 +90,7 @@ namespace IT008_AppHocAV
 
             private void NavToWriting_OnClick(object sender, RoutedEventArgs e)
             {
-                NavigateToPage("ListEssayPage");
+                NavigateToPage("ShowListEssay");
             }
 
             private void NavToExam_OnClick(object sender, RoutedEventArgs e)
@@ -99,105 +105,118 @@ namespace IT008_AppHocAV
 
         #endregion
 
+        #region Avatar, Setting and Notify Button Handlers
+            private void btnAvatar_Click(object sender, RoutedEventArgs e)
+            {
 
-        
-        
-        private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
-        {
+            }
+
+            private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
+            {
+                
+            }
             
-        }
-
-        private void SearchTextContainer_OnGotFocus(object sender, RoutedEventArgs e)
-        {
-            SearchTextContainer.BorderBrush = Brushes.CornflowerBlue;
-        }
-
-        private void SearchTextContainer_OnLostFocus(object sender, RoutedEventArgs e)
-        {
-            SearchTextContainer.BorderBrush = Brushes.Transparent;
-        }
-
-        
-        
-        private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (textBoxSearching.Text != string.Empty)
+            private void LogOutMenuItem_OnClick(object sender, RoutedEventArgs e)
             {
-                TextBlockPlaceHolder.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                TextBlockPlaceHolder.Visibility = Visibility.Visible;
-            }
-        }
-
-        private Page CreatePage(string pageName)
-        {
-            Page page = null;
-
-            if (pageName == "Searching")
-            {
-                page = new SearchingPage(this); 
-            }
-            else if (pageName == "Writing")
-            {
-                page = new WritingPage(this);
-            }
-            else if (pageName == "Exam")
-            {
-                page = new ExamPage(this);
-            } 
-            else if (pageName == "FlashCard")
-            {
-                page = new FlashCardPage();
-            } 
-            else if (pageName == "NoInternet")
-            {
-                page = new NoInternetPage();
-            }
-            else if (pageName == "WritingContentPage")
-            {
-                if (_pageCache.ContainsKey("Writing"))
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to log out!?","",MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
                 {
-                    var writingPage = (WritingPage)_pageCache["Writing"];
-                    page = new WritingContentPage(this,writingPage.Essay );
+                    _loginWindow.Show();
+                    Close();
+                }
+            }
+        
+
+        #endregion
+        
+        #region Navigate handlers
+        
+            private async Task DisplaySearchPage()
+            {
+                if (!InternetAvailability.IsInternetAvailable())
+                    NavigateToPage("NoInternet");
+                else
+                {
+                    NavigateToPage("Searching");
+                    while (!(Content.Content is SearchingPage))
+                    {
+                        await Task.Delay(10);
+                    }
+                    if (Content.Content is SearchingPage page)
+                    {
+                        await page.Search(textBoxSearching.Text);
+                    }
+                }
+            }
+
+            private Page CreatePage(string pageName)
+            {
+                Page page = null;
+
+                if (pageName == "Searching")
+                {
+                    page = new SearchingPage(this); 
+                }
+                else if (pageName == "CreateEssay")
+                {
+                    page = new CreateEssayPage(this);
+                }
+                else if (pageName == "Exam")
+                {
+                    page = new ExamPage(this);
+                } 
+                else if (pageName == "FlashCard")
+                {
+                    page = new FlashCardPage();
+                } 
+                else if (pageName == "NoInternet")
+                {
+                    page = new NoInternetPage();
+                }
+                else if (pageName == "WritingContent")
+                {
+                    if (_pageCache.TryGetValue("CreateEssay", out var value))
+                    {
+                        var writingPage = (CreateEssayPage)value;
+                        page = new WritingContentPage(this,writingPage.Essay );
+                    }
+                    else
+                    {
+                        var writingPage = (ShowEssayPage)_pageCache["ShowEssay"];
+                        page = new WritingContentPage(this,writingPage.Essay );
+                    }
+
+                } 
+                else if (pageName == "ShowListEssay")
+                {
+                    page = new ShowListEssayPage(this);
+                } 
+                else if (pageName == "ShowEssay")
+                {
+                    if (_pageCache["ShowListEssay"] is  ShowListEssayPage listEssayPage )
+                        page = new ShowEssayPage(this,listEssayPage);
+                }
+                return page;
+            }
+            
+            public void NavigateToPage(string pageName)
+            {
+                StatusBarCurrentPage.Text = pageName;
+                
+                if (_pageCache.TryGetValue(pageName, out var value))
+                {
+                    Content.Navigate(value);
                 }
                 else
                 {
-                    var writingPage = (ShowEssayPage)_pageCache["ShowEssay"];
-                    page = new WritingContentPage(this,writingPage.Essay );
+                    Page newPage = CreatePage(pageName); 
+                    _pageCache[pageName] = newPage; 
+                    Content.Navigate(newPage); 
                 }
+            }
 
-            } 
-            else if (pageName == "ListEssayPage")
-            {
-                page = new ListEssayPage(this);
-            } 
-            else if (pageName == "ShowEssay")
-            {
-                if (_pageCache["ListEssayPage"] is  ListEssayPage listEssayPage )
-                    page = new ShowEssayPage(this,listEssayPage);
-            }
-            return page;
-        }
-        
-        public void NavigateToPage(string pageName)
-        {
-            StatusBarCurrentPage.Text = pageName;
-            
-            if (_pageCache.TryGetValue(pageName, out var value))
-            {
-                Content.Navigate(value);
-            }
-            else
-            {
-                Page newPage = CreatePage(pageName); 
-                _pageCache[pageName] = newPage; 
-                Content.Navigate(newPage); 
-            }
-        }
+        #endregion
 
-        
         private async void TextBoxSearching_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -205,76 +224,81 @@ namespace IT008_AppHocAV
                 await DisplaySearchPage();
             }
         }
-        private async void BtnSearch_OnClick(object sender, RoutedEventArgs e)
+        
+        private async void SearchButton_OnClick(object sender, RoutedEventArgs e)
         {
                 await DisplaySearchPage();
         }
 
-        private async Task DisplaySearchPage()
-        {
-            if (!InternetAvailability.IsInternetAvailable())
-                NavigateToPage("NoInternet");
-            else
+        #region Statusbar Handlers
+
+            private void ChangedInternectConnectionStatusBar(bool isConnected)
             {
-                NavigateToPage("Searching");
-                while (!(Content.Content is SearchingPage))
+                if (!isConnected)
                 {
-                    await Task.Delay(10);
+                    InternetConnectionStatusBarItem.Visibility = Visibility.Visible;
                 }
-                if (Content.Content is SearchingPage page)
+                else
                 {
-                    await page.Search(textBoxSearching.Text);
+                    InternetConnectionStatusBarItem.Visibility = Visibility.Collapsed;
                 }
             }
-        }
 
-        private void LogOutMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to log out!?","",MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+        #endregion
+        
+        #region  UI Event Handler
+
+            private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs e)
             {
-                _loginWindow.Show();
-                Close();
+                if (textBoxSearching.Text != string.Empty)
+                {
+                    TextBlockPlaceHolder.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    TextBlockPlaceHolder.Visibility = Visibility.Visible;
+                }
             }
-        }
-
-        private void ChangedInternectConnectionStatusBar(bool isConnected)
-        {
-            if (!isConnected)
+        
+            private void SearchTextContainer_OnGotFocus(object sender, RoutedEventArgs e)
             {
-                InternetConnectionStatusBarItem.Visibility = Visibility.Visible;
+                SearchTextContainer.BorderBrush = Brushes.CornflowerBlue;
             }
-            else
+
+            private void SearchTextContainer_OnLostFocus(object sender, RoutedEventArgs e)
             {
-                InternetConnectionStatusBarItem.Visibility = Visibility.Collapsed;
+                SearchTextContainer.BorderBrush = Brushes.Transparent;
             }
-        }
-
-        private void NavButton_OnMouseEnter(object sender, MouseEventArgs e)
-        {
-            if (sender is Button btn)
-                btn.Width = 130;
-        }
-
-        private void NavButton_OnMouseLeave(object sender, MouseEventArgs e)
-        {
-            if (sender is Button btn)
-                if (MenuButton.IsChecked != null && !MenuButton.IsChecked.Value)
-                    btn.Width = 50;
-        }
-
-        private void MenuButton_OnChecked(object sender, RoutedEventArgs e)
-        {
-            foreach (var child in NavBar.Children)
-                if (child is Button btn)
+        
+            private void NavButton_OnMouseEnter(object sender, MouseEventArgs e)
+            {
+                if (sender is Button btn)
                     btn.Width = 130;
-        }
+            }
 
-        private void MenuButton_OnUnchecked(object sender, RoutedEventArgs e)
-        {
-            foreach (var child in NavBar.Children)
-                if (child is Button btn)
-                    btn.Width = 50;
-        }
+            private void NavButton_OnMouseLeave(object sender, MouseEventArgs e)
+            {
+                if (sender is Button btn)
+                    if (MenuButton.IsChecked != null && !MenuButton.IsChecked.Value)
+                        btn.Width = 50;
+            }
+
+            private void MenuButton_OnChecked(object sender, RoutedEventArgs e)
+            {
+                foreach (var child in NavBar.Children)
+                    if (child is Button btn)
+                        btn.Width = 130;
+            }
+
+            private void MenuButton_OnUnchecked(object sender, RoutedEventArgs e)
+            {
+                foreach (var child in NavBar.Children)
+                    if (child is Button btn)
+                        btn.Width = 50;
+            }
+
+        #endregion
+        
+        
     }
 }

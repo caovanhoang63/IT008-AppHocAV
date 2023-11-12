@@ -17,7 +17,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Assets/Styles/LoginPageStyle.xaml"/>
-                <ResourceDictionary Source="../Assets/Styles/MainStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>

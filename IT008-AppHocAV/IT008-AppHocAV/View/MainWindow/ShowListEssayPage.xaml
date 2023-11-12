@@ -1,23 +1,25 @@
-﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.ListEssayPage"
+﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.ShowListEssayPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="ListEssayPage" MinHeight="500" Height="auto" MinWidth="800" Width="auto">
+      Title="ShowListEssayPage" MinHeight="500" Height="auto" MinWidth="800" Width="auto">
     
     <Page.Resources>
         
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/MainStyles.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
     
         <StackPanel>
+            
+            <!-- Header -->
             <Grid Height="80" Margin="20 0" >
                 
                 <Grid.ColumnDefinitions>
@@ -26,6 +28,8 @@
                 </Grid.ColumnDefinitions>
             
                 <Label Grid.Column="0" FontWeight="Medium" FontSize="30" VerticalAlignment="Center">Writing</Label>
+                
+                <!-- Search, Filter and Create new Essay Button -->
                 <StackPanel  Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
                     <Button Width="40" Height="40" Background="#96B639" Margin="0 0 10 0"
                             Style="{DynamicResource RoundedButtonStyle }" >
@@ -35,8 +39,7 @@
                             Style="{DynamicResource RoundedButtonStyle}">
                         <Image Source="../../Assets/Icon/FilterIcon.png" Width="24"></Image>
                     </Button>
-                    <Button Name="NewEssayButton"
-                            Width="120" Height="40" Background="#55AF6E"
+                    <Button Width="120" Height="40" Background="#55AF6E"
                             Style="{DynamicResource RoundedButtonStyle}"
                             Click="NewEssayButton_OnClick">
                         <StackPanel Orientation="Horizontal">
@@ -45,10 +48,14 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
+                <!-- End search, Filter and Create new Essay Button -->
+                
             </Grid>
+            <!-- End Header -->
+
+            <Border Style="{DynamicResource Splitter}"></Border>
             
-            <Border Margin="20 0 " Height="1" BorderThickness="1" BorderBrush="Black"></Border>
-            
+            <!--Show list of essays -->
                  <ListView Name="ListEssayListView" HorizontalAlignment="Center" 
                            Margin="0 20"
                            Width="auto" Height="400"
@@ -56,7 +63,7 @@
                            BorderThickness="0"
                            >
                     <ListView.ItemTemplate >
-
+                        <!-- Defines Items Template -->
                         <DataTemplate>
                             <Button Height="80" Width="700"
                                     Background="#F4EEEE"
@@ -65,29 +72,28 @@
                                     Click="ShowEssayButton_OnClick"
                                     >
                                 <Grid Width="660">
-                                    
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" ></ColumnDefinition>                                    
                                         <ColumnDefinition Width="100"></ColumnDefinition>                                    
                                     </Grid.ColumnDefinitions>
-
+                                    
+                                    <!-- Shows essay information -->
                                     <StackPanel Grid.Column="0">
-                                        
                                         <Label Padding="0 2" FontWeight="Medium" FontSize="15"
                                                Content="{Binding Title}"/>
                                         <Label  MaxHeight="30"
                                                 Padding="0 2" FontSize="15"
                                                 Content="{Binding Topic}"/>
-                                            
                                         <StackPanel Orientation="Horizontal">
                                             <Label Padding="0 2" Margin="0 0 2 0" FontSize="10">Created at: </Label>
                                             <Label Padding="0 2" Margin="0 0 40 0" FontSize="10" Content="{Binding CreatedAt }"></Label>
                                             <Label Padding="0 2" Margin="0 0 2 0" FontSize="10" >Last modified: </Label>
                                             <Label Padding="0 2" FontSize="10" Content="{Binding UpdatedAt}"></Label>
                                         </StackPanel>
-                                         
                                     </StackPanel>
-                                    
+                                    <!-- End shows essay information -->
+
+                                    <!-- Show, Modify and Delete Button -->
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <Button Style="{DynamicResource TransparentButtonStyle }">
                                             <Image Source="../../Assets/Icon/ButtonShowIcon.png"></Image>
@@ -99,18 +105,20 @@
                                                 Click="DeleteEssayButton_OnClick">
                                             <Image Source="../../Assets/Icon/BinIcon.png"></Image>
                                         </Button>
-
                                     </StackPanel>
+                                    <!--End show, Modify and Delete Button -->
                                     
                                     <StackPanel Grid.Column="1"></StackPanel>
-                                    
                                 </Grid>
-                            
                             </Button>
                         </DataTemplate>
+                        <!--End defines Items Template -->
                     </ListView.ItemTemplate>
 
                 </ListView>
+            <!--End show list of essays -->
+
+            
         </StackPanel>
         
         

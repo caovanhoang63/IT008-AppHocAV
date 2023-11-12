@@ -16,7 +16,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Assets/Styles/MainStyles.xaml"/>
+                <ResourceDictionary Source="../Assets/Styles/BaseStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -108,8 +108,8 @@
                                           FontSize="18" BorderThickness="0" Background="Transparent" 
                                           TextChanged="TextBoxBase_OnTextChanged"
                                           KeyDown="TextBoxSearching_OnKeyDown"/>
-                                <Button x:Name="BtnSearch" Width="40" Height="35" BorderThickness="1 0 0 0" BorderBrush="Black" Background="Transparent"
-                                        Click="BtnSearch_OnClick" IsHitTestVisible="False">
+                                <Button x:Name="SearchButton" Width="40" Height="35" BorderThickness="1 0 0 0" BorderBrush="Black" Background="Transparent"
+                                        Click="SearchButton_OnClick" IsHitTestVisible="False">
                                     <Image Width="30" Height="30" Source="../Assets/Icon/SearchIcon2.png"></Image>
                                 </Button>
                             </StackPanel>

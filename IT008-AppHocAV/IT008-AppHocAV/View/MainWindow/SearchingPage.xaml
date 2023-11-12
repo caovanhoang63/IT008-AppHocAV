@@ -106,6 +106,7 @@
                 </Grid.RowDefinitions>
                 <!-- End grid define -->
                 
+                <!-- Google translate emulator -->
                 <Border Grid.Row="0" Grid.Column="0" BorderThickness="1" BorderBrush="Black" CornerRadius="12"
                         Margin="0 0 0  20" >
                     <Label Name="GtslLabel" HorizontalAlignment="Center">English</Label>
@@ -130,6 +131,8 @@
                 <Border Grid.Row="1" Grid.Column="2" BorderThickness="1" BorderBrush="Black" CornerRadius="12" Background="White" >
                     <RichTextBox x:Name="GTransTlText"  Background="Transparent" BorderThickness="0"  Margin="0 12 0  12"></RichTextBox>
                 </Border>
+                <!--End Google translate emulator -->
+
             </Grid>
             
         </Grid>

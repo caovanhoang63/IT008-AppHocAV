@@ -13,8 +13,11 @@ namespace IT008_AppHocAV.Repositories
 {
     public class DbConnection
     {
-        private readonly SqlConnection _sqlConnection;
+        #region Declare Fields
+            private readonly SqlConnection _sqlConnection;
+        #endregion
 
+        #region Declare Constructors
         public DbConnection()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -24,7 +27,16 @@ namespace IT008_AppHocAV.Repositories
             builder.InitialCatalog = "APP_HOC_AV";
             _sqlConnection = new SqlConnection(builder.ConnectionString);
         }
+        #endregion
 
+        #region  Authentication 
+
+        /// <summary>
+        /// Authentication an user
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public int Authentication(string userName, string password)
         {
             try
@@ -73,7 +85,17 @@ namespace IT008_AppHocAV.Repositories
             }
         }
 
-        public int NewUser(User user)
+        #endregion
+
+        #region Sign up
+
+        
+        /// <summary>
+        /// Creates an new user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+         public int NewUser(User user)
         {
             try
             {
@@ -123,7 +145,15 @@ namespace IT008_AppHocAV.Repositories
             }
         }
 
-
+        #endregion
+       
+        #region Defines functions for writing feature
+        
+        /// <summary>
+        /// Creates a new Essay
+        /// </summary>
+        /// <param name="essay"></param>
+        /// <returns></returns>
         public int CreateEssay(Essay essay)
         {
             try
@@ -172,6 +202,11 @@ namespace IT008_AppHocAV.Repositories
 
         }
 
+        /// <summary>
+        /// Updates essay content
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="content"></param>
         public void UpdateEssayContent(int id, string content)
         {
             try
@@ -198,6 +233,11 @@ namespace IT008_AppHocAV.Repositories
         }
 
 
+        /// <summary>
+        /// Gets all Essays of a user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public List<Essay> SelectListEssayByUserId(int userId)
         {
             List<Essay> result = new List<Essay>();
@@ -240,8 +280,11 @@ namespace IT008_AppHocAV.Repositories
             }
         }
 
-        
-        
+        /// <summary>
+        /// Gets all data of a essay
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Essay SelectEssayById(int id)
         {
             try
@@ -305,6 +348,11 @@ namespace IT008_AppHocAV.Repositories
             return null;
         }
 
+        /// <summary>
+        /// delete a essay by id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool DeleteEssayById(int id)
         {
             try
@@ -331,33 +379,51 @@ namespace IT008_AppHocAV.Repositories
             }
 
         }
-        
-        private Byte[] ConvertToByteFromBitmapImage(BitmapImage bitmapImage)
-        {
-            byte[] data;
-            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
 
-            encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
-            using(MemoryStream ms = new MemoryStream())
-            {
-                encoder.Save(ms);
-                data = ms.ToArray();
-            }
 
-            return data;
-        }
-        
-        private BitmapImage ToImage(byte[] array)
-        {
-            using (var ms = new MemoryStream(array))
+        #endregion
+
+        #region Util Functions
+
+            /// <summary>
+            /// Convert a byte array to a BitmapImage object
+            /// </summary>
+            /// <param name="bitmapImage"></param>
+            /// <returns></returns>
+            private Byte[] ConvertToByteFromBitmapImage(BitmapImage bitmapImage)
             {
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.StreamSource = ms;
-                image.EndInit();
-                return image;
+                byte[] data;
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+
+                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                using(MemoryStream ms = new MemoryStream())
+                {
+                    encoder.Save(ms);
+                    data = ms.ToArray();
+                }
+
+                return data;
             }
+            
+            /// <summary>
+            /// Convert a BitmapImage object to a byte array
+            /// </summary>
+            /// <param name="array"></param>
+            /// <returns></returns>
+            private BitmapImage ToImage(byte[] array)
+            {
+                using (var ms = new MemoryStream(array))
+                {
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.StreamSource = ms;
+                    image.EndInit();
+                    return image;
+                }
         }
+
+        #endregion
+        
     }
 }
