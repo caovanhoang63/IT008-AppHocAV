@@ -126,6 +126,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\DictionaryEntry.cs" />
+    <Compile Include="Models\Essay.cs" />
     <Compile Include="Models\Pair.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
@@ -151,6 +152,9 @@
     <Compile Include="View\MainWindow\FlashCardPage.xaml.cs">
       <DependentUpon>FlashCardPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MainWindow\ShowListEssayPage.xaml.cs">
+      <DependentUpon>ShowListEssayPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainWindow\ListFlashCard.xaml.cs">
       <DependentUpon>ListFlashCard.xaml</DependentUpon>
     </Compile>
@@ -163,8 +167,14 @@
     <Compile Include="View\MainWindow\SearchingPage.xaml.cs">
       <DependentUpon>SearchingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\WritingPage.xaml.cs">
-      <DependentUpon>WritingPage.xaml</DependentUpon>
+    <Compile Include="View\MainWindow\ShowEssayPage.xaml.cs">
+      <DependentUpon>ShowEssayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\WritingContentPage.xaml.cs">
+      <DependentUpon>WritingContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\CreateEssayPage.xaml.cs">
+      <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
@@ -205,13 +215,15 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Styles\LoginPageStyle.xaml" />
-    <Page Include="Assets\Styles\MainStyles.xaml">
+    <Page Include="Assets\Styles\BaseStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Styles\ScrollBarStyle.xaml" />
     <Page Include="Assets\Styles\SearchingPageStyle.xaml" />
+    <Page Include="Assets\Styles\ShowEssayStyle.xaml" />
     <Page Include="Assets\Styles\SignUpPageStyle.xaml" />
+    <Page Include="Assets\Styles\WritingPageStyle.xaml" />
     <Page Include="View\LoginWindow.xaml" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -219,11 +231,14 @@
     </Page>
     <Page Include="View\MainWindow\ExamPage.xaml" />
     <Page Include="View\MainWindow\FlashCardPage.xaml" />
+    <Page Include="View\MainWindow\ShowListEssayPage.xaml" />
     <Page Include="View\MainWindow\ListFlashCard.xaml" />
     <Page Include="View\MainWindow\MakeFlashCard.xaml" />
     <Page Include="View\MainWindow\NoInternetPage.xaml" />
     <Page Include="View\MainWindow\SearchingPage.xaml" />
-    <Page Include="View\MainWindow\WritingPage.xaml" />
+    <Page Include="View\MainWindow\ShowEssayPage.xaml" />
+    <Page Include="View\MainWindow\WritingContentPage.xaml" />
+    <Page Include="View\MainWindow\CreateEssayPage.xaml" />
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -277,7 +292,19 @@
     <Resource Include="Assets\Icon\WritingIcon4.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Icon\NoteBookIcon.png" />
+    <Resource Include="Assets\Icon\AddImageIcon.png" />
+    <Resource Include="Assets\Icon\AddIcon.png" />
+    <Resource Include="Assets\Icon\BinIcon.png" />
+    <Resource Include="Assets\Icon\ButtonShowIcon.png" />
+    <Resource Include="Assets\Icon\FilterIcon.png" />
+    <Resource Include="Assets\Icon\ModifiedIcon.png" />
+    <Resource Include="Assets\Icon\NoteBookIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\ReturnIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\CloseIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
