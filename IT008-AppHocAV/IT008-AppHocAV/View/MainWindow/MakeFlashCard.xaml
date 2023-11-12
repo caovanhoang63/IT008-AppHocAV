@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="MakeFlashCard"  MinHeight="500"  Height="550" Width="840" Background="Bisque"   >
+      Title="MakeFlashCard"  MinHeight="500"  Height="550" Width="840"   >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,71 +17,42 @@
     </Page.Resources>
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="160"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Margin="0 5 0 0 ">
-            <StackPanel   Orientation="Horizontal" HorizontalAlignment="Left" Background="Transparent">
+        <Border Grid.Row="0" Margin="0 5 0 0 " Background="Beige" >
+            <StackPanel   Orientation="Horizontal" HorizontalAlignment="Center" Background="Transparent">
 
-                <Label Content="CREATE NEW FLASHCARD" Background="Transparent" FontSize="20" FontStyle="Italic" Height="35" Foreground="#FF037EF4"/>
+                <Label Content="CREATE NEW FLASHCARD" Background="Transparent" FontSize="30" FontStyle="Italic" HorizontalContentAlignment="Center"    />
             </StackPanel>
         </Border>
 
-        <Grid Grid.Row="1" Margin="10,10,0,0" >
+        <Grid Grid.Row="1" Margin="0,1,0,0"  Background="White" >
+            <StackPanel>
+                 
+                <Label Content="Title:" FontSize="18" BorderBrush="#FF060505"  />
+                <TextBox Height="35" Width="842" Margin="0,0,0,0" BorderThickness="1,1,1,1" BorderBrush="Black"> </TextBox>
+                <Label Content="Description:" FontSize="18" BorderBrush="Black"  />
+                <TextBox Height="35" Width="842" Margin="0,0,0,0" BorderBrush="Black" BorderThickness="1,1,1,1" ></TextBox>
 
-            <ListView x:Name="lvListFlash"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                              ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                <ListView.Template>
-                    <ControlTemplate>
-                        <ItemsPresenter />
-                    </ControlTemplate>
-                </ListView.Template>
-
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" >
+            <ListView x:Name ="lvMakeFlashCard">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-
-                        <Grid Width="auto" Height="130 " 
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue">
-                            <Grid.Clip>
-                                <RectangleGeometry   RadiusX="10" RadiusY="10"/>
-                            </Grid.Clip>
-                            
-                            <Grid Grid.Row="0" Background="Aquamarine"  >
-                                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button Margin="5 0 0 0" >
-                                        <Button.Clip>
-                                            <RectangleGeometry Rect="0.9,2,27,32" RadiusX="10" RadiusY="10"/>
-                                        </Button.Clip>
-                                        <Image Source="/Assets/Icon/EditIcon.png" Width="26" Height="26"/>
-                                    </Button>
-                                    <Button Margin="5 0 5 0"  >
-                                        <Button.Clip>
-                                            <RectangleGeometry Rect="1,2,31,31" RadiusX="10" RadiusY="10"/>
-                                        </Button.Clip>
-                                        <Image Source="/Assets/Icon/DeleteIcon.png" Width="30" Height="30" />
-
-                                    </Button>
-
-                                </StackPanel>
-                            </Grid>
-                            <Grid Grid.Row="1" Background="Aquamarine">
-                                <Label HorizontalAlignment="Center"  Margin="0 10 0 0 " Content="{Binding }" FontSize="20">
-
-                                </Label>
-                            </Grid>
-                        </Grid>
+                        <WrapPanel >
+                            <Label Content="Vocabulary"></Label>
+                            <TextBox> </TextBox>
+                            <Label Content="Define"></Label>
+                            <TextBox></TextBox>
+                        </WrapPanel>
 
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
+ 
 
         </Grid>
     </Grid>

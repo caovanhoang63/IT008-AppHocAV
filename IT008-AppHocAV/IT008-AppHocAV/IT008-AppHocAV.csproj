@@ -129,11 +129,14 @@
     <Compile Include="Models\Pair.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
-    <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Repositories\DbConnection.cs" />
     <Compile Include="Repositories\InternetConnectionManager.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
+    <Compile Include="Util\CheckValidate.cs" />
+    <Compile Include="Util\Hashing.cs" />
     <Compile Include="Util\InternetAvailability.cs" />
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -148,8 +151,8 @@
     <Compile Include="View\MainWindow\FlashCardPage.xaml.cs">
       <DependentUpon>FlashCardPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\ListFlashCard.xaml.cs">
-      <DependentUpon>ListFlashCard.xaml</DependentUpon>
+    <Compile Include="View\MainWindow\ShowFlashCard.xaml.cs">
+      <DependentUpon>ShowFlashCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow\MakeFlashCard.xaml.cs">
       <DependentUpon>MakeFlashCard.xaml</DependentUpon>
@@ -220,17 +223,14 @@
     </Page>
     <Page Include="View\MainWindow\ExamPage.xaml" />
     <Page Include="View\MainWindow\FlashCardPage.xaml" />
-    <Page Include="View\MainWindow\ListFlashCard.xaml" />
+    <Page Include="View\MainWindow\ShowFlashCard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\MainWindow\MakeFlashCard.xaml" />
     <Page Include="View\MainWindow\NoInternetPage.xaml" />
     <Page Include="View\MainWindow\SearchingPage.xaml" />
     <Page Include="View\MainWindow\WritingPage.xaml" />
     <Page Include="View\SignUpWindow.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Buffer\" />
-    <Folder Include="DataAccess\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\BookIcon.png" />
@@ -266,6 +266,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\NoInternetIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\FlashCardIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\WritingIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\ExamIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\WritingIcon3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\WritingIcon4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\AddImageIcon.png" />
+    <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\EditIcon.png" />

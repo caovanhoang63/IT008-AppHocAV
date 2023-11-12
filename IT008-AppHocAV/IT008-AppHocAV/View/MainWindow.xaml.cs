@@ -29,7 +29,7 @@ namespace IT008_AppHocAV
             pageCache["Searching"] = defaultPage;
         }
         
-        public MainWindow(LoginWindow loginWindow)
+        public MainWindow(LoginWindow loginWindow,int userId)
         {
             InitializeComponent();
             Page defaultPage = new SearchingPage();
@@ -86,7 +86,8 @@ namespace IT008_AppHocAV
         {
             NavigateToPage("FlashCard");
         }
-
+        
+      
         private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
         {
             
@@ -132,11 +133,15 @@ namespace IT008_AppHocAV
                 page = new ExamPage();
             } else if (pageName == "FlashCard")
             {
-                page = new FlashCardPage();
+                page = new FlashCardPage(this);
             } else if (pageName == "NoInternet")
             {
                 page = new NoInternetPage();
             }
+            else if( pageName == "MakeFlashCard")
+            {
+                page = new MakeFlashCard();
+            }    
             return page;
         }
         

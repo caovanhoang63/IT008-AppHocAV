@@ -2,9 +2,8 @@
 
 namespace IT008_AppHocAV.Models
 {
-    public class UserInfo
+    public class User
     {
-        // Thuộc tính (properties)
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
@@ -13,11 +12,12 @@ namespace IT008_AppHocAV.Models
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        public UserInfo()
+        public User()
         {
+            
         }
 
-        public UserInfo(string fullName, DateTime dateOfBirth, string email, string phoneNumber, string gender, string userName, string password)
+        public User(string fullName, DateTime dateOfBirth, string email, string phoneNumber, string gender, string userName, string password)
         {
             FullName = fullName;
             DateOfBirth = dateOfBirth;
@@ -27,6 +27,5 @@ namespace IT008_AppHocAV.Models
             UserName = userName;
             Password = password;
         }
-        
     }
 }
