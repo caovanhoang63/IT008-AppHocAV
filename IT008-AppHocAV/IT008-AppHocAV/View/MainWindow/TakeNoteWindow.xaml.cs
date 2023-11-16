@@ -11,21 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using IT008_AppHocAV;
+
 namespace IT008_AppHocAV.View.MainWindow
 {
     /// <summary>
-    /// Interaction logic for TakeNote.xaml
+    /// Interaction logic for TakeNoteWindow.xaml
     /// </summary>
-    public partial class TakeNote : Page
+    public partial class TakeNoteWindow : Window
     {
-        public TakeNote()
+        public TakeNoteWindow()
         {
             InitializeComponent();
         }
-
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -38,12 +36,29 @@ namespace IT008_AppHocAV.View.MainWindow
 
             string filename = path;
             filename += "/";
-            filename +=TittleBox.Text;
+            filename += TittleBox.Text;
             string noteContent = TakeNoteBox.Text;
             filename += ".txt";
             File.WriteAllText(filename, noteContent);
-            NavigationService.GoBack();
+            this.Close();
         }
+        private void TittleBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TakeNoteBox.Focus();
+                e.Handled = true;
+            }
+            else e.Handled = false;
+        }
+        private void TakeNoteBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                    e.Handled = true;
+            }
+            else e.Handled = false;
 
+        }
     }
 }

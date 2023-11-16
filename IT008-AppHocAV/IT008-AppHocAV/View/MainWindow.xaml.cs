@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using IT008_AppHocAV.Util;
@@ -93,7 +94,8 @@ namespace IT008_AppHocAV
 
         private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
         {
-            NavigateToPage("TakeNote");
+            TakeNoteWindow takeNote = new TakeNoteWindow();
+            takeNote.Show();
         }
 
         private void SearchTextContainer_OnGotFocus(object sender, RoutedEventArgs e)
@@ -138,10 +140,6 @@ namespace IT008_AppHocAV
             else if (pageName == "FlashCard")
             {
                 page = new FlashCardPage();
-            }
-            else if (pageName == "TakeNote")
-            {
-                page = new TakeNote();
             }
             else if (pageName == "NoInternet")
             {

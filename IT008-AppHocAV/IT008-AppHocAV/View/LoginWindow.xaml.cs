@@ -108,6 +108,15 @@ namespace IT008_AppHocAV.View
                 Login();
             }
         }
+        private void UserNameBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            { 
+                PasswordBox.Focus();
+                e.Handled = true;
+            }
+            else e.Handled = false;
+        }
 
     }
 }

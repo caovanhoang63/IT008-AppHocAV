@@ -163,8 +163,8 @@
     <Compile Include="View\MainWindow\SearchingPage.xaml.cs">
       <DependentUpon>SearchingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\TakeNote.xaml.cs">
-      <DependentUpon>TakeNote.xaml</DependentUpon>
+    <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
+      <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow\WritingPage.xaml.cs">
       <DependentUpon>WritingPage.xaml</DependentUpon>
@@ -230,7 +230,7 @@
     <Page Include="View\MainWindow\MakeFlashCard.xaml" />
     <Page Include="View\MainWindow\NoInternetPage.xaml" />
     <Page Include="View\MainWindow\SearchingPage.xaml" />
-    <Page Include="View\MainWindow\TakeNote.xaml">
+    <Page Include="View\MainWindow\TakeNoteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

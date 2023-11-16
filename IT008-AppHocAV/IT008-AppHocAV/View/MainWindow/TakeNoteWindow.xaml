@@ -1,0 +1,47 @@
+﻿<Window x:Class="IT008_AppHocAV.View.MainWindow.TakeNoteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
+        mc:Ignorable="d"
+        Title="TakeNoteWindow" Height="450" Width="800">
+<Grid Margin="0,0,0,-1">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <Label x:Name="TittleLabel" FontSize="20" Content="Tiêu đề" Margin="10, 10, 0, 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Visible"/>
+
+    <TextBox Name="TittleBox" Background="White" BorderThickness="1" VerticalAlignment="Top"
+                 FontSize="18" Height="28" 
+                 Margin="10 42 10 0"
+                 PreviewKeyDown="TittleBox_PreviewKeyDown"></TextBox>
+
+    <Label x:Name="TakeNoteLabel" FontSize="20" Content="Ghi chú" Margin="10, 84, 10, 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Visible"/>
+
+
+    <TextBox x:Name="TakeNoteBox"  Margin="10,120,10,144" FontSize="18" Height="220"        
+                 PreviewKeyDown="TakeNoteBox_PreviewKeyDown"/>
+
+    <Button Name="SaveButton"
+                Width="200"
+                Height="35"
+                Background="LightBlue"
+                BorderThickness="1"
+                BorderBrush="Black"
+                Content="Save"
+                FontFamily="Inter"
+                FontSize="15" Margin="200,300,200,40" Click="SaveButton_Click">
+        <Button.Template>
+            <ControlTemplate TargetType="Button">
+                <Border CornerRadius="5" Background="LightBlue">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </ControlTemplate>
+        </Button.Template>
+    </Button>
+</Grid>
+</Window>
