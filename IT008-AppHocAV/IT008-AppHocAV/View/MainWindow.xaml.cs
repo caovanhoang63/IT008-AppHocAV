@@ -17,7 +17,7 @@ namespace IT008_AppHocAV
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
+       public Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
         private readonly LoginWindow _loginWindow;
         private bool isInternectConnected;
         
@@ -122,7 +122,7 @@ namespace IT008_AppHocAV
             Page page = null;
             if (pageName == "Searching")
             {
-                page = new SearchingPage(); 
+                page = new SearchingPage();
             }
             else if (pageName == "Writing")
             {
@@ -131,22 +131,34 @@ namespace IT008_AppHocAV
             else if (pageName == "Exam")
             {
                 page = new ExamPage();
-            } else if (pageName == "FlashCard")
+            }
+            else if (pageName == "FlashCard")
             {
                 page = new FlashCardPage(this);
-            } else if (pageName == "NoInternet")
+            }
+            else if (pageName == "NoInternet")
             {
                 page = new NoInternetPage();
             }
-            else if( pageName == "MakeFlashCard")
+            else if (pageName == "ShowFlashCard")
             {
-                page = new MakeFlashCard();
-            }    
+                /*if (pageCache["FlashCard"] is FlashCardPage listFlashCard)
+                    page = new ShowFlashCard(this, listFlashCard);*/
+                page = new ShowFlashCardPage(this);
+
+
+            }
+            else if (pageName == "MakeFlashCard")
+            {
+                page = new MakeFlashCard(this);
+
+            }
+
             return page;
         }
         
        
- private void NavigateToPage(string pageName)
+       public void NavigateToPage(string pageName)
         {
             sBarCurrentPage.Text = pageName; 
             if (pageCache.TryGetValue(pageName, out var value))
@@ -233,6 +245,18 @@ namespace IT008_AppHocAV
                     btn.Width = 50;
                 }                
             }
+        }
+    }
+
+    internal class ShowFlashCard : Page
+    {
+        private MainWindow mainWindow;
+        private FlashCardPage listFlashCard;
+
+        public ShowFlashCard(MainWindow mainWindow, FlashCardPage listFlashCard)
+        {
+            this.mainWindow=mainWindow;
+            this.listFlashCard=listFlashCard;
         }
     }
 }
