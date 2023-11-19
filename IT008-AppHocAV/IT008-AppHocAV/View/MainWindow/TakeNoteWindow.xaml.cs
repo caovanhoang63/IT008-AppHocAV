@@ -51,14 +51,5 @@ namespace IT008_AppHocAV.View.MainWindow
             }
             else e.Handled = false;
         }
-        private void TakeNoteBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.Key == Key.Enter)
-            {
-                    e.Handled = true;
-            }
-            else e.Handled = false;
-
-        }
     }
 }

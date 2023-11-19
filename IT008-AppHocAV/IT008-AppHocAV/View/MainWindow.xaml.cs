@@ -29,9 +29,6 @@ namespace IT008_AppHocAV
             InitializeComponent();
             Page defaultPage = new SearchingPage();
             pageCache["Searching"] = defaultPage;
-            ShowTakeNote.PreviewMouseLeftButtonDown += ShowTakeNote_PreviewMouseLeftButtonDown;
-            ShowTakeNote.PreviewMouseLeftButtonUp += ShowTakeNote_PreviewMouseLeftButtonUp;
-            MouseMove += Window_MouseMove;
         }
         
         public MainWindow(LoginWindow loginWindow)
@@ -94,8 +91,15 @@ namespace IT008_AppHocAV
 
         private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
         {
-            TakeNoteWindow takeNote = new TakeNoteWindow();
-            takeNote.Show();
+            if (Note.Visibility != Visibility.Visible)
+            {
+                Note.Visibility = Visibility.Visible;
+                TakeNotePage takeNotePage = new TakeNotePage();
+                Note.Content = takeNotePage;
+            }else
+            {
+                Note.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void SearchTextContainer_OnGotFocus(object sender, RoutedEventArgs e)
@@ -145,6 +149,11 @@ namespace IT008_AppHocAV
             {
                 page = new NoInternetPage();
             }
+            else if (pageName == "TakeNotePage")
+            {
+                page = new TakeNotePage();
+            }
+
             return page;
         }
         
@@ -235,40 +244,6 @@ namespace IT008_AppHocAV
                 {
                     btn.Width = 50;
                 }                
-            }
-        }
-        private void ShowTakeNote_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                isDragging = true;
-                originalMousePosition = e.GetPosition(this);
-                ShowTakeNote.CaptureMouse();
-                e.Handled = true;
-            }
-        }
-
-        private void ShowTakeNote_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (isDragging)
-            {
-                isDragging = false;
-                ShowTakeNote.ReleaseMouseCapture();
-                e.Handled = true;
-            }
-        }
-
-        private void Window_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (isDragging)
-            {
-                Point currentPosition = e.GetPosition(this);
-                double offsetX = currentPosition.X - originalMousePosition.X;
-                double offsetY = currentPosition.Y - originalMousePosition.Y;
-                Canvas.SetLeft(ShowTakeNote, Canvas.GetLeft(ShowTakeNote) + offsetX);
-                Canvas.SetTop(ShowTakeNote, Canvas.GetTop(ShowTakeNote) + offsetY);
-                originalMousePosition = currentPosition;
-                e.Handled = true;
             }
         }
 

@@ -151,9 +151,6 @@
     <Compile Include="View\MainWindow\ListFlashCard.xaml.cs">
       <DependentUpon>ListFlashCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\ListNote.xaml.cs">
-      <DependentUpon>ListNote.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\MainWindow\MakeFlashCard.xaml.cs">
       <DependentUpon>MakeFlashCard.xaml</DependentUpon>
     </Compile>
@@ -162,6 +159,9 @@
     </Compile>
     <Compile Include="View\MainWindow\SearchingPage.xaml.cs">
       <DependentUpon>SearchingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
+      <DependentUpon>TakeNotePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
@@ -223,13 +223,13 @@
     <Page Include="View\MainWindow\ExamPage.xaml" />
     <Page Include="View\MainWindow\FlashCardPage.xaml" />
     <Page Include="View\MainWindow\ListFlashCard.xaml" />
-    <Page Include="View\MainWindow\ListNote.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\MainWindow\MakeFlashCard.xaml" />
     <Page Include="View\MainWindow\NoInternetPage.xaml" />
     <Page Include="View\MainWindow\SearchingPage.xaml" />
+    <Page Include="View\MainWindow\TakeNotePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow\TakeNoteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

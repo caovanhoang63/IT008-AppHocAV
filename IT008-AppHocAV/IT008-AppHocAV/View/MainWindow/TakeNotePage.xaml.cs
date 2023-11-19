@@ -16,13 +16,23 @@ using System.Windows.Shapes;
 namespace IT008_AppHocAV.View.MainWindow
 {
     /// <summary>
-    /// Interaction logic for ListNote.xaml
+    /// Interaction logic for TakeNotePage.xaml
     /// </summary>
-    public partial class ListNote : Page
+    public partial class TakeNotePage : Page
     {
-        public ListNote()
+        public TakeNotePage()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

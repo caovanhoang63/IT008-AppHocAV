@@ -1,0 +1,54 @@
+﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.TakeNotePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
+      mc:Ignorable="d" 
+      d:DesignHeight="420" d:DesignWidth="320"
+      Title="TakeNotePage" >
+    <Canvas x:Name="Note" 
+            Height="419" 
+            Width="319"
+            Background="LightYellow">
+        <TextBox x:Name="NoteTextBox" Height="350" Width="300" Margin="10 25 0 0" FontFamily="Inter"
+                FontSize="18" />
+
+        <Button Name="SaveButton"
+                Width="80"
+                Height="20"
+                Background="LightBlue"
+                BorderThickness="1"
+                BorderBrush="Black"
+                Content="Save"
+                FontFamily="Inter"
+                FontSize="18" Margin="130 390 50 0" Click="SaveButton_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="3" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+
+        </Button>
+
+
+        <Button Height="25" Width="25" 
+                Margin="295,2,0,370"
+                Background="LightBlue"
+                BorderThickness="1" 
+                HorizontalAlignment="Right"
+                FontSize="30">
+            <Image Source=""/>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" BorderBrush="Black">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </Canvas>
+</Page>

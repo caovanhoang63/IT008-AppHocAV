@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
         mc:Ignorable="d"
-        Title="TakeNoteWindow" Height="450" Width="800">
-<Grid Margin="0,0,0,-1">
+        Title="TakeNoteWindow" Height="450" Width="800"
+        Icon="/Assets/Icon/TakeNoteIcon.png">
+    <Grid Margin="0,0,0,-1">
     <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
@@ -23,8 +24,7 @@
     <Label x:Name="TakeNoteLabel" FontSize="20" Content="Ghi chú" Margin="10, 84, 10, 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Visible"/>
 
 
-    <TextBox x:Name="TakeNoteBox"  Margin="10,120,10,144" FontSize="18" Height="220"        
-                 PreviewKeyDown="TakeNoteBox_PreviewKeyDown"/>
+    <TextBox x:Name="TakeNoteBox"  Margin="10,120,10,144" FontSize="18" Height="220"/>
 
     <Button Name="SaveButton"
                 Width="200"

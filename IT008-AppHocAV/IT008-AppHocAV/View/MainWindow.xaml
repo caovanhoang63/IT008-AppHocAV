@@ -10,7 +10,6 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="MainWindow" Width="1080" Height="720"
         WindowStartupLocation="CenterScreen"
-        MouseMove="Window_MouseMove"
         >
     
     <!-- Style -->
@@ -167,8 +166,25 @@
 
 
 
+                <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" DockPanel.Dock="Right" Margin="535 10 0 55">
+                    <Frame BorderThickness="0 0 0 0" BorderBrush="Black" Margin="0 0 0 0 " 
+                       DockPanel.Dock="Right" 
+                       x:Name="Note" 
+                       NavigationUIVisibility="Hidden"
+                       Source="../View/MainWindow/TakeNotePage.xaml"
+                       Height="420"
+                       Width="320"
 
-
+                       >
+                        <Frame.Template>
+                            <ControlTemplate TargetType="Frame">
+                                <Border CornerRadius="10" BorderBrush="Black" BorderThickness="1">
+                                    <ContentPresenter />
+                                </Border>
+                            </ControlTemplate>
+                        </Frame.Template>
+                    </Frame>
+                </Grid>
 
                 <!-- Content Frame -->
                 <Frame BorderThickness="0 1 0 0" BorderBrush="Black" Margin="10 0 10 0 " 
