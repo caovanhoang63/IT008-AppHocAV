@@ -277,5 +277,11 @@
   <ItemGroup>
     <Resource Include="Assets\Icon\NoInternetIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\Minimal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\LeftUpArrow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

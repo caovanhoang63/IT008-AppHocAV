@@ -7,14 +7,24 @@
       mc:Ignorable="d" 
       d:DesignHeight="420" d:DesignWidth="320"
       Title="TakeNotePage" >
-    <Canvas x:Name="Note" 
-            Height="419" 
-            Width="319"
-            Background="LightYellow">
-        <TextBox x:Name="NoteTextBox" Height="350" Width="300" Margin="10 25 0 0" FontFamily="Inter"
-                FontSize="18" />
+    <Grid>
+        <Canvas x:Name="Note" 
+            Height="420" 
+            Width="320"
+            >
+            <Border Height="420" Width="420"></Border>
+            <Rectangle Width="320" Height="420" 
+                   RadiusX="10" RadiusY="10" 
+                   Fill="LightYellow"/>
+            <TextBox x:Name="NoteTextBox" 
+                     Height="350" 
+                     Width="300" 
+                     Margin="10 25 0 0" 
+                     FontFamily="Inter"
+                     FontSize="18" 
+                     PreviewKeyDown="NoteTextBox_KeyDown"/>
 
-        <Button Name="SaveButton"
+            <Button Name="SaveButton"
                 Width="80"
                 Height="20"
                 Background="LightBlue"
@@ -23,32 +33,55 @@
                 Content="Save"
                 FontFamily="Inter"
                 FontSize="18" Margin="130 390 50 0" Click="SaveButton_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="3" Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="3" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
 
-        </Button>
+            </Button>
 
 
-        <Button Height="25" Width="25" 
-                Margin="295,2,0,370"
+            <Button  x:Name="Minimal_Button"
+                Height="25" Width="25" 
+                Margin="290,2,0,370"
                 Background="LightBlue"
                 BorderThickness="1" 
                 HorizontalAlignment="Right"
-                FontSize="30">
-            <Image Source=""/>
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="5" BorderBrush="Black">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+                FontSize="30"
+                Click="Minimal_Button_Click">
+                <Image Source="\Assets\Icon\Minimal.png" Width="15" Height="15" Margin="0 0 0 4"/>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="Black">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Border  Height="25" Width="25" 
+                 Margin="5,2,0,370" 
+                 BorderBrush="Black"></Border>
+            <Button x:Name="Popup_Button"
+                Height="25" Width="25" 
+                Margin="5,2,0,370"
+                Background="LightBlue"
+                BorderThickness="1" 
+                HorizontalAlignment="Right"
+                FontSize="30"
+                Click="Popup_Button_Click">
+                <Image Source="\Assets\Icon\LeftUpArrow.png" Width="15" Height="15" Margin="0 0 0 4"/>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="Black">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-    </Canvas>
+        </Canvas>
+    </Grid>
 </Page>

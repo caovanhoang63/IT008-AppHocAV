@@ -96,7 +96,8 @@ namespace IT008_AppHocAV
                 Note.Visibility = Visibility.Visible;
                 TakeNotePage takeNotePage = new TakeNotePage();
                 Note.Content = takeNotePage;
-            }else
+            }
+            else
             {
                 Note.Visibility = Visibility.Collapsed;
             }
@@ -148,10 +149,6 @@ namespace IT008_AppHocAV
             else if (pageName == "NoInternet")
             {
                 page = new NoInternetPage();
-            }
-            else if (pageName == "TakeNotePage")
-            {
-                page = new TakeNotePage();
             }
 
             return page;

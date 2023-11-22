@@ -11,7 +11,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IT008_AppHocAV.View.MainWindow;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -36,17 +38,21 @@ namespace IT008_AppHocAV.View.MainWindow
 
             string filename = path;
             filename += "/";
-            filename += TittleBox.Text;
             string noteContent = TakeNoteBox.Text;
+            DateTime current = DateTime.Now;
+            filename += current.ToString("dd_MM_yyyy_HH_mm_ss");
             filename += ".txt";
             File.WriteAllText(filename, noteContent);
             this.Close();
+            
         }
-        private void TittleBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void TakeNoteBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                TakeNoteBox.Focus();
+                int caretIndex = TakeNoteBox.CaretIndex;
+                TakeNoteBox.Text = TakeNoteBox.Text.Insert(caretIndex, Environment.NewLine);
+                TakeNoteBox.CaretIndex = caretIndex + Environment.NewLine.Length;
                 e.Handled = true;
             }
             else e.Handled = false;

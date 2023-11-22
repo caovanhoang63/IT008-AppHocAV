@@ -163,34 +163,41 @@
                         <Image Source="../Assets/Icon/TakeNoteIcon.png"></Image>
                     </Button>
                 </Grid>
+                
+                
+                
+                <Grid>
+                    <Frame BorderThickness="0 0 0 0" 
 
-
-
-                <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" DockPanel.Dock="Right" Margin="535 10 0 55">
-                    <Frame BorderThickness="0 0 0 0" BorderBrush="Black" Margin="0 0 0 0 " 
-                       DockPanel.Dock="Right" 
-                       x:Name="Note" 
-                       NavigationUIVisibility="Hidden"
-                       Source="../View/MainWindow/TakeNotePage.xaml"
-                       Height="420"
-                       Width="320"
-
+                           Margin="0 0 0 0 " 
+                           DockPanel.Dock="Right" 
+                           x:Name="Note" 
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           NavigationUIVisibility="Hidden"
+                           Source="../View/MainWindow/TakeNotePage.xaml"
+                           Height="420"
+                           Width="320"
+                           Panel.ZIndex="2"
+                           Visibility="Hidden"
                        >
-                        <Frame.Template>
-                            <ControlTemplate TargetType="Frame">
-                                <Border CornerRadius="10" BorderBrush="Black" BorderThickness="1">
-                                    <ContentPresenter />
-                                </Border>
-                            </ControlTemplate>
-                        </Frame.Template>
-                    </Frame>
-                </Grid>
+                    <Frame.Template>
+                        <ControlTemplate TargetType="Frame">
+                            <Border CornerRadius="10" BorderBrush="Black" BorderThickness="0">
+                                <ContentPresenter />
+                            </Border>
+                        </ControlTemplate>
+                    </Frame.Template>
+                </Frame>
+           
 
                 <!-- Content Frame -->
-                <Frame BorderThickness="0 1 0 0" BorderBrush="Black" Margin="10 0 10 0 " 
+                <Frame BorderThickness="0 1 0 0" BorderBrush="Black" Margin="10 0 0 0 " 
                        DockPanel.Dock="Bottom" 
                        x:Name="Content" 
-                       NavigationUIVisibility="Hidden"/>
+                       NavigationUIVisibility="Hidden"
+                       Panel.ZIndex="0"/>
+                </Grid>
             </DockPanel>
         </Border>
         

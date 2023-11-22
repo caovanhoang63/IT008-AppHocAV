@@ -61,7 +61,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 //Create header of page 
                 this.Word.Text = text;
                 this.VnWord.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
-                PhoneticHandler(words[0]);
+PhoneticHandler(words[0]);
                 //Generate meanings xaml
                 string meaningXaml = GenerateWordDictionaryEntry(words);
                 UIElement generatedElement = (UIElement)XamlReader.Parse(meaningXaml);
