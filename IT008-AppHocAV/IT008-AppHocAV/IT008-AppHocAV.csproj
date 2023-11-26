@@ -302,6 +302,7 @@
     <Resource Include="Assets\Image\background.png" />
     <Resource Include="Assets\Icon\AddImageIcon.png" />
     <Resource Include="Assets\Icon\ExitIcon.png" />
+    <Resource Include="Assets\Icon\nextBut.png" />
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>

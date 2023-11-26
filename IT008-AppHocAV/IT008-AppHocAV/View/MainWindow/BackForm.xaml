@@ -12,7 +12,7 @@
 
             <Grid>
                 <TextBlock Text="Define"
-                           FontSize="25"
+                           FontSize="20"
                            FontWeight="ExtraBold"
                            FontFamily="Fonts/#Comforter"
                            Margin="0 0 0 0"
@@ -32,7 +32,7 @@
         <!--// Background //-->
 
         <Border
-                Height="300"
+                Height="200"
                 Width="800"
                 CornerRadius="10">
 
@@ -50,7 +50,7 @@
 
                             <Border x:Name="Back"
                                     Height="100"
-                                    Width="200"
+                                    Width="250"
                                     Opacity="1"
                                     Background="White">
 

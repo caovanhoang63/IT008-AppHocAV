@@ -18,7 +18,7 @@
             <!--// Define a 3D viewport //-->
 
             <Viewport3D Height="300"
-                    Width="800">
+                    Width="600">
 
                 <!--// Set the camera for the viewport //-->
 
@@ -132,7 +132,7 @@
                                     <Storyboard>
                                         <Rotation3DAnimation Storyboard.TargetName="ViewPort"
                                                          Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
-                                                         Duration="0:0:0.5"
+                                                         Duration="0:0:0.3"
                                                          BeginTime="0:0:0">
 
                                             <!--// Set the initial rotation values //-->
@@ -153,7 +153,7 @@
 
                                         <Rotation3DAnimation Storyboard.TargetName="ViewPort"
                                                          Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
-                                                         Duration="0:0:0.5"
+                                                         Duration="0:0:0.3"
                                                          BeginTime="0:0:0.5">
 
                                             <Rotation3DAnimation.From>
@@ -270,9 +270,30 @@
             </Viewport3D>
 
             <!--// Exit Button //-->
+        <Button  Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5 5 5 5">
+            <Image Source="/Assets/Icon/ExitIcon.png" />
 
-            
-        </Grid>
+        </Button>
+        <Button Height="60" Width="60" HorizontalAlignment="Right"  Margin="20">
+            <Image Source="/Assets/Icon/nextBut.png" />
+
+        </Button>
+        <Button Height="60" Width="60" HorizontalAlignment="Left"  Margin="20">
+            <Image Source="/Assets/Icon/nextBut.png" RenderTransformOrigin="0.5,0.5" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+        </Button>
+
+
+    </Grid>
 
  
 
