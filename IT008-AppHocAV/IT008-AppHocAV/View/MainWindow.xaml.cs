@@ -108,7 +108,9 @@ namespace IT008_AppHocAV
         #region Avatar, Setting and Notify Button Handlers
             private void btnAvatar_Click(object sender, RoutedEventArgs e)
             {
-
+                (sender as Button).ContextMenu.IsEnabled = true;
+                (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
+                (sender as Button).ContextMenu.IsOpen = true;
             }
 
             private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
@@ -144,7 +146,7 @@ namespace IT008_AppHocAV
                     }
                     if (Content.Content is SearchingPage page)
                     {
-                        await page.Search(textBoxSearching.Text);
+                        await page.Search(TextBoxSearching.Text);
                     }
                 }
             }
@@ -250,7 +252,7 @@ namespace IT008_AppHocAV
 
             private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs e)
             {
-                if (textBoxSearching.Text != string.Empty)
+                if (TextBoxSearching.Text != string.Empty)
                 {
                     TextBlockPlaceHolder.Visibility = Visibility.Hidden;
                 }
