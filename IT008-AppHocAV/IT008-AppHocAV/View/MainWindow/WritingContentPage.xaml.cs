@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.Util;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -58,7 +59,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private void SubmitButton_OnClick(object sender, RoutedEventArgs e)
         {
             string richText = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
-            _mainWindow.DbConnection.UpdateEssayContent(_essay.Id,richText);
+            _mainWindow.DbConnection.UpdateEssayContent(_essay.Id,WordCouting.WordCount(richText),richText);
             MessageBoxResult result = MessageBox.Show("Submit successes! Do you want to back to List Essay?","",MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
@@ -66,6 +67,13 @@ namespace IT008_AppHocAV.View.MainWindow
                 _mainWindow.PageCache.Remove("WritingContent");
                 _mainWindow.NavigateToPage("ShowListEssay");
             }
+        }
+
+        private void ContentRichTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            string richText = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
+            int count = WordCouting.WordCount(richText);
+            WordCount.Text = count.ToString();
         }
     }
 }

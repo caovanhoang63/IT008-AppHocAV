@@ -47,9 +47,10 @@
                                   Margin="6"
                                   FontSize="16"
                                   AcceptsReturn="True"
+                                  TextChanged="ContentRichTextBox_OnTextChanged"
                                   ></RichTextBox>
                 </Border>
-                
+                <TextBlock Margin="0 5" xml:space="preserve" HorizontalAlignment="Right"> <Run x:Name="WordCount"></Run> words</TextBlock>
                 <Border Style="{DynamicResource Splitter}"/>
                 
                 <!-- Submit and Enhance Button -->

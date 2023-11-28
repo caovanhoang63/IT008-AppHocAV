@@ -141,6 +141,7 @@
     <Compile Include="Util\CheckValidate.cs" />
     <Compile Include="Util\Hashing.cs" />
     <Compile Include="Util\InternetAvailability.cs" />
+    <Compile Include="Util\WordCouting.cs" />
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>

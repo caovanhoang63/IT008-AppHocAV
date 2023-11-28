@@ -28,7 +28,6 @@ namespace IT008_AppHocAV.View.MainWindow
 
                 _data = _mainWindow.DbConnection.SelectListEssayByUserId(_mainWindow.UserId);
                 _currentEssay = null;
-                
                 ListEssayListView.ItemsSource = _data;
             }
         #endregion

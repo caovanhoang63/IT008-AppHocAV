@@ -206,18 +206,20 @@ namespace IT008_AppHocAV.Repositories
         /// Updates essay content
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="wordcount"></param>
         /// <param name="content"></param>
-        public void UpdateEssayContent(int id, string content)
+        public void UpdateEssayContent(int id,int wordcount ,string content )
         {
             try
             {
                 string query = "UPDATE essay " +
-                               "SET content = @content, updated_at = GETDATE() " +
+                               "SET content = @content, words = @wordcount, updated_at = GETDATE() " +
                                "WHERE id = @id ";
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     command.Parameters.AddWithValue("@id", id);
                     command.Parameters.AddWithValue("@content", content);
+                    command.Parameters.AddWithValue("@wordcount", wordcount);
                     _sqlConnection.Open();
                     command.ExecuteScalar();
                 }
@@ -243,7 +245,7 @@ namespace IT008_AppHocAV.Repositories
             List<Essay> result = new List<Essay>();
             try
             {
-                string query = " SELECT id, title, topic, updated_at, created_at" +
+                string query = " SELECT id, title, topic, updated_at, created_at, words" +
                                " FROM [essay] " +
                                " WHERE user_id = @UserId ORDER BY updated_at desc";
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
@@ -259,7 +261,8 @@ namespace IT008_AppHocAV.Repositories
                                 reader.GetString(reader.GetOrdinal("title")),
                                 reader.GetString(reader.GetOrdinal("topic")),
                                 reader.GetDateTime(reader.GetOrdinal("created_at")),
-                                reader.GetDateTime(reader.GetOrdinal("updated_at"))
+                                reader.GetDateTime(reader.GetOrdinal("updated_at")),
+                                reader.GetInt32(reader.GetOrdinal("words"))
                             );
                             result.Add(essay);
                         }
@@ -327,7 +330,8 @@ namespace IT008_AppHocAV.Repositories
                                 image,
                                 reader.GetString(reader.GetOrdinal("content")),
                                 reader.GetDateTime(reader.GetOrdinal("created_at")),
-                                reader.GetDateTime(reader.GetOrdinal("updated_at"))
+                                reader.GetDateTime(reader.GetOrdinal("updated_at")),
+                                reader.GetInt32(reader.GetOrdinal("words"))
                             );
 
                             return essay;

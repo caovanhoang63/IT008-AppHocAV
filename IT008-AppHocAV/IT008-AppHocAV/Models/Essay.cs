@@ -24,7 +24,7 @@ namespace IT008_AppHocAV.Models
             this._image = image;
         }
 
-        public Essay(int id, int userId, string title, string topic, string description, BitmapImage image, string content, DateTime updatedAt, DateTime createdAt)
+        public Essay(int id, int userId, string title, string topic, string description, BitmapImage image, string content, DateTime updatedAt, DateTime createdAt,int words)
         {
             _id = id;
             _userId = userId;
@@ -35,15 +35,17 @@ namespace IT008_AppHocAV.Models
             _content = content;
             _updatedAt = updatedAt;
             _createdAt = createdAt;
+            _words = words;
         }
 
-        public Essay(int id, string title, string topic, DateTime updatedAt, DateTime createdAt)
+        public Essay(int id, string title, string topic, DateTime updatedAt, DateTime createdAt,int words)
         {
             _id = id;
             _title = title;
             _topic = topic;
             _updatedAt = updatedAt;
             _createdAt = createdAt;
+            _words = words;
         }
 
 
