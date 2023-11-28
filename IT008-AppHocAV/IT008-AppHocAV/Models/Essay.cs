@@ -57,9 +57,15 @@ namespace IT008_AppHocAV.Models
         private string _content;
         private DateTime _updatedAt;
         private DateTime _createdAt;
-        
-        
-        
+        private int _words;
+
+        public int Words
+        {
+            get => _words;
+            set => _words = value;
+        }
+
+
         public int Id
         {
             get => _id;
@@ -121,5 +127,6 @@ namespace IT008_AppHocAV.Models
             set => _createdAt = value;
         }
 
+   
     }
 }

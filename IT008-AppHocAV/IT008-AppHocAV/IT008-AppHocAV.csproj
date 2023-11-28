@@ -125,11 +125,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Components\RadioButtonMenuItem\RadioButtonMenuItem.cs" />
     <Compile Include="Models\DictionaryEntry.cs" />
     <Compile Include="Models\Essay.cs" />
     <Compile Include="Models\Pair.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
+    <Compile Include="Models\SortEssayOptions.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Repositories\DbConnection.cs" />
     <Compile Include="Repositories\InternetConnectionManager.cs" />
@@ -222,8 +224,10 @@
     <Page Include="Assets\Styles\ScrollBarStyle.xaml" />
     <Page Include="Assets\Styles\SearchingPageStyle.xaml" />
     <Page Include="Assets\Styles\ShowEssayStyle.xaml" />
+    <Page Include="Assets\Styles\ShowListEssayStyle.xaml" />
     <Page Include="Assets\Styles\SignUpPageStyle.xaml" />
     <Page Include="Assets\Styles\WritingPageStyle.xaml" />
+    <Page Include="Components\RadioButtonMenuItem\RadioButtonMenuItem.xaml" />
     <Page Include="View\LoginWindow.xaml" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

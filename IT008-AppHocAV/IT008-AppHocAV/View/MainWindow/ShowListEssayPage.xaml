@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
+      xmlns:uc="clr-namespace:IT008_AppHocAV.Components.RadioButtonMenuItem"
       mc:Ignorable="d"
       Title="ShowListEssayPage" MinHeight="500" Height="auto" MinWidth="800" Width="auto">
     
@@ -13,6 +14,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/ShowListEssayStyle.xaml"/>
+                <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -20,8 +23,7 @@
         <StackPanel>
             
             <!-- Header -->
-            <Grid Height="80" Margin="20 0" >
-                
+            <Grid Height="60" Margin="20 10" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -31,14 +33,47 @@
                 
                 <!-- Search, Filter and Create new Essay Button -->
                 <StackPanel  Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
-                    <Button Width="40" Height="40" Background="#96B639" Margin="0 0 10 0"
-                            Style="{DynamicResource RoundedButtonStyle }" >
-                        <Image Source="../../Assets/Icon/SearchIcon.png" Width="24"></Image>
-                    </Button>
-                    <Button Width="40" Height="40" Background="#96B639" Margin="0 0 10 0"
-                            Style="{DynamicResource RoundedButtonStyle}">
+                    <Canvas Height="40" Width="200"  Margin="0 0 10 0">
+
+                            <TextBox x:Name="SearchEssayTextBox"
+                                     Style="{DynamicResource SearchTextBoxStyle}"
+                                     Visibility="Collapsed" TextChanged="SearchEssayTextBox_OnTextChanged"/>
+                            <Label x:Name="TextBlockPlaceHolder"
+                                   Visibility="Hidden"
+                                   Margin="0 4 0 0 "
+                                   Canvas.Left="12"
+                                   IsHitTestVisible="False" 
+                                   Content="Enter title..."
+                                   VerticalAlignment="Center"
+                                   Foreground="DarkGray"
+                                   FontSize="16"/>
+                           
+                            <Button x:Name="SearchEssayButton"
+                                    Canvas.Right="0" Width="40" Height="40"
+                                    Background="#96B639"
+                                    Style="{DynamicResource RoundedButtonStyle }"
+                                    MouseEnter="SearchEssayButton_OnMouseEnter"
+                                    MouseLeave="SearchEssayButton_OnMouseLeave">
+                                <Image Source="../../Assets/Icon/SearchIcon.png" Width="24"></Image>
+                            </Button>
+                    </Canvas>
+                    
+                    <Button x:Name="SortEssayButton" Width="40" Height="40" Background="#96B639" Margin="0 0 10 0"
+                            Style="{DynamicResource RoundedButtonStyle}" Click="SortEssayButton_OnClick">
+                        <Button.ContextMenu>
+                            <ContextMenu Placement="Bottom" IsOpen="False">
+                                <uc:RadioButtonMenuItem Header="Title" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                <uc:RadioButtonMenuItem Header="Words" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                <uc:RadioButtonMenuItem Header="Date modified" IsChecked="True" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                <uc:RadioButtonMenuItem Header="Date created" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                <Separator/>
+                                <uc:RadioButtonMenuItem x:Name="Ascending" Header="Ascending" GroupName="OrderOptionGroup" IsChecked="True" Click="OrderOption_OnClick"/>
+                                <uc:RadioButtonMenuItem x:Name="Descending" Header="Descending" GroupName="OrderOptionGroup" Click="OrderOption_OnClick"/>
+                            </ContextMenu>
+                        </Button.ContextMenu>
                         <Image Source="../../Assets/Icon/FilterIcon.png" Width="24"></Image>
                     </Button>
+                    
                     <Button Width="120" Height="40" Background="#55AF6E"
                             Style="{DynamicResource RoundedButtonStyle}"
                             Click="NewEssayButton_OnClick">
@@ -53,8 +88,7 @@
             </Grid>
             <!-- End Header -->
 
-            <Border Style="{DynamicResource Splitter}"></Border>
-            
+                <Border Style="{DynamicResource Splitter}" Margin="0 -20 0 0"></Border>
             <!--Show list of essays -->
                  <ListView Name="ListEssayListView" HorizontalAlignment="Center" 
                            Margin="0 20"

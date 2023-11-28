@@ -117,7 +117,7 @@ namespace IT008_AppHocAV.Repositories
                 {
                     hashpass += item;
                 }
-
+                
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     command.Parameters.AddWithValue("@full_name", user.FullName);
@@ -245,7 +245,7 @@ namespace IT008_AppHocAV.Repositories
             {
                 string query = " SELECT id, title, topic, updated_at, created_at" +
                                " FROM [essay] " +
-                               " WHERE user_id = @UserId";
+                               " WHERE user_id = @UserId ORDER BY updated_at desc";
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     command.Parameters.AddWithValue("@UserId", userId);

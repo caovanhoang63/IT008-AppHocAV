@@ -91,8 +91,8 @@ namespace IT008_AppHocAV.View.MainWindow
                 MessageBoxResult result = MessageBox.Show("Are you sure want to continue?","",MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    _mainWindow.NavigateToPage("ListEssay");
                     _mainWindow.PageCache.Remove("Writing");
+                    _mainWindow.NavigateToPage("ShowListEssay");
                 }
             }
 
