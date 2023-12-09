@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using IT008_AppHocAV.Repositories;
-using IT008_AppHocAV.Repositories.DbConnection;
 using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View;
 using IT008_AppHocAV.View.MainWindow;
@@ -104,10 +102,10 @@ namespace IT008_AppHocAV
                 NavigateToPage("Exam");
             }
 
-            private void NavToFlashCard_OnClick(object sender, RoutedEventArgs e)
-            {
-                NavigateToPage("FlashCard");
-            }
+        private void NavToFlashCard_OnClick(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage("FlashCard");
+        }
 
         private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
         {
@@ -327,5 +325,17 @@ namespace IT008_AppHocAV
 
             #endregion
 
+    }
+
+    internal class ShowFlashCard : Page
+    {
+        private MainWindow mainWindow;
+        private FlashCardPage listFlashCard;
+
+        public ShowFlashCard(MainWindow mainWindow, FlashCardPage listFlashCard)
+        {
+            this.mainWindow=mainWindow;
+            this.listFlashCard=listFlashCard;
+        }
     }
 }
