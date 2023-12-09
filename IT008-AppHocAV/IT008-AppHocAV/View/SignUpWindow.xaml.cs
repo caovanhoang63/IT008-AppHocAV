@@ -70,7 +70,7 @@ namespace IT008_AppHocAV.View
                     PasswordBox.Password
                 );
                 
-                int newUserId =  _loginWindow.DbConnection.NewUser(user);
+                int newUserId =  _loginWindow.DbConnection.Register.NewUser(user);
                 
                 if (newUserId != 0)
                 {

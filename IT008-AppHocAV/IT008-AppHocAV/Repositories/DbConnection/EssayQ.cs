@@ -1,160 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.IO;
 using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Util;
-using IT008_AppHocAV.View.MainWindow;
 
-namespace IT008_AppHocAV.Repositories
+namespace IT008_AppHocAV.Repositories.DbConnection
 {
-    public class DbConnection
+    public class EssayQ
     {
-        #region Declare Fields
-            private readonly SqlConnection _sqlConnection;
-        #endregion
+        private readonly SqlConnection _sqlConnection;
 
-        #region Declare Constructors
-        public DbConnection()
+        public EssayQ(SqlConnection sqlConnection)
         {
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "DESKTOP-38JM1H0";
-            builder.UserID = "sa";
-            builder.Password = "123456";
-            builder.InitialCatalog = "APP_HOC_AV";
-            _sqlConnection = new SqlConnection(builder.ConnectionString);
+            _sqlConnection = sqlConnection;
         }
-        #endregion
-
-        #region  Authentication 
-
-        /// <summary>
-        /// Authentication an user
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public int Authentication(string userName, string password)
-        {
-            try
-            {
-                string passwordResult;
-                int userId = 0;
-                var hashbytes = Hashing.CalculateSHA256(password);
-                string hashpass = "";
-                foreach (byte item in hashbytes)
-                {
-                    hashpass += item;
-                }
-
-                string query = "select id, user_name, password " +
-                               "from [User] " +
-                               "where user_name = @un";
-
-                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
-                {
-                    command.Parameters.AddWithValue("@un", userName);
-                    _sqlConnection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            passwordResult = reader.GetString(2);
-                            if (hashpass == passwordResult)
-                            {
-                                userId = reader.GetInt32(0);
-                                return userId;
-                            }
-                        }
-
-                        return 0;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return 0;
-            }
-            finally
-            {
-                _sqlConnection.Close();
-            }
-        }
-
-        #endregion
-
-        #region Sign up
-
         
-        /// <summary>
-        /// Creates an new user
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-         public int NewUser(User user)
-        {
-            try
-            {
-                string query = "INSERT INTO [User] (full_name," +
-                               " date_of_birth, email," +
-                               " phone_number, gender," +
-                               " user_name, password," +
-                               " user_level, status, " +
-                               "last_login, created_at, updated_at)" +
-                               " output inserted.id " +
-                               "VALUES " +
-                               "(@full_name,@date_of_birth,@email," +
-                               " @phone_number,@gender,@user_name,@pwd, " +
-                               "1,0,null, GETDATE(), GETDATE())";
-
-                byte[] hashvalue = Hashing.CalculateSHA256(user.Password);
-                string hashpass = "";
-                foreach (byte item in hashvalue)
-                {
-                    hashpass += item;
-                }
-                
-                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
-                {
-                    command.Parameters.AddWithValue("@full_name", user.FullName);
-                    command.Parameters.AddWithValue("@date_of_birth", user.DateOfBirth);
-                    command.Parameters.AddWithValue("@email", user.Email);
-                    command.Parameters.AddWithValue("@phone_number", user.PhoneNumber);
-                    command.Parameters.AddWithValue("@gender", user.Gender);
-                    command.Parameters.AddWithValue("@user_name", user.UserName);
-                    command.Parameters.AddWithValue("@pwd", hashpass);
-                    _sqlConnection.Open();
-                    int modified = (int)command.ExecuteScalar();
-                    if (_sqlConnection.State == System.Data.ConnectionState.Open)
-                        _sqlConnection.Close();
-                    return modified;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return 0;
-            }
-            finally
-            {
-                _sqlConnection.Close();
-            }
-        }
-
-        #endregion
-       
-        #region Defines functions for writing feature
         
-        /// <summary>
+        
+         /// <summary>
         /// Creates a new Essay
         /// </summary>
         /// <param name="essay"></param>
         /// <returns></returns>
-        public int CreateEssay(Essay essay)
+        public int CreateEssay(Models.Essay essay)
         {
             try
             {
@@ -164,8 +34,7 @@ namespace IT008_AppHocAV.Repositories
                     " VALUES " +
                     " (@user_id, @title, @topic , @image , @description, @content, GETDATE(), GETDATE()) ";
 
-                byte[] data = essay.Image == null ? null : ConvertToByteFromBitmapImage(essay.Image);
-
+                byte[] data = essay.Image == null ? null : BitmapConverter.ConvertToByteFromBitmapImage(essay.Image);
 
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
@@ -240,9 +109,9 @@ namespace IT008_AppHocAV.Repositories
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public List<Essay> SelectListEssayByUserId(int userId)
+        public List<Models.Essay> SelectListEssayByUserId(int userId)
         {
-            List<Essay> result = new List<Essay>();
+            List<Models.Essay> result = new List<Models.Essay>();
             try
             {
                 string query = " SELECT id, title, topic, updated_at, created_at, words" +
@@ -256,7 +125,7 @@ namespace IT008_AppHocAV.Repositories
                     {
                         while (reader.Read())
                         {
-                            Essay essay = new Essay(
+                            Models.Essay essay = new Models.Essay(
                                 reader.GetInt32(reader.GetOrdinal("id")),
                                 reader.GetString(reader.GetOrdinal("title")),
                                 reader.GetString(reader.GetOrdinal("topic")),
@@ -317,11 +186,10 @@ namespace IT008_AppHocAV.Repositories
 
                                 reader.GetBytes(reader.GetOrdinal("image"), 0, buffer, 0, (int)len);
 
-                                image = ToImage(buffer);
-
+                                image =  BitmapConverter.ToImage(buffer);
                             }
 
-                            Essay essay = new Essay(
+                            Models.Essay essay = new Models.Essay(
                                 reader.GetInt32(reader.GetOrdinal("id")),
                                 reader.GetInt32(reader.GetOrdinal("user_id")),
                                 reader.GetString(reader.GetOrdinal("title")),
@@ -383,51 +251,5 @@ namespace IT008_AppHocAV.Repositories
             }
 
         }
-
-
-        #endregion
-
-        #region Util Functions
-
-            /// <summary>
-            /// Convert a byte array to a BitmapImage object
-            /// </summary>
-            /// <param name="bitmapImage"></param>
-            /// <returns></returns>
-            private Byte[] ConvertToByteFromBitmapImage(BitmapImage bitmapImage)
-            {
-                byte[] data;
-                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-
-                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
-                using(MemoryStream ms = new MemoryStream())
-                {
-                    encoder.Save(ms);
-                    data = ms.ToArray();
-                }
-
-                return data;
-            }
-            
-            /// <summary>
-            /// Convert a BitmapImage object to a byte array
-            /// </summary>
-            /// <param name="array"></param>
-            /// <returns></returns>
-            private BitmapImage ToImage(byte[] array)
-            {
-                using (var ms = new MemoryStream(array))
-                {
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.StreamSource = ms;
-                    image.EndInit();
-                    return image;
-                }
-        }
-
-        #endregion
-        
     }
 }

@@ -133,11 +133,15 @@
     <Compile Include="Models\ListFlashCard.cs" />
     <Compile Include="Models\SortEssayOptions.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Repositories\DbConnection.cs" />
+    <Compile Include="Repositories\DbConnection\Authentication.cs" />
+    <Compile Include="Repositories\DbConnection\DbConnection.cs" />
+    <Compile Include="Repositories\DbConnection\EssayQ.cs" />
+    <Compile Include="Repositories\DbConnection\Register.cs" />
     <Compile Include="Repositories\InternetConnectionManager.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
+    <Compile Include="Util\BitmapConverter.cs" />
     <Compile Include="Util\CheckValidate.cs" />
     <Compile Include="Util\Hashing.cs" />
     <Compile Include="Util\InternetAvailability.cs" />

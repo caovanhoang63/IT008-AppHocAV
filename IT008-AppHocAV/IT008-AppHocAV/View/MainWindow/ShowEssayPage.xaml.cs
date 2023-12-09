@@ -44,7 +44,6 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 _mainWindow.NavigateToPage("WritingContent");
                 _mainWindow.PageCache.Remove("ShowEssay");
-                
             }
 
         #endregion

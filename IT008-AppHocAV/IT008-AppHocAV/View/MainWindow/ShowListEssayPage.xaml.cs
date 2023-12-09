@@ -26,7 +26,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 InitializeComponent();
                 this._mainWindow = mainWindow;
 
-                _data = _mainWindow.DbConnection.SelectListEssayByUserId(_mainWindow.UserId);
+                _data = _mainWindow.DbConnection.EssayQ.SelectListEssayByUserId(_mainWindow.UserId);
                 _currentEssay = null;
                 ListEssayListView.ItemsSource = _data;
             }
@@ -52,7 +52,7 @@ namespace IT008_AppHocAV.View.MainWindow
             private void ShowEssayButton_OnClick(object sender, RoutedEventArgs e)
             {
                 var modelEssay = (Essay)((FrameworkElement)sender).DataContext;
-                _currentEssay = _mainWindow.DbConnection.SelectEssayById(modelEssay.Id);
+                _currentEssay = _mainWindow.DbConnection.EssayQ.SelectEssayById(modelEssay.Id);
                 _mainWindow.NavigateToPage("ShowEssay");
             }
 
@@ -64,7 +64,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 if (result == MessageBoxResult.Yes)
                 {
                     Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;
-                    if (_mainWindow.DbConnection.DeleteEssayById(modelEssay.Id))
+                    if (_mainWindow.DbConnection.EssayQ.DeleteEssayById(modelEssay.Id))
                     {
 
                         

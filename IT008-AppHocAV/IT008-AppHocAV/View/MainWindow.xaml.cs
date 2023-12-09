@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using IT008_AppHocAV.Repositories;
+using IT008_AppHocAV.Repositories.DbConnection;
 using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View;
 using IT008_AppHocAV.View.MainWindow;
@@ -215,6 +216,7 @@ namespace IT008_AppHocAV
                     _pageCache[pageName] = newPage; 
                     Content.Navigate(newPage); 
                 }
+                
             }
 
         #endregion

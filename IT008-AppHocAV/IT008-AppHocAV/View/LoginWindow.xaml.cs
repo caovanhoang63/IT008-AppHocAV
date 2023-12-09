@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Repositories;
+using IT008_AppHocAV.Repositories.DbConnection;
 
 namespace IT008_AppHocAV.View
 {
@@ -86,7 +87,7 @@ namespace IT008_AppHocAV.View
             }
             if (UserNameBox.Text != String.Empty && PasswordBox.Password != String.Empty )
             {
-                _userId = DbConnection.Authentication(UserNameBox.Text, PasswordBox.Password);
+                _userId = DbConnection.Authentication.Login(UserNameBox.Text, PasswordBox.Password);
                 if (UserId != 0)
                 {
                     IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow(this);
