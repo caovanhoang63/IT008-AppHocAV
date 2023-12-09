@@ -60,8 +60,8 @@
                                 Margin="0,0,10,0" >
                             <Button.ContextMenu>
                                 <ContextMenu x:Name="AvtContextMenu" Placement="Bottom">
-                                        <MenuItem Header="Info" />
-                                        <MenuItem Header="Log out" Click="LogOutMenuItem_OnClick" />
+                                    <MenuItem Header="Info" />
+                                    <MenuItem Header="Log out" Click="LogOutMenuItem_OnClick" />
                                 </ContextMenu>
                             </Button.ContextMenu>
                             <Image Source="../Assets/Icon/AvatarIcon.png"></Image>
@@ -71,8 +71,7 @@
                 <!-- Menu Button -->
                 <ToggleButton x:Name="MenuButton" DockPanel.Dock="Left" Height="45" Width="50" Margin="38 0 30 0"
                         Background="Transparent" BorderThickness="0"
-                        Checked="MenuButton_OnChecked" 
-                        Unchecked="MenuButton_OnUnchecked">
+                        Checked="MenuButton_OnChecked" Unchecked="MenuButton_OnUnchecked" >
                     <StackPanel Margin="0 7 0 0" Height="40" Width="40">
                         <Border CornerRadius="2.5" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
                         <Border CornerRadius="2.5" Margin="0 7 0 0" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
@@ -110,7 +109,7 @@
                 
                 <!-- Navbar -->
                 <Canvas x:Name="NavBar" DockPanel.Dock="Left" Width="50" Margin="38 0 30 0"
-                            Background="Transparent" HorizontalAlignment="Left" >
+                            Background="Transparent" HorizontalAlignment="Left" x:FieldModifier="public">
                     
                     <Button x:Name="NavToSearching"  Click="NavToSearching_OnClick" 
                              Style="{DynamicResource RoundedButtonStyle}"
@@ -124,9 +123,10 @@
                     
                     <Button Canvas.Top="50" x:Name="NavToWriting"  Click="NavToWriting_OnClick" Style="{DynamicResource RoundedButtonStyle}"
                             MouseEnter="NavButton_OnMouseEnter"
-                            MouseLeave="NavButton_OnMouseLeave">
+                            MouseLeave="NavButton_OnMouseLeave"
+                            >
                         <StackPanel Orientation="Horizontal">
-                            <Image  Source="../Assets/Icon/WritingIcon4.png"></Image>
+                            <Image Source="../Assets/Icon/WritingIcon4.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Writing</Label>
                         </StackPanel>
                     </Button>
@@ -135,7 +135,7 @@
                             MouseEnter="NavButton_OnMouseEnter"
                             MouseLeave="NavButton_OnMouseLeave">
                         <StackPanel Orientation="Horizontal">
-                            <Image Margin="3 0 0 0" Source="../Assets/Icon/WritingIcon2.png"></Image>
+                            <Image Source="../Assets/Icon/WritingIcon2.png"></Image>
                             <Label Width="80" FontSize="15" VerticalAlignment="Center">Exam</Label>
                         </StackPanel>
                     </Button>
@@ -151,18 +151,47 @@
                 </Canvas>
                     
                 <!-- Right NavBar and Show Take Note Button -->
-                <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" Margin="0 0 40 0" >
+                <Grid VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" Margin="0 0 40 0" >
                     <Button Height="50" x:Name="ShowTakeNote" Click="ShowTakeNote_OnClick"
                             Background="Transparent" BorderThickness="0">
                         <Image Source="../Assets/Icon/TakeNoteIcon.png"></Image>
                     </Button>
-                </StackPanel>
-                    
+                </Grid>
+                
+                
+                
+                <Grid>
+                    <Frame BorderThickness="0 0 0 0" 
+
+                           Margin="0 0 0 0 " 
+                           DockPanel.Dock="Right" 
+                           x:Name="Note" 
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           NavigationUIVisibility="Hidden"
+                           Source="../View/MainWindow/TakeNotePage.xaml"
+                           Height="420"
+                           Width="320"
+                           Panel.ZIndex="2"
+                           Visibility="Hidden"
+                       >
+                    <Frame.Template>
+                        <ControlTemplate TargetType="Frame">
+                            <Border CornerRadius="10" BorderBrush="Black" BorderThickness="0">
+                                <ContentPresenter />
+                            </Border>
+                        </ControlTemplate>
+                    </Frame.Template>
+                </Frame>
+           
+
                 <!-- Content Frame -->
-                <Frame BorderThickness="0 1 0 0" BorderBrush="Black" Margin="10 0 10 0 " 
+                <Frame BorderThickness="0 1 0 0" BorderBrush="Black" Margin="10 0 0 0 " 
                        DockPanel.Dock="Bottom" 
                        x:Name="Content" 
-                       NavigationUIVisibility="Hidden"/>
+                       NavigationUIVisibility="Hidden"
+                       Panel.ZIndex="0"/>
+                </Grid>
             </DockPanel>
         </Border>
         
@@ -180,5 +209,6 @@
                 </StackPanel>
             </StatusBarItem>
         </StatusBar>
+        
     </Grid>
 </Window>

@@ -19,6 +19,11 @@ namespace IT008_AppHocAV
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
+        private bool isInternectConnected;
+        private bool isDragging = false;
+        private Point originalMousePosition;
+
         
         #region Declare Fields
             private Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
@@ -104,6 +109,21 @@ namespace IT008_AppHocAV
                 NavigateToPage("FlashCard");
             }
 
+        private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Note.Visibility != Visibility.Visible)
+            {
+                Note.Visibility = Visibility.Visible;
+                TakeNotePage takeNotePage = new TakeNotePage();
+                Note.Content = takeNotePage;
+            }
+            else
+            {
+                Note.Visibility = Visibility.Collapsed;
+            }
+        }
+
+
         #endregion
 
         #region Avatar, Setting and Notify Button Handlers
@@ -112,11 +132,6 @@ namespace IT008_AppHocAV
                 (sender as Button).ContextMenu.IsEnabled = true;
                 (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
                 (sender as Button).ContextMenu.IsOpen = true;
-            }
-
-            private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
-            {
-                
             }
             
             private void LogOutMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -294,15 +309,23 @@ namespace IT008_AppHocAV
                         btn.Width = 130;
             }
 
+
+
+
+
+
             private void MenuButton_OnUnchecked(object sender, RoutedEventArgs e)
             {
                 foreach (var child in NavBar.Children)
+                {
                     if (child is Button btn)
+                    {
                         btn.Width = 50;
+                    }
+                }
             }
 
-        #endregion
-        
-        
+            #endregion
+
     }
 }

@@ -80,7 +80,6 @@ namespace IT008_AppHocAV.View.MainWindow
                     this.WordImage.Source = imageApi;
                     this.WordImage.Visibility = Visibility.Visible;
                 }
-                
             }
             //if Dictionary Api response null result, show google translate instead
             catch (NullReferenceException e)
@@ -88,6 +87,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 this.GoogleTranslateContainer.Visibility = Visibility.Visible;
                 this.GTransSlText.Selection.Text = text;
                 this.GTransTlText.Selection.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
+
             }
             //if Image error, hidden WordImage
             catch (ArgumentOutOfRangeException e)

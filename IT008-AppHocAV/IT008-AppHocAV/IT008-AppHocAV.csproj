@@ -181,7 +181,13 @@
       <DependentUpon>WritingContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow\CreateEssayPage.xaml.cs">
-      <DependentUpon>CreateEssayPage.xaml</DependentUpon>
+      <DependentUpon>WritingContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
+      <DependentUpon>TakeNotePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
+      <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
@@ -248,6 +254,17 @@
     <Page Include="View\MainWindow\ShowEssayPage.xaml" />
     <Page Include="View\MainWindow\WritingContentPage.xaml" />
     <Page Include="View\MainWindow\CreateEssayPage.xaml" />
+
+    <Page Include="View\MainWindow\TakeNotePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow\TakeNoteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+
+
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +331,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\CloseIcon.png" />
+
+    <Resource Include="Assets\Icon\Minimal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\LeftUpArrow.png" />
+    <Compile Include="Models\Essay.cs" />
+    <Compile Include="Models\SortEssayOptions.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Repositories\DbConnection\Authentication.cs" />
+    <Compile Include="Repositories\DbConnection\DbConnection.cs" />
+    <Compile Include="Repositories\DbConnection\EssayQ.cs" />
+    <Compile Include="Repositories\DbConnection\Register.cs" />
+    <Compile Include="Util\BitmapConverter.cs" />
+    <Compile Include="Util\CheckValidate.cs" />
+    <Compile Include="Util\Hashing.cs" />
+    <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
+      <DependentUpon>TakeNotePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
+      <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
