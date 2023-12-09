@@ -35,7 +35,7 @@ namespace IT008_AppHocAV.View.MainWindow
             if (result == MessageBoxResult.Yes)
             {
                 mainWindow.NavigateToPage("FlashCard");
-                mainWindow.pageCache.Remove("Writing");
+                mainWindow.PageCache.Remove("Writing");
             }
         }
     }

@@ -29,7 +29,6 @@ namespace IT008_AppHocAV.View.MainWindow
         private void AddDeskButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             mainWindow.NavigateToPage("MakeFlashCard");
-            
         }
 
         private void ItemFlashCard_Click(object sender, System.Windows.RoutedEventArgs e)

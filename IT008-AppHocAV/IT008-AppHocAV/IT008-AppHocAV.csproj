@@ -126,14 +126,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\RadioButtonMenuItem\RadioButtonMenuItem.cs" />
-    <Compile Include="Components\RadioButtonMenuItem\RadioButtonMenuItem.cs" />
     <Compile Include="Models\DictionaryEntry.cs" />
     <Compile Include="Models\Essay.cs" />
     <Compile Include="Models\Pair.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
-    <Compile Include="Models\SortEssayOptions.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
     <Compile Include="Repositories\DbConnection\EssayQ.cs" />
@@ -142,11 +139,9 @@
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
-    <Compile Include="Util\BitmapConverter.cs" />
     <Compile Include="Util\CheckValidate.cs" />
     <Compile Include="Util\Hashing.cs" />
     <Compile Include="Util\InternetAvailability.cs" />
-    <Compile Include="Util\WordCouting.cs" />
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -163,16 +158,8 @@
     <Compile Include="View\MainWindow\FlashCardPage.xaml.cs">
       <DependentUpon>FlashCardPage.xaml</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="View\MainWindow\ShowListEssayPage.xaml.cs">
-      <DependentUpon>ShowListEssayPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainWindow\ListFlashCard.xaml.cs">
-      <DependentUpon>ListFlashCard.xaml</DependentUpon>
-=======
     <Compile Include="View\MainWindow\Frontform.xaml.cs">
       <DependentUpon>Frontform.xaml</DependentUpon>
->>>>>>> origin/FlashCard
     </Compile>
     <Compile Include="View\MainWindow\MakeFlashCard.xaml.cs">
       <DependentUpon>MakeFlashCard.xaml</DependentUpon>
@@ -183,7 +170,7 @@
     <Compile Include="View\MainWindow\SearchingPage.xaml.cs">
       <DependentUpon>SearchingPage.xaml</DependentUpon>
     </Compile>
-<<<<<<< HEAD
+
     <Compile Include="View\MainWindow\ShowEssayPage.xaml.cs">
       <DependentUpon>ShowEssayPage.xaml</DependentUpon>
     </Compile>
@@ -194,18 +181,10 @@
     <Compile Include="View\MainWindow\CreateEssayPage.xaml.cs">
       <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
-      <DependentUpon>TakeNotePage.xaml</DependentUpon>
-    </Compile>
+
     <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
-=======
-    <Compile Include="View\MainWindow\ShowFlashCardPage.xaml.cs">
-      <DependentUpon>ShowFlashCardPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainWindow\WritingPage.xaml.cs">
-      <DependentUpon>WritingPage.xaml</DependentUpon>
->>>>>>> origin/FlashCard
+
     </Compile>
     <Compile Include="View\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
@@ -245,10 +224,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Assets\Styles\ButtonStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+
     <Page Include="Assets\Styles\LoginPageStyle.xaml" />
     <Page Include="Assets\Styles\BaseStyles.xaml">
       <SubType>Designer</SubType>
@@ -257,55 +233,28 @@
     <Page Include="Assets\Styles\ScrollBarStyle.xaml" />
     <Page Include="Assets\Styles\SearchingPageStyle.xaml" />
     <Page Include="Assets\Styles\ShowEssayStyle.xaml" />
-    <Page Include="Assets\Styles\ShowListEssayStyle.xaml" />
     <Page Include="Assets\Styles\SignUpPageStyle.xaml" />
     <Page Include="Assets\Styles\WritingPageStyle.xaml" />
-    <Page Include="Components\RadioButtonMenuItem\RadioButtonMenuItem.xaml" />
     <Page Include="View\LoginWindow.xaml" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\MainWindow\BackForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+
+    
+    
     <Page Include="View\MainWindow\ExamPage.xaml" />
     <Page Include="View\MainWindow\FlashCardPage.xaml" />
-<<<<<<< HEAD
-    <Page Include="View\MainWindow\ShowListEssayPage.xaml" />
-    <Page Include="View\MainWindow\ListFlashCard.xaml" />
-    <Page Include="View\MainWindow\MakeFlashCard.xaml" />
     <Page Include="View\MainWindow\NoInternetPage.xaml" />
     <Page Include="View\MainWindow\SearchingPage.xaml" />
-    <Page Include="View\MainWindow\ShowEssayPage.xaml" />
-    <Page Include="View\MainWindow\WritingContentPage.xaml" />
-    <Page Include="View\MainWindow\CreateEssayPage.xaml" />
+    <Page Include="View\MainWindow\MakeFlashCard.xaml" />
 
-    <Page Include="View\MainWindow\TakeNotePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+  
     <Page Include="View\MainWindow\TakeNoteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
 
-
-=======
-    <Page Include="View\MainWindow\Frontform.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MainWindow\MakeFlashCard.xaml" />
-    <Page Include="View\MainWindow\NoInternetPage.xaml" />
-    <Page Include="View\MainWindow\SearchingPage.xaml" />
-    <Page Include="View\MainWindow\ShowFlashCardPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MainWindow\WritingPage.xaml" />
->>>>>>> origin/FlashCard
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -316,114 +265,63 @@
     <Resource Include="Assets\Icon\SearchIcon.png" />
     <Resource Include="Assets\Icon\SearchIcon2.png" />
     <Resource Include="Assets\Icon\TakeNoteIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\AvatarIcon.png" />
     <Resource Include="Assets\Icon\NotifyICon.png" />
     <Resource Include="Assets\Icon\SettingIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Image\MockResultImage.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\SpeakerIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\GoogleTranslateIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\switchIcon.png" />
     <Resource Include="Assets\Icon\hidepwdIcon.png" />
     <Resource Include="Assets\Icon\showpwdIcon.png" />
     <Resource Include="Assets\Image\Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\DropDownBtnIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\NoInternetIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\FlashCardIcon2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\WritingIcon2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\ExamIcon2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\WritingIcon3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\WritingIcon4.png" />
-  </ItemGroup>
-  <ItemGroup>
-<<<<<<< HEAD
     <Resource Include="Assets\Icon\AddImageIcon.png" />
-    <Resource Include="Assets\Icon\AddIcon.png" />
+    <Resource Include="Assets\Icon\AddIcon1.png" />
     <Resource Include="Assets\Icon\BinIcon.png" />
     <Resource Include="Assets\Icon\ButtonShowIcon.png" />
-    <Resource Include="Assets\Icon\FilterIcon.png" />
-    <Resource Include="Assets\Icon\ModifiedIcon.png" />
-    <Resource Include="Assets\Icon\NoteBookIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\ReturnIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icon\CloseIcon.png" />
-
     <Resource Include="Assets\Icon\Minimal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Models\Essay.cs" />
-    <Compile Include="Models\SortEssayOptions.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
-      <DependentUpon>TakeNotePage.xaml</DependentUpon>
-    </Compile>
+
+
     <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
-=======
-    <Resource Include="View\MainWindow\background.png" />
     <Resource Include="Assets\Image\background.png" />
-    <Resource Include="Assets\Icon\AddImageIcon.png" />
     <Resource Include="Assets\Icon\ExitIcon.png" />
     <Resource Include="Assets\Icon\nextBut.png" />
     <Content Include="Assets\Icon\NoteBookIcon.png" />
->>>>>>> origin/FlashCard
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\EditIcon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Icon\Addicon.png" />
-  </ItemGroup>
+
   <ItemGroup>
     <Resource Include="Assets\Icon\DeleteIcon.png" />
-    <Compile Include="Models\Essay.cs" />
-    <Compile Include="Models\SortEssayOptions.cs" />
-    <Compile Include="Repositories\DbConnection\Authentication.cs" />
-    <Compile Include="Repositories\DbConnection\DbConnection.cs" />
-    <Compile Include="Repositories\DbConnection\EssayQ.cs" />
-    <Compile Include="Repositories\DbConnection\Register.cs" />
+
     <Compile Include="Util\BitmapConverter.cs" />
     <Compile Include="Util\WordCouting.cs" />
-    <Compile Include="View\MainWindow\BackForm.xaml.cs">
-      <DependentUpon>BackForm.xaml</DependentUpon>
-    </Compile>
-    </Compile>
+
     <Compile Include="View\MainWindow\ShowListEssayPage.xaml.cs">
       <DependentUpon>ShowListEssayPage.xaml</DependentUpon>
+    </Compile>
+    
     <Compile Include="View\MainWindow\Frontform.xaml.cs">
       <DependentUpon>Frontform.xaml</DependentUpon>
+    </Compile>
+    
     <Compile Include="View\MainWindow\ShowFlashCardPage.xaml.cs">
       <DependentUpon>ShowFlashCardPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\WritingPage.xaml.cs">
-      <DependentUpon>WritingPage.xaml</DependentUpon>
+
+    
     <Compile Include="View\MainWindow\ShowEssayPage.xaml.cs">
       <DependentUpon>ShowEssayPage.xaml</DependentUpon>
     </Compile>
@@ -439,13 +337,13 @@
     </Compile>
     <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
+    </Compile>
+    
     <Page Include="Assets\Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Assets\Styles\ShowEssayStyle.xaml" />
     <Page Include="Assets\Styles\ShowListEssayStyle.xaml" />
-    <Page Include="Assets\Styles\WritingPageStyle.xaml" />
     <Page Include="Components\RadioButtonMenuItem\RadioButtonMenuItem.xaml" />
     <Page Include="View\MainWindow\BackForm.xaml">
       <SubType>Designer</SubType>
@@ -456,7 +354,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainWindow\ShowListEssayPage.xaml" />
-    <Page Include="View\MainWindow\ListFlashCard.xaml" />
     <Page Include="View\MainWindow\ShowEssayPage.xaml" />
     <Page Include="View\MainWindow\WritingContentPage.xaml" />
     <Page Include="View\MainWindow\CreateEssayPage.xaml" />
@@ -465,58 +362,30 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindow\TakeNoteWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+ 
 
 
     <Page Include="View\MainWindow\ShowFlashCardPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindow\WritingPage.xaml" />
-    <Resource Include="Assets\Icon\AddImageIcon.png" />
-    <Resource Include="Assets\Icon\AddIcon.png" />
-    <Resource Include="Assets\Icon\BinIcon.png" />
-    <Resource Include="Assets\Icon\ButtonShowIcon.png" />
     <Resource Include="Assets\Icon\FilterIcon.png" />
     <Resource Include="Assets\Icon\ModifiedIcon.png" />
-    <Resource Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Icon\ReturnIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Icon\CloseIcon.png" />
 
-    <Resource Include="Assets\Icon\Minimal.png" />
-  </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Models\Essay.cs" />
     <Compile Include="Models\SortEssayOptions.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
-      <DependentUpon>TakeNotePage.xaml</DependentUpon>
-    </Compile>
+
+    
     <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
     <Resource Include="View\MainWindow\background.png" />
-    <Resource Include="Assets\Image\background.png" />
-    <Resource Include="Assets\Icon\AddImageIcon.png" />
-    <Resource Include="Assets\Icon\ExitIcon.png" />
-    <Resource Include="Assets\Icon\nextBut.png" />
-    <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Icon\EditIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Icon\Addicon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Icon\DeleteIcon.png" />
-  </ItemGroup>
+
+
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

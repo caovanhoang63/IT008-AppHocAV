@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using IT008_AppHocAV.Repositories.DbConnection;
 using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View;
 using IT008_AppHocAV.View.MainWindow;
@@ -17,10 +18,7 @@ namespace IT008_AppHocAV
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
-        private bool isInternectConnected;
-        private bool isDragging = false;
-        private Point originalMousePosition;
+
 
         
         #region Declare Fields

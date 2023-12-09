@@ -33,7 +33,7 @@
                 <StackPanel   Orientation="Horizontal" HorizontalAlignment="Left" Background="Transparent">
 
                     <Button x:Name="AddDeskButton" Style="{DynamicResource ButtonStyle}" Margin="10 0 0 0 " Click="AddDeskButton_Click">
-                        <Image Source="/Assets/Icon/Addicon.png" Height="30" Width="39" />
+                        <Image Source="/Assets/Icon/AddIcon1.png" Height="30" Width="39" />
                     </Button>
                 </StackPanel>
             </DockPanel>

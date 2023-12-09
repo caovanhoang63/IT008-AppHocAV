@@ -78,7 +78,7 @@
                             Style="{DynamicResource RoundedButtonStyle}"
                             Click="NewEssayButton_OnClick">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../../Assets/Icon/AddIcon.png" Width="24"></Image>
+                            <Image Source="../../Assets/Icon/AddIcon1.png" Width="24"></Image>
                             <Label FontSize="16" VerticalAlignment="Center">New Essay</Label>
                         </StackPanel>
                     </Button>
