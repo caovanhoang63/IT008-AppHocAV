@@ -128,12 +128,17 @@
     <Compile Include="Components\RadioButtonMenuItem\RadioButtonMenuItem.cs" />
     <Compile Include="Models\DictionaryEntry.cs" />
     <Compile Include="Models\Essay.cs" />
+    <Compile Include="Models\Exam.cs" />
     <Compile Include="Models\Pair.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
+    <Compile Include="Models\SortExamOptions.cs" />
+    <Compile Include="Models\SortFlashCardDesk.cs" />
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
     <Compile Include="Repositories\DbConnection\EssayQ.cs" />
+    <Compile Include="Repositories\DbConnection\ExamQ.cs" />
+    <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
     <Compile Include="Repositories\DbConnection\Register.cs" />
     <Compile Include="Repositories\InternetConnectionManager.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
@@ -258,6 +263,8 @@
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Image\LogoWithOutELF.png" />
+    <Resource Include="Assets\Icon\ThreeStickMenuIcon.png" />
     <Resource Include="Assets\Icon\BookIcon.png" />
     <Resource Include="Assets\Icon\CheckIcon.png" />
     <Resource Include="Assets\Icon\FlashCard.png" />

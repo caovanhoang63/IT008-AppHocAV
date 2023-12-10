@@ -93,7 +93,6 @@ namespace IT008_AppHocAV.View.MainWindow
         private string _prevOrderOption = "Descending";
         private void OrderBy_OnClick(object sender, RoutedEventArgs e)
         {
-            
             if (sender is RadioButtonMenuItem radioButton)
             {
                 string orderBy = radioButton.Header.ToString();

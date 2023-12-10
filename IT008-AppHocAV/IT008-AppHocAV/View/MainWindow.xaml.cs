@@ -297,27 +297,24 @@ namespace IT008_AppHocAV
 
             private void SearchTextContainer_OnLostFocus(object sender, RoutedEventArgs e)
             {
-                SearchTextContainer.BorderBrush = Brushes.Transparent;
+                SearchTextContainer.BorderBrush = Brushes.Black;
             }
         
-            private void NavButton_OnMouseEnter(object sender, MouseEventArgs e)
-            {
-                if (sender is Button btn)
-                    btn.Width = 130;
-            }
 
-            private void NavButton_OnMouseLeave(object sender, MouseEventArgs e)
-            {
-                if (sender is Button btn)
-                    if (MenuButton.IsChecked != null && !MenuButton.IsChecked.Value)
-                        btn.Width = 50;
-            }
+
+
 
             private void MenuButton_OnChecked(object sender, RoutedEventArgs e)
             {
+                NavBar.Width = 50;
                 foreach (var child in NavBar.Children)
+                {
                     if (child is Button btn)
-                        btn.Width = 130;
+                    {
+                        btn.Width = 50;
+                    }
+                }
+                
             }
 
 
@@ -327,11 +324,12 @@ namespace IT008_AppHocAV
 
             private void MenuButton_OnUnchecked(object sender, RoutedEventArgs e)
             {
+                NavBar.Width = 156;
                 foreach (var child in NavBar.Children)
                 {
                     if (child is Button btn)
                     {
-                        btn.Width = 50;
+                        btn.Width = 156;
                     }
                 }
             }

@@ -22,15 +22,14 @@
     </Window.Resources>
 
     
-    <Grid Background="Beige" x:Name="Container">
+    <Grid Background="#FFF5F5" x:Name="Container">
         <!-- Define Container Grid Row -->
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>  
         <!-- Define TitleBar -->
-        <Border Grid.Row="0" Background="Beige" x:Name="TitleBar">
+        <Border Grid.Row="0" Background="#FFF5F5" x:Name="TitleBar">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="Transparent">
                 <Button x:Name="BtnMinimize" Content="_" Width="40" Height="40"
                         BorderBrush="Transparent" Background="Transparent" Click="BtnMinimize_OnClick"></Button>
@@ -42,9 +41,60 @@
         </Border>
 
         <!-- WorkSpace -->
-        <Border Grid.Row="1" Margin="5,0,5,0" Background="#D3E2F0" CornerRadius="12 12 0 0 ">
+        <Border Grid.Row="1" Margin="10 0 10 20 " Background="White"  >
             
             <DockPanel x:Name="WorkSpace" LastChildFill="True">
+                
+                <!-- Navbar -->
+                <Grid  DockPanel.Dock="Left" Background="#DEEAF1">
+                    <StackPanel x:Name="NavBar"  Width="156" Margin="12 0 ">
+                        <!-- Menu Button -->
+                        <StackPanel Orientation="Horizontal" Margin="0 23 0 12"> 
+                            <ToggleButton x:Name="MenuButton" DockPanel.Dock="Left" Height="50"  
+                                          Background="Transparent" BorderThickness="0"
+                                          Checked="MenuButton_OnChecked" Unchecked="MenuButton_OnUnchecked" >
+                                <Image Source="../../Assets/Icon/ThreeStickMenuIcon.png"></Image>
+                            </ToggleButton>
+                            <Image Margin="8 0 0 0 " Source="../../Assets/Image/LogoWithOutELF.png" Height="40"></Image>
+                        </StackPanel>
+                    
+                        <Border Style="{DynamicResource Splitter}"
+                                Width="150" BorderBrush="White"
+                                />
+                    
+                        <Button  Click="NavToSearching_OnClick" 
+                                Style="{DynamicResource NavigateButtonStyle}" >
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Source="../Assets/Icon/SearchIcon.png"  ></Image>
+                                <Label Margin="10 0 0 0" FontSize="15"  VerticalAlignment="Center">Search</Label>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button Click="NavToWriting_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="../Assets/Icon/WritingIcon4.png"></Image>
+                                <Label Margin="10 0 0 0" FontSize="15" VerticalAlignment="Center">Writing</Label>
+                            </StackPanel>
+                        </Button>
+                    
+                        <Button Click="NavToExam_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image  Source="../Assets/Icon/WritingIcon2.png"></Image>
+                                <Label Margin="10 0 0 0" FontSize="15" VerticalAlignment="Center">Exam</Label>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button  Click="NavToFlashCard_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Source="../Assets/Icon/FlashCardIcon2.png"></Image>
+                                <Label Margin="10 0 0 0" FontSize="15" VerticalAlignment="Center">FlashCard</Label>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    
+                    
+                </Grid>
+                
                 
                 <!-- User, Notify and Setting Button -->
                 <DockPanel DockPanel.Dock="Top" Height="85">
@@ -68,21 +118,12 @@
                         </Button>
                     </StackPanel>
                     
-                <!-- Menu Button -->
-                <ToggleButton x:Name="MenuButton" DockPanel.Dock="Left" Height="45" Width="50" Margin="38 0 30 0"
-                        Background="Transparent" BorderThickness="0"
-                        Checked="MenuButton_OnChecked" Unchecked="MenuButton_OnUnchecked" >
-                    <StackPanel Margin="0 7 0 0" Height="40" Width="40">
-                        <Border CornerRadius="2.5" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
-                        <Border CornerRadius="2.5" Margin="0 7 0 0" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
-                        <Border CornerRadius="2.5" Margin="0 7 0 0" Height="5" BorderThickness="2" BorderBrush="White" Background="White"></Border>
-                    </StackPanel>
-                </ToggleButton>
+
                     
                 <!-- Searching Bar -->
-                <Border x:Name="SearchTextContainer" DockPanel.Dock="Bottom" Margin="0 0 0 0 " 
+                    <Border x:Name="SearchTextContainer" DockPanel.Dock="Bottom" Margin="0 0 0 0 "
                         CornerRadius="12" Background="White" Width="560" Height="40"
-                        BorderThickness="1 1 1 1" BorderBrush="Transparent"
+                        BorderThickness="1 1 1 1" BorderBrush="Black"
                         GotFocus="SearchTextContainer_OnGotFocus"
                         LostFocus="SearchTextContainer_OnLostFocus">
                         <Grid>
@@ -107,62 +148,31 @@
                     </Border>
                 </DockPanel>
                 
-                <!-- Navbar -->
-                <Canvas x:Name="NavBar" DockPanel.Dock="Left" Width="50" Margin="38 0 30 0"
-                            Background="Transparent" HorizontalAlignment="Left" x:FieldModifier="public">
-                    
-                    <Button x:Name="NavToSearching"  Click="NavToSearching_OnClick" 
-                             Style="{DynamicResource RoundedButtonStyle}"
-                             MouseEnter="NavButton_OnMouseEnter"
-                             MouseLeave="NavButton_OnMouseLeave">
+                <StatusBar DockPanel.Dock="Bottom" x:Name="SBar" Background="Bisque" >
+                    <StatusBarItem Margin="5" BorderThickness="0 0 1 0"
+                                   BorderBrush="Black" >
+                        <TextBlock x:Name="StatusBarCurrentPage">Searching</TextBlock> 
+                    </StatusBarItem>
+                    <StatusBarItem Name="InternetConnectionStatusBarItem" Visibility="Collapsed" >
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../Assets/Icon/SearchIcon.png" Width="50" ></Image>
-                            <Label Width="80" FontSize="15" VerticalAlignment="Center">Search</Label>
+                            <TextBlock VerticalAlignment="Center">No internet</TextBlock>
+                            <Image Width="20" Margin="5 0 0 0" Source="../Assets/Icon/NoInternetIcon.png"></Image>
                         </StackPanel>
-                    </Button>
-                    
-                    <Button Canvas.Top="50" x:Name="NavToWriting"  Click="NavToWriting_OnClick" Style="{DynamicResource RoundedButtonStyle}"
-                            MouseEnter="NavButton_OnMouseEnter"
-                            MouseLeave="NavButton_OnMouseLeave"
-                            >
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="../Assets/Icon/WritingIcon4.png"></Image>
-                            <Label Width="80" FontSize="15" VerticalAlignment="Center">Writing</Label>
-                        </StackPanel>
-                    </Button>
-                    
-                    <Button Canvas.Top="100" x:Name="NavToExam" Click="NavToExam_OnClick" Style="{DynamicResource RoundedButtonStyle}"
-                            MouseEnter="NavButton_OnMouseEnter"
-                            MouseLeave="NavButton_OnMouseLeave">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="../Assets/Icon/WritingIcon2.png"></Image>
-                            <Label Width="80" FontSize="15" VerticalAlignment="Center">Exam</Label>
-                        </StackPanel>
-                    </Button>
-                    
-                    <Button  Canvas.Top="150" x:Name="NavToFlashCard"  Click="NavToFlashCard_OnClick" Style="{DynamicResource RoundedButtonStyle}"
-                             MouseEnter="NavButton_OnMouseEnter"
-                             MouseLeave="NavButton_OnMouseLeave">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="../Assets/Icon/FlashCardIcon2.png"></Image>
-                            <Label Width="80" FontSize="15" VerticalAlignment="Center">FlashCard</Label>
-                        </StackPanel>
-                    </Button>
-                </Canvas>
+                    </StatusBarItem>
+                </StatusBar>
+                
+                
                     
                 <!-- Right NavBar and Show Take Note Button -->
-                <Grid VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" Margin="0 0 40 0" >
+                <Grid VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" >
                     <Button Height="50" x:Name="ShowTakeNote" Click="ShowTakeNote_OnClick"
                             Background="Transparent" BorderThickness="0">
                         <Image Source="../Assets/Icon/TakeNoteIcon.png"></Image>
                     </Button>
                 </Grid>
                 
-                
-                
                 <Grid>
                     <Frame BorderThickness="0 0 0 0" 
-
                            Margin="0 0 0 0 " 
                            DockPanel.Dock="Right" 
                            x:Name="Note" 
@@ -187,28 +197,18 @@
 
                 <!-- Content Frame -->
                 <Frame BorderThickness="0 1 0 0" BorderBrush="Black" Margin="10 0 0 0 " 
-                       DockPanel.Dock="Bottom" 
                        x:Name="Content" 
                        NavigationUIVisibility="Hidden"
                        Panel.ZIndex="0"/>
                 </Grid>
+                
+                
+                <!-- StatusBar -->
+                
             </DockPanel>
         </Border>
         
-        <!-- StatusBar -->
-        <StatusBar Grid.Row="2" x:Name="SBar" Background="Bisque" 
-                   Margin="5 0 5 5" >
-            <StatusBarItem Margin="5" BorderThickness="0 0 1 0"
-                           BorderBrush="Black" >
-                <TextBlock x:Name="StatusBarCurrentPage">Searching</TextBlock> 
-            </StatusBarItem>
-            <StatusBarItem Name="InternetConnectionStatusBarItem" Visibility="Collapsed" >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center">No internet</TextBlock>
-                    <Image Width="20" Margin="5 0 0 0" Source="../Assets/Icon/NoInternetIcon.png"></Image>
-                </StackPanel>
-            </StatusBarItem>
-        </StatusBar>
+        
         
     </Grid>
 </Window>

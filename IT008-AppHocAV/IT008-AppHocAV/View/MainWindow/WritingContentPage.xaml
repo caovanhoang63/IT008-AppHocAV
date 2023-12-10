@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="WritingContentPage" MinHeight="500" Height="auto" MinWidth="800" Width="auto"
+      Title="WritingContentPage"  Height="auto"  Width="auto"
       HorizontalAlignment="Center"
       Loaded="WritingContentPage_OnLoaded"
       >
@@ -21,7 +21,7 @@
     
     <Grid HorizontalAlignment="Center">
         <ScrollViewer Style="{DynamicResource FavsScrollViewer}">
-            <StackPanel Width="750" Margin="0 20 0 0">
+            <StackPanel  Margin="0 20 0 0">
                 
                 <!-- Title -->
                 <TextBlock x:Name="TitleTextBlock"  FontSize="24" FontWeight="Medium"/>

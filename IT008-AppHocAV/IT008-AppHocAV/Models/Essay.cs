@@ -128,7 +128,5 @@ namespace IT008_AppHocAV.Models
             get => _createdAt;
             set => _createdAt = value;
         }
-
-   
     }
 }

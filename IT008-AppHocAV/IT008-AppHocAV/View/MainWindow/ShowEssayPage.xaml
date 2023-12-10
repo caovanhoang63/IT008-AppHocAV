@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="ShowEssayPage" MinHeight="500" Width="800"
+      Title="ShowEssayPage" Height="auto" Width="auto"
 >
       <Page.Resources>
             <ResourceDictionary>

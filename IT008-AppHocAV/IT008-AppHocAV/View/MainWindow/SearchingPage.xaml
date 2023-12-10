@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
       FontFamily="Comic Sans MS"
-      Title="Searching_page" MinHeight="500" Height="auto" Width="800"
+      Title="Searching_page" MinHeight="500" Height="auto" Width="auto"
       Margin="0 20 0  0">
     <Page.Resources>
         <ResourceDictionary>

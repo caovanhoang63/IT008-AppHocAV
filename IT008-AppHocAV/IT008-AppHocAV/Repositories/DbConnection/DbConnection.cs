@@ -9,6 +9,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             private readonly Authentication _authentication;
             private readonly EssayQ _essayQ;
             private readonly Register _register;
+            private readonly ExamQ _examQ;
         #endregion
 
         #region Declare Properties
@@ -18,15 +19,16 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         public EssayQ EssayQ => _essayQ;
 
         public Register Register => _register;
-            
 
+        public ExamQ ExamQ => _examQ;
+        
         #endregion
 
         #region Declare Constructors
         public DbConnection()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "LAPTOP-JRRAO9EA\\MSSQLSERVERR";
+            builder.DataSource = "DESKTOP-38JM1H0";
             builder.UserID = "sa";
             builder.Password = "123456";
             builder.InitialCatalog = "APP_HOC_AV";
