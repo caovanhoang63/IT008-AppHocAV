@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using IT008_AppHocAV;
 namespace IT008_AppHocAV.View.MainWindow
@@ -11,9 +12,9 @@ namespace IT008_AppHocAV.View.MainWindow
         public FlashCardPage()
         {
             InitializeComponent();
-            data= new List<string>() { "flashcard 1", "flashcarh 2" , "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3" };
+            data= new List<string>() { "flashcard 1", "flashcarh 2", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3" };
             lvListFlash.ItemsSource = data;
-            
+
         }
 
         public FlashCardPage(IT008_AppHocAV.MainWindow mainWindow)
@@ -40,6 +41,20 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             e.Handled = true;
             mainWindow.NavigateToPage("MakeFlashCard");// chua chạy đoạn này
+        }
+        private void DeleteFlashCard_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+            // khúc này ép data vô rồi làm tiếp 
+
+            e.Handled = true;
+            MessageBoxResult result =
+                    MessageBox.Show("You sure you want to delete this essay", null, MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                data.Remove("flashcard 1");
+
+            }
         }
     }
 }

@@ -181,14 +181,29 @@ namespace IT008_AppHocAV
                 } 
                 else if (pageName == "FlashCard")
                 {
-                    page = new FlashCardPage();
-                } 
-                else if (pageName == "NoInternet")
-                {
-                    page = new NoInternetPage();
+                    page = new FlashCardPage(this);
                 }
-                else if (pageName == "WritingContent")
-                {
+                 else if (pageName == "ShowFlashCard")
+                 {
+                /*if (pageCache["FlashCard"] is FlashCardPage listFlashCard)
+                    page = new ShowFlashCard(this, listFlashCard);*/
+                     page = new ShowFlashCardPage(this);
+
+
+                 }
+                  else if (pageName == "MakeFlashCard")
+                  {
+                     page = new MakeFlashCard(this);
+
+                  }
+
+
+                  else if (pageName == "NoInternet")
+                     {
+                         page = new NoInternetPage();
+                     }
+                  else if (pageName == "WritingContent")
+                  {
                     if (_pageCache.TryGetValue("CreateEssay", out var value))
                     {
                         var writingPage = (CreateEssayPage)value;
@@ -200,17 +215,17 @@ namespace IT008_AppHocAV
                         page = new WritingContentPage(this,writingPage.Essay );
                     }
 
-                } 
-                else if (pageName == "ShowListEssay")
-                {
+                  } 
+                  else if (pageName == "ShowListEssay")
+                  {
                     page = new ShowListEssayPage(this);
-                } 
-                else if (pageName == "ShowEssay")
-                {
+                  } 
+                  else if (pageName == "ShowEssay")
+                  {
                     if (_pageCache["ShowListEssay"] is  ShowListEssayPage listEssayPage )
                         page = new ShowEssayPage(this,listEssayPage);
-                }
-                return page;
+                  }
+                  return page;
             }
             
             public void NavigateToPage(string pageName)
