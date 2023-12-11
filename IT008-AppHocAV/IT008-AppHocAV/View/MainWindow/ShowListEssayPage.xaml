@@ -95,6 +95,7 @@
                            Width="auto" Height="400"
                            Background="Transparent"
                            BorderThickness="0"
+                            d:ItemsSource="{d:SampleData ItemCount=8}"
                            >
                     <ListView.ItemTemplate >
                         <!-- Defines Items Template -->

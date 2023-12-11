@@ -56,5 +56,10 @@ namespace IT008_AppHocAV.View.MainWindow
 
             }
         }
+
+        private void NewFlashCardButton_OnClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
