@@ -49,7 +49,7 @@
                 <Grid  DockPanel.Dock="Left" Background="#DEEAF1">
                     <StackPanel x:Name="NavBar"  Width="156" Margin="12 0 ">
                         <!-- Menu Button -->
-                        <StackPanel Orientation="Horizontal" Margin="0 23 0 12"> 
+                        <StackPanel Orientation="Horizontal" Margin="0 23 0 2"> 
                             <ToggleButton x:Name="MenuButton" DockPanel.Dock="Left" Height="50"  
                                           Background="Transparent" BorderThickness="0"
                                           Checked="MenuButton_OnChecked" Unchecked="MenuButton_OnUnchecked" >

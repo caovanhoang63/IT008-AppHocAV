@@ -92,6 +92,11 @@ namespace IT008_AppHocAV
 
             private void NavToWriting_OnClick(object sender, RoutedEventArgs e)
             {
+                if (_pageCache.TryGetValue("ShowEssay", out var value))
+                {
+                    NavigateToPage("ShowEssay");
+                    return;
+                }
                 NavigateToPage("ShowListEssay");
             }
 

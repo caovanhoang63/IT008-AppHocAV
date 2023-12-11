@@ -51,7 +51,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
             private void ShowEssayButton_OnClick(object sender, RoutedEventArgs e)
             {
-                var modelEssay = (Essay)((FrameworkElement)sender).DataContext;
+                Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;
                 _currentEssay = _mainWindow.DbConnection.EssayQ.SelectEssayById(modelEssay.Id);
                 _mainWindow.NavigateToPage("ShowEssay");
             }
@@ -167,7 +167,6 @@ namespace IT008_AppHocAV.View.MainWindow
                         {
                             if (essay.Title.StartsWith(textBox.Text))
                             {
-                                Console.WriteLine(essay.Title);
                                 _searchResult.Add(essay);
                             }
                         }

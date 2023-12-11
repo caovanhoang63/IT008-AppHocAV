@@ -19,9 +19,27 @@
         </ResourceDictionary>
     </Page.Resources>
     
-    <Grid HorizontalAlignment="Center">
+    <DockPanel HorizontalAlignment="Center" Margin="20 10">
+        <!-- Control buttons -->
+        <DockPanel DockPanel.Dock="Top" Margin="0 0 0 10 ">
+                  
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button DockPanel.Dock="Left" 
+                        Style="{DynamicResource TransparentButtonStyle}"
+                        Click="SubmitButton_OnClick">
+                    <Image Source="../../Assets/Icon/SaveIcon.png"></Image>
+                </Button>
+                <Button DockPanel.Dock="Left" 
+                        Style="{DynamicResource TransparentButtonStyle}">
+                    <Image Source="../../Assets/Icon/CloseIcon.png"></Image>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+        <!-- End control buttons -->
+        
         <ScrollViewer Style="{DynamicResource FavsScrollViewer}">
             <StackPanel  Margin="0 20 0 0">
+                
                 
                 <!-- Title -->
                 <TextBlock x:Name="TitleTextBlock"  FontSize="24" FontWeight="Medium"/>
@@ -70,5 +88,5 @@
 
             </StackPanel>            
         </ScrollViewer>
-    </Grid>
+    </DockPanel>
 </Page>

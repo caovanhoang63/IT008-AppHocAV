@@ -47,5 +47,17 @@ namespace IT008_AppHocAV.View.MainWindow
             }
 
         #endregion
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Click");
+        }
+
+        private void EditTitleButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            TitleTextBox.IsReadOnly = false;
+            TitleTextBox.BorderThickness = new Thickness(0,0,0,1);
+            TitleTextBox.Focus();
+        }
     }
 }

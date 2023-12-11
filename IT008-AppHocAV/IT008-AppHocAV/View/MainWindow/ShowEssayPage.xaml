@@ -19,13 +19,7 @@
       <DockPanel Margin="20 10">
             <!-- Control buttons -->
             <DockPanel DockPanel.Dock="Top" Margin="0 0 0 10 ">
-                  <Button Name="BackToListButton" 
-                          DockPanel.Dock="Left" 
-                          Style="{DynamicResource TransparentButtonStyle}"
-                          Click="BackToListButton_OnClick"
-                          >
-                        <Image Source="../../Assets/Icon/CloseIcon.png"></Image>
-                  </Button>
+                  
                   <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Name="ModifyEssayButton"
                                 Style="{DynamicResource TransparentButtonStyle }"
@@ -34,6 +28,13 @@
                         </Button>
                         <Button Style="{DynamicResource TransparentButtonStyle }">
                               <Image Source="../../Assets/Icon/BinIcon.png"></Image>
+                        </Button>
+                        <Button Name="BackToListButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource TransparentButtonStyle}"
+                                Click="BackToListButton_OnClick"
+                        >
+                              <Image Source="../../Assets/Icon/CloseIcon.png"></Image>
                         </Button>
                   </StackPanel>
             </DockPanel>
@@ -44,7 +45,11 @@
             <ScrollViewer DockPanel.Dock="Bottom" Style="{DynamicResource FavsScrollViewer}" Margin="10 0 0 0">
                   <StackPanel >
                         <!-- Tittle and time  -->
-                        <TextBlock Margin="0 10"  FontWeight="Medium" FontSize="18" Text="{Binding Title}"/>
+                        <StackPanel Orientation="Horizontal">
+                              <TextBox x:Name="TitleTextBox" Style="{DynamicResource ReadOnlyTextBox}" Padding="0" Margin="0 10"  FontWeight="Medium" FontSize="18" Text="{Binding Title}"/>
+                              <Button Style="{DynamicResource EditButtonStyle}"
+                                      Click="EditTitleButton_OnClick"></Button>
+                        </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
                               <TextBlock Margin="0 0 2 0 " FontWeight="Thin" FontSize="10">Created at:</TextBlock>
                               <TextBlock Margin="0 0 40 0 " FontWeight="Thin" FontSize="10" Text="{Binding CreatedAt}"/>
@@ -58,14 +63,21 @@
                         <Border Style="{DynamicResource Splitter}" ></Border>
             
                         <!-- Description -->
-                        <Label Style="{DynamicResource TagLabel}">Description:</Label>
+                        <StackPanel Orientation="Horizontal" >
+                              <Label Style="{DynamicResource TagLabel}">Description:</Label>
+                              <Button Style="{DynamicResource EditButtonStyle}"
+                                      Click="ButtonBase_OnClick"/>
+                        </StackPanel>
                         <TextBox Style="{DynamicResource ReadOnlyTextBox}" Text="{Binding Description}"/> 
                         <!-- End description -->
                         
-                        <Border Style="{DynamicResource Splitter}" ></Border>
 
                         <!-- Topic -->
-                        <Label  Style="{DynamicResource TagLabel}"  >Topic:</Label>
+                        <StackPanel Orientation="Horizontal">
+                              <Label  Style="{DynamicResource TagLabel}"  >Topic:</Label>
+                              <Button Style="{DynamicResource EditButtonStyle}"
+                                      Click="ButtonBase_OnClick"/>
+                        </StackPanel>
                         <TextBox  Style="{DynamicResource ReadOnlyTextBox}"  Text="{Binding Topic}"/> 
                         <!-- End topic -->
                         
@@ -74,14 +86,15 @@
                         <Image Margin="10" Width="300" Source="{Binding Image}"></Image>
                         <!-- End writing image -->
                         
-                        <Border Style="{DynamicResource Splitter}" ></Border>
 
                         <!-- Content -->
-                        <Label  Style="{DynamicResource TagLabel}" FontWeight="Medium">Content:</Label>
+                        <StackPanel Orientation="Horizontal">
+                              <Label  Style="{DynamicResource TagLabel}" FontWeight="Medium">Content:</Label>
+                              <Button Style="{DynamicResource EditButtonStyle}"
+                                      Click="ModifyEssayButton_OnClick"/>
+                        </StackPanel>
                         <TextBox Style="{DynamicResource ReadOnlyTextBox}" Text="{Binding Content}" />
                         <!-- End content -->
-                        
-                        
                   </StackPanel>
             </ScrollViewer>
       </DockPanel>
