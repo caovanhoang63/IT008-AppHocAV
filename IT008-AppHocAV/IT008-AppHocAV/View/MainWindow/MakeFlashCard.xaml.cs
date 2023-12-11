@@ -13,20 +13,24 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             InitializeComponent();
             data = new List<string>() { "item1", "item2" };
-           // lvMakeFlashCard.ItemsSource = data;
+            LvListCard.ItemsSource = data;
         }
         public MakeFlashCard(FlashCardPage flashCardPage)
         {
             InitializeComponent();
-            data = new List<string>() { "item1" , "item2" };
+            data = new List<string>() { "TERM" , "TERM" ,"TERM", "TERM" };
             this.flashCardPage = flashCardPage;
-            //lvMakeFlashCard.ItemsSource = data;
+            LvListCard.ItemsSource = data;
 
         }
         public MakeFlashCard(IT008_AppHocAV.MainWindow mainWindow)
         {
             this.InitializeComponent();
             this.mainWindow = mainWindow;
+            data = new List<string>() { "TERM1", "TERM1", "TERM1"  };
+             
+            LvListCard.ItemsSource = data;
+
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -42,11 +46,34 @@ namespace IT008_AppHocAV.View.MainWindow
         private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+            if (TitleTextBox.Text != string.Empty)
+            {
+                TextBlockTitle.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBlockTitle.Visibility = Visibility.Visible;
+            }
         }
 
         private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (DescriptionTextBox.Text != string.Empty)
+            {
+                TextBlockDescription.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBlockDescription.Visibility = Visibility.Visible;
+            }
         }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.NavigateToPage("FlashCard");
+            mainWindow.PageCache.Remove("MakeFlashCard");
+        }
+
+        
     }
 }
