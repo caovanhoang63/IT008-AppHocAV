@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="../../Assets/Styles/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
+              
                 <ResourceDictionary Source="../../Assets/Styles/ShowListEssayStyle.xaml"/>
                 <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
@@ -20,160 +20,84 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <!--<ScrollViewer Style="{DynamicResource FavsScrollViewer}"  >
-
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                 
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0"  >
-                <Label Height="50" Width="200" HorizontalAlignment="Center" Content="FlashCard" FontSize="26"> </Label>
-            </Grid>
-            <Grid Grid.Row="1"  >
-            <DockPanel  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 5 0 0 ">
-                <StackPanel   Orientation="Horizontal" HorizontalAlignment="Left" Background="Transparent">
-
-                    <Button x:Name="AddDeskButton" Style="{DynamicResource ButtonStyle}" Margin="10 0 0 0 " Click="AddDeskButton_Click">
-                        <Image Source="/Assets/Icon/AddIcon1.png" Height="30" Width="39" />
-                    </Button>
-                </StackPanel>
-            </DockPanel>
-            </Grid>
-            <Grid Grid.Row="2"  Margin="10,5,0,0" >
-
-                <ListView x:Name="lvListFlash"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                              ScrollViewer.VerticalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=3}">
-                    <ListView.Template>
-                        <ControlTemplate>
-                            <ItemsPresenter />
-                        </ControlTemplate>
-                    </ListView.Template>
-
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Button Name="ItemFlashCard" Click="ItemFlashCard_Click">
-                                
-                           
-                            <Grid Width="250" Height="130 " 
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue">
-                                <Grid.Clip>
-                                    <RectangleGeometry Rect="0,0,255,130" RadiusX="10" RadiusY="10"/>
-                                </Grid.Clip>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="36"></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" Background="Aquamarine"  >
-                                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button  Name ="EditFlashcard"  Margin="5 0 0 0" Background="{x:Null}"  Click="EditFlashcard_Click">
-                                            <Button.Clip>
-                                                <RectangleGeometry Rect="1.7,2,27,32" RadiusX="10" RadiusY="10"/>
-                                            </Button.Clip>
-                                            <Image Source="/Assets/Icon/EditIcon.png" Width="26" Height="26" />
-                                        </Button>
-                                        <Button Margin="5 0 5 0" Background="{x:Null}"  >
-                                            <Button.Clip>
-                                                <RectangleGeometry Rect="1.2,2,31,31" RadiusX="10" RadiusY="10"/>
-                                            </Button.Clip>
-                                            <Image Source="/Assets/Icon/DeleteIcon.png" Width="30" Height="30" />
-
-                                        </Button>
-
-                                    </StackPanel>
-                                </Grid>
-                                <Grid Grid.Row="1" Background="Aquamarine">
-                                    <Label HorizontalAlignment="Center"  Margin="0 10 0 0 " Content="{Binding }" FontSize="20">
-
-                                    </Label>
-                                </Grid>
-                            </Grid>
-                            </Button>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
-
-            </Grid>
-
-    </Grid>
-    </ScrollViewer>-->
-
-    <StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" ></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
 
         <!-- Header -->
-        <Grid Height="60" Margin="20 10" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+        <Border Grid.Row="0"
+                    BorderThickness="0 0 0 1"
+                    BorderBrush="Black"
+                    Margin="20 10">
+            <Grid  >
 
-            <Label Grid.Column="0" FontWeight="Medium" FontSize="30" VerticalAlignment="Center">Flash Card</Label>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            <!-- Search, Filter and Create new Flashcard Button -->
-            <StackPanel  Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
-                <Canvas Height="40" Width="200"  Margin="0 0 10 0">
+                <Label Grid.Column="0" FontWeight="Medium" FontSize="30" VerticalAlignment="Center">FlashCard</Label>
 
-                    <TextBox x:Name="SearchEssayTextBox"
-                                     Style="{DynamicResource SearchTextBoxStyle}"
-                                     Visibility="Collapsed"  />
-                    <Label x:Name="TextBlockPlaceHolder"
-                                   Visibility="Hidden"
-                                   Margin="0 4 0 0 "
-                                   Canvas.Left="12"
-                                   IsHitTestVisible="False" 
-                                   Content="Enter title..."
-                                   VerticalAlignment="Center"
-                                   Foreground="DarkGray"
-                                   FontSize="16"/>
+                <!-- Search, Filter and Create new Essay Button -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
+                    <Canvas Height="40" Width="200"  Margin="0 0 10 0"  >
+                        <TextBox x:Name="SearchFlashCardTextBox"
+                                             Style="{DynamicResource SearchTextBoxStyle}"
+                                             Visibility="Collapsed"  
+                                              TextChanged="SearchFlashCardTextBox_TextChanged"/>
 
-                    <Button x:Name="SearchButton"
-                                    Canvas.Right="0" Width="40" Height="40"
-                                    Background="#96B639"
-                                    Style="{DynamicResource RoundedButtonStyle }"
-                                  
-                                    >
-                        <Image Source="../../Assets/Icon/SearchIcon.png" Width="24"></Image>
+                        <Label Visibility="Hidden"
+                                       Margin="0 4 0 0 "
+                                       Canvas.Left="12"
+                                       IsHitTestVisible="False" 
+                                       Content="Enter title..."
+                                       VerticalAlignment="Center"
+                                       Foreground="DarkGray"
+                                       FontSize="16"/>
+
+                        <Button x:Name="SearchEssayButton"
+                                        Canvas.Right="0" Width="40" Height="40"
+                                        Background="#96B639"
+                                        Style="{DynamicResource RoundedButtonStyle }"
+                                         MouseEnter="SearchEssayButton_MouseEnter" 
+                                         MouseLeave="SearchEssayButton_MouseLeave">
+
+                            <Image Source="../../Assets/Icon/SearchIcon.png" Width="24"></Image>
+                        </Button>
+                    </Canvas>
+
+                    <Button Width="40" Height="40" Background="#96B639" Margin="0 0 10 0"
+                                Style="{DynamicResource RoundedButtonStyle}"  >
+
+                        <Image Source="../../Assets/Icon/FilterIcon.png" Width="24"></Image>
                     </Button>
-                </Canvas>
 
-                <Button x:Name="SortButton" Width="40" Height="40" Background="#96B639" Margin="0 0 10 0"
-                            Style="{DynamicResource RoundedButtonStyle}" >
-                    
-                    <Image Source="../../Assets/Icon/FilterIcon.png" Width="24"></Image>
-                </Button>
+                    <Button Width="150" Height="40" Background="#55AF6E"
+                                Style="{DynamicResource RoundedButtonStyle}">
 
-                <Button Width="150" Height="40" Background="#55AF6E"
-                            Style="{DynamicResource RoundedButtonStyle}"
-                            Click="NewFlashCardButton_OnClick">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="../../Assets/Icon/AddIcon1.png" Width="24"></Image>
-                        <Label FontSize="16" VerticalAlignment="Center">New FlashCard</Label>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-            <!-- End search, Filter and Create new Essay Button -->
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../../Assets/Icon/AddIcon1.png" Width="24"></Image>
+                            <Label FontSize="16" VerticalAlignment="Center">New FlashCard</Label>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <!-- End search, Filter and Create new Essay Button -->
+            </Grid>
+        </Border>
 
-        </Grid>
         <!-- End Header -->
-
-        <Border Style="{DynamicResource Splitter}" Margin="0 -20 0 0"></Border>
-        <!--Show list of essays -->
-        <ListView x:Name="lvListFlash" HorizontalAlignment="Left" 
-                           Margin="0 20"
-                           Width="auto" Height="400"
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <!--Show list of essays -->
+        <ListView  Grid.Row="1" x:Name="lvListFlash" HorizontalAlignment="Left" 
+                           Margin="0 5"
+                           Width="auto" Height="auto"
                            Background="Transparent"
                            BorderThickness="0"
                            d:ItemsSource="{d:SampleData ItemCount=4}"
+                             VerticalAlignment="Stretch"
+                               
                            >
             <ListView.Template>
                 <ControlTemplate>
@@ -183,18 +107,25 @@
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"  />
-                                            
+                    <WrapPanel Orientation="Horizontal"   
+                     />
+
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate >
+                
                 <!-- Defines Items Template -->
+                
                 <DataTemplate>
+                   
+                            
+                       
                     <Button Name="ItemFlashCard" Click="ItemFlashCard_Click" 
                             Height="140" Width="240"
                             Background="#F4EEEE"
                             Style="{DynamicResource RoundedButtonStyle}"
-                            Margin="20 10 10 10">
+                            Margin="10 10 10 10">
+                 
 
 
                        
@@ -236,15 +167,20 @@
                             </Grid>
                         </Grid>
                     </Button>
-                </DataTemplate>
+                     
+                    </DataTemplate>
+                 
                 <!--End defines Items Template -->
+ 
             </ListView.ItemTemplate>
 
         </ListView>
+        </ScrollViewer>
+
         <!--End show list of essays -->
 
 
-    </StackPanel>
+    </Grid>
 
 
 </Page>

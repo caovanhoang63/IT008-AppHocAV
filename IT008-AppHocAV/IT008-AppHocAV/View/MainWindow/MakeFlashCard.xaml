@@ -11,12 +11,17 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Assets/Styles/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/ShowListEssayStyle.xaml"/>
+                <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
     </Page.Resources>
     <Grid >
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="130"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -96,6 +101,80 @@
 
 
             </Button>
-        </Grid>
+        </Grid>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" ></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                    BorderThickness="0 0 0 1"
+                    BorderBrush="Black"
+                    Margin="20 10">
+            <Grid  >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" FontWeight="Medium" FontSize="30" VerticalAlignment="Center">Create new flashcard</Label>
+
+                <!-- Search, Filter and Create new Essay Button -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
+
+
+
+                    <Button Width="100" Height="40" Background="#55AF6E"
+                                Style="{DynamicResource RoundedButtonStyle}">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <Label FontSize="16" VerticalAlignment="Center">Create</Label>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <!-- End search, Filter and Create new Essay Button -->
+            </Grid>
+
+        </Border>
+
+        <Border Grid.Row="1"  BorderThickness="0 0 0 1"
+                    BorderBrush="Black"
+                    Margin="20 5">
+            <Grid>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Canvas Grid.Row="0" Margin=" 0 0 0 5">
+                    <TextBox Name="TitleTextBox" Background="#D9D9D9"
+                             Style="{DynamicResource SearchTextBoxStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="790" TextChanged="TitleTextBox_TextChanged"
+                             
+                             />
+
+
+                </Canvas>
+
+                <Canvas Grid.Row="1" Margin=" 0 5 0 0 ">
+                    <TextBox Name ="DescriptionTextBox"  Background="#D9D9D9"
+                             Style="{DynamicResource SearchTextBoxStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="790" Height="78" TextChanged="DescriptionTextBox_TextChanged"
+                            
+                             />
+
+
+                </Canvas>
+
+            </Grid>
+
+
+        </Border>
+
+
+
+
     </Grid>
 </Page>

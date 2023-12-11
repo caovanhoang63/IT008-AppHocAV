@@ -13,14 +13,14 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             InitializeComponent();
             data = new List<string>() { "item1", "item2" };
-            lvMakeFlashCard.ItemsSource = data;
+           // lvMakeFlashCard.ItemsSource = data;
         }
         public MakeFlashCard(FlashCardPage flashCardPage)
         {
             InitializeComponent();
             data = new List<string>() { "item1" , "item2" };
             this.flashCardPage = flashCardPage;
-            lvMakeFlashCard.ItemsSource = data;
+            //lvMakeFlashCard.ItemsSource = data;
 
         }
         public MakeFlashCard(IT008_AppHocAV.MainWindow mainWindow)
@@ -37,6 +37,16 @@ namespace IT008_AppHocAV.View.MainWindow
                 mainWindow.NavigateToPage("FlashCard");
                 mainWindow.PageCache.Remove("Writing");
             }
+        }
+
+        private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
