@@ -10,13 +10,14 @@
         WindowStyle="None"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         KeyDown="LoginWindow_OnKeyDown"
+        Loaded="LoginWindow_OnLoaded"
         >
     <!-- import style -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Assets/Styles/LoginPageStyle.xaml"/>
-                <ResourceDictionary Source="../Assets/Styles/MainStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -61,7 +62,7 @@
                         GotFocus="BoxBorder_OnGotFocus"
                         LostFocus="BoxBorder_OnLostFocus">
                     <TextBox Name="UserNameBox" Background="Transparent" BorderThickness="0" VerticalAlignment="Center"
-                             FontSize="18" Margin="12 0  12 0"></TextBox>
+                             FontSize="18" Margin="12 0  12 0" ></TextBox>
                 </Border>
                 <Label>Password:</Label>
                 <Border Name="PasswordBoxBorder" Width="400" Height="42" CornerRadius="12" BorderThickness="1" 
@@ -85,7 +86,7 @@
                     </StackPanel>
                 </Border>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <CheckBox Margin="0 7 0 0" ></CheckBox>
+                    <CheckBox Name="RememberMeCheckBox" Margin="0 7 0 0" ></CheckBox>
                     <Label FontSize="13">Remember me</Label>
                 </StackPanel>
                     <Button Name="LoginBtn" Style="{DynamicResource RoundedButtonStyle }" BorderThickness="0"  Width="400" Height="42"

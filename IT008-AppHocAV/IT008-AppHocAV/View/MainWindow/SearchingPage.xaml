@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
       FontFamily="Comic Sans MS"
-      Title="Searching_page" MinHeight="500" Height="auto" Width="800"
+      Title="Searching_page" MinHeight="500" Height="auto" Width="auto"
       Margin="0 20 0  0">
     <Page.Resources>
         <ResourceDictionary>
@@ -14,7 +14,6 @@
                 <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/SearchingPageStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
         </ResourceDictionary>
     </Page.Resources>
     <ScrollViewer Style="{DynamicResource FavsScrollViewer}" >
@@ -107,6 +106,7 @@
                 </Grid.RowDefinitions>
                 <!-- End grid define -->
                 
+                <!-- Google translate emulator -->
                 <Border Grid.Row="0" Grid.Column="0" BorderThickness="1" BorderBrush="Black" CornerRadius="12"
                         Margin="0 0 0  20" >
                     <Label Name="GtslLabel" HorizontalAlignment="Center">English</Label>
@@ -131,6 +131,8 @@
                 <Border Grid.Row="1" Grid.Column="2" BorderThickness="1" BorderBrush="Black" CornerRadius="12" Background="White" >
                     <RichTextBox x:Name="GTransTlText"  Background="Transparent" BorderThickness="0"  Margin="0 12 0  12"></RichTextBox>
                 </Border>
+                <!--End Google translate emulator -->
+
             </Grid>
             
         </Grid>

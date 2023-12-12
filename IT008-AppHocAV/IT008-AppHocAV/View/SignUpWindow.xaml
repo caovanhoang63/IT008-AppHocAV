@@ -15,7 +15,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Assets/Styles/SignUpPageStyle.xaml"/>
-                <ResourceDictionary Source="../Assets/Styles/MainStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -71,26 +71,35 @@
                     <Label>Password:</Label>
                     <Label>Confirm password:</Label>
                 </StackPanel>
-                <StackPanel Grid.Row="1" Grid.Column="1">
-                    <TextBox Name="FullName"></TextBox>
-                    <TextBox Name="Email"></TextBox>
-                    <TextBox Name="PhoneNumber"></TextBox>
-                    <Border Height="35" Margin="0 0 0 8 " BorderThickness="1" BorderBrush="Black"
+                <StackPanel Name="InputStackPanel" Grid.Row="1" Grid.Column="1">
+                    <Label Name="InvalidFullNameLabel" Style="{DynamicResource InvalidLabel}" Visibility="Hidden">This field cannot be left blank.</Label>
+                    <TextBox Name="FullName" TextChanged="FullName_OnTextChanged"></TextBox>
+                    <Label Name="InvalidEmailLabel" Style="{DynamicResource InvalidLabel}" Visibility="Hidden"> Please re-enter in the format xxx@abc.com.</Label>
+                    <TextBox TextChanged="Email_OnTextChanged" Name="Email"></TextBox>
+                    <Label Name="InvalidPhoneNumberLabel" Style="{DynamicResource InvalidLabel}" Visibility="Hidden">Incorrect phone number. Please re-enter in the format 0xxxxxxxxx</Label>
+                    <TextBox Name="PhoneNumber" TextChanged="PhoneNumber_OnTextChanged"></TextBox>
+                    <Label Name="InvalidDateOfBirthLabel" Style="{DynamicResource InvalidLabel}" Visibility="Hidden">This field cannot be left blank.</Label>
+                    <Border Name="DatePickerBorder" Height="35" Margin="0 0 0 0 " BorderThickness="1" BorderBrush="Black"
                             CornerRadius="12" >
-                        <DatePicker Name="DateOfBirth" BorderThickness="0" Margin=" 12 0 12 0" VerticalAlignment="Center"></DatePicker>
+                        <DatePicker Name="DateOfBirth" BorderThickness="0" Margin=" 12 0 12 0" 
+                                    VerticalAlignment="Center" SelectedDateChanged="DateOfBirth_OnSelectedDateChanged"></DatePicker>
                     </Border>
-                    <Border Height="35" Margin="0 0 0 8" BorderBrush="Black" 
+                    <Label Name="InvalidGenderLabel" Style="{DynamicResource InvalidLabel}" Visibility="Hidden">This field cannot be left blank.</Label>
+                    <Border Height="35" Margin="0 0 0 0" BorderBrush="Black" 
                             BorderThickness=" 0 0 0 1 ">
-                        <StackPanel  Orientation="Horizontal"
-                                    VerticalAlignment="Center">
-                            <RadioButton GroupName="Gender">Male</RadioButton>
-                            <RadioButton GroupName="Gender">Female</RadioButton>
-                            <RadioButton GroupName="Gender">Other</RadioButton>
+                        <StackPanel  Name="RadioButtonsStack" Orientation="Horizontal"
+                                    VerticalAlignment="Center" >
+                            <RadioButton x:Name="MaleRadioButton" GroupName="Gender" Checked="GenderRadioButton_OnChecked">Male</RadioButton>
+                            <RadioButton x:Name="FemaleRadioButton" GroupName="Gender"  Checked="GenderRadioButton_OnChecked">Female</RadioButton>
+                            <RadioButton x:Name="OtherGenderRadioButton" GroupName="Gender"  Checked="GenderRadioButton_OnChecked">Other</RadioButton>
                         </StackPanel>
                     </Border>
-                    <TextBox Name="UserName"></TextBox>
-                    <PasswordBox Name="Password"></PasswordBox>
-                    <PasswordBox></PasswordBox>
+                    <Label  Name="InvalidUserNameLabel" Style="{DynamicResource InvalidLabel}" Visibility="Hidden">Username must be 8-20 characters long and cannot start with a . or _.</Label>
+                    <TextBox Name="UserName" TextChanged="UserName_OnTextChanged"></TextBox>
+                    <Label Name="InvalidPasswordLabel" Style="{DynamicResource InvalidLabel}" Visibility="Hidden">Minimum eight characters, at least one letter, one number and one special character:</Label>
+                    <PasswordBox Name="PasswordBox" PasswordChanged="PasswordBox_OnPasswordChanged"></PasswordBox>
+                    <Label Name="InvalidConfirmPasswordLabel" Style="{DynamicResource InvalidLabel}" Visibility="Hidden">Please confirm your password!</Label>
+                    <PasswordBox Name="ConfirmPasswordBox" PasswordChanged="ConfirmPasswordBox_OnPasswordChanged"></PasswordBox>
                 </StackPanel>
             </Grid>
             
