@@ -106,7 +106,9 @@
                                        VerticalAlignment="Top"
                                         HorizontalAlignment="Left" 
                                         Foreground="DarkGray" 
-                                        FontSize="16"/>
+                                        FontSize="16"
+                                         />
+                         
 
 
                     </Grid>
@@ -117,82 +119,120 @@
 
         </Border>
 
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel Grid.Row="2">
+                <ListView  x:Name="LvListCard" HorizontalAlignment="Stretch" 
+                  Width="auto"
+                  Height="auto"
+                  Background="Transparent"
+                  BorderThickness="0" 
+                  d:ItemsSource="{d:SampleData ItemCount=2}">
 
-        <ListView Grid.Row="2" x:Name="LvListCard" HorizontalAlignment="Center" VerticalAlignment="Stretch"
-                            Width="auto"
-                            Height="auto"
-                            
-                           Background="Transparent"
-                           BorderThickness="0" 
-                           d:ItemsSource="{d:SampleData ItemCount=4}">
+                    <ListView.ItemTemplate >
+                        <!-- Defines Items Template -->
+                        <DataTemplate>
+                            <Border HorizontalAlignment="Stretch"   
+                            CornerRadius="10"  
+                            Background="#F4EEEE" Height="100"
+                            Margin="15 5 15 0">
+                                <Grid Margin="10 0 5 10">
+                                    <Grid.RowDefinitions >
+                                        <RowDefinition Height="25"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0"   >
+                                        <Button Name="DeleteCardButton" Margin="0 0 0 0" HorizontalAlignment="Right" BorderThickness="0" Background="Transparent" >
+                                             <Image Source="/Assets/Icon/ExitIcon.png" />
 
-            <ListView.ItemTemplate >
-                <!-- Defines Items Template -->
-                <DataTemplate>
-                    <Border HorizontalAlignment="Center" CornerRadius="10"  Background="#F4EEEE" Height="100">
-                        <Grid Margin="10 0 5 10">
-                            <Grid.RowDefinitions >
-                                <RowDefinition Height="25"></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0"   >
-                                <Button Name="DeleteCardButton" Margin="0 0 5 0" HorizontalAlignment="Right" BorderThickness="0" Background="Transparent" >
-                                    <Image Source="/Assets/Icon/BinIcon.png" />
-                                </Button>
+                                        </Button>
 
 
-                            </Grid>
-                            <Grid Grid.Row="1"  >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="350" ></ColumnDefinition>
-                                    <ColumnDefinition Width="350" ></ColumnDefinition>
-                                    <ColumnDefinition  ></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
+                                    </Grid>
+                                    <Grid Grid.Row="1"  >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" ></ColumnDefinition>
+                                            <ColumnDefinition  ></ColumnDefinition>
+                                            <ColumnDefinition Width="100" ></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0"   Orientation="Vertical" >
-                                    <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
-                                        <Grid>
-                                            <TextBox x:Name="TermBox" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"  Margin="5 1 5 1" FontSize="18" FontFamily="Times New Roman"  ></TextBox>
-                                            <TextBlock x:Name="TermBlock"  IsHitTestVisible="False" Text="Enter term..."
+                                        <StackPanel Grid.Column="0" Margin="0 0 5 0"  Orientation="Vertical" >
+                                            <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
+                                                <Grid>
+                                                    <TextBox x:Name="TermBox" BorderThickness="0" 
+                                                     Background="Transparent" VerticalAlignment="Center"  
+                                                     Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="TermBox_TextChanged"  ></TextBox>
+                                                    <TextBlock x:Name="TermBlock"  IsHitTestVisible="False" Text="Enter term..."
                                                         VerticalAlignment="Center" FontSize="16"
                                                          HorizontalAlignment="Left" 
                                                           Foreground="DarkGray" Margin="5" ></TextBlock>
-                                        </Grid>
-                                    </Border>
-                                    <Label   Height="30" FontSize="16" Content="{Binding}"></Label>
+                                                </Grid>
+                                            </Border>
+                                            <Label   Height="30" FontSize="16" Content="{Binding}"></Label>
 
-                                </StackPanel>
-                                <StackPanel Grid.Column="1"  >
-                                    <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
-                                        <Grid>
-                                            <TextBox x:Name="DefineBox" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 1 5 1" FontSize="18" FontFamily="Times New Roman"  ></TextBox>
-                                            <TextBlock x:Name="DefineBlock"  IsHitTestVisible="False" Text="Enter defination..."
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Margin="5 0 0 0"  >
+                                            <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
+                                                <Grid>
+                                                    <TextBox x:Name="DefineBox" BorderThickness="0" 
+                                                     Background="Transparent" VerticalAlignment="Center" 
+                                                     Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="DefineBox_TextChanged"  ></TextBox>
+                                                    <TextBlock x:Name="DefineBlock"  IsHitTestVisible="False" Text="Enter defination..."
                                                         VerticalAlignment="Center" FontSize="16"
                                                          HorizontalAlignment="Left" 
                                                           Foreground="DarkGray" Margin="5" ></TextBlock>
+                                                </Grid>
+                                            </Border>
+                                            <Label   Height="30" FontSize="16">DEFINATION</Label>
+
+                                        </StackPanel>
+                                        <Grid Grid.Column="2" >
+                                            <Button  BorderThickness="0" Height="40" Width="40" Background="Transparent"  >
+                                                <Image Source="/Assets/Icon/AddImageIcon.png" />
+
+                                            </Button>
                                         </Grid>
-                                    </Border>
-                                    <Label   Height="30" FontSize="16">DEFINATION</Label>
 
-                                </StackPanel>
-                                <Grid Grid.Column="2" >
-                                    <Button  BorderThickness="0" Height="40" Width="40" Background="Transparent"  >
-                                        <Image Source="/Assets/Icon/AddImageIcon.png" />
+                                    </Grid>
 
-                                    </Button>
                                 </Grid>
 
-                            </Grid>
+                            </Border>
 
-                        </Grid>
+                        </DataTemplate>
+                        <!--End defines Items Template -->
+                    </ListView.ItemTemplate>
 
+                </ListView>
+                <Button 
+                   HorizontalAlignment="Stretch" 
+                    x:Name="AddCardButton" Margin="15 5 15 10"
+                    Background="AliceBlue" Height="60"  Width= "auto"
+                     Style="{DynamicResource RoundedButtonStyle}"
+                    >
+                    
+
+                    <Border BorderBrush="Black"
+                            BorderThickness="0 0 0 2" Width="150">
+                     <StackPanel Orientation="Horizontal">
+                         <Image Source="/Assets/Icon/AddIcon1.png"  Width="30" Height="30" />
+
+                        <TextBox Margin="10 0 0 0"
+                        HorizontalAlignment="Center"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        FontFamily="Segoe UI Semibold"
+                        Height="25" Width="135" FontSize="20" Foreground="Black"
+                        >
+                        ADD CARD
+                        </TextBox>
+                      </StackPanel>
                     </Border>
 
-                </DataTemplate>
-                <!--End defines Items Template -->
-            </ListView.ItemTemplate>
 
-        </ListView>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
+
 
 
 

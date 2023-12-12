@@ -27,7 +27,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             this.InitializeComponent();
             this.mainWindow = mainWindow;
-            data = new List<string>() { "TERM1", "TERM1", "TERM1"  };
+            data = new List<string>() { "TERM1", "TERM1"  };
              
             LvListCard.ItemsSource = data;
 
@@ -74,6 +74,31 @@ namespace IT008_AppHocAV.View.MainWindow
             mainWindow.PageCache.Remove("MakeFlashCard");
         }
 
-        
+        private void TermBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string termContent = textBox.Text;
+            TextBlock termBlock = (TextBlock)textBox.FindName("TermBlock");
+
+            if (termContent != string.Empty)
+            {
+                termBlock.Visibility = Visibility.Hidden;
+            }
+            else { termBlock.Visibility = Visibility.Visible; }
+        }
+
+        private void DefineBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string defineContent = textBox.Text;
+            TextBlock termBlock = (TextBlock)textBox.FindName("DefineBlock");
+
+            if (defineContent != string.Empty)
+            {
+                termBlock.Visibility = Visibility.Hidden;
+            }
+            else { termBlock.Visibility = Visibility.Visible; }
+
+        }
     }
 }
