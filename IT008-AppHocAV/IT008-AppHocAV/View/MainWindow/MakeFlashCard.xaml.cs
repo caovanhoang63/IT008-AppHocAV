@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -27,7 +28,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             this.InitializeComponent();
             this.mainWindow = mainWindow;
-            data = new List<string>() { "TERM1", "TERM1"  };
+            data = new List<string>() { "TERM1", "TERM1", "TERM1", "TERM1", "TERM1" };
              
             LvListCard.ItemsSource = data;
 
@@ -99,6 +100,24 @@ namespace IT008_AppHocAV.View.MainWindow
             }
             else { termBlock.Visibility = Visibility.Visible; }
 
+        }
+
+        private void RefreshPage()
+        {
+            LvListCard.Items.Refresh();
+        }
+
+        private void DeleteCardButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            data.RemoveAt(1);
+            RefreshPage();
+        }
+
+        private void AddCardButton_Click(object sender, RoutedEventArgs e)
+        {
+            data.Add("TERM");
+            RefreshPage();
         }
     }
 }

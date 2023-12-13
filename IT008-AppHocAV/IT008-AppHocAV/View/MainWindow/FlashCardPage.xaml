@@ -74,8 +74,8 @@
                         <Image Source="../../Assets/Icon/FilterIcon.png" Width="24"></Image>
                     </Button>
 
-                    <Button Width="150" Height="40" Background="#55AF6E"
-                                Style="{DynamicResource RoundedButtonStyle}">
+                    <Button x:Name="NewFlashCard" Width="150" Height="40" Background="#55AF6E"
+                                Style="{DynamicResource RoundedButtonStyle}" Click="NewFlashCard_Click">
 
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../../Assets/Icon/AddIcon1.png" Width="24"></Image>

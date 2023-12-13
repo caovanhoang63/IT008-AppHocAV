@@ -170,21 +170,17 @@
     <Compile Include="View\MainWindow\SearchingPage.xaml.cs">
       <DependentUpon>SearchingPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\ShowEssayPage.xaml.cs">
       <DependentUpon>ShowEssayPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow\WritingContentPage.xaml.cs">
       <DependentUpon>WritingContentPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\CreateEssayPage.xaml.cs">
       <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
-
     </Compile>
     <Compile Include="View\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
@@ -224,7 +220,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-
     <Page Include="Assets\Styles\LoginPageStyle.xaml" />
     <Page Include="Assets\Styles\BaseStyles.xaml">
       <SubType>Designer</SubType>
@@ -240,24 +235,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-
-    
-    
     <Page Include="View\MainWindow\ExamPage.xaml" />
     <Page Include="View\MainWindow\FlashCardPage.xaml" />
     <Page Include="View\MainWindow\NoInternetPage.xaml" />
     <Page Include="View\MainWindow\SearchingPage.xaml" />
     <Page Include="View\MainWindow\MakeFlashCard.xaml" />
-
-  
     <Page Include="View\MainWindow\TakeNoteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Icon\refresh_icon.png" />
     <Resource Include="Assets\Icon\BookIcon.png" />
     <Resource Include="Assets\Icon\CheckIcon.png" />
     <Resource Include="Assets\Icon\FlashCard.png" />
@@ -289,46 +279,37 @@
     <Resource Include="Assets\Icon\ReturnIcon.png" />
     <Resource Include="Assets\Icon\CloseIcon.png" />
     <Resource Include="Assets\Icon\Minimal.png" />
-
-
     <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
     <Resource Include="Assets\Image\background.png" />
     <Resource Include="Assets\Icon\ExitIcon.png" />
     <Resource Include="Assets\Icon\nextBut.png" />
+    <Resource Include="Assets\Icon\nextbuttonFl.png" />
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\EditIcon.png" />
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="Assets\Icon\DeleteIcon.png" />
-
     <Compile Include="Util\BitmapConverter.cs" />
     <Compile Include="Util\WordCouting.cs" />
-
     <Compile Include="View\MainWindow\ShowListEssayPage.xaml.cs">
       <DependentUpon>ShowListEssayPage.xaml</DependentUpon>
     </Compile>
-    
     <Compile Include="View\MainWindow\Frontform.xaml.cs">
       <DependentUpon>Frontform.xaml</DependentUpon>
     </Compile>
-    
     <Compile Include="View\MainWindow\ShowFlashCardPage.xaml.cs">
       <DependentUpon>ShowFlashCardPage.xaml</DependentUpon>
     </Compile>
-
-    
     <Compile Include="View\MainWindow\ShowEssayPage.xaml.cs">
       <DependentUpon>ShowEssayPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow\WritingContentPage.xaml.cs">
       <DependentUpon>WritingContentPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\CreateEssayPage.xaml.cs">
       <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
@@ -338,7 +319,6 @@
     <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
-    
     <Page Include="Assets\Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -357,14 +337,10 @@
     <Page Include="View\MainWindow\ShowEssayPage.xaml" />
     <Page Include="View\MainWindow\WritingContentPage.xaml" />
     <Page Include="View\MainWindow\CreateEssayPage.xaml" />
-
     <Page Include="View\MainWindow\TakeNotePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
- 
-
-
     <Page Include="View\MainWindow\ShowFlashCardPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -372,20 +348,13 @@
     <Resource Include="Assets\Icon\FilterIcon.png" />
     <Resource Include="Assets\Icon\ModifiedIcon.png" />
   </ItemGroup>
-
-
   <ItemGroup>
     <Compile Include="Models\SortEssayOptions.cs" />
     <Compile Include="Models\User.cs" />
-
-    
     <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
     <Resource Include="View\MainWindow\background.png" />
   </ItemGroup>
-
-
-
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

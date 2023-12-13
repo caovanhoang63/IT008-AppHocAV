@@ -124,5 +124,11 @@ namespace IT008_AppHocAV.View.MainWindow
             if(!SearchFlashCardTextBox.IsMouseOver)
                 SearchFlashCardTextBox.Visibility=Visibility.Collapsed;
         }
+
+        private void NewFlashCard_Click(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            mainWindow.NavigateToPage("MakeFlashCard");// chua chạy đoạn này
+        }
     }
 }

@@ -8,22 +8,52 @@
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="800"
       Title="ShowFlashCardPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Assets/Styles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
 
-    
+            </ResourceDictionary.MergedDictionaries>
 
-    
+        </ResourceDictionary>
+    </Page.Resources>
 
-        <Grid Background="#45B3E0">
 
-            <!--// Define a 3D viewport //-->
 
-            <Viewport3D Height="300"
-                    Width="600">
+
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name ="RefeshButton"  BorderThickness="0 0 0 0" Background="Transparent" 
+                    Style="{DynamicResource RoundedButtonStyle }"
+                    Height="35" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0">
+                <Image Source="/Assets/Icon/refresh_icon.png" />
+
+            </Button>
+            <Button Name="ExitButton" BorderThickness="0 0 0 0" Background="Transparent" 
+                    Style="{DynamicResource RoundedButtonStyle }"
+                    Height="35" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0">
+                <Image Source="/Assets/Icon/ExitIcon.png" />
+
+            </Button>
+        </StackPanel>
+        <!--// Define a 3D viewport //-->
+
+            <Viewport3D Grid.Row="1"  Margin="30 40 30 40"
+                    >
 
                 <!--// Set the camera for the viewport //-->
 
                 <Viewport3D.Camera>
-                    <PerspectiveCamera Position="0,0,4" />
+                <PerspectiveCamera Position="0,0,3"  />
                 </Viewport3D.Camera>
 
                 <!--// Define a 2D visual element within the 3D viewport //-->
@@ -53,12 +83,12 @@
 
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True"
-                                     Brush="#FFFFFF" />
+                                     Brush="#FFFF" />
                     </Viewport2DVisual3D.Material>
 
                     <!--// Add a Toggle Button //-->
 
-                    <ToggleButton x:Name="Flip_Card"
+                    <ToggleButton x:Name="Flip_Card"    
                               Cursor="Hand">
 
                         <!--// Toggle Button Style //-->
@@ -106,8 +136,8 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="Front_Side"
                                                      Storyboard.TargetProperty="(Image.Opacity)"
-                                                     BeginTime="0:0:0.5"
-                                                     Duration="0:0:0"
+                                                     BeginTime="0:0:0.2"
+                                                     Duration="0:0:0.3"
                                                      From="1.0"
                                                      To="0.0" />
                                     </Storyboard>
@@ -119,8 +149,8 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="Back_Side"
                                                      Storyboard.TargetProperty="(Image.Opacity)"
-                                                     BeginTime="0:0:0.5"
-                                                     Duration="0:0:0"
+                                                     BeginTime="0:0:0.2"
+                                                     Duration="0:0:0.3"
                                                      From="0.0"
                                                      To="1.0" />
                                     </Storyboard>
@@ -133,19 +163,19 @@
                                         <Rotation3DAnimation Storyboard.TargetName="ViewPort"
                                                          Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
                                                          Duration="0:0:0.3"
-                                                         BeginTime="0:0:0">
+                                                         BeginTime="0:0:0.2">
 
                                             <!--// Set the initial rotation values //-->
 
                                             <Rotation3DAnimation.From>
-                                                <AxisAngleRotation3D Angle="0"
+                                                <AxisAngleRotation3D Angle="-10"
                                                                  Axis="0,1,0" />
                                             </Rotation3DAnimation.From>
 
                                             <!--// Set the final rotation values //-->
 
                                             <Rotation3DAnimation.To>
-                                                <AxisAngleRotation3D Angle="90"
+                                                <AxisAngleRotation3D Angle="100"
                                                                  Axis="0,1,0" />
                                             </Rotation3DAnimation.To>
 
@@ -154,15 +184,15 @@
                                         <Rotation3DAnimation Storyboard.TargetName="ViewPort"
                                                          Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
                                                          Duration="0:0:0.3"
-                                                         BeginTime="0:0:0.5">
+                                                         BeginTime="0:0:0.2">
 
                                             <Rotation3DAnimation.From>
-                                                <AxisAngleRotation3D Angle="-90"
+                                                <AxisAngleRotation3D Angle="-100"
                                                                  Axis="0, 1, 0" />
                                             </Rotation3DAnimation.From>
 
                                             <Rotation3DAnimation.To>
-                                                <AxisAngleRotation3D Angle="0"
+                                                <AxisAngleRotation3D Angle="-10"
                                                                  Axis="0, 1, 0" />
                                             </Rotation3DAnimation.To>
 
@@ -181,8 +211,8 @@
 
                                         <DoubleAnimation Storyboard.TargetName="Back_Side"
                                                      Storyboard.TargetProperty="(Image.Opacity)"
-                                                     BeginTime="0:0:0.5"
-                                                     Duration="0:0:0"
+                                                     BeginTime="0:0:0.2"
+                                                     Duration="0:0:0.3"
                                                      From="1.0"
                                                      To="0.0" />
 
@@ -196,8 +226,8 @@
 
                                         <DoubleAnimation Storyboard.TargetName="Front_Side"
                                                      Storyboard.TargetProperty="(Image.Opacity)"
-                                                     BeginTime="0:0:0.5"
-                                                     Duration="0:0:0"
+                                                     BeginTime="0:0:0.2"
+                                                     Duration="0:0:0.3"
                                                      From="0.0"
                                                      To="1.0" />
 
@@ -208,16 +238,16 @@
                                     <Storyboard>
                                         <Rotation3DAnimation Storyboard.TargetName="ViewPort"
                                                          Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
-                                                         Duration="0:0:0.5"
-                                                         BeginTime="0:0:0">
+                                                         Duration="0:0:0.3"
+                                                         BeginTime="0:0:0.2">
 
                                             <Rotation3DAnimation.From>
-                                                <AxisAngleRotation3D Angle="0"
+                                                <AxisAngleRotation3D Angle="-10"
                                                                  Axis="0, 1, 0" />
                                             </Rotation3DAnimation.From>
 
                                             <Rotation3DAnimation.To>
-                                                <AxisAngleRotation3D Angle="-90"
+                                                <AxisAngleRotation3D Angle="-100"
                                                                  Axis="0, 1, 0" />
                                             </Rotation3DAnimation.To>
 
@@ -225,16 +255,16 @@
 
                                         <Rotation3DAnimation Storyboard.TargetName="ViewPort"
                                                          Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
-                                                         Duration="0:0:0.5"
-                                                         BeginTime="0:0:0.5">
+                                                         Duration="0:0:0.3"
+                                                         BeginTime="0:0:0.2">
 
                                             <Rotation3DAnimation.From>
-                                                <AxisAngleRotation3D Angle="90"
+                                                <AxisAngleRotation3D Angle="100"
                                                                  Axis="0, 1, 0" />
                                             </Rotation3DAnimation.From>
 
                                             <Rotation3DAnimation.To>
-                                                <AxisAngleRotation3D Angle="0"
+                                                <AxisAngleRotation3D Angle="-10"
                                                                  Axis="0, 1, 0" />
                                             </Rotation3DAnimation.To>
 
@@ -269,28 +299,42 @@
 
             </Viewport3D>
 
-            <!--// Exit Button //-->
-        <Button  Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5 5 5 5">
-            <Image Source="/Assets/Icon/ExitIcon.png" />
-
-        </Button>
-        <Button Height="60" Width="60" HorizontalAlignment="Right"  Margin="20">
+        <Grid Grid.Row="2" Margin="0 0 0 30">
+            <Button x:Name="NextButton" Background="Transparent"
+                      Style="{DynamicResource RoundedButtonStyle }"
+                    Height="35" Width="35" HorizontalAlignment="Center" 
+                    VerticalAlignment="Bottom" Margin="160 0 0 40">
             <Image Source="/Assets/Icon/nextBut.png" />
 
-        </Button>
-        <Button Height="60" Width="60" HorizontalAlignment="Left"  Margin="20">
-            <Image Source="/Assets/Icon/nextBut.png" RenderTransformOrigin="0.5,0.5" >
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="180"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
+            </Button>
+            <Label Name ="CurrentCard"  Height="35" Width="35" HorizontalAlignment="Center"
+                      VerticalAlignment="Bottom" Margin="0 0 20 40" 
+                        Content="10" FontSize="22" FontWeight="DemiBold"></Label>
+            <Label Height="35" Width="35" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom" Margin="30 0 0 40" 
+                   Content="/" FontSize="22" FontWeight="DemiBold" 
+                   ></Label>
+            <Label  Name="TotalCard" Height="35" Width="35" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom" Margin="50 0 0 40" 
+                   Content="20" FontSize="22" FontWeight="DemiBold"
+                  ></Label>
+            <Button   Name="ReturnButton" Background="Transparent"
+                        Style="{DynamicResource RoundedButtonStyle }"
+                     Height="35" Width="35" HorizontalAlignment="Center"
+                      VerticalAlignment="Bottom" Margin="0 0 160 40">
+                <Image Source="/Assets/Icon/nextBut.png" RenderTransformOrigin="0.5,0.5" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="180"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
 
-        </Button>
+            </Button>
+        </Grid>
 
 
     </Grid>

@@ -40,7 +40,7 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" FontWeight="Medium" FontSize="30"  Margin="0 20 0 0">Create new flashcard</Label>
+                <Label Grid.Column="0" FontWeight="Medium" FontSize="30"  Margin="0 20 0 0">FlashCard's Details</Label>
 
                 <!-- Search, Filter and Create new Essay Button -->
                 <StackPanel Grid.Column="1" Orientation="Vertical"  HorizontalAlignment="Right">
@@ -55,7 +55,7 @@
 
                         <StackPanel Orientation="Horizontal">
 
-                            <Label FontSize="16" VerticalAlignment="Center">Create</Label>
+                            <Label FontSize="16" VerticalAlignment="Center">Submit</Label>
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -119,8 +119,8 @@
 
         </Border>
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
-            <StackPanel Grid.Row="2">
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto"  >
+            <StackPanel x:Name="Stack" Grid.Row="2"    >
                 <ListView  x:Name="LvListCard" HorizontalAlignment="Stretch" 
                   Width="auto"
                   Height="auto"
@@ -141,7 +141,7 @@
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0"   >
-                                        <Button Name="DeleteCardButton" Margin="0 0 0 0" HorizontalAlignment="Right" BorderThickness="0" Background="Transparent" >
+                                        <Button Name="DeleteCardButton" Margin="0 0 0 0" HorizontalAlignment="Right" BorderThickness="0" Background="Transparent" Click="DeleteCardButton_Click" >
                                              <Image Source="/Assets/Icon/ExitIcon.png" />
 
                                         </Button>
@@ -207,24 +207,24 @@
                    HorizontalAlignment="Stretch" 
                     x:Name="AddCardButton" Margin="15 5 15 10"
                     Background="AliceBlue" Height="60"  Width= "auto"
-                     Style="{DynamicResource RoundedButtonStyle}"
+                     Style="{DynamicResource RoundedButtonStyle}" Click="AddCardButton_Click"
                     >
                     
 
                     <Border BorderBrush="Black"
-                            BorderThickness="0 0 0 2" Width="150">
+                            BorderThickness="0 0 0 2" Width="145">
                      <StackPanel Orientation="Horizontal">
-                         <Image Source="/Assets/Icon/AddIcon1.png"  Width="30" Height="30" />
+                         <Image Margin="5 0 0 0" Source="/Assets/Icon/AddIcon1.png"  Width="30" Height="30" />
 
-                        <TextBox Margin="10 0 0 0"
+                        <Label Margin="8 0 0 0"
                         HorizontalAlignment="Center"
-                        BorderThickness="0"
+                        BorderThickness="0" Content="ADD CARD"
                         Background="Transparent"
                         FontFamily="Segoe UI Semibold"
-                        Height="25" Width="135" FontSize="20" Foreground="Black"
+                        Height="30" Width="135" FontSize="18" Foreground="Black"
                         >
-                        ADD CARD
-                        </TextBox>
+                        
+                        </Label>
                       </StackPanel>
                     </Border>
 
