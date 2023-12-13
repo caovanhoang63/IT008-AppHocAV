@@ -8,6 +8,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             private readonly SqlConnection _sqlConnection;
             private readonly Authentication _authentication;
             private readonly EssayQ _essayQ;
+            private readonly CardQ _cardQ;
             private readonly Register _register;
         #endregion
 
@@ -16,6 +17,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         public Authentication Authentication => _authentication;
 
         public EssayQ EssayQ => _essayQ;
+        public CardQ CardQ => _cardQ;
 
         public Register Register => _register;
             
@@ -33,7 +35,9 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             _sqlConnection = new SqlConnection(builder.ConnectionString);
             _authentication = new Authentication(_sqlConnection);
             _essayQ = new EssayQ(_sqlConnection);
+            _cardQ = new CardQ(_sqlConnection);
             _register = new Register(_sqlConnection);
+
         }
         #endregion
         

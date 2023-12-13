@@ -132,7 +132,9 @@
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
+    <Compile Include="Repositories\DbConnection\CardQ.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
+    <Compile Include="Repositories\DbConnection\DeskQ.cs" />
     <Compile Include="Repositories\DbConnection\EssayQ.cs" />
     <Compile Include="Repositories\DbConnection\Register.cs" />
     <Compile Include="Repositories\InternetConnectionManager.cs" />
