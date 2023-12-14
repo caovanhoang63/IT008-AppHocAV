@@ -28,10 +28,10 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         public DbConnection()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "DESKTOP-38JM1H0";
-            builder.UserID = "sa";
-            builder.Password = "123456";
-            builder.InitialCatalog = "APP_HOC_AV";
+            builder.DataSource = Properties.Settings.Default.DataSource;
+            builder.UserID = Properties.Settings.Default.DbUserID;
+            builder.Password = Properties.Settings.Default.DbPassword;
+            builder.InitialCatalog = Properties.Settings.Default.InitialCatalog;
             _sqlConnection = new SqlConnection(builder.ConnectionString);
             _authentication = new Authentication(_sqlConnection);
             _essayQ = new EssayQ(_sqlConnection);

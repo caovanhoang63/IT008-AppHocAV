@@ -57,5 +57,41 @@ namespace IT008_AppHocAV.Properties {
                 this["RememberMe"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("it008.database.windows.net")]
+        public string DataSource {
+            get {
+                return ((string)(this["DataSource"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("caovanhoang204")]
+        public string DbUserID {
+            get {
+                return ((string)(this["DbUserID"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Hh12032004@")]
+        public string DbPassword {
+            get {
+                return ((string)(this["DbPassword"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("APP_HOC_AV")]
+        public string InitialCatalog {
+            get {
+                return ((string)(this["InitialCatalog"]));
+            }
+        }
     }
 }
