@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using IT008_AppHocAV.Properties;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
 {
@@ -27,12 +28,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         #region Declare Constructors
         public DbConnection()
         {
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = Properties.Settings.Default.DataSource;
-            builder.UserID = Properties.Settings.Default.DbUserID;
-            builder.Password = Properties.Settings.Default.DbPassword;
-            builder.InitialCatalog = Properties.Settings.Default.InitialCatalog;
-            _sqlConnection = new SqlConnection(builder.ConnectionString);
+            _sqlConnection = new SqlConnection(Settings.Default.DbConnectionString);
             _authentication = new Authentication(_sqlConnection);
             _essayQ = new EssayQ(_sqlConnection);
             _register = new Register(_sqlConnection);
