@@ -11,18 +11,7 @@
     <Setting Name="RememberMe" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="DataSource" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">it008.database.windows.net</Value>
-    </Setting>
-    <Setting Name="DbUserID" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">caovanhoang204</Value>
-    </Setting>
-    <Setting Name="DbPassword" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Hh12032004@</Value>
-    </Setting>
-    <Setting Name="InitialCatalog" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">APP_HOC_AV</Value>
-    </Setting>
+    Server=tcp:it008.database.windows.net,1433;Initial Catalog=APP_HOC_AV;Persist Security Info=False;User ID=caovanhoang20
     <Setting Name="DbConnectionString" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Server=tcp:it008.database.windows.net,1433;Initial Catalog=APP_HOC_AV;Persist Security Info=False;User ID=caovanhoang204;Password=Hh12032004@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;</Value>
     </Setting>

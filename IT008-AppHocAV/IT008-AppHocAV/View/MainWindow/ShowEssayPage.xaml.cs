@@ -19,7 +19,6 @@ namespace IT008_AppHocAV.View.MainWindow
                 InitializeComponent();
                 this._mainWindow = mainWindow;
                 this._listEssayPage = listEssayPage;
-                Console.WriteLine(listEssayPage.CurrentEssay.Title);    
                 _essay = listEssayPage.CurrentEssay;
                 this.DataContext = _essay;
             }
