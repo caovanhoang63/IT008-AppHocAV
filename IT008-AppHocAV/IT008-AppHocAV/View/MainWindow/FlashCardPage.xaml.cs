@@ -1,12 +1,60 @@
-﻿using System.Windows.Controls;
-
+﻿using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using IT008_AppHocAV;
 namespace IT008_AppHocAV.View.MainWindow
 {
     public partial class FlashCardPage : Page
     {
+        List<string> data;
+        public MakeFlashCard MakeFlashCard;
+        public IT008_AppHocAV.MainWindow mainWindow;
         public FlashCardPage()
         {
             InitializeComponent();
+            data= new List<string>() { "flashcard 1", "flashcarh 2", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3", "flashcard 3" };
+            lvListFlash.ItemsSource = data;
+
+        }
+
+        public FlashCardPage(IT008_AppHocAV.MainWindow mainWindow)
+        {
+            InitializeComponent();
+            data= new List<string>() { "flashcard 1", "flashcarh 2", "flashcard 3",    };
+            lvListFlash.ItemsSource = data;
+            this.mainWindow = mainWindow;
+
+        }
+
+
+        private void AddDeskButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            mainWindow.NavigateToPage("MakeFlashCard");
+        }
+
+        private void ItemFlashCard_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            mainWindow.NavigateToPage("ShowFlashCard");
+        }
+
+        private void EditFlashcard_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            e.Handled = true;
+            mainWindow.NavigateToPage("MakeFlashCard");// chua chạy đoạn này
+        }
+        private void DeleteFlashCard_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+            // khúc này ép data vô rồi làm tiếp 
+
+            e.Handled = true;
+            MessageBoxResult result =
+                    MessageBox.Show("You sure you want to delete this essay", null, MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                data.Remove("flashcard 1");
+
+            }
         }
     }
 }

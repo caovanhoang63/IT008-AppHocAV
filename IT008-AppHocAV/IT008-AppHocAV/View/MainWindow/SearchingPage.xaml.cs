@@ -16,20 +16,27 @@ namespace IT008_AppHocAV.View.MainWindow
 {
     public partial class SearchingPage : Page
     {
-        public SearchingPage()
-        {
-            InitializeComponent();
-            DicApiResultContainer.Visibility = Visibility.Hidden;
-            GoogleTranslateContainer.Visibility = Visibility.Hidden;
-            _languages.Add("English","en");
-            _languages.Add("Vietnamese","vi");
-        }
-        
-        private DispatcherTimer _debounceTimer;
-        private readonly Dictionary<string, string> _languages = new Dictionary<string, string>();
-        private readonly Dictionary<string, Pair<TextBox,bool>> _definitionTextBoxList = new Dictionary<string,Pair<TextBox,bool>>();
-        private int _definitionCount = 0;
 
+        #region Declare Fields
+            private DispatcherTimer _debounceTimer;
+            private readonly Dictionary<string, string> _languages = new Dictionary<string, string>();
+            private readonly Dictionary<string, Pair<TextBox,bool>> _definitionTextBoxList = new Dictionary<string,Pair<TextBox,bool>>();
+            private int _definitionCount = 0;
+        #endregion
+
+        #region Declare Constructors
+            public SearchingPage(IT008_AppHocAV.MainWindow mainWindow )
+            {
+                InitializeComponent();
+                DicApiResultContainer.Visibility = Visibility.Hidden;
+                GoogleTranslateContainer.Visibility = Visibility.Hidden;
+                _languages.Add("English","en");
+                _languages.Add("Vietnamese","vi");
+            }
+
+        #endregion
+
+        
         //Clean UI for new Search
         private void ResetPage()
         {
@@ -40,6 +47,8 @@ namespace IT008_AppHocAV.View.MainWindow
             this.MeaningsContainer.Children.Clear();
             _definitionTextBoxList.Clear();
         }
+        
+        
         public async Task Search(string text)
         {
             if (text == this.Word.Text)
@@ -49,16 +58,20 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 //Call DictionaryApi
                 List<DictionaryEntry> words = await DictionaryApi.SearchDictionary(text);
+                
                 //Create header of page 
                 this.Word.Text = text;
                 this.VnWord.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
                 PhoneticHandler(words[0]);
+                
                 //Generate meanings xaml
                 string meaningXaml = GenerateWordDictionaryEntry(words);
                 UIElement generatedElement = (UIElement)XamlReader.Parse(meaningXaml);
+                
                 //Write meanings xaml to page
                 this.MeaningsContainer.Children.Add(generatedElement);
                 this.DicApiResultContainer.Visibility = Visibility.Visible;
+                
                 //Add click event for drop down translate definition buttons
                 FindButtonsInStackPanels(MeaningsContainer);
                 var imageApi = await PexelsImageAPI.GetImages(text);
@@ -74,6 +87,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 this.GoogleTranslateContainer.Visibility = Visibility.Visible;
                 this.GTransSlText.Selection.Text = text;
                 this.GTransTlText.Selection.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
+
             }
             //if Image error, hidden WordImage
             catch (ArgumentOutOfRangeException e)
@@ -82,7 +96,12 @@ namespace IT008_AppHocAV.View.MainWindow
             }
         }
         
-        //Handle Phonetic from DictionaryApi to display on Header of page
+        
+        
+        /// <summary>
+        /// Handle Phonetic from DictionaryApi to display on Header of page
+        /// </summary>
+        /// <returns></returns>
         private void  PhoneticHandler(DictionaryEntry word)
         {
             string usPhonetic = "";
@@ -153,7 +172,12 @@ namespace IT008_AppHocAV.View.MainWindow
             
         }
         
-        //Generate xaml for all result from dictionaryApi by call GenerateWordMeangs
+        
+        /// <summary>
+        /// Generate xaml for all result from dictionaryApi by call GenerateWordMeanings
+        /// </summary>
+        /// <param name="words"></param>
+        /// <returns></returns>
         private string GenerateWordDictionaryEntry(List<DictionaryEntry> words)
         {
             string xaml = @"<StackPanel xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"">";
@@ -168,7 +192,11 @@ namespace IT008_AppHocAV.View.MainWindow
             return xaml;
         }
         
-        //Generate xaml for each word from dictionaryApi
+        /// <summary>
+        /// Generate xaml for each word from dictionaryApi
+        /// </summary>
+        /// <param name="meaning"></param>
+        /// <returns></returns>
         private string GenerateWordMeaningsXaml(Meaning meaning)
         {
             string xaml = $@"

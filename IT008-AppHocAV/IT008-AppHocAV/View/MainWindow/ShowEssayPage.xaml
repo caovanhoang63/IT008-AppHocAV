@@ -1,0 +1,104 @@
+﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.ShowEssayPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
+      mc:Ignorable="d"
+      Title="ShowEssayPage" Height="auto" Width="auto"
+>
+      <Page.Resources>
+            <ResourceDictionary>
+                  <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
+                        <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
+                        <ResourceDictionary Source="../../Assets/Styles/ShowEssayStyle.xaml"></ResourceDictionary>
+                  </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+      </Page.Resources>
+      <DockPanel Margin="20 10">
+            <!-- Control buttons -->
+            <DockPanel DockPanel.Dock="Top" Margin="0 0 0 10 ">
+                  
+                  <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Name="ModifyEssayButton"
+                                Style="{DynamicResource TransparentButtonStyle }"
+                                Click="ModifyEssayButton_OnClick">
+                              <Image Source="../../Assets/Icon/ModifiedIcon.png"></Image>
+                        </Button>
+                        <Button Style="{DynamicResource TransparentButtonStyle }">
+                              <Image Source="../../Assets/Icon/BinIcon.png"></Image>
+                        </Button>
+                        <Button Name="BackToListButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource TransparentButtonStyle}"
+                                Click="BackToListButton_OnClick"
+                        >
+                              <Image Source="../../Assets/Icon/CloseIcon.png"></Image>
+                        </Button>
+                  </StackPanel>
+            </DockPanel>
+            <!-- End control buttons -->
+            
+            <Border DockPanel.Dock="Top" Style="{DynamicResource Splitter}" ></Border>
+
+            <ScrollViewer DockPanel.Dock="Bottom" Style="{DynamicResource FavsScrollViewer}" Margin="10 0 0 0">
+                  <StackPanel >
+                        <!-- Tittle and time  -->
+                        <StackPanel Orientation="Horizontal">
+                              <TextBox x:Name="TitleTextBox" Style="{DynamicResource ReadOnlyTextBox}" Padding="0" Margin="0 10"  FontWeight="Medium" FontSize="18" Text="{Binding Title}"/>
+                              <Button Style="{DynamicResource EditButtonStyle}"
+                                      Click="EditTitleButton_OnClick"></Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
+                              <TextBlock Margin="0 0 2 0 " FontWeight="Thin" FontSize="10">Created at:</TextBlock>
+                              <TextBlock Margin="0 0 40 0 " FontWeight="Thin" FontSize="10" Text="{Binding CreatedAt}"/>
+                              <TextBlock Margin="0 0 2 0 " FontWeight="Thin" FontSize="10">Last modified:</TextBlock>
+                              <TextBlock Margin="0 0 40 0 " FontWeight="Thin" FontSize="10" Text="{Binding UpdatedAt}"/>
+                              <TextBlock Margin="0 0 2 0 " FontWeight="Thin" FontSize="10" Text="{Binding Words}"></TextBlock>
+                              <TextBlock Margin="0 0 40 0 " FontWeight="Thin" FontSize="10" Text="words"/>
+                        </StackPanel>
+                        <!-- End Title and Time -->
+                        
+                        <Border Style="{DynamicResource Splitter}" ></Border>
+            
+                        <!-- Description -->
+                        <StackPanel Orientation="Horizontal" >
+                              <Label Style="{DynamicResource TagLabel}">Description:</Label>
+                              <Button Style="{DynamicResource EditButtonStyle}"
+                                      Click="ButtonBase_OnClick"/>
+                        </StackPanel>
+                        <TextBox Style="{DynamicResource ReadOnlyTextBox}" Text="{Binding Description}"/> 
+                        <!-- End description -->
+                        
+
+                        <!-- Topic -->
+                        <StackPanel Orientation="Horizontal">
+                              <Label  Style="{DynamicResource TagLabel}"  >Topic:</Label>
+                              <Button Style="{DynamicResource EditButtonStyle}"
+                                      Click="ButtonBase_OnClick"/>
+                        </StackPanel>
+                        <TextBox  Style="{DynamicResource ReadOnlyTextBox}"  Text="{Binding Topic}"/> 
+                        <!-- End topic -->
+                        
+
+                        <!-- Writing image -->
+                        <Image Margin="10" Width="300" Source="{Binding Image}"></Image>
+                        <!-- End writing image -->
+                        
+
+                        <!-- Content -->
+                        <StackPanel Orientation="Horizontal">
+                              <Label  Style="{DynamicResource TagLabel}" FontWeight="Medium">Content:</Label>
+                              <Button Style="{DynamicResource EditButtonStyle}"
+                                      Click="ModifyEssayButton_OnClick"/>
+                        </StackPanel>
+                        <TextBox Style="{DynamicResource ReadOnlyTextBox}" Text="{Binding Content}" />
+                        <!-- End content -->
+                  </StackPanel>
+            </ScrollViewer>
+      </DockPanel>
+      
+     
+      
+</Page>

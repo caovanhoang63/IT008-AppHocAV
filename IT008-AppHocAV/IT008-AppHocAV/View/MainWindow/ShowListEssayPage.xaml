@@ -1,0 +1,170 @@
+﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.ShowListEssayPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
+      xmlns:uc="clr-namespace:IT008_AppHocAV.Components.RadioButtonMenuItem"
+      mc:Ignorable="d"
+      Title="ShowListEssayPage"  Height="auto"  Width="auto">
+    
+    <Page.Resources>
+        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/ShowListEssayStyle.xaml"/>
+                <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90" ></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions> 
+            
+            <!-- Header -->
+            <Border Grid.Row="0"
+                    BorderThickness="0 0 0 1"
+                    BorderBrush="Black"
+                    Margin="20 10">
+                <Grid  >
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Grid.Column="0" FontWeight="Medium" FontSize="30" VerticalAlignment="Center">Writing</Label>
+                    
+                    <!-- Search, Filter and Create new Essay Button -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
+                        <Canvas Height="40" Width="200"  Margin="0 0 10 0">
+                                <TextBox x:Name="SearchEssayTextBox"
+                                             Style="{DynamicResource SearchTextBoxStyle}"
+                                             Visibility="Collapsed" TextChanged="SearchEssayTextBox_OnTextChanged"
+                                             Background="#D9D9D9"/>
+                                
+                                <Label Visibility="Hidden"
+                                       Margin="0 4 0 0 "
+                                       Canvas.Left="12"
+                                       IsHitTestVisible="False" 
+                                       Content="Enter title..."
+                                       VerticalAlignment="Center"
+                                       Foreground="DarkGray"
+                                       FontSize="16"/>
+                               
+                                <Button x:Name="SearchEssayButton"
+                                        Canvas.Right="0" Width="40" Height="40"
+                                        Background="#96B639"
+                                        Style="{DynamicResource RoundedButtonStyle }"
+                                        MouseEnter="SearchEssayButton_OnMouseEnter"
+                                        MouseLeave="SearchEssayButton_OnMouseLeave">
+                                    <Image Source="../../Assets/Icon/SearchIcon.png" Width="24"></Image>
+                                </Button>
+                        </Canvas>
+                        
+                        <Button Width="40" Height="40" Background="#96B639" Margin="0 0 10 0"
+                                Style="{DynamicResource RoundedButtonStyle}" Click="SortEssayButton_OnClick">
+                            <Button.ContextMenu>
+                                <ContextMenu Placement="Bottom" IsOpen="False">
+                                    <uc:RadioButtonMenuItem Header="Title" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                    <uc:RadioButtonMenuItem Header="Words" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                    <uc:RadioButtonMenuItem Header="Date modified" IsChecked="True" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                    <uc:RadioButtonMenuItem Header="Date created" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                    <Separator/>
+                                    <uc:RadioButtonMenuItem x:Name="Ascending" Header="Ascending" GroupName="OrderOptionGroup" IsChecked="True" Click="OrderOption_OnClick"/>
+                                    <uc:RadioButtonMenuItem x:Name="Descending" Header="Descending" GroupName="OrderOptionGroup" Click="OrderOption_OnClick"/>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                            <Image Source="../../Assets/Icon/SortIcon.png" Width="24"></Image>
+                        </Button>
+                        
+                        <Button Width="120" Height="40" Background="#55AF6E"
+                                Style="{DynamicResource RoundedButtonStyle}"
+                                Click="NewEssayButton_OnClick">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="../../Assets/Icon/AddIcon1.png" Width="24"></Image>
+                                <Label FontSize="16" VerticalAlignment="Center">New Essay</Label>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                <!-- End search, Filter and Create new Essay Button -->
+            </Grid>
+            </Border>
+            
+            <!-- End Header -->
+
+            <!--Show list of essays -->
+            <ListView Grid.Row="1" Name="ListEssayListView" HorizontalAlignment="Center" 
+                      VerticalAlignment="Stretch"
+                      Margin="0 20"
+                      Background="Transparent"
+                      BorderThickness="0">
+                <ListView.ItemTemplate >
+                    <!-- Defines Items Template -->
+                    <DataTemplate>
+                        <Button Height="80" Width="700"
+                                Background="#F4EEEE"
+                                Style="{DynamicResource RoundedButtonStyle}"
+                                Margin="  0 8 "
+                                Click="ShowEssayButton_OnClick">
+                            <Grid Width="660">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" ></ColumnDefinition>                                    
+                                    <ColumnDefinition Width="100"></ColumnDefinition>                                    
+                                </Grid.ColumnDefinitions>
+                                
+                                <!-- Shows essay information -->
+                                <StackPanel Grid.Column="0">
+                                    <Label Padding="0 2" FontWeight="Medium" FontSize="15"
+                                           Content="{Binding Title}"/>
+                                    <Label  MaxHeight="30"
+                                            Padding="0 2" FontSize="15"
+                                            Content="{Binding Topic}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Padding="0 2" Margin="0 0 2 0" FontSize="10">Created at: </Label>
+                                        <Label Padding="0 2" Margin="0 0 40 0" FontSize="10" Width="100" Content="{Binding CreatedAt }"></Label>
+                                        <Label Padding="0 2" Margin="0 0 2 0" FontSize="10" >Last modified: </Label>
+                                        <Label Padding="0 2" Margin="0 0 40 0" FontSize="10" Width="100" Content="{Binding UpdatedAt}"></Label>
+                                        <Label Padding="0 2" FontSize="10" Content="{Binding Words}"></Label>
+                                        <Label Padding="0 2" Margin="2 0 0 0" FontSize="10" >words</Label>
+                                    </StackPanel>
+                                </StackPanel>
+                                <!-- End shows essay information -->
+
+                                <!-- Show, Modify and Delete Button -->
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    
+                                    <Button Style="{DynamicResource TransparentButtonStyle }"
+                                            Height="30" Width="30">
+                                        <Image Source="../../Assets/Icon/EditIcon.png"></Image>
+                                    </Button>
+                                    <Button Name="DeleteEssayButton" Style="{DynamicResource TransparentButtonStyle }"
+                                            Click="DeleteEssayButton_OnClick"
+                                            Height="30" Width="30">
+                                        <Image Source="../../Assets/Icon/DeleteIcon.png"></Image>
+                                    </Button>
+                                </StackPanel>
+                                <!--End show, Modify and Delete Button -->
+                                
+                                <StackPanel Grid.Column="1"></StackPanel>
+                            </Grid>
+                        </Button>
+                    </DataTemplate>
+                    <!--End defines Items Template -->
+                </ListView.ItemTemplate>
+
+            </ListView>
+             
+            <!--End show list of essays -->
+
+            
+        </Grid>
+        
+        
+        
+</Page>
