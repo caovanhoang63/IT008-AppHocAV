@@ -1,11 +1,13 @@
-﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.MakeFlashCard"
+﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.EditFlashCard"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
-      mc:Ignorable="d"
-      Title="MakeFlashCard"  MinHeight="500" MaxHeight="800"  Height="auto" Width="auto"   >
+      mc:Ignorable="d" 
+    
+      Title="EditFlashCard"  MinHeight="500" MaxHeight="800"  Height="auto" Width="auto" Loaded="Page_Loaded">
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,7 +23,11 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid   >
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="159*"/>
+        </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="90" ></RowDefinition>
             <RowDefinition Height="125"></RowDefinition>
@@ -32,7 +38,7 @@
         <Border Grid.Row="0"
                     BorderThickness="0 0 0 1"
                     BorderBrush="Black"
-                    Margin="10 0 0  10">
+                    Margin="10 0 0  10" Grid.ColumnSpan="2">
             <Grid  >
 
                 <Grid.ColumnDefinitions>
@@ -40,7 +46,7 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" FontWeight="Medium" FontSize="30"  Margin="0 20 0 0">Create New FlashCard</Label>
+                <Label Grid.Column="0" FontWeight="Medium" FontSize="30"  Margin="0 20 0 0">FlashCard's Details</Label>
 
                 <!-- Search, Filter and Create new Essay Button -->
                 <StackPanel Grid.Column="1" Orientation="Vertical"  HorizontalAlignment="Right">
@@ -66,7 +72,7 @@
 
         <Border Grid.Row="1"  BorderThickness="0 0 0 1"
                     BorderBrush="Black"
-                    Margin="20 0 20 5">
+                    Margin="20 0 20 5" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.RowDefinitions >
                     <RowDefinition Height="40"></RowDefinition>
@@ -75,9 +81,8 @@
 
                 <Border Grid.Row="0" Margin=" 0 0 0 5" CornerRadius="10"  Background= "#D9D9D9">
                     <Grid>
-                        <TextBox  Name="TitleTextBox" Margin="10  0 0 0 "  FontSize="18" Width="auto"  BorderThickness="0" 
-                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                   TextChanged="TitleTextBox_TextChanged" Height="25"
+                        <TextBox  Name="TitleTextBox"   FontSize="18"   BorderThickness="0" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Width="780" TextChanged="TitleTextBox_TextChanged" Height="25"
                                 AcceptsReturn="True" TextWrapping="Wrap" FontFamily="Segoe UI Semibold" Background="#D9D9D9"
                              />
                         <TextBlock Name="TextBlockTitle" Margin="10"  IsHitTestVisible="False" Text="Enter title..."
@@ -95,10 +100,13 @@
 
                 <Border Grid.Row="1" Margin=" 0 5 0 10 " CornerRadius="10"  Background= "#D9D9D9" >
                     <Grid>
-                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="47*"/>
+                            <ColumnDefinition Width="31*"/>
+                        </Grid.ColumnDefinitions>
                         <TextBox Name ="DescriptionTextBox" Margin="10,10,0,0"  FontSize="16" BorderThickness="0"
-                             HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="50" TextChanged="DescriptionTextBox_TextChanged"
-                              AcceptsReturn="True" TextWrapping="Wrap"   Background="#D9D9D9"
+                             HorizontalAlignment="Left" VerticalAlignment="Top" Width="780" Height="50" TextChanged="DescriptionTextBox_TextChanged"
+                              AcceptsReturn="True" TextWrapping="Wrap" Grid.ColumnSpan="2" Background="#D9D9D9"
                              />
                         <TextBlock Name="TextBlockDescription" Margin="10,10,0,0"  IsHitTestVisible="False" Text="Enter description..."
                                        VerticalAlignment="Top"
@@ -106,7 +114,7 @@
                                         Foreground="DarkGray" 
                                         FontSize="16"
                                          />
-                         
+
 
 
                     </Grid>
@@ -117,7 +125,7 @@
 
         </Border>
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto"  >
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2"  >
             <StackPanel x:Name="Stack" Grid.Row="2"    >
                 <ListView  x:Name="LvListCard" HorizontalAlignment="Stretch" 
                   Width="auto"
@@ -140,7 +148,7 @@
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0"   >
                                         <Button Name="DeleteCardButton" Margin="0 0 0 0" HorizontalAlignment="Right" BorderThickness="0" Background="Transparent" Click="DeleteCardButton_Click" >
-                                             <Image Source="/Assets/Icon/ExitIcon.png" />
+                                            <Image Source="/Assets/Icon/ExitIcon.png" />
 
                                         </Button>
 
@@ -208,23 +216,23 @@
                     Background="AliceBlue" Height="60"  Width= "auto"
                      Style="{DynamicResource RoundedButtonStyle}" Click="AddCardButton_Click"
                     >
-                    
+
 
                     <Border BorderBrush="Black"
                             BorderThickness="0 0 0 2" Width="145">
-                     <StackPanel Orientation="Horizontal">
-                         <Image Margin="5 0 0 0" Source="/Assets/Icon/AddIcon1.png"  Width="30" Height="30" />
+                        <StackPanel Orientation="Horizontal">
+                            <Image Margin="5 0 0 0" Source="/Assets/Icon/AddIcon1.png"  Width="30" Height="30" />
 
-                        <Label Margin="8 0 0 0"
+                            <Label Margin="8 0 0 0"
                         HorizontalAlignment="Center"
                         BorderThickness="0" Content="ADD CARD"
                         Background="Transparent"
                         FontFamily="Segoe UI Semibold"
                         Height="30" Width="135" FontSize="18" Foreground="Black"
                         >
-                        
-                        </Label>
-                      </StackPanel>
+
+                            </Label>
+                        </StackPanel>
                     </Border>
 
 

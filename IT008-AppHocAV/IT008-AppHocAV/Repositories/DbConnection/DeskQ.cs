@@ -1,5 +1,6 @@
 ﻿using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Util;
+using PexelsDotNetSDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,6 +8,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
@@ -131,6 +133,58 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
 
             return null;
+        }
+        public List<Models.ListFlashCard> SelectListDeskByUserID( int userID)
+        {
+            
+            List<Models.ListFlashCard> result = new List<Models.ListFlashCard>();
+            try
+            {
+                string query = " SELECT  id , title , description, quantity, updated_at, created_at" +
+                               " FROM [desk] " +
+                               " WHERE user_id = @UserId ORDER BY updated_at desc";
+                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@UserId", userID);
+                    _sqlConnection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                       
+                        while (reader.Read())
+                        {
+                           
+                            Models.ListFlashCard desk = new Models.ListFlashCard(
+                                reader.GetInt32(reader.GetOrdinal("id")),
+                                reader.GetString(reader.GetOrdinal("title")),
+                                  reader.GetString(reader.GetOrdinal("description")),
+                                  reader.GetInt32(reader.GetOrdinal("quantity")),
+                                reader.GetDateTime(reader.GetOrdinal("updated_at")),
+                               reader.GetDateTime(reader.GetOrdinal("created_at"))
+
+                            );
+                         
+                            result.Add(desk);
+                            
+                        }
+                    }
+
+                }
+                if ( result.Count > 0)
+                {
+                    
+                }    
+                return result;
+            }
+            catch (Exception e)
+            {
+              
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
         }
         public bool DeleteDeskById(int id)
         {

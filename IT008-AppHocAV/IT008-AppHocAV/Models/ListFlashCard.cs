@@ -36,6 +36,23 @@ namespace IT008_AppHocAV.Models
             this._createdAt = createdAt;
 
         }
+        public ListFlashCard(int id, string title, string description, int quantity, DateTime updatedAt, DateTime createdAt)
+        {
+
+            _id = id;
+            _title = title;
+            _description = description;
+            this._quantity = quantity;
+            this._updatedAt = updatedAt;
+            this._createdAt = createdAt;
+
+        }
+        public ListFlashCard(int id , string title, DateTime updatedAt)
+        {
+            _id = id;
+            _title= title;
+            this._updatedAt = updatedAt;
+        }
        
 
         public int Id

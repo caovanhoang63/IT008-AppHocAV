@@ -225,6 +225,11 @@ namespace IT008_AppHocAV
                     if (_pageCache["ShowListEssay"] is  ShowListEssayPage listEssayPage )
                         page = new ShowEssayPage(this,listEssayPage);
                   }
+                  else if (pageName =="EditFlashCard")
+                  {
+                     if (_pageCache["FlashCard"] is FlashCardPage listcard)
+                        page = new EditFlashCard(this,listcard);    
+                  }    
                   return page;
             }
             

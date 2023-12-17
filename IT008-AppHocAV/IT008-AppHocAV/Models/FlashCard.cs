@@ -77,6 +77,11 @@ namespace IT008_AppHocAV.Models
             get => _answer;
             set => _answer = value; 
         }
+        public string ImagePath
+        {
+            get => _imagePath;
+            set => _imagePath = value;
+        }
         public BitmapImage Image
         {
             get => _image;

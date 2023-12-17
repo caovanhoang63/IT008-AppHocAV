@@ -42,8 +42,8 @@
 
                 <!-- Search, Filter and Create new Essay Button -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
-                    <Canvas Height="40" Width="200"  Margin="0 0 10 0"  >
-                        <TextBox x:Name="SearchFlashCardTextBox"
+                    <Canvas Height="40" Width="200"  Margin="10 0 10 0"  >
+                        <TextBox x:Name="SearchFlashCardTextBox" Margin="10 0 10 0" Width="170"
                                              Style="{DynamicResource SearchTextBoxStyle}"
                                              Visibility="Collapsed"  
                                               TextChanged="SearchFlashCardTextBox_TextChanged"/>
@@ -57,7 +57,7 @@
                                        Foreground="DarkGray"
                                        FontSize="16"/>
 
-                        <Button x:Name="SearchEssayButton"
+                        <Button x:Name="SearchEssayButton" HorizontalAlignment="Left"
                                         Canvas.Right="0" Width="40" Height="40"
                                         Background="#96B639"
                                         Style="{DynamicResource RoundedButtonStyle }"
@@ -142,15 +142,14 @@
                             </Grid.RowDefinitions>
                              <Grid Grid.Row="0"    >
                                 <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right"  >
-                                    <Label  Margin="0 0 2 0" FontSize="11" >Last modified:</Label>
-                                    <Label   Margin="0 0 25 0" FontSize="11" Content="{Binding UpdatedAt}"></Label>
+                                 
                                     <Button HorizontalAlignment="Right"   Name ="EditFlashcard"  Margin="5 0 0 0" Background="{x:Null}"  Click="EditFlashcard_Click">
                                         <Button.Clip>
                                             <RectangleGeometry Rect="1.7,2,27,32" RadiusX="10" RadiusY="10"/>
                                         </Button.Clip>
                                         <Image Source="/Assets/Icon/EditIcon.png" Width="26" Height="26" />
                                     </Button>
-                                    <Button HorizontalAlignment="Right" Margin="5 0 5 0" Background="{x:Null}"  >
+                                    <Button x:Name="DeleteCardButton" HorizontalAlignment="Right" Margin="5 0 5 0" Background="{x:Null}" Click="DeleteCardButton_Click"  >
                                         <Button.Clip>
                                             <RectangleGeometry Rect="1.2,2,31,31" RadiusX="10" RadiusY="10"/>
                                         </Button.Clip>
@@ -161,10 +160,12 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <Label HorizontalAlignment="Center"  Margin="0 10 0 0 "  Content="{Binding Title}" FontSize="20">
+                                <Label   HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Margin="0 00 0 40 "  Content="{Binding Title}" FontSize="24" FontStyle="Italic" FontWeight="DemiBold">
 
                                 </Label>
-                            </Grid>
+                                    <Label  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10 0 2 0" FontSize="11" >Last modified:</Label>
+                                    <Label  HorizontalAlignment="Left"  VerticalAlignment="Bottom"  Margin="80 0 2 0" FontSize="11" Content="{Binding UpdatedAt}"></Label>
+                                </Grid>
                         </Grid>
                     </Button>
                      
