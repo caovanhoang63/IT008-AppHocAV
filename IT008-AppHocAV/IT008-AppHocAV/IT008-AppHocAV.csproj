@@ -166,6 +166,9 @@
     <Compile Include="View\MainWindow\Frontform.xaml.cs">
       <DependentUpon>Frontform.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MainWindow\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainWindow\MakeFlashCard.xaml.cs">
       <DependentUpon>MakeFlashCard.xaml</DependentUpon>
     </Compile>
@@ -178,6 +181,10 @@
 
     <Compile Include="View\MainWindow\ShowEssayPage.xaml.cs">
       <DependentUpon>ShowEssayPage.xaml</DependentUpon>
+    </Compile>
+
+    <Compile Include="View\MainWindow\TranslatePage.xaml.cs">
+      <DependentUpon>TranslatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow\WritingContentPage.xaml.cs">
       <DependentUpon>WritingContentPage.xaml</DependentUpon>
@@ -230,6 +237,8 @@
   </ItemGroup>
   <ItemGroup>
 
+    <Page Include="Assets\Styles\HomeStyle.xaml" />
+
     <Page Include="Assets\Styles\LoginPageStyle.xaml" />
     <Page Include="Assets\Styles\BaseStyles.xaml">
       <SubType>Designer</SubType>
@@ -250,6 +259,7 @@
     
     <Page Include="View\MainWindow\ExamPage.xaml" />
     <Page Include="View\MainWindow\FlashCardPage.xaml" />
+    <Page Include="View\MainWindow\HomePage.xaml" />
     <Page Include="View\MainWindow\NoInternetPage.xaml" />
     <Page Include="View\MainWindow\SearchingPage.xaml" />
     <Page Include="View\MainWindow\MakeFlashCard.xaml" />
@@ -260,9 +270,15 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
 
+  
+    <Page Include="View\MainWindow\TranslatePage.xaml" />
+
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Image\EssayMiniBackGround.jpg" />
+    <Resource Include="Assets\Image\ExamMiniBackGround.jpg" />
+    <Resource Include="Assets\Image\FlashCardsMiniBackGround.jpg" />
     <Resource Include="Assets\Icon\SaveIcon.png" />
     <Resource Include="Assets\Icon\SortIcon.png" />
     <Resource Include="Assets\Image\LogoWithOutELF.png" />
@@ -306,6 +322,8 @@
     <Resource Include="Assets\Image\background.png" />
     <Resource Include="Assets\Icon\ExitIcon.png" />
     <Resource Include="Assets\Icon\nextBut.png" />
+    <Resource Include="Assets\Icon\HomeIcon.png" />
+    <Resource Include="Assets\Icon\GGTranslateIcon.png" />
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>

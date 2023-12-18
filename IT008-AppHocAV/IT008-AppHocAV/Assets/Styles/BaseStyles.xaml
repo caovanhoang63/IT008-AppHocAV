@@ -151,7 +151,7 @@
     <!-- Navigate button-->
         <Style TargetType="Button" x:Key="NavigateButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}">
             <Setter Property="Width" Value="156"></Setter>
-            <Setter Property="Margin" Value="0 0 0 0 "></Setter>
+            <Setter Property="Margin" Value="0 0 0 10 "></Setter>
             <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
         </Style>
     

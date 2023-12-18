@@ -30,10 +30,11 @@ namespace IT008_AppHocAV
             public MainWindow(LoginWindow loginWindow)
             {
                 InitializeComponent();
-                Page defaultPage = new SearchingPage(this);
-                _pageCache["Searching"] = defaultPage;
+                Page defaultPage = new HomePage();
+                _pageCache["Home"] = defaultPage;
                 _loginWindow = loginWindow;
                 _loginWindow.InternetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
+                Content.Navigate(defaultPage);
             }
         #endregion
 
@@ -85,25 +86,41 @@ namespace IT008_AppHocAV
         
         #region Define Click Event of Left Navigator 
         
-            private void NavToSearching_OnClick(object sender, RoutedEventArgs e)
+        private void NavToSearching_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_pageCache.TryGetValue("Searching", out var value))
             {
-                NavigateToPage("Searching");
+                Content.Navigate(value);
             }
+            else
+            {
+                TextBoxSearching.Focus();
+            }
+        }
 
-            private void NavToWriting_OnClick(object sender, RoutedEventArgs e)
+        private void NavToWriting_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_pageCache.TryGetValue("ShowEssay", out var value))
             {
-                if (_pageCache.TryGetValue("ShowEssay", out var value))
-                {
-                    NavigateToPage("ShowEssay");
-                    return;
-                }
-                NavigateToPage("ShowListEssay");
+                NavigateToPage("ShowEssay");
+                return;
             }
+            NavigateToPage("ShowListEssay");
+        }
+        
+        private void NavToTranslate_OnClick(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage("Translate");
+        }
 
-            private void NavToExam_OnClick(object sender, RoutedEventArgs e)
-            {
-                NavigateToPage("Exam");
-            }
+        private void NavToExam_OnClick(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage("Exam");
+        }
+        private void NavToHome_OnClick(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage("Home");
+        }
 
         private void NavToFlashCard_OnClick(object sender, RoutedEventArgs e)
         {
@@ -188,27 +205,26 @@ namespace IT008_AppHocAV
                 {
                     page = new FlashCardPage(this);
                 }
-                 else if (pageName == "ShowFlashCard")
-                 {
+                else if (pageName == "ShowFlashCard")
+                {
                 /*if (pageCache["FlashCard"] is FlashCardPage listFlashCard)
                     page = new ShowFlashCard(this, listFlashCard);*/
                      page = new ShowFlashCardPage(this);
 
 
-                 }
-                  else if (pageName == "MakeFlashCard")
-                  {
-                     page = new MakeFlashCard(this);
+                }
+                else if (pageName == "MakeFlashCard")
+                { 
+                    page = new MakeFlashCard(this);
+                }
 
-                  }
 
-
-                  else if (pageName == "NoInternet")
-                     {
-                         page = new NoInternetPage();
-                     }
-                  else if (pageName == "WritingContent")
-                  {
+                else if (pageName == "NoInternet")
+                { 
+                    page = new NoInternetPage();
+                }
+                else if (pageName == "WritingContent")
+                {
                     if (_pageCache.TryGetValue("CreateEssay", out var value))
                     {
                         var writingPage = (CreateEssayPage)value;
@@ -220,17 +236,24 @@ namespace IT008_AppHocAV
                         page = new WritingContentPage(this,writingPage.Essay );
                     }
 
-                  } 
-                  else if (pageName == "ShowListEssay")
-                  {
+                } 
+                else if (pageName == "ShowListEssay")
+                {
                     page = new ShowListEssayPage(this);
-                  } 
-                  else if (pageName == "ShowEssay")
-                  {
+                } 
+                else if (pageName == "ShowEssay")
+                {
                     if (_pageCache["ShowListEssay"] is  ShowListEssayPage listEssayPage )
                         page = new ShowEssayPage(this,listEssayPage);
-                  }
-                  return page;
+                }
+                
+                else if (pageName == "Translate")
+                {
+                    page = new TranslatePage();
+                }
+                
+                
+                return page;
             }
             
             public void NavigateToPage(string pageName)
@@ -341,6 +364,8 @@ namespace IT008_AppHocAV
 
             #endregion
 
+
+            
     }
 
     internal class ShowFlashCard : Page

@@ -62,6 +62,15 @@
                                 Width="150" BorderBrush="White"
                                 />
                     
+                        <Button  Click="NavToHome_OnClick" 
+                                 Style="{DynamicResource NavigateButtonStyle}" >
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Source="../Assets/Icon/HomeIcon.png"  ></Image>
+                                <Label Margin="10 0 0 0" FontSize="15"  VerticalAlignment="Center">Home</Label>
+                            </StackPanel>
+                        </Button>
+                        
+                        
                         <Button  Click="NavToSearching_OnClick" 
                                 Style="{DynamicResource NavigateButtonStyle}" >
                             <StackPanel Orientation="Horizontal" >
@@ -69,6 +78,14 @@
                                 <Label Margin="10 0 0 0" FontSize="15"  VerticalAlignment="Center">Search</Label>
                             </StackPanel>
                         </Button>
+                        
+                        <Button Click="NavToTranslate_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="40" Height="40" Source="../Assets/Icon/GGTranslateIcon.png"></Image>
+                                <Label Margin="15 0 0 0" FontSize="15" VerticalAlignment="Center">Translate</Label>
+                            </StackPanel>
+                        </Button>
+                        
                         
                         <Button Click="NavToWriting_OnClick" Style="{DynamicResource NavigateButtonStyle}">
                             <StackPanel Orientation="Horizontal">

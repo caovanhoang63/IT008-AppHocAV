@@ -10,7 +10,6 @@
         <ControlTemplate x:Key="FrontSide_Content">
 
             <Grid>
-
                
 
                 <TextBlock Text="Vocabulary"
