@@ -18,10 +18,10 @@ namespace IT008_AppHocAV.View.MainWindow
     {
 
         #region Declare Fields
-            private DispatcherTimer _debounceTimer;
-            private readonly Dictionary<string, string> _languages = new Dictionary<string, string>();
             private readonly Dictionary<string, Pair<TextBox,bool>> _definitionTextBoxList = new Dictionary<string,Pair<TextBox,bool>>();
             private int _definitionCount = 0;
+            private IT008_AppHocAV.MainWindow _mainWindow;
+            private bool _already = false;
         #endregion
 
         #region Declare Constructors
@@ -29,9 +29,7 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 InitializeComponent();
                 DicApiResultContainer.Visibility = Visibility.Hidden;
-                GoogleTranslateContainer.Visibility = Visibility.Hidden;
-                _languages.Add("English","en");
-                _languages.Add("Vietnamese","vi");
+                _mainWindow = mainWindow;
             }
 
         #endregion
@@ -43,7 +41,6 @@ namespace IT008_AppHocAV.View.MainWindow
             _definitionCount = 0;
             this.DicApiResultContainer.Visibility = Visibility.Collapsed;
             this.WordImage.Visibility = Visibility.Hidden;
-            this.GoogleTranslateContainer.Visibility = Visibility.Hidden;
             this.MeaningsContainer.Children.Clear();
             _definitionTextBoxList.Clear();
         }
@@ -53,40 +50,48 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             if (text == this.Word.Text)
                 return;
-            ResetPage();
+            if (!_already)
+                ResetPage();
             try
             {
                 //Call DictionaryApi
                 List<DictionaryEntry> words = await DictionaryApi.SearchDictionary(text);
-                
-                //Create header of page 
-                this.Word.Text = text;
-                this.VnWord.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
-                PhoneticHandler(words[0]);
-                
-                //Generate meanings xaml
-                string meaningXaml = GenerateWordDictionaryEntry(words);
-                UIElement generatedElement = (UIElement)XamlReader.Parse(meaningXaml);
-                
-                //Write meanings xaml to page
-                this.MeaningsContainer.Children.Add(generatedElement);
-                this.DicApiResultContainer.Visibility = Visibility.Visible;
-                
-                //Add click event for drop down translate definition buttons
-                FindButtonsInStackPanels(MeaningsContainer);
-                var imageApi = await PexelsImageAPI.GetImages(text);
-                if (imageApi != null)
+
+                if (words != null)
                 {
-                    this.WordImage.Source = imageApi;
-                    this.WordImage.Visibility = Visibility.Visible;
+                    //Create header of page 
+                    this.Word.Text = text;
+                    this.VnWord.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
+                    PhoneticHandler(words[0]);
+
+                    //Generate meanings xaml
+                    string meaningXaml = GenerateWordDictionaryEntry(words);
+                    UIElement generatedElement = (UIElement)XamlReader.Parse(meaningXaml);
+
+                    //Write meanings xaml to page
+                    this.MeaningsContainer.Children.Add(generatedElement);
+                    this.DicApiResultContainer.Visibility = Visibility.Visible;
+
+                    //Add click event for drop down translate definition buttons
+                    FindButtonsInStackPanels(MeaningsContainer);
+                    var imageApi = await PexelsImageAPI.GetImages(text);
+                    if (imageApi != null)
+                    {
+                        this.WordImage.Source = imageApi;
+                        this.WordImage.Visibility = Visibility.Visible;
+                    }
+
+                    _already = true;
                 }
+
+                //if Dictionary Api response null result, show google translate instead
+                else
+                    await NavToTranslate(text);
+                
             }
             //if Dictionary Api response null result, show google translate instead
             catch (NullReferenceException e)
             {
-                this.GoogleTranslateContainer.Visibility = Visibility.Visible;
-                this.GTransSlText.Selection.Text = text;
-                this.GTransTlText.Selection.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
 
             }
             //if Image error, hidden WordImage
@@ -95,6 +100,30 @@ namespace IT008_AppHocAV.View.MainWindow
                 this.WordImage.Visibility = Visibility.Hidden;
             }
         }
+
+        
+        
+        /// <summary>
+        /// Navigate Mainwindow to translate if api return null
+        /// </summary>
+        /// <param name="text"></param>
+        private async Task NavToTranslate(string text)
+        {
+            _mainWindow.PageCache.Remove("Translate");
+
+            TranslatePage page = new TranslatePage(text);
+
+            _mainWindow.PageCache.Add("Translate",page);
+            _mainWindow.NavigateToPage("Translate");
+                
+            page.GoogleTranslateContainer.Visibility = Visibility.Visible;
+            page.GTransSlText.Selection.Text = text;
+            page.GTransTlText.Selection.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
+
+            if (!_already)
+                _mainWindow.PageCache.Remove("Searching");
+        }
+        
         
         
         
@@ -378,50 +407,6 @@ namespace IT008_AppHocAV.View.MainWindow
             }
         }
 
-        private void GTransSlText_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            // Cancel all previously expected commands (if any)
-            if (_debounceTimer != null)
-            {
-                _debounceTimer.Stop();
-            }
-            // create new timer
-            _debounceTimer = new DispatcherTimer();
-            _debounceTimer.Interval = TimeSpan.FromMilliseconds(500); // Wait 500ms after no more changes
-            _debounceTimer.Tick += async (s, args) =>
-            {
-                _debounceTimer.Stop();
-                TranslateRtb();
-            };
-
-            // start countdown after 500ms when nothing change
-            _debounceTimer.Start();
-        }
-
-        private void SwitchLanBtn_OnClick(object sender, RoutedEventArgs e)
-        {
-            string temp = GtslLabel.Content.ToString();
-            GtslLabel.Content =GttlLabel.Content;
-            GttlLabel.Content = temp;
-            TranslateRtb();
-        }
-
-        private async void TranslateRtb()
-        {
-            string sltext = new TextRange(GTransSlText.Document.ContentStart, GTransSlText.Document.ContentEnd).Text;
-            if (!string.IsNullOrEmpty(sltext.Trim()))
-            {
-                string sl = _languages[GtslLabel.Content.ToString()];
-                string tl = _languages[GttlLabel.Content.ToString()];
-                string tltext = await GoogleTranslateApi.GoogleTranslate(sl, tl, sltext);
-                Console.WriteLine(tltext);
-                GTransTlText.Document.Blocks.Clear();
-                GTransTlText.Document.Blocks.Add(new Paragraph(new Run(tltext)));
-            }
-            else
-            {
-                GTransTlText.Document.Blocks.Clear();
-            }
-        }
+      
     }
 }

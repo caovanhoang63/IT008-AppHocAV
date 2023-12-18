@@ -17,9 +17,19 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             InitializeComponent();
             _languages.Add("English","en");
-            _languages.Add("Vietnamese","vi");
+            _languages.Add("Vietnamese", "vi");
         }
 
+        public TranslatePage(string text)
+        {
+            InitializeComponent();
+            _languages.Add("English","en");
+            _languages.Add("Vietnamese", "vi");
+            
+
+        }
+
+        
         private void SwitchLanBtn_OnClick(object sender, RoutedEventArgs e)
         {
             string temp = GtslLabel.Content.ToString();
