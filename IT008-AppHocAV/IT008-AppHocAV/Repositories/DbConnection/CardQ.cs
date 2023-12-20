@@ -32,8 +32,8 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     command.Parameters.AddWithValue("@desk_id", card.DeskId);
-                    command.Parameters.AddWithValue("@question", card.QuestionId);
-                    command.Parameters.AddWithValue("@answer", card.AnswerId);
+                    command.Parameters.AddWithValue("@question", card.Question);
+                    command.Parameters.AddWithValue("@answer", card.Answer);
                     if (data != null)
                         command.Parameters.AddWithValue("@image", data);
                     else

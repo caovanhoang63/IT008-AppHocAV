@@ -56,18 +56,22 @@ namespace IT008_AppHocAV.View.MainWindow
                 _mainWindow.NavigateToPage("ShowEssay");
             }
 
-            private void DeleteEssayButton_OnClick(object sender, RoutedEventArgs e)
+        private void DeleteEssayButton_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            e.Handled = true;
+            MessageBoxResult result =
+                MessageBox.Show("You sure youT want to delete this essay", null, MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
             {
-                e.Handled = true;
-                MessageBoxResult result =
-                    MessageBox.Show("You sure you want to delete this essay", null, MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+                Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;
+                try
                 {
-                    Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;
-                    if (_mainWindow.DbConnection.EssayQ.DeleteEssayById(modelEssay.Id))
+                    /*if*/
+                    bool x=(_mainWindow.DbConnection.EssayQ.DeleteEssayById(modelEssay.Id));
                     {
 
-                        
+
                         foreach (Essay essay in _data)
                         {
                             if (essay.Id == modelEssay.Id)
@@ -76,15 +80,27 @@ namespace IT008_AppHocAV.View.MainWindow
                                 break;
                             }
                         }
-                        
+
                         MessageBox.Show("Delete successes! ");
-                        
+
                         RefreshPage();
                     }
-                    else 
-                        MessageBox.Show("Delete fail! ");
+                   /* else
+                        MessageBox.Show("Delete fail! ");*/
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
             }
+        }
+
+
+            
+
+
+                            
 
         #endregion
 

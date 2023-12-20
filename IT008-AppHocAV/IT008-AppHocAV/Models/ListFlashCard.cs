@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace IT008_AppHocAV.Models
@@ -16,6 +17,7 @@ namespace IT008_AppHocAV.Models
         private string _title;
         private string _description;
         private int _quantity;
+        private List<FlashCard> _flashcards;
         private DateTime _updatedAt;
         private DateTime _createdAt;
 
@@ -24,6 +26,7 @@ namespace IT008_AppHocAV.Models
             this._title = "";
             this._description="";
             this._quantity = 0;
+            _flashcards = new List<FlashCard>();
         }
         public ListFlashCard(int id, int userId, string title, string description, int quantity, DateTime updatedAt, DateTime createdAt  )
         {
@@ -54,6 +57,11 @@ namespace IT008_AppHocAV.Models
             this._updatedAt = updatedAt;
         }
        
+        public List<FlashCard> FlashCards
+        {
+            get => _flashcards;
+            set => _flashcards = value;
+        }
 
         public int Id
         {

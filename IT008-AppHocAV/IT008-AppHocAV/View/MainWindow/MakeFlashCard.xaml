@@ -80,7 +80,7 @@
                                    TextChanged="TitleTextBox_TextChanged" Height="25"
                                 AcceptsReturn="True" TextWrapping="Wrap" FontFamily="Segoe UI Semibold" Background="#D9D9D9"
                              />
-                        <TextBlock Name="TextBlockTitle" Margin="10"  IsHitTestVisible="False" Text="Enter title..."
+                        <TextBlock Name="TextBlockTitle" Margin="12 0 0 0"  IsHitTestVisible="False" Text="Enter title..."
                                        VerticalAlignment="Center"
                                         HorizontalAlignment="Left" 
                                         Foreground="DarkGray" 
@@ -100,7 +100,7 @@
                              HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="50" TextChanged="DescriptionTextBox_TextChanged"
                               AcceptsReturn="True" TextWrapping="Wrap"   Background="#D9D9D9"
                              />
-                        <TextBlock Name="TextBlockDescription" Margin="10,10,0,0"  IsHitTestVisible="False" Text="Enter description..."
+                        <TextBlock Name="TextBlockDescription" Margin="12,10,0,0"  IsHitTestVisible="False" Text="Enter description..."
                                        VerticalAlignment="Top"
                                         HorizontalAlignment="Left" 
                                         Foreground="DarkGray" 
@@ -124,7 +124,8 @@
                   Height="auto"
                   Background="Transparent"
                   BorderThickness="0" 
-                  d:ItemsSource="{d:SampleData ItemCount=2}" Loaded="LvListCard_Loaded">
+                  d:ItemsSource="{d:SampleData ItemCount=2}" Loaded="LvListCard_Loaded"
+                           >
 
                     <ListView.ItemTemplate >
                         <!-- Defines Items Template -->
@@ -156,13 +157,13 @@
                                         <StackPanel Grid.Column="0" Margin="0 0 5 0"  Orientation="Vertical" >
                                             <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
                                                 <Grid>
-                                                    <TextBox x:Name="TermBox" BorderThickness="0" Text="{Binding QuestionId}"
+                                                    <TextBox x:Name="TermBox" BorderThickness="0" Text="{Binding Question}"
                                                      Background="Transparent" VerticalAlignment="Center"  
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="TermBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="TermBlock"  IsHitTestVisible="False" Text="Enter term..."
                                                         VerticalAlignment="Center" FontSize="16"
                                                          HorizontalAlignment="Left" 
-                                                          Foreground="DarkGray" Margin="5" ></TextBlock>
+                                                          Foreground="DarkGray" Margin="7 0 0 0" ></TextBlock>
                                                 </Grid>
                                             </Border>
                                             <Label   Height="30" FontSize="16" Content="TERM"></Label>
@@ -171,13 +172,13 @@
                                         <StackPanel Grid.Column="1" Margin="5 0 0 0"  >
                                             <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
                                                 <Grid>
-                                                    <TextBox x:Name="DefineBox" BorderThickness="0" Text="{Binding AnswerId}"
+                                                    <TextBox x:Name="DefineBox" BorderThickness="0" Text="{Binding Answer}"
                                                      Background="Transparent" VerticalAlignment="Center" 
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="DefineBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="DefineBlock"  IsHitTestVisible="False" Text="Enter defination..."
                                                         VerticalAlignment="Center" FontSize="16"
                                                          HorizontalAlignment="Left" 
-                                                          Foreground="DarkGray" Margin="5" ></TextBlock>
+                                                          Foreground="DarkGray" Margin="7 0 0 0" ></TextBlock>
                                                 </Grid>
                                             </Border>
                                             <Label   Height="30" FontSize="16">DEFINATION</Label>
@@ -200,7 +201,6 @@
                         </DataTemplate>
                         <!--End defines Items Template -->
                     </ListView.ItemTemplate>
-
                 </ListView>
                 <Button 
                    HorizontalAlignment="Stretch" 

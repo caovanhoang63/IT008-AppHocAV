@@ -49,6 +49,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 Console.WriteLine(e);
                 return 0;
             }
@@ -58,6 +59,49 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                 _sqlConnection.Close();
             }
         }
+
+
+        public void InsertCards(Models.FlashCard card)
+        {
+            try
+            {
+           
+                string query = "INSERT INTO [card] (desk_id, question,answer,created_at,updated_at ) " +
+                    " VALUES "+
+                    " (@desk_id, @question, @answer, GETDATE(), GETDATE())";
+                    ;
+              
+                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
+                {
+               
+                    command.Parameters.AddWithValue("@desk_id", card.Id);
+
+                    command.Parameters.AddWithValue("@question", card.Question);
+                    command.Parameters.AddWithValue("@answer", card.Answer);
+
+                    _sqlConnection.Open();
+                 
+                    command.ExecuteScalar();
+                    if (_sqlConnection.State == System.Data.ConnectionState.Open)
+                        _sqlConnection.Close();
+                   
+
+                }
+
+
+            }
+            catch(Exception e)
+            {
+
+                MessageBox.Show(e.ToString());
+
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+        }
+
         public void UpdateDeskContent(int id ,int quantity, string title, string description)
         {
             try
@@ -177,7 +221,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
             catch (Exception e)
             {
-              
+               MessageBox.Show(e.Message);
                 Console.WriteLine(e);
                 return null;
             }
@@ -191,19 +235,26 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             try
             {
                 string query = "DELETE [desk] WHERE id = @id";
-
+                string querycard = "DELETE [card] WHERE desk_id = @id";
+                using (SqlCommand command = new SqlCommand(querycard, _sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    _sqlConnection.Open();
+                    command.ExecuteScalar();
+                    _sqlConnection.Close();
+                }
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     command.Parameters.AddWithValue("@id", id);
                     _sqlConnection.Open();
                     command.ExecuteScalar();
-                    return true;
+                     return true;
                 }
 
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                MessageBox.Show(e.Message);
                 return false;
             }
             finally

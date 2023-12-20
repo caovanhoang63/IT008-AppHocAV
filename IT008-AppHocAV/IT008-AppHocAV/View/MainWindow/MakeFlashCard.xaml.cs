@@ -16,9 +16,7 @@ namespace IT008_AppHocAV.View.MainWindow
        
         private readonly IT008_AppHocAV.MainWindow mainWindow;
         //private FlashCardPage flashCardPage;
-        private ListFlashCard _listflashcard;
-        private FlashCard _card;
-        private List<FlashCard> _data;
+        private ListFlashCard _data;
 
        // public List<FlashCard> _data;
       
@@ -27,38 +25,23 @@ namespace IT008_AppHocAV.View.MainWindow
 
             this.InitializeComponent();
             this.mainWindow = mainWindow;
-            _card = new FlashCard();
-            _card.ImagePath= null;
-            _listflashcard = new ListFlashCard();  
-            _data = new List<FlashCard>();
+
+            _data = new ListFlashCard();
              
-            LvListCard.ItemsSource = _data;
-             
+            LvListCard.ItemsSource = _data.FlashCards;
 
         }
-        public FlashCard Card
-        {
-            get => _card;
-        }
-        public ListFlashCard ListFlashcards
-        {
-            get => _listflashcard;
-        }
+
+
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
         {
             FlashCard card = new FlashCard();
-            TextBox term = FindVisualChild<TextBox>(LvListCard, "TermBox");
-            TextBox define = FindVisualChild<TextBox>(LvListCard, "DefineBox");
-            card.ImagePath = null;
-          
-           
-            card.QuestionId =term.Text;
-            card.AnswerId = define.Text;
             
-            _data.Add(_card);
+             card.ImagePath = null;
+            /*  card.Question ="";
+             card.Answer ="";*/
 
-
-
+            _data.FlashCards.Add(card);
              RefreshPage();
         }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -85,36 +68,46 @@ namespace IT008_AppHocAV.View.MainWindow
                     BitmapImage image = new BitmapImage(new Uri(fileName));
                     cardImage.Source = image;
                     cardImage.Visibility = Visibility.Visible;
-                    _card.ImagePath= fileName;
-                    _card.Image = image;
+                    //_card.ImagePath= fileName;
+                    //_card.Image = image;
                     
                 }
             }
         }
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            _listflashcard.UserId= mainWindow.UserId;
-            _listflashcard.Title= TitleTextBox.Text;
-            _listflashcard.Description= DescriptionTextBox.Text;
-            _listflashcard.CreatedAt = DateTime.Now;
-            _listflashcard.UpdatedAt = DateTime.Now;
-            _listflashcard.Id = mainWindow.DbConnection.DeskQ.CreateDesk(_listflashcard);
+            _data.UserId= mainWindow.UserId;
+            _data.Title= TitleTextBox.Text;
+            _data.Description= DescriptionTextBox.Text;
+            _data.CreatedAt = DateTime.Now;
+            _data.UpdatedAt = DateTime.Now;
+
+
+            _data.Id = mainWindow.DbConnection.DeskQ.CreateDesk(_data);
+            
+            foreach(FlashCard item in LvListCard.Items)
+            {
+                item.Id = _data.Id;
+                mainWindow.DbConnection.DeskQ.InsertCards(item);
+            }    
+
             /*foreach( var item in LvListCard.Items )
             {
-                _card.DeskId = _listflashcard.Id;
+                _card.DeskId = _data.Id;
                 _card.UpdatedAt = DateTime.Now;
 
                 TextBox term = (TextBox)FindName("TermBox");
                 TextBox define = (TextBox)FindName("DefineBox");
-                _card.QuestionId =term.Text;
-                _card.AnswerId = define.Text;
+                _card.Question =term.Text;
+                _card.Answer = define.Text;
                 _card.Id = mainWindow.DbConnection.CardQ.CreateCard(_card);
             }   */ 
-            if(_listflashcard.Id==0)
+            if(_data.Id==0)
             {
                 MessageBox.Show("Fail to create new essay!");
                 return;
             }
+            MessageBox.Show("Successed!");
             /*  if(_card.Id==0)
               {
                   MessageBox.Show("Add card !");
@@ -193,7 +186,13 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 termBlock.Visibility = Visibility.Hidden;
             }
-            else { termBlock.Visibility = Visibility.Visible; }
+            else {
+                termBlock.Visibility = Visibility.Visible; 
+            }
+
+
+
+
         }
 
         private void DefineBox_TextChanged(object sender, TextChangedEventArgs e)

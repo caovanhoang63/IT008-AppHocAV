@@ -67,12 +67,12 @@ namespace IT008_AppHocAV.Models
             get => _deskId;
             set => _deskId = value;
         }
-        public string QuestionId
+        public string Question
         {
             get => _question;
             set => _question = value;
         }
-        public string AnswerId
+        public string Answer
         {
             get => _answer;
             set => _answer = value; 
