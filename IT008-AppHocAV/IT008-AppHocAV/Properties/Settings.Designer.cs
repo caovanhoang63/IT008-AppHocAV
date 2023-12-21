@@ -60,9 +60,9 @@ namespace IT008_AppHocAV.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=tcp:it008.database.windows.net,1433;Initial Catalog=APP_HOC_AV;Persist Sec" +
-            "urity Info=False;User ID=caovanhoang204;Password=Hh12032004@;MultipleActiveResul" +
-            "tSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=it008.cf4wmocwq0b5.ap-southeast-1.rds.amazonaws.com,1433;Database=APP" +
+            "_HOC_AV;Integrated Security=false;User ID=caovanhoang204;Password=Hh12032004;Con" +
+            "nection Timeout=30;")]
         public string DbConnectionString {
             get {
                 return ((string)(this["DbConnectionString"]));

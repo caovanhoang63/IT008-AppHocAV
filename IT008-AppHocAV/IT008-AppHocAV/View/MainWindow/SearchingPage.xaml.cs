@@ -198,7 +198,6 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 this.AuPhoneticContainer.Visibility = Visibility.Collapsed;
             }
-            
         }
         
         
@@ -260,6 +259,7 @@ namespace IT008_AppHocAV.View.MainWindow
                         </TextBox>
                     </StackPanel>
                 ";
+                
                 if (!string.IsNullOrEmpty(definition.example))
                 {
                     xaml += $@"
@@ -270,6 +270,7 @@ namespace IT008_AppHocAV.View.MainWindow
                                 Example: {definition.example}
                            </TextBox>";
                 }
+                
                 string synonyms = "";
                 for (int i = 0; i < definition.synonyms.Length; i++)
                 {
@@ -282,6 +283,7 @@ namespace IT008_AppHocAV.View.MainWindow
                         synonyms += definition.synonyms[i] + ". ";
                     }
                 }
+                
                 string antonyms = "";
                 for (int i = 0; i < definition.antonyms.Length; i++)
                 {

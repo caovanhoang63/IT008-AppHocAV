@@ -30,7 +30,7 @@ namespace IT008_AppHocAV
             public MainWindow(LoginWindow loginWindow)
             {
                 InitializeComponent();
-                Page defaultPage = new HomePage();
+                Page defaultPage = new HomePage(this);
                 _pageCache["Home"] = defaultPage;
                 _loginWindow = loginWindow;
                 _loginWindow.InternetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
@@ -86,7 +86,7 @@ namespace IT008_AppHocAV
         
         #region Define Click Event of Left Navigator 
         
-        private void NavToSearching_OnClick(object sender, RoutedEventArgs e)
+        public void NavToSearching_OnClick(object sender, RoutedEventArgs e)
         {
             if (_pageCache.TryGetValue("Searching", out var value))
             {
