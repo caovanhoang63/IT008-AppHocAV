@@ -28,6 +28,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
                 _data = _mainWindow.DbConnection.EssayQ.SelectListEssayByUserId(_mainWindow.UserId);
                 _currentEssay = null;
+            
                 ListEssayListView.ItemsSource = _data;
             }
         #endregion
@@ -65,33 +66,27 @@ namespace IT008_AppHocAV.View.MainWindow
             if (result == MessageBoxResult.Yes)
             {
                 Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;
-                try
+
+                if (_mainWindow.DbConnection.EssayQ.DeleteEssayById(modelEssay.Id))
                 {
-                    /*if*/
-                    bool x=(_mainWindow.DbConnection.EssayQ.DeleteEssayById(modelEssay.Id));
+
+
+                    foreach (Essay essay in _data)
                     {
-
-
-                        foreach (Essay essay in _data)
+                        if (essay.Id == modelEssay.Id)
                         {
-                            if (essay.Id == modelEssay.Id)
-                            {
-                                _data.Remove(essay);
-                                break;
-                            }
+                            _data.Remove(essay);
+                            break;
                         }
-
-                        MessageBox.Show("Delete successes! ");
-
-                        RefreshPage();
                     }
-                   /* else
-                        MessageBox.Show("Delete fail! ");*/
+
+                    MessageBox.Show("Delete successes! ");
+
+                    RefreshPage();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                else
+                    MessageBox.Show("Delete fail! ");
+                 
 
             }
         }

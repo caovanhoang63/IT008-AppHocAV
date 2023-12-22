@@ -117,14 +117,14 @@
 
         </Border>
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto"  >
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="15 5 15 0"  >
             <StackPanel x:Name="Stack" Grid.Row="2"    >
                 <ListView  x:Name="LvListCard" HorizontalAlignment="Stretch" 
                   Width="auto"
                   Height="auto"
                   Background="Transparent"
                   BorderThickness="0" 
-                  d:ItemsSource="{d:SampleData ItemCount=2}" Loaded="LvListCard_Loaded"
+                  d:ItemsSource="{d:SampleData ItemCount=2}" Loaded="LvListCard_Loaded"  
                            >
 
                     <ListView.ItemTemplate >
@@ -132,8 +132,8 @@
                         <DataTemplate>
                             <Border HorizontalAlignment="Stretch"   
                             CornerRadius="10"  
-                            Background="#F4EEEE" Height="100"
-                            Margin="15 5 15 0">
+                            Background="#F4EEEE" Height="100" Width="auto"
+                            Margin="0 0 0 0">
                                 <Grid Margin="10 0 5 10">
                                     <Grid.RowDefinitions >
                                         <RowDefinition Height="25"></RowDefinition>
@@ -186,10 +186,10 @@
                                         </StackPanel>
                                         <Grid Grid.Column="2" >
                                             <Button Name="AddImageButton" BorderThickness="0" Height="40" Width="40" Background="Transparent" Click="AddImageButton_Click"  >
-                                                <Image Source="/Assets/Icon/AddImageIcon.png" />
+                                                <Image x:Name="SetImage" Visibility="Visible"  Source="/Assets/Icon/AddImageIcon.png" />
 
                                             </Button>
-                                            <Image x:Name="CardImage"  Height="60" Width="70" Visibility="Hidden" />
+                                            <Image x:Name="CardImage"  Height="60" Width="70" Visibility="Visible" Source="{Binding ImagePath}" />
                                         </Grid>
 
                                     </Grid>
@@ -204,7 +204,7 @@
                 </ListView>
                 <Button 
                    HorizontalAlignment="Stretch" 
-                    x:Name="AddCardButton" Margin="15 5 15 10"
+                    x:Name="AddCardButton" Margin="0 5 0 0 "
                     Background="AliceBlue" Height="60"  Width= "auto"
                      Style="{DynamicResource RoundedButtonStyle}" Click="AddCardButton_Click"
                     >

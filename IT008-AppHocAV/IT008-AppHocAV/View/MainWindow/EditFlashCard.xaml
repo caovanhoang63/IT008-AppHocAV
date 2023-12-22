@@ -125,7 +125,7 @@
 
         </Border>
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2"  >
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Margin="15 5 15 0" >
             <StackPanel x:Name="Stack" Grid.Row="2"    >
                 <ListView  x:Name="LvListCard" HorizontalAlignment="Stretch" 
                   Width="auto"
@@ -137,11 +137,11 @@
                     <ListView.ItemTemplate >
                         <!-- Defines Items Template -->
                         <DataTemplate>
-                            <Border HorizontalAlignment="Stretch"   
+                                <Border HorizontalAlignment="Stretch"   
                             CornerRadius="10"  
-                            Background="#F4EEEE" Height="100"
-                            Margin="15 5 15 0">
-                                <Grid Margin="10 0 5 10">
+                            Background="#F4EEEE" Height="100" Width="auto"
+                            Margin="0 0 0 0">
+                                    <Grid Margin="10 0 5 10"    >
                                     <Grid.RowDefinitions >
                                         <RowDefinition Height="25"></RowDefinition>
                                         <RowDefinition></RowDefinition>
@@ -164,7 +164,7 @@
                                         <StackPanel Grid.Column="0" Margin="0 0 5 0"  Orientation="Vertical" >
                                             <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
                                                 <Grid>
-                                                    <TextBox x:Name="TermBox" BorderThickness="0" Text="{Binding QuestionId}"
+                                                    <TextBox x:Name="TermBox" BorderThickness="0" Text="{Binding Question}"
                                                      Background="Transparent" VerticalAlignment="Center"  
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="TermBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="TermBlock"  IsHitTestVisible="False" Text="Enter term..."
@@ -179,7 +179,7 @@
                                         <StackPanel Grid.Column="1" Margin="5 0 0 0"  >
                                             <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
                                                 <Grid>
-                                                    <TextBox x:Name="DefineBox" BorderThickness="0" Text="{Binding AnswerId}"
+                                                    <TextBox x:Name="DefineBox" BorderThickness="0" Text="{Binding Answer}"
                                                      Background="Transparent" VerticalAlignment="Center" 
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="DefineBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="DefineBlock"  IsHitTestVisible="False" Text="Enter defination..."
@@ -193,18 +193,18 @@
                                         </StackPanel>
                                         <Grid Grid.Column="2" >
                                             <Button Name="AddImageButton" BorderThickness="0" Height="40" Width="40" Background="Transparent" Click="AddImageButton_Click"  >
-                                                <Image Source="/Assets/Icon/AddImageIcon.png" />
+                                                <Image Source="/Assets/Icon/AddImageIcon.png"    />
 
                                             </Button>
-                                            <Image x:Name="CardImage"  Height="60" Width="70" Visibility="Hidden" />
+                                            <Image x:Name="CardImage"  Height="60" Width="70" Visibility="Visible"  Source="{Binding Image}"/>
                                         </Grid>
 
                                     </Grid>
 
                                 </Grid>
 
+                            
                             </Border>
-
                         </DataTemplate>
                         <!--End defines Items Template -->
                     </ListView.ItemTemplate>
@@ -212,7 +212,7 @@
                 </ListView>
                 <Button 
                    HorizontalAlignment="Stretch" 
-                    x:Name="AddCardButton" Margin="15 5 15 10"
+                    x:Name="AddCardButton" Margin="0 5 0 0"
                     Background="AliceBlue" Height="60"  Width= "auto"
                      Style="{DynamicResource RoundedButtonStyle}" Click="AddCardButton_Click"
                     >

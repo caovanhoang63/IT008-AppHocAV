@@ -15,6 +15,7 @@ namespace IT008_AppHocAV.Models
         private DateTime _createdAt;
         public FlashCard()
         {
+            
             this._question="";
             this._answer ="";
             this._imagePath="";

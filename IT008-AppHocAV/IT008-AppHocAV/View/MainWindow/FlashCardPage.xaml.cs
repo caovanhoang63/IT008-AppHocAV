@@ -75,6 +75,7 @@ namespace IT008_AppHocAV.View.MainWindow
             {
 
                 ListFlashCard modelCard = (ListFlashCard)((FrameworkElement)sender).DataContext;
+            
                 if (_mainWindow.DbConnection.DeskQ.DeleteDeskById(modelCard.Id))
                 {
 

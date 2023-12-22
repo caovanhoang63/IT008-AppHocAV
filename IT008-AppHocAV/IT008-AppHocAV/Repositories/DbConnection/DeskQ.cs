@@ -66,11 +66,11 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             try
             {
            
-                string query = "INSERT INTO [card] (desk_id, question,answer,created_at,updated_at ) " +
+                string query = "INSERT INTO [card] (desk_id, question,answer, image, created_at ,updated_at ) " +
                     " VALUES "+
-                    " (@desk_id, @question, @answer, GETDATE(), GETDATE())";
-                    ;
-              
+                    " (@desk_id, @question, @answer, @image, GETDATE(), GETDATE())";
+             
+                byte[] data = card.Image == null ? null : BitmapConverter.ConvertToByteFromBitmapImage(card.Image);
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                
@@ -78,6 +78,12 @@ namespace IT008_AppHocAV.Repositories.DbConnection
 
                     command.Parameters.AddWithValue("@question", card.Question);
                     command.Parameters.AddWithValue("@answer", card.Answer);
+
+                    if (data != null)
+                        command.Parameters.AddWithValue("@image", data);
+                    else
+                        command.Parameters.AddWithValue("@image", SqlBinary.Null);
+
 
                     _sqlConnection.Open();
                  
