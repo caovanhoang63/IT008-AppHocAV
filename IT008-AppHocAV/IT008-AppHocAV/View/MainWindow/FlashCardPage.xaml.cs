@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using IT008_AppHocAV;
+using IT008_AppHocAV.Components.RadioButtonMenuItem;
 using IT008_AppHocAV.Models;
 
 namespace IT008_AppHocAV.View.MainWindow
@@ -99,7 +100,9 @@ namespace IT008_AppHocAV.View.MainWindow
         }
 
 
+        //search
 
+        private List<ListFlashCard> _searchResult = new List<ListFlashCard>();
         private DispatcherTimer _debounceTimer;
         private void SearchFlashCardTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -119,19 +122,20 @@ namespace IT008_AppHocAV.View.MainWindow
                     if (textBox.Text == String.Empty)
                     {
                         //ListEssayListView.ItemsSource = _data;
+                        lvListFlash.ItemsSource= _data;
                     }
                     else
                     {
-                        /*_searchResult.Clear();
-                        foreach (Essay essay in _data)
+                        _searchResult.Clear();
+                        foreach (ListFlashCard desk in _data)
                         {
-                            if (essay.Title.StartsWith(textBox.Text))
+                            if (desk.Title.StartsWith(textBox.Text, StringComparison.OrdinalIgnoreCase))
                             {
-                                Console.WriteLine(essay.Title);
-                                _searchResult.Add(essay);
+                                
+                                _searchResult.Add(desk);
                             }
                         }
-                        ListEssayListView.ItemsSource = _searchResult;*/
+                       lvListFlash.ItemsSource = _searchResult;
                     }
                     RefreshPage();
                 }
@@ -142,10 +146,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         
 
-        private void RefreshPage()
-        {
-            lvListFlash.Items.Refresh();
-        }
+       
 
         private void SearchEssayButton_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -156,6 +157,60 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             if(!SearchFlashCardTextBox.IsMouseOver)
                 SearchFlashCardTextBox.Visibility=Visibility.Collapsed;
+        }
+
+        // sort
+        private string _prevOrderBy = "Date modified";
+        private string _prevOrderOption = "Descending";
+        private void OrderBy_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            if (sender is RadioButtonMenuItem radioButton)
+            {
+                string orderBy = radioButton.Header.ToString();
+                if (radioButton.Header.ToString() == _prevOrderBy)
+                {
+                    if (_prevOrderOption == "Descending")
+                    {
+                        _prevOrderOption = "Ascending";
+                       Ascending.IsChecked = true;
+                    }
+                    else
+                    {
+                        _prevOrderOption = "Descending";
+                        Descending.IsChecked = true;
+                    }
+                    _data.Reverse();
+                }
+                else
+                {
+                    _data.Sort(SortCardOptions.Factory(orderBy));
+                }
+                _prevOrderBy = orderBy;
+                RefreshPage();
+            }
+        }
+
+        private void OrderOption_OnClick(object sender, RoutedEventArgs e)
+        {
+            _data.Reverse();
+            RefreshPage();
+        }
+        private void SortCard_Click(object sender, RoutedEventArgs e)
+        {
+
+            var contextMenu = ((Button)sender).ContextMenu;
+            if (contextMenu != null)
+            {
+                contextMenu.IsEnabled = true;
+                contextMenu.PlacementTarget = (sender as Button);
+                contextMenu.IsOpen = true;
+            }
+        }
+
+        private void RefreshPage()
+        {
+            lvListFlash.Items.Refresh();
         }
 
        

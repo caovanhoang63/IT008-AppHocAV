@@ -2,6 +2,7 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:uc="clr-namespace:IT008_AppHocAV.Components.RadioButtonMenuItem"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
@@ -68,9 +69,18 @@
                         </Button>
                     </Canvas>
 
-                    <Button Width="40" Height="40" Background="#96B639" Margin="0 0 10 0"
-                                Style="{DynamicResource RoundedButtonStyle}"  >
-
+                    <Button x:Name="SortCard" Width="40" Height="40" Background="#96B639" Margin="0 0 10 0" 
+                                Style="{DynamicResource RoundedButtonStyle}" Click="SortCard_Click"  >
+                        <Button.ContextMenu>
+                            <ContextMenu Placement="Bottom" IsOpen="False">
+                                <uc:RadioButtonMenuItem Header="Title" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                <uc:RadioButtonMenuItem Header="Date modified" IsChecked="True" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                <uc:RadioButtonMenuItem Header="Date created" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                <Separator/>
+                                <uc:RadioButtonMenuItem x:Name="Ascending" Header="Ascending" GroupName="OrderOptionGroup" IsChecked="True" Click="OrderOption_OnClick"/>
+                                <uc:RadioButtonMenuItem x:Name="Descending" Header="Descending" GroupName="OrderOptionGroup" Click="OrderOption_OnClick"/>
+                            </ContextMenu>
+                        </Button.ContextMenu>
                         <Image Source="../../Assets/Icon/FilterIcon.png" Width="24"></Image>
                     </Button>
 

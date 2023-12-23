@@ -131,6 +131,7 @@
     <Compile Include="Models\Pair.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
+    <Compile Include="Models\SortCardOptions.cs" />
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
     <Compile Include="Repositories\DbConnection\CardQ.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
