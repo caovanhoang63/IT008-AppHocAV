@@ -29,7 +29,11 @@ namespace IT008_AppHocAV.View.MainWindow
 
         }
 
-        
+        /// <summary>
+        /// Switch source and destination language
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SwitchLanBtn_OnClick(object sender, RoutedEventArgs e)
         {
             string temp = GtslLabel.Content.ToString();
@@ -38,6 +42,11 @@ namespace IT008_AppHocAV.View.MainWindow
             TranslateRtb();
         }
 
+        /// <summary>
+        /// Calls Google translate with each text changed event every 500ms
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GTransSlText_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             // Cancel all previously expected commands (if any)
@@ -58,6 +67,10 @@ namespace IT008_AppHocAV.View.MainWindow
             _debounceTimer.Start();
         }
         
+        
+        /// <summary>
+        /// Get text from input rich text box and calls google translate api 
+        /// </summary>
         private async void TranslateRtb()
         {
             string sltext = new TextRange(GTransSlText.Document.ContentStart, GTransSlText.Document.ContentEnd).Text;

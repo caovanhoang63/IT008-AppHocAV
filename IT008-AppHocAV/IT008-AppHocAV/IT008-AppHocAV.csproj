@@ -127,26 +127,33 @@
     </Compile>
     <Compile Include="Components\RadioButtonMenuItem\RadioButtonMenuItem.cs" />
     <Compile Include="Models\DictionaryEntry.cs" />
-    <Compile Include="Models\Essay.cs" />
     <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\GPT\GptRequest.cs" />
+    <Compile Include="Models\GPT\GptResponse.cs" />
     <Compile Include="Models\Pair.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
     <Compile Include="Models\SortExamOptions.cs" />
     <Compile Include="Models\SortFlashCardDesk.cs" />
+    <Compile Include="Models\Writing\Essay.cs" />
+    <Compile Include="Models\Writing\SortEssayOptions.cs" />
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
     <Compile Include="Repositories\DbConnection\EssayQ.cs" />
     <Compile Include="Repositories\DbConnection\ExamQ.cs" />
     <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
     <Compile Include="Repositories\DbConnection\Register.cs" />
-    <Compile Include="Repositories\InternetConnectionManager.cs" />
+    <Compile Include="Services\ChatGPT.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
     <Compile Include="Util\CheckValidate.cs" />
     <Compile Include="Util\Hashing.cs" />
     <Compile Include="Util\InternetAvailability.cs" />
+    <Compile Include="Util\InternetConnectionManager.cs" />
+    <Compile Include="View\LoadingPage.xaml.cs">
+      <DependentUpon>LoadingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -165,6 +172,9 @@
     </Compile>
     <Compile Include="View\MainWindow\Frontform.xaml.cs">
       <DependentUpon>Frontform.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\GptWritingResponsePopUp.xaml.cs">
+      <DependentUpon>GptWritingResponsePopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -237,6 +247,8 @@
   </ItemGroup>
   <ItemGroup>
 
+    <Page Include="Assets\Styles\GptWritingPopUpStyle.xaml" />
+
     <Page Include="Assets\Styles\HomeStyle.xaml" />
 
     <Page Include="Assets\Styles\LoginPageStyle.xaml" />
@@ -249,6 +261,7 @@
     <Page Include="Assets\Styles\ShowEssayStyle.xaml" />
     <Page Include="Assets\Styles\SignUpPageStyle.xaml" />
     <Page Include="Assets\Styles\WritingPageStyle.xaml" />
+    <Page Include="View\LoadingPage.xaml" />
     <Page Include="View\LoginWindow.xaml" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -259,6 +272,7 @@
     
     <Page Include="View\MainWindow\ExamPage.xaml" />
     <Page Include="View\MainWindow\FlashCardPage.xaml" />
+    <Page Include="View\MainWindow\GptWritingResponsePopUp.xaml" />
     <Page Include="View\MainWindow\HomePage.xaml" />
     <Page Include="View\MainWindow\NoInternetPage.xaml" />
     <Page Include="View\MainWindow\SearchingPage.xaml" />
@@ -276,6 +290,8 @@
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Icon\EnhanceIcon.png" />
+    <Resource Include="Assets\Icon\OutLineIcon.png" />
     <Resource Include="Assets\Image\EssayMiniBackGround.jpg" />
     <Resource Include="Assets\Image\ExamMiniBackGround.jpg" />
     <Resource Include="Assets\Image\FlashCardsMiniBackGround.jpg" />
@@ -324,6 +340,10 @@
     <Resource Include="Assets\Icon\nextBut.png" />
     <Resource Include="Assets\Icon\HomeIcon.png" />
     <Resource Include="Assets\Icon\GGTranslateIcon.png" />
+    <Resource Include="Assets\Icon\ChatGptIcon.png" />
+    <Resource Include="Assets\Icon\lightbulb.png" />
+    <Resource Include="Assets\Icon\MaxSizeIcon.png" />
+    <Resource Include="Assets\Icon\MaxiumSizeIcon.png" />
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -402,7 +422,6 @@
 
 
   <ItemGroup>
-    <Compile Include="Models\SortEssayOptions.cs" />
     <Compile Include="Models\User.cs" />
 
     

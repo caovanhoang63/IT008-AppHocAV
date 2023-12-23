@@ -100,9 +100,15 @@ namespace IT008_AppHocAV
 
         private void NavToWriting_OnClick(object sender, RoutedEventArgs e)
         {
-            if (_pageCache.TryGetValue("ShowEssay", out var value))
+            if (_pageCache.TryGetValue("ShowEssay", out var sEValue))
             {
                 NavigateToPage("ShowEssay");
+                return;
+            }
+            
+            if (_pageCache.TryGetValue("WritingContent", out var wCValue))
+            {
+                NavigateToPage("WritingContent");
                 return;
             }
             NavigateToPage("ShowListEssay");
@@ -147,9 +153,13 @@ namespace IT008_AppHocAV
         #region Avatar, Setting and Notify Button Handlers
             private void btnAvatar_Click(object sender, RoutedEventArgs e)
             {
-                (sender as Button).ContextMenu.IsEnabled = true;
-                (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
-                (sender as Button).ContextMenu.IsOpen = true;
+                var contextMenu = ((Button)sender).ContextMenu;
+                if (contextMenu != null)
+                {
+                    contextMenu.IsEnabled = true;
+                    contextMenu.PlacementTarget = (sender as Button);
+                    contextMenu.IsOpen = true;
+                }
             }
             
             private void LogOutMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -210,8 +220,6 @@ namespace IT008_AppHocAV
                 /*if (pageCache["FlashCard"] is FlashCardPage listFlashCard)
                     page = new ShowFlashCard(this, listFlashCard);*/
                      page = new ShowFlashCardPage(this);
-
-
                 }
                 else if (pageName == "MakeFlashCard")
                 { 

@@ -68,5 +68,27 @@ namespace IT008_AppHocAV.Properties {
                 return ((string)(this["DbConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ChatGptApiKey {
+            get {
+                return ((string)(this["ChatGptApiKey"]));
+            }
+            set {
+                this["ChatGptApiKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-38JM1H0;Database=APP_HOC_AV;Integrated Security=false;User ID" +
+            "=sa;Password=123456;Connection Timeout=0;")]
+        public string LocalDBConnectionString {
+            get {
+                return ((string)(this["LocalDBConnectionString"]));
+            }
+        }
     }
 }
