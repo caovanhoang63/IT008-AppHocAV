@@ -290,6 +290,7 @@
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Icon\SampleEssayIcon.png" />
     <Resource Include="Assets\Icon\EnhanceIcon.png" />
     <Resource Include="Assets\Icon\OutLineIcon.png" />
     <Resource Include="Assets\Image\EssayMiniBackGround.jpg" />
@@ -344,6 +345,7 @@
     <Resource Include="Assets\Icon\lightbulb.png" />
     <Resource Include="Assets\Icon\MaxSizeIcon.png" />
     <Resource Include="Assets\Icon\MaxiumSizeIcon.png" />
+    <Resource Include="Assets\Icon\LexicalItemsIcon.png" />
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using IT008_AppHocAV.Models;
 
 namespace IT008_AppHocAV.View.MainWindow
@@ -27,23 +28,23 @@ namespace IT008_AppHocAV.View.MainWindow
 
         #region Declare Properties
 
-            public Essay Essay => _essay;
+        public Essay Essay => _essay;
 
         #endregion
 
         #region Click Event Handler
 
-            private void BackToListButton_OnClick(object sender, RoutedEventArgs e)
-            {
-                _mainWindow.NavigateToPage("ShowListEssay");
-                _mainWindow.PageCache.Remove("ShowEssay");
-            }
+        private void BackToListButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.NavigateToPage("ShowListEssay");
+            _mainWindow.PageCache.Remove("ShowEssay");
+        }
 
-            private void ModifyEssayButton_OnClick(object sender, RoutedEventArgs e)
-            {
-                _mainWindow.NavigateToPage("WritingContent");
-                _mainWindow.PageCache.Remove("ShowEssay");
-            }
+        private void ModifyEssayButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.NavigateToPage("WritingContent");
+            _mainWindow.PageCache.Remove("ShowEssay");
+        }
 
         #endregion
 
@@ -57,6 +58,26 @@ namespace IT008_AppHocAV.View.MainWindow
             TitleTextBox.IsReadOnly = false;
             TitleTextBox.BorderThickness = new Thickness(0,0,0,1);
             TitleTextBox.Focus();
+        }
+
+        private void DeleteEssayButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this essay?","",MessageBoxButton.OKCancel);
+            
+            if (result == MessageBoxResult.Cancel)
+                return;
+            
+            _mainWindow.DbConnection.EssayQ.DeleteEssayById(_essay.Id);
+            _mainWindow.NavigateToPage("ShowListEssay");
+            _mainWindow.PageCache.Remove("ShowEssay");
+        }
+
+        private void ShowEssayPage_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S && Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                
+            }
         }
     }
 }

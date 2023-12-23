@@ -7,7 +7,7 @@ namespace IT008_AppHocAV.Models.GPT
     {
 
             [JsonPropertyName("model")]
-            public string Model { get; set; } = "gpt-3.5-turbo";
+            public string Model { get; set; } = "gpt-3.5-turbo-1106";
             [JsonPropertyName("max_tokens")]
             public int MaxTokens { get; set; } = 4000;
             [JsonPropertyName("messages")]

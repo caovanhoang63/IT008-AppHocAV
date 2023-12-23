@@ -67,7 +67,6 @@ namespace IT008_AppHocAV.View.MainWindow
                     if (_mainWindow.DbConnection.EssayQ.DeleteEssayById(modelEssay.Id))
                     {
 
-                        
                         foreach (Essay essay in _data)
                         {
                             if (essay.Id == modelEssay.Id)

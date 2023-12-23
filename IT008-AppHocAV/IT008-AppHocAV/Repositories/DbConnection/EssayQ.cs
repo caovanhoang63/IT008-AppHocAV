@@ -29,10 +29,10 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             try
             {
                 string query =
-                    " INSERT INTO Essay (user_id, title, topic,image, description, content, updated_at, created_at) " +
+                    " INSERT INTO Essay (user_id, title, topic,image, content, updated_at, created_at) " +
                     " output inserted.id " +
                     " VALUES " +
-                    " (@user_id, @title, @topic , @image , @description, @content, GETDATE(), GETDATE()) ";
+                    " (@user_id, @title, @topic , @image, @content, GETDATE(), GETDATE()) ";
 
                 byte[] data = essay.Image == null ? null : BitmapConverter.ConvertToByteFromBitmapImage(essay.Image);
 
@@ -48,7 +48,6 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                         command.Parameters.AddWithValue("@image", SqlBinary.Null);
 
 
-                    command.Parameters.AddWithValue("@description", essay.Description);
                     command.Parameters.AddWithValue("@content", essay.Content);
                     _sqlConnection.Open();
                     int modified = (int)command.ExecuteScalar();
@@ -194,7 +193,6 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                                 reader.GetInt32(reader.GetOrdinal("user_id")),
                                 reader.GetString(reader.GetOrdinal("title")),
                                 reader.GetString(reader.GetOrdinal("topic")),
-                                reader.GetString(reader.GetOrdinal("description")),
                                 image,
                                 reader.GetString(reader.GetOrdinal("content")),
                                 reader.GetDateTime(reader.GetOrdinal("created_at")),

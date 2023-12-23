@@ -17,6 +17,9 @@ namespace IT008_AppHocAV.View.MainWindow
             private readonly IT008_AppHocAV.MainWindow _mainWindow;
             private Essay _essay;
             private GptWritingResponsePopUp _popUp = new GptWritingResponsePopUp();
+            private int _words;
+
+            public int Words => _words;
         #endregion
         
                         
@@ -41,8 +44,6 @@ namespace IT008_AppHocAV.View.MainWindow
         /// <param name="e"></param>
         private void WritingContentPage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            TitleTextBlock.Text = _essay.Title;
-            TopicTextBlock.Text = _essay.Topic;
             
             if (_essay.Image != null)
             {
@@ -52,7 +53,8 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 WritingImage.Visibility = Visibility.Collapsed;
             }
-            ContentRichTextBox.Selection.Text  = _essay.Content;
+            DataContext = _essay;
+
         }
 
         /// <summary>
@@ -82,8 +84,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private void ContentRichTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             string richText = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
-            int count = WordCouting.WordCount(richText);
-            WordCount.Text = count.ToString();
+            _words = WordCouting.WordCount(richText);
         }
 
         /// <summary>
@@ -155,8 +156,10 @@ namespace IT008_AppHocAV.View.MainWindow
             string topic = TopicTextBlock.Text;
             
             Func func = GetGptWritingFunc(sender);
+
+            GptResponsePupUpContent.Content = _popUp;
             
-            _popUp.LoadResult(func,topic,answer);
+            await _popUp.LoadResult(func,topic,answer);
         }
 
 
@@ -177,10 +180,12 @@ namespace IT008_AppHocAV.View.MainWindow
                         return Func.Ideas;  
                     case "Outline":
                         return Func.OutLine;
-                    case "Preview and Enhance":
+                    case "Preview and enhance":
                         return Func.Enhance;
-                    case "Lexical":
+                    case "Lexical items":
                         return Func.Lexical;
+                    case "Make a sample":
+                        return Func.Sample; 
                     default:
                         throw new Exception("This function does not exist");
                 }

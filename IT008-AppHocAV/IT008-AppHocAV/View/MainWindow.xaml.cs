@@ -244,6 +244,7 @@ namespace IT008_AppHocAV
                         page = new WritingContentPage(this,writingPage.Essay );
                     }
 
+                    WordsStatusBarItem.Visibility = Visibility.Visible;     
                 } 
                 else if (pageName == "ShowListEssay")
                 {
@@ -310,6 +311,7 @@ namespace IT008_AppHocAV
                 }
             }
 
+            
         #endregion
         
         #region  UI Event Handler

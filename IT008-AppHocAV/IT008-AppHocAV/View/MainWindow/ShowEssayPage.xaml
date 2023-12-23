@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
       Title="ShowEssayPage" Height="auto" Width="auto"
->
+      KeyDown="ShowEssayPage_OnKeyDown"
+      >
       <Page.Resources>
             <ResourceDictionary>
                   <ResourceDictionary.MergedDictionaries>
@@ -26,14 +27,14 @@
                                 Click="ModifyEssayButton_OnClick">
                               <Image Source="../../Assets/Icon/ModifiedIcon.png"></Image>
                         </Button>
-                        <Button Style="{DynamicResource TransparentButtonStyle }">
+                        <Button Style="{DynamicResource TransparentButtonStyle }"
+                                Click="DeleteEssayButton_OnClick">
                               <Image Source="../../Assets/Icon/BinIcon.png"></Image>
                         </Button>
                         <Button Name="BackToListButton" 
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource TransparentButtonStyle}"
-                                Click="BackToListButton_OnClick"
-                        >
+                                Click="BackToListButton_OnClick">
                               <Image Source="../../Assets/Icon/CloseIcon.png"></Image>
                         </Button>
                   </StackPanel>
@@ -62,16 +63,6 @@
                         
                         <Border Style="{DynamicResource Splitter}" ></Border>
             
-                        <!-- Description -->
-                        <StackPanel Orientation="Horizontal" >
-                              <Label Style="{DynamicResource TagLabel}">Description:</Label>
-                              <Button Style="{DynamicResource EditButtonStyle}"
-                                      Click="ButtonBase_OnClick"/>
-                        </StackPanel>
-                        <TextBox Style="{DynamicResource ReadOnlyTextBox}" Text="{Binding Description}"/> 
-                        <!-- End description -->
-                        
-
                         <!-- Topic -->
                         <StackPanel Orientation="Horizontal">
                               <Label  Style="{DynamicResource TagLabel}"  >Topic:</Label>

@@ -166,14 +166,23 @@
                 </DockPanel>
                 
                 <StatusBar DockPanel.Dock="Bottom" x:Name="SBar" Background="Bisque" >
+                    
                     <StatusBarItem Margin="5" BorderThickness="0 0 1 0"
                                    BorderBrush="Black" >
                         <TextBlock x:Name="StatusBarCurrentPage">Searching</TextBlock> 
                     </StatusBarItem>
+                    
                     <StatusBarItem Name="InternetConnectionStatusBarItem" Visibility="Collapsed" >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock VerticalAlignment="Center">No internet</TextBlock>
                             <Image Width="20" Margin="5 0 0 0" Source="../Assets/Icon/NoInternetIcon.png"></Image>
+                        </StackPanel>
+                    </StatusBarItem>
+                    
+                    <StatusBarItem Name="WordsStatusBarItem">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock   x:Name="WordNum">1</TextBlock>
+                            <TextBlock xml:space="preserve"> words</TextBlock>
                         </StackPanel>
                     </StatusBarItem>
                 </StatusBar>

@@ -13,16 +13,12 @@ namespace IT008_AppHocAV.View.MainWindow
             InitializeComponent();
         }
 
-        public async void LoadResult(Func func,string topic, string answer)
+        public async Task LoadResult(Func func,string topic, string answer)
         {
-            string result =  await Task.Run(
-                function: () => 
-                    ChatGpt.WritingHelp(
-                        func: func,
-                        topic: topic,
-                        answer: answer)
+            string result = await Task.Run(() =>
+                ChatGpt.WritingHelp(func, topic, answer)
             );
-
+            
             switch (func)
             {
                 case Func.Ideas:
@@ -30,20 +26,23 @@ namespace IT008_AppHocAV.View.MainWindow
                     Ideas.Text = result;
                     break;
                 case Func.OutLine:
-                    Outline.Visibility = Visibility.Visible;
+                    OutlineContainer.Visibility = Visibility.Visible;
                     Outline.Text = result;
-
                     break;
                 case Func.Lexical:
-                    Lexical.Visibility = Visibility.Visible;
+                    LexicalContainer.Visibility = Visibility.Visible;
                     Lexical.Text = result;
-
                     break;
                 case Func.Enhance:
-                    Enhance.Visibility = Visibility.Visible;
+                    EnhanceContainer.Visibility = Visibility.Visible;
                     Enhance.Text = result;
                     break;
+                case Func.Sample:
+                    SampleContainer.Visibility = Visibility.Visible;
+                    Sample.Text = result;
+                    break;
             }
+            
         }
     }
 }

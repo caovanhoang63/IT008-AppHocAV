@@ -28,7 +28,7 @@ namespace IT008_AppHocAV.Services
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
                 HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(ApiUrl, content);
-
+                
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     string responseString = await httpResponseMessage.Content.ReadAsStringAsync();
@@ -42,41 +42,44 @@ namespace IT008_AppHocAV.Services
         
         public static Task<string> WritingHelp(Func func,string topic,string answer)
         {
-            string require;
+            string userMessage;
             switch (func)
             {
                 case Func.Ideas:
-                    require = "Suggest some ideas to write an essay about this topic: " + topic;
+                    userMessage = "Suggest some ideas to write an essay about this topic: " + topic;
                     break;
                 case Func.OutLine:
-                    require = "Suggest an outline for this topic: " + topic;
+                    userMessage = "Suggest an outline for this topic: " + topic;
                     break;
                 case Func.Lexical:
-                    require = "suggest some lexical items to write an essay about this topic: " + topic;
+                    userMessage = "suggest some lexical items to write an essay about this topic: " + topic;
+                    break;
+                case Func.Sample:
+                    userMessage = "Write an academic ielst essay (250 - 350 words long) about the following topic: "+ topic;
                     break;
                 case Func.Enhance:
-                    require = String.Format(
-                        "Thank, here are some regulations for our conversations on scoring IELTS writing test:" +
-                        "\n• I'll provide the information for the IELTS writing, including writing task, topic" +
-                        " [topics],, and the writing answer [answer];" +
-                        "\n• You act as IELTS examiner to score the writing task. And then give the feedbacks and suggestions to improve the writing for the following points:" +
-                        "\n +) Task achievement;\n +) Vocabulary and collocations;" +
-                        "\n +) Grammar and sentence structure;" +
-                        "\n +) Coherence and Cohesion;" +
-                        "\n\nLet start with the following variable values:" +
-                        "\n[exam] = \"IELTS\";" +
-                        "\n[topics] = \"{0}\"" +
-                        ";\n[answer] = \"{1}\";",topic,answer);
+                    userMessage =  "Thank, here are some regulations for our conversations on scoring IELTS writing test:" +
+                                   "\n I'll provide the information for the IELTS writing, including writing task, topic [topics],, and the writing answer [answer];" +
+                                   "\n You act as IELTS examiner to score the writing task. " +
+                                   "And then give the feedbacks and suggestions to improve the writing for the following points:" +
+                                   "\n+) Task achievement;" +
+                                   "\n+) Vocabulary and collocations;" +
+                                   "\n+) Grammar and sentence structure;" +
+                                   "\n+) Coherence and Cohesion;" +
+                                   "\nLet start with the following variable values:" +
+                                   "\n[exam] = IELTS;" +
+                                   "\n[topics] =   " + topic + ";" +
+                                   "\n[answer] = "+ answer + ";\n";
                     break;
+                
                 default:
                     throw new ArgumentOutOfRangeException(nameof(func), func, null);
             }
+            Console.WriteLine(topic);
             
             GptRequest request = new GptRequest();
-            request.Messages = new List<RequestMessage>();
             
-            Console.WriteLine(require);
-            Console.WriteLine("-------------------------------------------------------------------");
+            request.Messages = new List<RequestMessage>();
             
             request.Messages.Add(new RequestMessage()
             {
@@ -88,9 +91,11 @@ namespace IT008_AppHocAV.Services
             request.Messages.Add(new RequestMessage()
             {
                 Role =  "user",
-                Content = require,
+                Content = userMessage,
             });
-                        
+            
+            
+            
             string result = Task.Run(async() => await Request(request)).Result;
             
             
@@ -106,6 +111,7 @@ namespace IT008_AppHocAV.Services
         Ideas,
         OutLine,
         Lexical,
+        Sample,
         Enhance,
     }
     

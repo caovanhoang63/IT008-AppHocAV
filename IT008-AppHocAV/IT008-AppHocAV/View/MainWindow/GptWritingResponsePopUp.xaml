@@ -25,22 +25,27 @@
             
             <StackPanel>
                 
-                <StackPanel x:Name="IdeasContainer">
+                <StackPanel x:Name="IdeasContainer" Style="{DynamicResource ContentContainer}">
                     <TextBlock>Ideas: </TextBlock>
                     <TextBox x:Name="Ideas" />
                 </StackPanel>
 
-                <StackPanel x:Name="OutlineContainer">
+                <StackPanel x:Name="OutlineContainer" Style="{DynamicResource ContentContainer}">
                     <TextBlock>Outline: </TextBlock>
                     <TextBox x:Name="Outline" />
                 </StackPanel>
+                
+                <StackPanel x:Name="SampleContainer" Style="{DynamicResource ContentContainer}">
+                    <TextBlock>Sample essay: </TextBlock>
+                    <TextBox x:Name="Sample" />
+                </StackPanel>
 
-                <StackPanel x:Name="LexicalContainer">
+                <StackPanel x:Name="LexicalContainer" Style="{DynamicResource ContentContainer}">
                     <TextBlock>Lexical: </TextBlock>
                     <TextBox x:Name="Lexical" />
                 </StackPanel>
 
-                <StackPanel x:Name="EnhanceContainer">
+                <StackPanel x:Name="EnhanceContainer" Style="{DynamicResource ContentContainer}">
                     <TextBlock>Preview and Enhance: </TextBlock>
                     <TextBox x:Name="Enhance" />
                 </StackPanel>

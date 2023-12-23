@@ -43,9 +43,7 @@
                 
                 <TextBox  x:Name="TopicTextBox" Height="80"/>
 
-                <Label>More description</Label>
-                
-                <TextBox x:Name="DescriptionTextBox" Height="80"></TextBox>
+
                 
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 20">
                     <Button  Click="AddImageButton_OnClick"

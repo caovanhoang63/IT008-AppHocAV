@@ -49,7 +49,6 @@ namespace IT008_AppHocAV.View.MainWindow
                 _essay.UserId = _mainWindow.UserId;
                 _essay.Title = TitleTextBox.Text;
                 _essay.Topic = TopicTextBox.Text;
-                _essay.Description = DescriptionTextBox.Text;
                 _essay.CreatedAt =  DateTime.Now; 
                 _essay.UpdatedAt =  DateTime.Now;
                 

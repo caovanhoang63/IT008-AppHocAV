@@ -71,7 +71,7 @@ namespace IT008_AppHocAV.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("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")]
         public string ChatGptApiKey {
             get {
                 return ((string)(this["ChatGptApiKey"]));
