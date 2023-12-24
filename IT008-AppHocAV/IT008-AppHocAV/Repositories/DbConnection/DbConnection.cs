@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using IT008_AppHocAV.Properties;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
 {

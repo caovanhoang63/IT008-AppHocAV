@@ -81,7 +81,7 @@
 
                 <Border Grid.Row="0" Margin=" 0 0 0 5" CornerRadius="10"  Background= "#D9D9D9">
                     <Grid>
-                        <TextBox  Name="TitleTextBox"   FontSize="18"   BorderThickness="0" 
+                        <TextBox  Name="TitleTextBox"   FontSize="18" BorderThickness="0" 
                                HorizontalAlignment="Center" VerticalAlignment="Center" Width="780" TextChanged="TitleTextBox_TextChanged" Height="25"
                                 AcceptsReturn="True" TextWrapping="Wrap" FontFamily="Segoe UI Semibold" Background="#D9D9D9"
                              />

@@ -133,15 +133,12 @@
     <Compile Include="Models\Pair.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\SortExamOptions.cs" />
     <Compile Include="Models\SortFlashCardDesk.cs" />
     <Compile Include="Models\Writing\Essay.cs" />
     <Compile Include="Models\Writing\GptWritingResponse.cs" />
     <Compile Include="Models\Writing\SortEssayOptions.cs" />
-=======
     <Compile Include="Models\SortCardOptions.cs" />
->>>>>>> origin/CardPage
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
     <Compile Include="Repositories\DbConnection\CardQ.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
@@ -252,14 +249,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-
     <Page Include="Assets\Styles\GptWritingPopUpStyle.xaml" />
 
     <Page Include="Assets\Styles\HomeStyle.xaml" />
 
-=======
->>>>>>> origin/CardPage
     <Page Include="Assets\Styles\LoginPageStyle.xaml" />
     <Page Include="Assets\Styles\BaseStyles.xaml">
       <SubType>Designer</SubType>
@@ -291,7 +284,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-<<<<<<< HEAD
+
 
   
     <Page Include="View\MainWindow\TranslatePage.xaml" />
@@ -309,12 +302,10 @@
     <Resource Include="Assets\Icon\SortIcon.png" />
     <Resource Include="Assets\Image\LogoWithOutELF.png" />
     <Resource Include="Assets\Icon\ThreeStickMenuIcon.png" />
-=======
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\refresh_icon.png" />
->>>>>>> origin/CardPage
     <Resource Include="Assets\Icon\BookIcon.png" />
     <Resource Include="Assets\Icon\CheckIcon.png" />
     <Resource Include="Assets\Icon\FlashCard.png" />
@@ -352,7 +343,7 @@
     <Resource Include="Assets\Image\background.png" />
     <Resource Include="Assets\Icon\ExitIcon.png" />
     <Resource Include="Assets\Icon\nextBut.png" />
-<<<<<<< HEAD
+
     <Resource Include="Assets\Icon\HomeIcon.png" />
     <Resource Include="Assets\Icon\GGTranslateIcon.png" />
     <Resource Include="Assets\Icon\ChatGptIcon.png" />
@@ -360,9 +351,9 @@
     <Resource Include="Assets\Icon\MaxSizeIcon.png" />
     <Resource Include="Assets\Icon\MaxiumSizeIcon.png" />
     <Resource Include="Assets\Icon\LexicalItemsIcon.png" />
-=======
+
     <Resource Include="Assets\Icon\nextbuttonFl.png" />
->>>>>>> origin/CardPage
+
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -431,36 +422,40 @@
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
     <Resource Include="View\MainWindow\background.png" />
-  </ItemGroup>
-    <Compile Include="Models\Exam.cs" />
-    <Compile Include="Models\GPT\GptRequest.cs" />
-    <Compile Include="Models\GPT\GptResponse.cs" />
-    <Compile Include="Models\SortExamOptions.cs" />
-    <Compile Include="Models\SortFlashCardDesk.cs" />
-    <Compile Include="Models\Writing\Essay.cs" />
-    <Compile Include="Models\Writing\GptWritingResponse.cs" />
-    <Compile Include="Models\Writing\SortEssayOptions.cs" />
-    <Compile Include="Repositories\DbConnection\CardQ.cs" />
-    <Compile Include="Repositories\DbConnection\DeskQ.cs" />
-    <Compile Include="Repositories\DbConnection\ExamQ.cs" />
-    <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
-    <Compile Include="Services\ChatGPT.cs" />
-    <Compile Include="Util\InternetConnectionManager.cs" />
-    <Compile Include="View\LoadingPage.xaml.cs">
-      <DependentUpon>LoadingPage.xaml</DependentUpon>
-    </Compile>
-    </Compile>
-    <Compile Include="View\MainWindow\EditFlashCard.xaml.cs">
-      <DependentUpon>EditFlashCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainWindow\GptWritingResponsePopUp.xaml.cs">
-      <DependentUpon>GptWritingResponsePopUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainWindow\HomePage.xaml.cs">
+      <Compile Include="Models\Exam.cs" />
+      <Compile Include="Models\GPT\GptRequest.cs" />
+      <Compile Include="Models\GPT\GptResponse.cs" />
+      <Compile Include="Models\SortExamOptions.cs" />
+      <Compile Include="Models\SortFlashCardDesk.cs" />
+      <Compile Include="Models\Writing\Essay.cs" />
+      <Compile Include="Models\Writing\GptWritingResponse.cs" />
+      <Compile Include="Models\Writing\SortEssayOptions.cs" />
+      <Compile Include="Repositories\DbConnection\CardQ.cs" />
+      <Compile Include="Repositories\DbConnection\DeskQ.cs" />
+      <Compile Include="Repositories\DbConnection\ExamQ.cs" />
+      <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
+      <Compile Include="Services\ChatGPT.cs" />
+      <Compile Include="Util\InternetConnectionManager.cs" />
+      <Compile Include="View\LoadingPage.xaml.cs">
+          <DependentUpon>LoadingPage.xaml</DependentUpon>
+      </Compile>
+      <Compile Include="View\MainWindow\EditFlashCard.xaml.cs">
+          <DependentUpon>EditFlashCard.xaml</DependentUpon>
+      </Compile>
+      <Compile Include="View\MainWindow\GptWritingResponsePopUp.xaml.cs">
+          <DependentUpon>GptWritingResponsePopUp.xaml</DependentUpon>
+      </Compile>
+      <Compile Include="View\MainWindow\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+      </Compile>
+      <Compile Include="View\MainWindow\TranslatePage.xaml.cs">
+          <DependentUpon>TranslatePage.xaml</DependentUpon>
+      </Compile>
+  </ItemGroup>
+    
 
-    <Compile Include="View\MainWindow\TranslatePage.xaml.cs">
-      <DependentUpon>TranslatePage.xaml</DependentUpon>
-    </Compile>
+
+
+   
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

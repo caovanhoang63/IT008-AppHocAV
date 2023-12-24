@@ -203,6 +203,16 @@ namespace IT008_AppHocAV
                 {
                     page = new SearchingPage(this); 
                 }
+                else if (pageName =="EditFlashCard")
+                {
+                    if (_pageCache["FlashCard"] is FlashCardPage listcard)
+                        page = new EditFlashCard(this,listcard);    
+                }
+                else if (pageName == "ShowFlashCard")
+                {
+                    if (_pageCache["FlashCard"] is FlashCardPage listcard)
+                        page = new ShowFlashCardPage(this,listcard);
+                }
                 else if (pageName == "CreateEssay")
                 {
                     page = new CreateEssayPage(this);
@@ -216,11 +226,11 @@ namespace IT008_AppHocAV
                     page = new FlashCardPage(this);
                 }
                 
-                  else if (pageName == "MakeFlashCard")
-                  {
-                     page = new MakeFlashCard(this);
+              else if (pageName == "MakeFlashCard")
+              {
+                 page = new MakeFlashCard(this);
 
-                  }
+              }
 
 
                 else if (pageName == "NoInternet")
@@ -239,7 +249,6 @@ namespace IT008_AppHocAV
                         var writingPage = (ShowEssayPage)_pageCache["ShowEssay"];
                         page = new WritingContentPage(this,writingPage.Essay );
                     }
-
                   } 
                   else if (pageName == "ShowListEssay")
                   {
