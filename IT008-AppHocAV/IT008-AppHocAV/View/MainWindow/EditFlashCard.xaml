@@ -132,7 +132,7 @@
                   Height="auto"
                   Background="Transparent"
                   BorderThickness="0" 
-                  d:ItemsSource="{d:SampleData ItemCount=2}" Loaded="LvListCard_Loaded">
+                  d:ItemsSource="{d:SampleData ItemCount=2}" Loaded="LvListCard_Loaded" PreviewMouseWheel="LvListCard_PreviewMouseWheel">
 
                     <ListView.ItemTemplate >
                         <!-- Defines Items Template -->
@@ -169,9 +169,26 @@
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="TermBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="TermBlock"  IsHitTestVisible="False" Text="Enter term..."
                                                         VerticalAlignment="Center" FontSize="16"
-                                                         HorizontalAlignment="Left" 
-                                                          Foreground="DarkGray" Margin="5" ></TextBlock>
+                                                         HorizontalAlignment="Left"  
+                                                          Foreground="DarkGray" Margin="5" >
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ElementName=TermBox, Path=Text.Length}" Value="0">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding ElementName=TermBox, Path=Text.Length}" Value="1">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                    </DataTrigger>
+                                                                    <!-- Add more DataTriggers if needed for different lengths -->
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+
+
+                                                    </TextBlock>
                                                 </Grid>
+                                                
                                             </Border>
                                             <Label   Height="30" FontSize="16" Content="TERM"></Label>
 
@@ -185,7 +202,22 @@
                                                     <TextBlock x:Name="DefineBlock"  IsHitTestVisible="False" Text="Enter defination..."
                                                         VerticalAlignment="Center" FontSize="16"
                                                          HorizontalAlignment="Left" 
-                                                          Foreground="DarkGray" Margin="5" ></TextBlock>
+                                                          Foreground="DarkGray" Margin="5" >
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ElementName=DefineBox, Path=Text.Length}" Value="0">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding ElementName=DefineBox, Path=Text.Length}" Value="1">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                    </DataTrigger>
+                                                                    <!-- Add more DataTriggers if needed for different lengths -->
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+
+                                                    </TextBlock>
                                                 </Grid>
                                             </Border>
                                             <Label   Height="30" FontSize="16">DEFINATION</Label>

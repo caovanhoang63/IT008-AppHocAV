@@ -4,6 +4,7 @@ using IT008_AppHocAV.Util;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,17 +28,25 @@ namespace IT008_AppHocAV.View.MainWindow
         private readonly IT008_AppHocAV.MainWindow _mainWindow;
         private ListFlashCard _data;
         private FlashCardPage FlashCardPage;
-
+        private ObservableCollection<FlashCard> _datatemp;
         public EditFlashCard(IT008_AppHocAV.MainWindow mainWindow, FlashCardPage flashCardPage)
         {
             InitializeComponent();
             this._mainWindow = mainWindow;
             this.FlashCardPage = flashCardPage;
             this._data= FlashCardPage.CurrentCard;
+            _datatemp = new ObservableCollection<FlashCard>();
+
             _data.FlashCards = _mainWindow.DbConnection.CardQ.SelectCardByID(_data.Id);
-           //  LvListCard.ItemsSource = _data.FlashCards;
-            
-         }
+
+            // Chuyển đổi List<FlashCard> thành ObservableCollection<FlashCard>
+            ObservableCollection<FlashCard> flashCardCollection = new ObservableCollection<FlashCard>(_mainWindow.DbConnection.CardQ.SelectCardByID(_data.Id));
+
+            // Gán vào _datatemp
+            _datatemp = flashCardCollection;
+
+            LvListCard.ItemsSource = _datatemp;
+        }
        
 
       
@@ -46,7 +55,8 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             TitleTextBox.Text =_data.Title;
             DescriptionTextBox.Text =_data.Description;
-            LvListCard.ItemsSource = _data.FlashCards;
+
+          
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -86,13 +96,16 @@ namespace IT008_AppHocAV.View.MainWindow
             _data.Quantity++;
             card.DeskId = _data.Id;
             card.Id = _mainWindow.DbConnection.CardQ.SelectTopId() +1;
-          
+
             if (_mainWindow.DbConnection.CardQ.CreateCard(card))
+            {
                 _data.FlashCards.Add(card);
+                _datatemp.Add(card);
+            }
             else
                 MessageBox.Show("Fail!");
           
-            RefreshPage();
+           // RefreshPage();
 
         }
         private void AddImageButton_Click(object sender, RoutedEventArgs e)
@@ -133,13 +146,13 @@ namespace IT008_AppHocAV.View.MainWindow
                                     cardImage.Source=image;
                                     cardImage.Visibility = Visibility.Visible;
                                 }
+                                var setImage = FindVisualChild<Image>(item, "SetImage");
+                                if (setImage != null)
+                                {
+                                    setImage.Visibility = Visibility.Hidden;
+                                }
                             }
                         }
-
-
-
-
-
 
                     }
                 }
@@ -173,7 +186,26 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void LvListCard_Loaded(object sender, RoutedEventArgs e)
         {
+            ListView listView = (ListView)sender;
 
+            foreach (var item in listView.Items)
+            {
+                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromItem(item) as ListViewItem;
+
+                if (listViewItem != null)
+                {
+                    TextBlock termBlock = FindVisualChild<TextBlock>(listViewItem, "TermBlock");
+                    TextBlock defineBlock = FindVisualChild<TextBlock>(listViewItem, "DefineBlock");
+                    if (termBlock != null)
+                    {
+                        termBlock.Visibility = Visibility.Hidden;
+                    }
+                    if(defineBlock != null)
+                    {
+                        defineBlock.Visibility = Visibility.Hidden;
+                    }    
+                }
+            }
         }
 
         private void DeleteCardButton_Click(object sender, RoutedEventArgs e)
@@ -195,9 +227,6 @@ namespace IT008_AppHocAV.View.MainWindow
                         break;
                     }
                 }
-
-
-
                 RefreshPage();
             }
             else
@@ -235,15 +264,9 @@ namespace IT008_AppHocAV.View.MainWindow
             else { termBlock.Visibility = Visibility.Visible; }
 
         }
-
-       
-
-       
         private void RefreshPage()
         {
             LvListCard.Items.Refresh();
-
-
         }
         private T FindVisualChild<T>(DependencyObject depObj, string childName) where T : DependencyObject
         {
@@ -267,6 +290,20 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
             }
             return null;
+        }
+
+        private void LvListCard_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Handled)
+                return;
+
+            e.Handled = true;
+            var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
+            {
+                RoutedEvent = UIElement.MouseWheelEvent,
+                Source = sender
+            };
+            LvListCard.RaiseEvent(eventArg);
         }
     }
 }

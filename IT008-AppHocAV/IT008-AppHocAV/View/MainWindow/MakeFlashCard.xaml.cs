@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
  
@@ -12,6 +13,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using static System.Net.Mime.MediaTypeNames;
+using Image = System.Windows.Controls.Image;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -23,7 +26,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private ListFlashCard _data;
 
         // public List<FlashCard> _data;
-
+        private ObservableCollection<FlashCard> _datatemp;
         public MakeFlashCard(IT008_AppHocAV.MainWindow mainWindow)
         {
 
@@ -32,7 +35,9 @@ namespace IT008_AppHocAV.View.MainWindow
 
             _data = new ListFlashCard();
 
-            LvListCard.ItemsSource = _data.FlashCards;
+            _datatemp = new ObservableCollection<FlashCard>();
+            
+            LvListCard.ItemsSource = _datatemp;
 
         }
 
@@ -42,12 +47,16 @@ namespace IT008_AppHocAV.View.MainWindow
             // set selectedindex để tránh nhầm card
             LvListCard.SelectedIndex =-1;
             FlashCard card = new FlashCard();
-
+            
             card.ImagePath = null;
 
-
             _data.FlashCards.Add(card);
-            RefreshPage();
+
+            _datatemp.Add(card);
+            // RefreshPage();
+          
+          
+           
         }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -61,7 +70,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void AddImageButton_Click(object sender, RoutedEventArgs e)
         {
-
+            e.Handled = true;
             int index = -1;
             index = LvListCard.SelectedIndex;
             if (index != -1)
@@ -90,12 +99,17 @@ namespace IT008_AppHocAV.View.MainWindow
                             if (dep is ListViewItem item)
                             {
                                 // Tìm Image trong ListViewItem và đặt thuộc tính Visibility
-                                Image cardImage = FindVisualChild<Image>(item, "CardImage");
+                                var cardImage = FindVisualChild<Image>(item, "CardImage");
                                 if (cardImage != null)
                                 {
                                     cardImage.Source=image;
                                     cardImage.Visibility = Visibility.Visible;
                                 }
+                                var setImage = FindVisualChild<Image>(item, "SetImage");
+                                if(setImage != null)
+                                {
+                                    setImage.Visibility = Visibility.Hidden;
+                                }    
                             }
                         }
                     }
@@ -161,9 +175,10 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                  
                 _data.FlashCards.RemoveAt(index);
+                _datatemp.RemoveAt(index);
             }    
          
-            RefreshPage();
+            
         }
 
        
@@ -201,7 +216,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void TermBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
+           /* TextBox textBox = (TextBox)sender;
             string termContent = textBox.Text;
             TextBlock termBlock = (TextBlock)textBox.FindName("TermBlock");
 
@@ -212,7 +227,7 @@ namespace IT008_AppHocAV.View.MainWindow
             else {
                 termBlock.Visibility = Visibility.Visible; 
             }
-
+*/
 
 
 
@@ -220,7 +235,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void DefineBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
+           /* TextBox textBox = (TextBox)sender;
             string defineContent = textBox.Text;
             TextBlock termBlock = (TextBlock)textBox.FindName("DefineBlock");
 
@@ -228,21 +243,41 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 termBlock.Visibility = Visibility.Hidden;
             }
-            else { termBlock.Visibility = Visibility.Visible; }
+            else { termBlock.Visibility = Visibility.Visible; }*/
 
         }
 
         private void RefreshPage()
         {
             LvListCard.Items.Refresh();
+            
 
-             
         }
        
 
         private void LvListCard_Loaded(object sender, RoutedEventArgs e)
         {
-           
+            ListView listView = (ListView)sender;
+
+            foreach (var item in listView.Items)
+            {
+                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromItem(item) as ListViewItem;
+
+                if (listViewItem != null)
+                {
+                    TextBlock termBlock = FindVisualChild<TextBlock>(listViewItem, "TermBlock");
+                    TextBlock defineBlock = FindVisualChild<TextBlock>(listViewItem, "DefineBlock");
+                    if (termBlock != null)
+                    {
+                        termBlock.Visibility = Visibility.Hidden;
+                    }
+                    if (defineBlock != null)
+                    {
+                        defineBlock.Visibility = Visibility.Hidden;
+                    }
+                }
+            }
+
         }
 
         private T FindVisualChild<T>(DependencyObject depObj, string name) where T : DependencyObject
@@ -266,7 +301,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void ImportFileButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("The request is to format a file.txt with the following pattern:(Term + ':'+ Definition).", "Attention");
+            MessageBox.Show("The request is to format a file.txt with the following pattern:(Term + ' : '+ Definition).", "Attention");
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "File|*.txt;...";
             if (openFileDialog.ShowDialog() != true)
@@ -285,12 +320,13 @@ namespace IT008_AppHocAV.View.MainWindow
                     FlashCard card = new FlashCard(text[0], text[1]);
 
                     _data.FlashCards.Add(card);
+                    _datatemp.Add(card);
                 }
                 
                
             }
             LvListCard.SelectedIndex =-1;
-            RefreshPage();
+            
             
         }
 

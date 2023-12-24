@@ -173,7 +173,7 @@
                                                      Background="Transparent" VerticalAlignment="Center"  
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="TermBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="TermBlock"  IsHitTestVisible="False" Text="Enter term..."
-                                                        VerticalAlignment="Center" FontSize="16"
+                                                        VerticalAlignment="Center" FontSize="16" 
                                                          HorizontalAlignment="Left" 
                                                           Foreground="DarkGray" Margin="7 0 0 0" ></TextBlock>
                                                 </Grid>
@@ -188,9 +188,24 @@
                                                      Background="Transparent" VerticalAlignment="Center" 
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="DefineBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="DefineBlock"  IsHitTestVisible="False" Text="Enter defination..."
-                                                        VerticalAlignment="Center" FontSize="16"
-                                                         HorizontalAlignment="Left" 
-                                                          Foreground="DarkGray" Margin="7 0 0 0" ></TextBlock>
+                                                        VerticalAlignment="Center" FontSize="16"  
+                                                         HorizontalAlignment="Left"   
+                                                          Foreground="DarkGray" Margin="7 0 0 0" >
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ElementName=DefineBox, Path=Text.Length}" Value="0">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding ElementName=DefineBox, Path=Text.Length}" Value="1">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                    </DataTrigger>
+                                                                    <!-- Add more DataTriggers if needed for different lengths -->
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+
+                                                    </TextBlock>
                                                 </Grid>
                                             </Border>
                                             <Label   Height="30" FontSize="16">DEFINATION</Label>

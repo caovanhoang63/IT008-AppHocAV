@@ -150,6 +150,7 @@
                                                                  Width="200"
                                                                  Background="Beige"
                                                                   Opacity="1">
+                                                                
                                                                 <Label VerticalAlignment="Center"
                                                                 HorizontalAlignment="Center" 
                                                                 FontWeight="ExtraBold"
