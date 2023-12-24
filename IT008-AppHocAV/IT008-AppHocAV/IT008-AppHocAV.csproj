@@ -410,7 +410,6 @@
       <Compile Include="Repositories\DbConnection\CardQ.cs" />
       <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
       <Compile Include="Services\ChatGPT.cs" />
-      <Compile Include="Util\InternetConnectionManager.cs" />
  
       <Compile Include="View\MainWindow\EditFlashCard.xaml.cs">
           <DependentUpon>EditFlashCard.xaml</DependentUpon>
