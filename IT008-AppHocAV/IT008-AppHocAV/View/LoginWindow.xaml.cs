@@ -81,11 +81,14 @@ namespace IT008_AppHocAV.View
         /// </summary>
         private void Login()
         {
+            //IT008_AppHocAV.MainWindow mainWindow = new IT008_AppHocAV.MainWindow(this);
+            //mainWindow.Show();
+
             if (VisiblePasswordBox.Visibility == Visibility.Visible)
             {
                 PasswordBox.Password = VisiblePasswordBox.Text;
             }
-            if (UserNameBox.Text != String.Empty && PasswordBox.Password != String.Empty )
+            if (UserNameBox.Text != String.Empty && PasswordBox.Password != String.Empty)
             {
                 _userId = DbConnection.Authentication.Login(UserNameBox.Text, PasswordBox.Password);
                 if (UserId != 0)
@@ -111,12 +114,12 @@ namespace IT008_AppHocAV.View
                 else
                 {
                     MessageBox.Show("Invalid user name or password! \n" +
-                                    "Try again!","Fail to login",MessageBoxButton.OK);
+                                    "Try again!", "Fail to login", MessageBoxButton.OK);
                 }
             }
             else
             {
-                MessageBox.Show("Please enter your user name and password!","",MessageBoxButton.OK);
+                MessageBox.Show("Please enter your user name and password!", "", MessageBoxButton.OK);
             }
         }
         

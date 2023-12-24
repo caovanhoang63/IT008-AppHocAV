@@ -24,6 +24,7 @@ namespace IT008_AppHocAV
         #region Declare Fields
             private Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
             private readonly LoginWindow _loginWindow;
+            private string Notecontent;
         #endregion
         
         #region Declare Constructors
@@ -115,7 +116,7 @@ namespace IT008_AppHocAV
 
         private void NavToExam_OnClick(object sender, RoutedEventArgs e)
         {
-            NavigateToPage("Exam");
+            NavigateToPage("ShowListExam");
         }
         private void NavToHome_OnClick(object sender, RoutedEventArgs e)
         {
@@ -132,7 +133,7 @@ namespace IT008_AppHocAV
             if (Note.Visibility != Visibility.Visible)
             {
                 Note.Visibility = Visibility.Visible;
-                TakeNotePage takeNotePage = new TakeNotePage();
+                TakeNotePage takeNotePage = new TakeNotePage(Notecontent);
                 Note.Content = takeNotePage;
             }
             else
@@ -197,10 +198,6 @@ namespace IT008_AppHocAV
                 {
                     page = new CreateEssayPage(this);
                 }
-                else if (pageName == "Exam")
-                {
-                    page = new ExamPage(this);
-                } 
                 else if (pageName == "FlashCard")
                 {
                     page = new FlashCardPage(this);
@@ -251,9 +248,20 @@ namespace IT008_AppHocAV
                 {
                     page = new TranslatePage();
                 }
-                
-                
-                return page;
+                else if(pageName == "ShowListExam")
+                {
+                    page = new ShowListExamPage(this);
+                }
+                else if (pageName == "CreateExam")
+                {
+                    page = new CreateExam(this);
+                }
+                else if (pageName == "Exam")
+                {
+                    page = new Exam();
+                }
+
+            return page;
             }
             
             public void NavigateToPage(string pageName)

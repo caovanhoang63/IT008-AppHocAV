@@ -48,7 +48,6 @@ namespace IT008_AppHocAV.View.MainWindow
                 _mainWindow.NavigateToPage("CreateEssay");
             }
 
-
             private void ShowEssayButton_OnClick(object sender, RoutedEventArgs e)
             {
                 Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;

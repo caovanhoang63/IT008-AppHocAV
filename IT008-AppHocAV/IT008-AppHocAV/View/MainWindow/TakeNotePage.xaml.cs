@@ -22,9 +22,10 @@ namespace IT008_AppHocAV.View.MainWindow
     /// </summary>
     public partial class TakeNotePage : Page
     {
-        public TakeNotePage()
+        public TakeNotePage(string Note)
         {
             InitializeComponent();
+            NoteTextBox.Text = Note;
         }
 
         private void Minimal_Button_Click(object sender, RoutedEventArgs e)
