@@ -1,48 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Services;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
     public partial class GptWritingResponsePopUp : Page
     {
+        private List<GptWritingResponse> _data;
         public GptWritingResponsePopUp()
         {
             InitializeComponent();
+            _data = new List<GptWritingResponse>();
+            ContentListView.ItemsSource = _data;
         }
 
         public async Task LoadResult(Func func,string topic, string answer)
         {
-            string result = await Task.Run(() =>
+            GptWritingResponse result = await Task.Run(() =>
                 ChatGpt.WritingHelp(func, topic, answer)
             );
             
-            switch (func)
+            GptWritingResponse temp = null;
+            foreach (var e in _data)
             {
-                case Func.Ideas:
-                    IdeasContainer.Visibility = Visibility.Visible;
-                    Ideas.Text = result;
-                    break;
-                case Func.OutLine:
-                    OutlineContainer.Visibility = Visibility.Visible;
-                    Outline.Text = result;
-                    break;
-                case Func.Lexical:
-                    LexicalContainer.Visibility = Visibility.Visible;
-                    Lexical.Text = result;
-                    break;
-                case Func.Enhance:
-                    EnhanceContainer.Visibility = Visibility.Visible;
-                    Enhance.Text = result;
-                    break;
-                case Func.Sample:
-                    SampleContainer.Visibility = Visibility.Visible;
-                    Sample.Text = result;
-                    break;
+                if (e.Func == result.Func)
+                    temp = e;
             }
+            _data.Remove(temp);
             
+            _data.Insert(0,result);
+            RefeshPage();
+        }
+
+        private void RefeshPage()
+        {
+            ContentListView.Items.Refresh();
         }
     }
 }

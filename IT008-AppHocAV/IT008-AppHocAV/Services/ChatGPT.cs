@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using IT008_AppHocAV.Models.GPT;
 using System.Text.Json;
 using System.Windows.Controls.Primitives;
+using IT008_AppHocAV.Models;
 
 namespace IT008_AppHocAV.Services
 {
@@ -40,24 +41,32 @@ namespace IT008_AppHocAV.Services
         }
 
         
-        public static Task<string> WritingHelp(Func func,string topic,string answer)
+        public static Task<GptWritingResponse> WritingHelp(Func func,string topic,string answer)
         {
             string userMessage;
+            GptWritingResponse gptWritingResponse = new GptWritingResponse();
+            gptWritingResponse.Func = func;
+
             switch (func)
             {
                 case Func.Ideas:
                     userMessage = "Suggest some ideas to write an essay about this topic: " + topic;
+                    gptWritingResponse.Header = "Ideas:";
                     break;
                 case Func.OutLine:
+                    gptWritingResponse.Header = "Outline:";
                     userMessage = "Suggest an outline for this topic: " + topic;
                     break;
                 case Func.Lexical:
+                    gptWritingResponse.Header = "Lexical items:";
                     userMessage = "suggest some lexical items to write an essay about this topic: " + topic;
                     break;
                 case Func.Sample:
+                    gptWritingResponse.Header = "Sample essay:";
                     userMessage = "Write an academic ielst essay (250 - 350 words long) about the following topic: "+ topic;
                     break;
                 case Func.Enhance:
+                    gptWritingResponse.Header = "Preview and enhance:";
                     userMessage =  "Thank, here are some regulations for our conversations on scoring IELTS writing test:" +
                                    "\n I'll provide the information for the IELTS writing, including writing task, topic [topics],, and the writing answer [answer];" +
                                    "\n You act as IELTS examiner to score the writing task. " +
@@ -94,12 +103,11 @@ namespace IT008_AppHocAV.Services
                 Content = userMessage,
             });
             
-            
-            
             string result = Task.Run(async() => await Request(request)).Result;
+
+            gptWritingResponse.Content = result;
             
-            
-            return Task.FromResult(result);
+            return Task.FromResult(gptWritingResponse);
         }
         
         

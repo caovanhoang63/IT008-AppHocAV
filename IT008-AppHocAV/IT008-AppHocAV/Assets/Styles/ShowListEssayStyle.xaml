@@ -19,7 +19,6 @@
     
     <Style x:Key="SortOptionMenuItemStyle" TargetType="MenuItem">
         <Setter Property="IsCheckable" Value="True"></Setter>
-        
     </Style>
     
 </ResourceDictionary>

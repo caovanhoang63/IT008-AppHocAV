@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
       Title="GptWritingResponsePopUp" Height="auto" Width="auto"
-      Margin="10">
-    
+      VerticalAlignment="Stretch"
+      HorizontalAlignment="Stretch">
     
     <Page.Resources>
         <ResourceDictionary>
@@ -19,42 +19,20 @@
         </ResourceDictionary>
     </Page.Resources>
     
-    
-    <Grid>
-        <ScrollViewer>
-            
-            <StackPanel>
-                
-                <StackPanel x:Name="IdeasContainer" Style="{DynamicResource ContentContainer}">
-                    <TextBlock>Ideas: </TextBlock>
-                    <TextBox x:Name="Ideas" />
+    <ListView x:Name="ContentListView" 
+              Background="Transparent"
+              BorderThickness="0"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Stretch">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <StackPanel>
+                    <TextBlock  Text="{Binding Header}" Style="{DynamicResource HeaderTbStyle}"/>
+                    <TextBox Text="{Binding Content}"   Style="{DynamicResource ContentTbStyle}"/>
                 </StackPanel>
-
-                <StackPanel x:Name="OutlineContainer" Style="{DynamicResource ContentContainer}">
-                    <TextBlock>Outline: </TextBlock>
-                    <TextBox x:Name="Outline" />
-                </StackPanel>
-                
-                <StackPanel x:Name="SampleContainer" Style="{DynamicResource ContentContainer}">
-                    <TextBlock>Sample essay: </TextBlock>
-                    <TextBox x:Name="Sample" />
-                </StackPanel>
-
-                <StackPanel x:Name="LexicalContainer" Style="{DynamicResource ContentContainer}">
-                    <TextBlock>Lexical: </TextBlock>
-                    <TextBox x:Name="Lexical" />
-                </StackPanel>
-
-                <StackPanel x:Name="EnhanceContainer" Style="{DynamicResource ContentContainer}">
-                    <TextBlock>Preview and Enhance: </TextBlock>
-                    <TextBox x:Name="Enhance" />
-                </StackPanel>
-
-                
-            </StackPanel>
-            
-        </ScrollViewer>
-    </Grid>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
     
     
 </Page>

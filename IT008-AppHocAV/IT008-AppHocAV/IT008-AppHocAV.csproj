@@ -136,6 +136,7 @@
     <Compile Include="Models\SortExamOptions.cs" />
     <Compile Include="Models\SortFlashCardDesk.cs" />
     <Compile Include="Models\Writing\Essay.cs" />
+    <Compile Include="Models\Writing\GptWritingResponse.cs" />
     <Compile Include="Models\Writing\SortEssayOptions.cs" />
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
