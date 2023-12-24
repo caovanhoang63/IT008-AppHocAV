@@ -133,8 +133,9 @@
                   Width="auto"
                   Height="auto"
                   Background="Transparent"
-                  BorderThickness="0" 
-                  d:ItemsSource="{d:SampleData ItemCount=2}" Loaded="LvListCard_Loaded"  
+                  BorderThickness="0"
+                       
+                  d:ItemsSource="{d:SampleData ItemCount=2}" Loaded="LvListCard_Loaded" PreviewMouseWheel="LvListCard_PreviewMouseWheel"  
                            >
 
                     <ListView.ItemTemplate >
@@ -143,7 +144,8 @@
                             <Border HorizontalAlignment="Stretch"   
                             CornerRadius="10"  
                             Background="#F4EEEE" Height="100" Width="auto"
-                            Margin="0 0 0 0">
+                            Margin="0 0 0 0"   
+                             >
                                 <Grid Margin="10 0 5 10">
                                     <Grid.RowDefinitions >
                                         <RowDefinition Height="25"></RowDefinition>

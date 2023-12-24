@@ -9,6 +9,7 @@ using System.Windows;
  
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -291,6 +292,20 @@ namespace IT008_AppHocAV.View.MainWindow
             LvListCard.SelectedIndex =-1;
             RefreshPage();
             
+        }
+
+        private void LvListCard_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            if (e.Handled)
+                return;
+
+            e.Handled = true;
+            var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
+            {
+                RoutedEvent = UIElement.MouseWheelEvent,
+                Source = sender
+            };
+            LvListCard.RaiseEvent(eventArg);
         }
     }
 }
