@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IT008_AppHocAV.Models;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
     /// <summary>
-    /// Interaction logic for BackForm.xaml
+    /// Interaction logic for Exam.xaml
     /// </summary>
-    public partial class BackForm : UserControl
+    public partial class DoExamPage : Page
     {
-        public BackForm()
+        private List<Question> _question;
+        public DoExamPage()
         {
             InitializeComponent();
         }
+
+       
     }
 }

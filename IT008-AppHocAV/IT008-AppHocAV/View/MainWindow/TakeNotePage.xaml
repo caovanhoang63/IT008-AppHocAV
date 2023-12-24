@@ -22,6 +22,7 @@
                      Margin="10 25 0 0" 
                      FontFamily="Inter"
                      FontSize="18" 
+                     TextWrapping="Wrap"
                      PreviewKeyDown="NoteTextBox_KeyDown"/>
 
             <Button Name="SaveButton"

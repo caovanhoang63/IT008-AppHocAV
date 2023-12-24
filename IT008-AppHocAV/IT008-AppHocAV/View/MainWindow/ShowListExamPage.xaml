@@ -1,0 +1,74 @@
+﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.ShowListExamPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
+      mc:Ignorable="d" 
+      xmlns:uc="clr-namespace:IT008_AppHocAV.Components.RadioButtonMenuItem"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ShowListExamPage">
+
+    <Page.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/ShowListEssayStyle.xaml"/>
+                <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Border Grid.Row="0"
+         BorderThickness="0 0 0 1"
+         BorderBrush="Black"
+         Margin="20 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90" ></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid  >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" FontWeight="Medium" FontSize="30" VerticalAlignment="Center">Exam</Label>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
+                        <Canvas Height="40" Width="200"  Margin="0 0 10 0">
+
+
+                            <Button x:Name="FilterExamButton"
+                                        Canvas.Right="0" Width="40" Height="40"
+                                        Background="#96B639"
+                                        Style="{DynamicResource RoundedButtonStyle }"
+                                        MouseEnter="SearchEssayButton_OnMouseEnter"
+                                        MouseLeave="SearchEssayButton_OnMouseLeave">
+                                <Image Source="../../Assets/Icon/FilterIcon.png" Width="24"></Image>
+                            </Button>
+                        </Canvas>
+
+
+
+                        <Button Width="120" Height="40" Background="#55AF6E"
+                                Style="{DynamicResource RoundedButtonStyle}"
+                                Click="NewExamButton_OnClick">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="../../Assets/Icon/AddIcon1.png" Width="24"></Image>
+                                <Label FontSize="16" VerticalAlignment="Center">New Exam</Label>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                </Grid>
+                
+            </Grid>
+        </Border>
+        
+    </Grid>
+
+</Page>

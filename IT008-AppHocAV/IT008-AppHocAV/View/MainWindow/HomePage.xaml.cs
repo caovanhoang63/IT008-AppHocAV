@@ -19,7 +19,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void NavigateToExamPage_OnClick(object sender, RoutedEventArgs e)
         {
-            _mainWindow.NavigateToPage("Exam");
+            _mainWindow.NavigateToPage("CreateExam");
         }
 
         private void NavigateToWriting_OnClick(object sender, RoutedEventArgs e)

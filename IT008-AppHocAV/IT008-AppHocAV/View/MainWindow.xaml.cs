@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Repositories.DbConnection;
 using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View;
@@ -121,7 +122,7 @@ namespace IT008_AppHocAV
 
         private void NavToExam_OnClick(object sender, RoutedEventArgs e)
         {
-            NavigateToPage("Exam");
+            NavigateToPage("ShowListExam");
         }
         private void NavToHome_OnClick(object sender, RoutedEventArgs e)
         {
@@ -198,68 +199,87 @@ namespace IT008_AppHocAV
             private Page CreatePage(string pageName)
             {
                 Page page = null;
-
-                if (pageName == "Searching")
-                {
-                    page = new SearchingPage(this); 
-                }
-                else if (pageName =="EditFlashCard")
-                {
-                    if (_pageCache["FlashCard"] is FlashCardPage listcard)
-                        page = new EditFlashCard(this,listcard);    
-                }
-                else if (pageName == "ShowFlashCard")
-                {
-                    if (_pageCache["FlashCard"] is FlashCardPage listcard)
-                        page = new ShowFlashCardPage(this,listcard);
-                }
-                else if (pageName == "CreateEssay")
-                {
-                    page = new CreateEssayPage(this);
-                }
-                else if (pageName == "Exam")
-                {
-                    page = new ExamPage(this);
-                } 
-                else if (pageName == "FlashCard")
-                {
-                    page = new FlashCardPage(this);
-                }
                 
-              else if (pageName == "MakeFlashCard")
-              {
-                 page = new MakeFlashCard(this);
-
-              }
-
-
-                else if (pageName == "NoInternet")
-                { 
-                    page = new NoInternetPage();
-                }
-                else if (pageName == "WritingContent")
+                switch (pageName)
                 {
-                    if (_pageCache.TryGetValue("CreateEssay", out var value))
+                    case "Searching":
+                        page = new SearchingPage(this);
+                        break;
+
+                    case "EditFlashCard":
                     {
-                        var writingPage = (CreateEssayPage)value;
-                        page = new WritingContentPage(this,writingPage.Essay );
+                        if (_pageCache["FlashCard"] is FlashCardPage listcard)
+                            page = new EditFlashCard(this, listcard);
+                        break; 
                     }
-                    else
+                    case "ShowFlashCard":
                     {
-                        var writingPage = (ShowEssayPage)_pageCache["ShowEssay"];
-                        page = new WritingContentPage(this,writingPage.Essay );
+                        if (_pageCache["FlashCard"] is FlashCardPage listcard)
+                            page = new ShowFlashCardPage(this, listcard);
+                        break;
                     }
-                  } 
-                  else if (pageName == "ShowListEssay")
-                  {
-                    page = new ShowListEssayPage(this);
-                  } 
-                  else if (pageName == "ShowEssay")
-                  {
-                    if (_pageCache["ShowListEssay"] is  ShowListEssayPage listEssayPage )
-                        page = new ShowEssayPage(this,listEssayPage);
-                  }
-                  return page;
+                    case "CreateEssay":
+                        page = new CreateEssayPage(this);
+                        break;
+
+                    case "FlashCard":
+                        page = new FlashCardPage(this);
+                        break;
+
+                    case "MakeFlashCard":
+                        page = new MakeFlashCard(this);
+                        break;
+
+                    case "NoInternet":
+                        page = new NoInternetPage();
+                        break;
+
+                    case "WritingContent":
+                        if (_pageCache.TryGetValue("CreateEssay", out var value))
+                        {
+                            var writingPage = (CreateEssayPage)value;
+                            page = new WritingContentPage(this, writingPage.Essay);
+                        }
+                        else
+                        {
+                            var writingPage = (ShowEssayPage)_pageCache["ShowEssay"];
+                            page = new WritingContentPage(this, writingPage.Essay);
+                        }
+                        break;
+
+                    case "ShowListEssay":
+                        page = new ShowListEssayPage(this);
+                        break;
+
+                    case "ShowEssay":
+                        if (_pageCache["ShowListEssay"] is ShowListEssayPage listEssayPage)
+                            page = new ShowEssayPage(this, listEssayPage);
+                        break;
+
+                    case "Translate":
+                        page = new TranslatePage();
+                        break;
+
+                    case "ShowListExam":
+                        page = new ShowListExamPage(this);
+                        break;
+
+                    case "CreateExam":
+                        page = new CreateExam(this);
+                        break;
+
+                    case "Exam":
+                        page = new DoExamPage();
+                        break;
+
+                    // Add more cases as needed...
+
+             
+                }
+
+                
+
+            return page;
             }
             
             public void NavigateToPage(string pageName)
@@ -331,21 +351,9 @@ namespace IT008_AppHocAV
 
             private void SearchTextContainer_OnLostFocus(object sender, RoutedEventArgs e)
             {
-                SearchTextContainer.BorderBrush = Brushes.Transparent;
+                SearchTextContainer.BorderBrush = Brushes.Black;
             }
         
-            private void NavButton_OnMouseEnter(object sender, MouseEventArgs e)
-            {
-                if (sender is Button btn)
-                    btn.Width = 130;
-            }
-
-            private void NavButton_OnMouseLeave(object sender, MouseEventArgs e)
-            {
-                if (sender is Button btn)
-                    if (MenuButton.IsChecked != null && !MenuButton.IsChecked.Value)
-                        btn.Width = 50;
-            }
 
             private void MenuButton_OnChecked(object sender, RoutedEventArgs e)
             {
@@ -353,11 +361,6 @@ namespace IT008_AppHocAV
                     if (child is Button btn)
                         btn.Width = 130;
             }
-
-
-
-
-
 
             private void MenuButton_OnUnchecked(object sender, RoutedEventArgs e)
             {
@@ -372,17 +375,7 @@ namespace IT008_AppHocAV
 
             #endregion
 
-    }
 
-    internal class ShowFlashCard : Page
-    {
-        private MainWindow mainWindow;
-        private FlashCardPage listFlashCard;
-
-        public ShowFlashCard(MainWindow mainWindow, FlashCardPage listFlashCard)
-        {
-            this.mainWindow=mainWindow;
-            this.listFlashCard=listFlashCard;
-        }
+            
     }
 }

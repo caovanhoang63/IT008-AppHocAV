@@ -127,27 +127,20 @@
     </Compile>
     <Compile Include="Components\RadioButtonMenuItem\RadioButtonMenuItem.cs" />
     <Compile Include="Models\DictionaryEntry.cs" />
-    <Compile Include="Models\Exam.cs" />
     <Compile Include="Models\GPT\GptRequest.cs" />
     <Compile Include="Models\GPT\GptResponse.cs" />
     <Compile Include="Models\Pair.cs" />
     <Compile Include="Models\FlashCard.cs" />
     <Compile Include="Models\ListFlashCard.cs" />
-    <Compile Include="Models\SortExamOptions.cs" />
-    <Compile Include="Models\SortFlashCardDesk.cs" />
-    <Compile Include="Models\Writing\Essay.cs" />
-    <Compile Include="Models\Writing\GptWritingResponse.cs" />
-    <Compile Include="Models\Writing\SortEssayOptions.cs" />
+    <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\Question.cs" />
     <Compile Include="Models\SortCardOptions.cs" />
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
-    <Compile Include="Repositories\DbConnection\CardQ.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
     <Compile Include="Repositories\DbConnection\DeskQ.cs" />
     <Compile Include="Repositories\DbConnection\EssayQ.cs" />
     <Compile Include="Repositories\DbConnection\ExamQ.cs" />
-    <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
     <Compile Include="Repositories\DbConnection\Register.cs" />
-    <Compile Include="Services\ChatGPT.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
@@ -161,24 +154,22 @@
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MainWindow\CreateExam.xaml.cs">
+      <DependentUpon>CreateExam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\ShowListExamPage.xaml.cs">
+      <DependentUpon>ShowListExamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow\DoExamPage.xaml.cs">
+      <DependentUpon>DoExamPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\MainWindow\BackForm.xaml.cs">
-      <DependentUpon>BackForm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainWindow\EditFlashCard.xaml.cs">
-      <DependentUpon>EditFlashCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainWindow\ExamPage.xaml.cs">
-      <DependentUpon>ExamPage.xaml</DependentUpon>
-    </Compile>
+
     <Compile Include="View\MainWindow\FlashCardPage.xaml.cs">
       <DependentUpon>FlashCardPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainWindow\Frontform.xaml.cs">
-      <DependentUpon>Frontform.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow\GptWritingResponsePopUp.xaml.cs">
       <DependentUpon>GptWritingResponsePopUp.xaml</DependentUpon>
@@ -195,22 +186,16 @@
     <Compile Include="View\MainWindow\SearchingPage.xaml.cs">
       <DependentUpon>SearchingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\ShowEssayPage.xaml.cs">
-      <DependentUpon>ShowEssayPage.xaml</DependentUpon>
-    </Compile>
+
 
     <Compile Include="View\MainWindow\TranslatePage.xaml.cs">
       <DependentUpon>TranslatePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\WritingContentPage.xaml.cs">
-      <DependentUpon>WritingContentPage.xaml</DependentUpon>
-    </Compile>
+
     <Compile Include="View\MainWindow\CreateEssayPage.xaml.cs">
       <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
-      <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
-    </Compile>
+
     <Compile Include="View\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -253,8 +238,20 @@
 
     <Page Include="Assets\Styles\HomeStyle.xaml" />
 
+    <Page Include="View\MainWindow\CreateExam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow\DoExamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Styles\LoginPageStyle.xaml" />
     <Page Include="Assets\Styles\BaseStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow\ShowListExamPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -273,7 +270,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindow\ExamPage.xaml" />
     <Page Include="View\MainWindow\FlashCardPage.xaml" />
     <Page Include="View\MainWindow\GptWritingResponsePopUp.xaml" />
     <Page Include="View\MainWindow\HomePage.xaml" />
@@ -289,7 +285,6 @@
   
     <Page Include="View\MainWindow\TranslatePage.xaml" />
 
-    <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\SampleEssayIcon.png" />
@@ -337,9 +332,7 @@
     <Resource Include="Assets\Icon\ReturnIcon.png" />
     <Resource Include="Assets\Icon\CloseIcon.png" />
     <Resource Include="Assets\Icon\Minimal.png" />
-    <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
-      <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
-    </Compile>
+
     <Resource Include="Assets\Image\background.png" />
     <Resource Include="Assets\Icon\ExitIcon.png" />
     <Resource Include="Assets\Icon\nextBut.png" />
@@ -366,9 +359,7 @@
     <Compile Include="View\MainWindow\ShowListEssayPage.xaml.cs">
       <DependentUpon>ShowListEssayPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\Frontform.xaml.cs">
-      <DependentUpon>Frontform.xaml</DependentUpon>
-    </Compile>
+
     <Compile Include="View\MainWindow\ShowFlashCardPage.xaml.cs">
       <DependentUpon>ShowFlashCardPage.xaml</DependentUpon>
     </Compile>
@@ -378,29 +369,17 @@
     <Compile Include="View\MainWindow\WritingContentPage.xaml.cs">
       <DependentUpon>WritingContentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\CreateEssayPage.xaml.cs">
-      <DependentUpon>CreateEssayPage.xaml</DependentUpon>
-    </Compile>
+ 
     <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
       <DependentUpon>TakeNotePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow\TakeNoteWindow.xaml.cs">
-      <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
-    </Compile>
+
     <Page Include="Assets\Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Styles\ShowListEssayStyle.xaml" />
     <Page Include="Components\RadioButtonMenuItem\RadioButtonMenuItem.xaml" />
-    <Page Include="View\MainWindow\BackForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MainWindow\Frontform.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\MainWindow\ShowListEssayPage.xaml" />
     <Page Include="View\MainWindow\ShowEssayPage.xaml" />
     <Page Include="View\MainWindow\WritingContentPage.xaml" />
@@ -422,35 +401,23 @@
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
     <Resource Include="View\MainWindow\background.png" />
-      <Compile Include="Models\Exam.cs" />
-      <Compile Include="Models\GPT\GptRequest.cs" />
-      <Compile Include="Models\GPT\GptResponse.cs" />
+
       <Compile Include="Models\SortExamOptions.cs" />
       <Compile Include="Models\SortFlashCardDesk.cs" />
       <Compile Include="Models\Writing\Essay.cs" />
       <Compile Include="Models\Writing\GptWritingResponse.cs" />
       <Compile Include="Models\Writing\SortEssayOptions.cs" />
       <Compile Include="Repositories\DbConnection\CardQ.cs" />
-      <Compile Include="Repositories\DbConnection\DeskQ.cs" />
-      <Compile Include="Repositories\DbConnection\ExamQ.cs" />
       <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
       <Compile Include="Services\ChatGPT.cs" />
       <Compile Include="Util\InternetConnectionManager.cs" />
-      <Compile Include="View\LoadingPage.xaml.cs">
-          <DependentUpon>LoadingPage.xaml</DependentUpon>
-      </Compile>
+ 
       <Compile Include="View\MainWindow\EditFlashCard.xaml.cs">
           <DependentUpon>EditFlashCard.xaml</DependentUpon>
       </Compile>
-      <Compile Include="View\MainWindow\GptWritingResponsePopUp.xaml.cs">
-          <DependentUpon>GptWritingResponsePopUp.xaml</DependentUpon>
-      </Compile>
-      <Compile Include="View\MainWindow\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-      </Compile>
-      <Compile Include="View\MainWindow\TranslatePage.xaml.cs">
-          <DependentUpon>TranslatePage.xaml</DependentUpon>
-      </Compile>
+
+
+ 
   </ItemGroup>
     
 
