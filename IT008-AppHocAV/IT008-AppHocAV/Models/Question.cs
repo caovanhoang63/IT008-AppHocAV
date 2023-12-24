@@ -33,6 +33,19 @@ namespace IT008_AppHocAV.Models
             this._createdAt = createdAt;
         }
 
+        public Question(int id, string content, string answera, string answerb, string answerc, string answerd, string correct, DateTime updatedAt, DateTime createdAt)
+        {
+            this.Id = id;
+            this._content = content;
+            this._answera = answera;
+            this._answerb = answerb;
+            this._answerc = answerc;
+            this._answerd = answerd;
+            this._correct = correct;
+            this._updatedAt = updatedAt;
+            this._createdAt = createdAt;
+        }
+
 
 
         private int _id;
@@ -91,6 +104,21 @@ namespace IT008_AppHocAV.Models
             get => _correct;
             set => _correct = value;
 
+        }
+        public int CategoryId
+        {
+            get=> _category_id;
+            set => _category_id = value;
+        }
+        public int Level
+        {
+            get=> level;
+            set => level = value;
+        }
+        public string Explain
+        {
+            get => _explain;
+            set => _explain = value;
         }
 
         public DateTime UpdatedAt

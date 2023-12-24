@@ -24,7 +24,7 @@ namespace IT008_AppHocAV
         #region Declare Fields
             private Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
             private readonly LoginWindow _loginWindow;
-            private string Notecontent;
+            private string Notecontent="";
         #endregion
         
         #region Declare Constructors
@@ -133,7 +133,7 @@ namespace IT008_AppHocAV
             if (Note.Visibility != Visibility.Visible)
             {
                 Note.Visibility = Visibility.Visible;
-                TakeNotePage takeNotePage = new TakeNotePage(Notecontent);
+                TakeNotePage takeNotePage = new TakeNotePage();
                 Note.Content = takeNotePage;
             }
             else

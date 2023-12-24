@@ -61,6 +61,10 @@
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0">Question<Run Text="{Binding Content}"></Run></TextBlock>
                         <StackPanel>
+                            <CheckBox Content="{Binding Answera}"></CheckBox>
+                            <CheckBox Content="{Binding Answerb}"></CheckBox>
+                            <CheckBox Content="{Binding Answerc}"></CheckBox>
+                            <CheckBox Content="{Binding Answerd}"></CheckBox>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
