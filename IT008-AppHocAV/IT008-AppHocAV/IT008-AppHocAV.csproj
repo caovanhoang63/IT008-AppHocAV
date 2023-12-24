@@ -280,11 +280,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-
-
-  
     <Page Include="View\MainWindow\TranslatePage.xaml" />
-
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\SampleEssayIcon.png" />
@@ -332,11 +328,9 @@
     <Resource Include="Assets\Icon\ReturnIcon.png" />
     <Resource Include="Assets\Icon\CloseIcon.png" />
     <Resource Include="Assets\Icon\Minimal.png" />
-
     <Resource Include="Assets\Image\background.png" />
     <Resource Include="Assets\Icon\ExitIcon.png" />
     <Resource Include="Assets\Icon\nextBut.png" />
-
     <Resource Include="Assets\Icon\HomeIcon.png" />
     <Resource Include="Assets\Icon\GGTranslateIcon.png" />
     <Resource Include="Assets\Icon\ChatGptIcon.png" />
