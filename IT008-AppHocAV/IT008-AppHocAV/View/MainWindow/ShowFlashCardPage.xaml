@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
        xmlns:UserControl="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d" 
+      
       d:DesignHeight="500" d:DesignWidth="800"
       Title="ShowFlashCardPage">
     <Page.Resources>
@@ -34,13 +35,13 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Name ="RefeshButton"  BorderThickness="0 0 0 0" Background="Transparent" 
                     Style="{DynamicResource RoundedButtonStyle }"
-                    Height="35" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0">
+                    Height="35" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0" Click="RefeshButton_Click">
                 <Image Source="/Assets/Icon/refresh_icon.png" />
 
             </Button>
             <Button Name="ExitButton" BorderThickness="0 0 0 0" Background="Transparent" 
                     Style="{DynamicResource RoundedButtonStyle }"
-                    Height="35" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0">
+                    Height="35" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0" Click="ExitButton_Click">
                 <Image Source="/Assets/Icon/ExitIcon.png" />
 
             </Button>
@@ -112,16 +113,126 @@
 
                             <Grid>
 
-                                <!--// Front //-->
+                               
 
-                            <UserControl:FrontForm x:Name="Front_Side" />
 
-                                <!--// Back //-->
+                            <!--// Back //-->
 
-                            <UserControl:BackForm x:Name="Back_Side"
-                                                  Opacity="0" />
+                            <UserControl  Name="Back_Side" >
 
-                            </Grid>
+                                <Grid>
+
+                                    <!--// Background //-->
+
+                                    <Border
+                                             Height="400"
+                                             Width="700"
+                                             CornerRadius="10">
+
+                                        <Border.Background>
+
+                                            <!--// Use a visual brush for the background //-->
+
+                                            <VisualBrush>
+
+                                                <VisualBrush.Visual>
+
+                                                    <!--// Create a canvas to hold the visual elements //-->
+
+                                                    <Canvas>
+
+                                                        
+
+                                                            <!--// Add Content //-->
+                                                            <!--<ContentControl   Template="{StaticResource BackSide_Content}" />-->
+                                                        <Border x:Name="Back"
+                                                              Height="200"
+                                                                 Width="200"
+                                                                 Background="Beige"
+                                                                  Opacity="1">
+                                                                <Label VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center" 
+                                                                FontWeight="ExtraBold"
+                                                                FontFamily="Fonts/#Comforter"
+                                                                FontSize="14"
+                                                                Content="{Binding Answer}"
+                                                                >
+
+                                                                </Label>
+                                                            
+                                                        </Border>
+
+
+
+
+
+
+                                                    </Canvas>
+
+                                                </VisualBrush.Visual>
+
+                                            </VisualBrush>
+
+                                        </Border.Background>
+
+                                    </Border>
+
+                                </Grid>
+                            </UserControl>
+
+                            <!--// Front //-->
+
+                            <UserControl Name="Front_Side" >
+                                <Grid>
+                                    <Border Height="400"
+                                             Width="700"
+                                              CornerRadius="10">
+
+                                        <Border.Background>
+
+                                            <!--// Use a visual brush for the background //-->
+
+                                            <VisualBrush>
+
+                                                <VisualBrush.Visual>
+
+                                                    <!--// Create a canvas to hold the visual elements //-->
+
+                                                    <Canvas>
+
+                                                        <!--// Front Side //-->
+
+                                                        <Border x:Name="Front"
+                                                              Height="200"
+                                                                 Width="200"
+                                                                 Background="Beige"
+                                                                  Opacity="1">
+
+                                                            <!--// Add Content //-->
+
+                                                            <Label VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center" 
+                                                              FontWeight="ExtraBold"
+                                                               FontFamily="Fonts/#Comforter"
+                                                                FontSize="14"
+                                                                  Content="{Binding Question}"></Label>
+
+                                                        </Border>
+
+                                                    </Canvas>
+
+                                                </VisualBrush.Visual>
+
+                                            </VisualBrush>
+
+                                        </Border.Background>
+
+                                    </Border>
+
+                                </Grid>
+                            </UserControl>
+
+                        </Grid>
 
                         </ToggleButton.Content>
 
@@ -303,7 +414,7 @@
             <Button x:Name="NextButton" Background="Transparent"
                       Style="{DynamicResource RoundedButtonStyle }"
                     Height="35" Width="35" HorizontalAlignment="Center" 
-                    VerticalAlignment="Bottom" Margin="160 0 0 40">
+                    VerticalAlignment="Bottom" Margin="160 0 0 40" Click="NextButton_Click">
             <Image Source="/Assets/Icon/nextBut.png" />
 
             </Button>
@@ -321,7 +432,7 @@
             <Button   Name="ReturnButton" Background="Transparent"
                         Style="{DynamicResource RoundedButtonStyle }"
                      Height="35" Width="35" HorizontalAlignment="Center"
-                      VerticalAlignment="Bottom" Margin="0 0 160 40">
+                      VerticalAlignment="Bottom" Margin="0 0 160 40" Click="ReturnButton_Click">
                 <Image Source="/Assets/Icon/nextBut.png" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
                         <TransformGroup>

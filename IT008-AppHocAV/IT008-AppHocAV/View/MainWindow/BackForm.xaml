@@ -42,7 +42,7 @@
                                          FontWeight="ExtraBold"
                                           FontFamily="Fonts/#Comforter"
                                               FontSize="18"
-                                        Content="Chào"> </Label>
+                                        Content="{Binding }"> </Label>
 
                             </Border>
 

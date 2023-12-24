@@ -183,14 +183,7 @@ namespace IT008_AppHocAV
                 {
                     page = new FlashCardPage(this);
                 }
-                 else if (pageName == "ShowFlashCard")
-                 {
-                /*if (pageCache["FlashCard"] is FlashCardPage listFlashCard)
-                    page = new ShowFlashCard(this, listFlashCard);*/
-                     page = new ShowFlashCardPage(this);
-
-
-                 }
+                
                   else if (pageName == "MakeFlashCard")
                   {
                      page = new MakeFlashCard(this);
@@ -229,8 +222,15 @@ namespace IT008_AppHocAV
                   {
                      if (_pageCache["FlashCard"] is FlashCardPage listcard)
                         page = new EditFlashCard(this,listcard);    
-                  }    
-                  return page;
+                  }
+                  else if (pageName == "ShowFlashCard")
+                  {
+                      if (_pageCache["FlashCard"] is FlashCardPage listcard)
+                         page = new ShowFlashCardPage(this,listcard);
+
+
+                   }
+              return page;
             }
             
             public void NavigateToPage(string pageName)

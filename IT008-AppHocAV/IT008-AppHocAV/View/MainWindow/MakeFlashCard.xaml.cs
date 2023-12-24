@@ -4,9 +4,11 @@ using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
  
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -261,6 +263,34 @@ namespace IT008_AppHocAV.View.MainWindow
             return null;
         }
 
+        private void ImportFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("The request is to format a file.txt with the following pattern:(Term + ':'+ Definition).", "Attention");
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "File|*.txt;...";
+            if (openFileDialog.ShowDialog() != true)
+                return;
 
+            if (!openFileDialog.CheckPathExists)
+                return;
+
+            using (StreamReader streamReader = new StreamReader(openFileDialog.FileName))
+            {
+                string line;
+                while ((line =  streamReader.ReadLine()) != null)
+                {
+                    string[] text = line.Trim().Split(':');
+
+                    FlashCard card = new FlashCard(text[0], text[1]);
+
+                    _data.FlashCards.Add(card);
+                }
+                
+               
+            }
+            LvListCard.SelectedIndex =-1;
+            RefreshPage();
+            
+        }
     }
 }

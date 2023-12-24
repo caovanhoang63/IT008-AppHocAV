@@ -48,6 +48,10 @@ namespace IT008_AppHocAV.View.MainWindow
             /* var modelCard=  (ListFlashCard)((FrameworkElement)sender).DataContext;
           _currentCard = _mainWindow.DbConnection.DeskQ.SelectDeskById(modelCard.Id);
           _mainWindow.NavigateToPage("EditFlashCard");*/
+
+            
+            var modelCard = (ListFlashCard)((FrameworkElement)sender).DataContext;
+            _currentCard = _mainWindow.DbConnection.DeskQ.SelectDeskById(modelCard.Id);
             _mainWindow.NavigateToPage("ShowFlashCard");
  
         }

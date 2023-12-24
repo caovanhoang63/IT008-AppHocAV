@@ -56,6 +56,13 @@ namespace IT008_AppHocAV.Models
             CreatedAt=createdAt;
 
         }
+        public FlashCard(string question, string answer)
+        {
+            _question=question;
+            _answer=answer;
+            this._imagePath="";
+            this._image=null;
+        }
 
 
         public int Id
