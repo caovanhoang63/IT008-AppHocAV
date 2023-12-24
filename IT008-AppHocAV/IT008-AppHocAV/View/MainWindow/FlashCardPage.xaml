@@ -2,106 +2,196 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:uc="clr-namespace:IT008_AppHocAV.Components.RadioButtonMenuItem"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="FlashCardPage" MinHeight="500"   Background="Beige" >
+      Title="FlashCardPage"  MinHeight="500" Height="auto" MinWidth="800" Width="auto"    >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Assets/Styles/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
+              
+                <ResourceDictionary Source="../../Assets/Styles/ShowListEssayStyle.xaml"/>
+                <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
     </Page.Resources>
 
-    <ScrollViewer Style="{DynamicResource FavsScrollViewer}"  >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" ></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
 
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                 
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0"  >
-                <Label Height="50" Width="200" HorizontalAlignment="Center" Content="FlashCard" FontSize="26"> </Label>
-            </Grid>
-            <Grid Grid.Row="1"  >
-            <DockPanel  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 5 0 0 ">
-                <StackPanel   Orientation="Horizontal" HorizontalAlignment="Left" Background="Transparent">
+        <!-- Header -->
+        <Border Grid.Row="0"
+                    BorderThickness="0 0 0 1"
+                    BorderBrush="Black"
+                    Margin="20 10">
+            <Grid  >
 
-                    <Button x:Name="AddDeskButton" Style="{DynamicResource ButtonStyle}" Margin="10 0 0 0 " Click="AddDeskButton_Click">
-                        <Image Source="/Assets/Icon/AddIcon1.png" Height="30" Width="39" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" FontWeight="Medium" FontSize="30" VerticalAlignment="Center">FlashCard</Label>
+
+                <!-- Search, Filter and Create new Essay Button -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
+                    <Canvas Height="40" Width="200"  Margin="10 0 10 0"  >
+                        <TextBox x:Name="SearchFlashCardTextBox" Margin="10 0 10 0" Width="170"
+                                             Style="{DynamicResource SearchTextBoxStyle}"
+                                             Visibility="Collapsed"  
+                                              TextChanged="SearchFlashCardTextBox_TextChanged"/>
+
+                        <Label Visibility="Hidden"
+                                       Margin="0 4 0 0 "
+                                       Canvas.Left="12"
+                                       IsHitTestVisible="False" 
+                                       Content="Enter title..."
+                                       VerticalAlignment="Center"
+                                       Foreground="DarkGray"
+                                       FontSize="16"/>
+
+                        <Button x:Name="SearchEssayButton" HorizontalAlignment="Left"
+                                        Canvas.Right="0" Width="40" Height="40"
+                                        Background="#96B639"
+                                        Style="{DynamicResource RoundedButtonStyle }"
+                                         MouseEnter="SearchEssayButton_MouseEnter" 
+                                         MouseLeave="SearchEssayButton_MouseLeave">
+
+                            <Image Source="../../Assets/Icon/SearchIcon.png" Width="24"></Image>
+                        </Button>
+                    </Canvas>
+
+                    <Button x:Name="SortCard" Width="40" Height="40" Background="#96B639" Margin="0 0 10 0" 
+                                Style="{DynamicResource RoundedButtonStyle}" Click="SortCard_Click"  >
+                        <Button.ContextMenu>
+                            <ContextMenu Placement="Bottom" IsOpen="False">
+                                <uc:RadioButtonMenuItem Header="Title" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                <uc:RadioButtonMenuItem Header="Date modified" IsChecked="True" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                <uc:RadioButtonMenuItem Header="Date created" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
+                                <Separator/>
+                                <uc:RadioButtonMenuItem x:Name="Ascending" Header="Ascending" GroupName="OrderOptionGroup" IsChecked="True" Click="OrderOption_OnClick"/>
+                                <uc:RadioButtonMenuItem x:Name="Descending" Header="Descending" GroupName="OrderOptionGroup" Click="OrderOption_OnClick"/>
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                        <Image Source="../../Assets/Icon/FilterIcon.png" Width="24"></Image>
+                    </Button>
+
+                    <Button x:Name="NewFlashCard" Width="150" Height="40" Background="#55AF6E"
+                                Style="{DynamicResource RoundedButtonStyle}" Click="NewFlashCard_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../../Assets/Icon/AddIcon1.png" Width="24"></Image>
+                            <Label FontSize="16" VerticalAlignment="Center">New FlashCard</Label>
+                        </StackPanel>
                     </Button>
                 </StackPanel>
-            </DockPanel>
+                <!-- End search, Filter and Create new Essay Button -->
             </Grid>
-            <Grid Grid.Row="2"  Margin="10,5,0,0" >
+        </Border>
 
-                <ListView x:Name="lvListFlash"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                              ScrollViewer.VerticalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}">
-                    <ListView.Template>
-                        <ControlTemplate>
-                            <ItemsPresenter />
-                        </ControlTemplate>
-                    </ListView.Template>
+        <!-- End Header -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <!--Show list of essays -->
+        <ListView  Grid.Row="1" x:Name="lvListFlash" HorizontalAlignment="Left" 
+                           Margin="0 5"
+                           Width="auto" Height="auto"
+                           Background="Transparent"
+                           BorderThickness="0"
+                           d:ItemsSource="{d:SampleData ItemCount=4}"
+                             VerticalAlignment="Stretch"
+                               
+                           >
+            <ListView.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListView.Template>
 
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"   
+                     />
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Button Name="ItemFlashCard" Click="ItemFlashCard_Click">
-                                
-                           
-                            <Grid Width="250" Height="130 " 
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue">
-                                <Grid.Clip>
-                                    <RectangleGeometry Rect="0,0,255,130" RadiusX="10" RadiusY="10"/>
-                                </Grid.Clip>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="36"></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" Background="Aquamarine"  >
-                                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button  Name ="EditFlashcard"  Margin="5 0 0 0" Background="{x:Null}"  Click="EditFlashcard_Click">
-                                            <Button.Clip>
-                                                <RectangleGeometry Rect="1.7,2,27,32" RadiusX="10" RadiusY="10"/>
-                                            </Button.Clip>
-                                            <Image Source="/Assets/Icon/EditIcon.png" Width="26" Height="26" />
-                                        </Button>
-                                        <Button Margin="5 0 5 0" Background="{x:Null}"  >
-                                            <Button.Clip>
-                                                <RectangleGeometry Rect="1.2,2,31,31" RadiusX="10" RadiusY="10"/>
-                                            </Button.Clip>
-                                            <Image Source="/Assets/Icon/DeleteIcon.png" Width="30" Height="30" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate >
+                
+                <!-- Defines Items Template -->
+                
+                <DataTemplate>
+                   
+                            
+                       
+                    <Button Name="ItemFlashCard" Click="ItemFlashCard_Click" 
+                            Height="140" Width="240"
+                            Background="#F4EEEE"
+                            Style="{DynamicResource RoundedButtonStyle}"
+                            Margin="10 10 10 10">
+                 
 
-                                        </Button>
 
-                                    </StackPanel>
-                                </Grid>
-                                <Grid Grid.Row="1" Background="Aquamarine">
-                                    <Label HorizontalAlignment="Center"  Margin="0 10 0 0 " Content="{Binding }" FontSize="20">
+                       
 
-                                    </Label>
-                                </Grid>
+
+                        <Grid Width="250" Height="125 " Background="Transparent" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            <Grid.Clip>
+                                <RectangleGeometry Rect="0,0,255,130" RadiusX="10" RadiusY="10"/>
+                            </Grid.Clip>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="36"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                             <Grid Grid.Row="0"    >
+                                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right"  >
+                                 
+                                    <Button HorizontalAlignment="Right"   Name ="EditFlashcard"  Margin="5 0 0 0" Background="{x:Null}"  Click="EditFlashcard_Click">
+                                        <Button.Clip>
+                                            <RectangleGeometry Rect="1.7,2,27,32" RadiusX="10" RadiusY="10"/>
+                                        </Button.Clip>
+                                        <Image Source="/Assets/Icon/EditIcon.png" Width="26" Height="26" />
+                                    </Button>
+                                    <Button x:Name="DeleteCardButton" HorizontalAlignment="Right" Margin="5 0 5 0" Background="{x:Null}" Click="DeleteCardButton_Click"  >
+                                        <Button.Clip>
+                                            <RectangleGeometry Rect="1.2,2,31,31" RadiusX="10" RadiusY="10"/>
+                                        </Button.Clip>
+                                        <Image Source="/Assets/Icon/DeleteIcon.png" Width="30" Height="30" />
+
+                                    </Button>
+                                    
+                                </StackPanel>
                             </Grid>
-                            </Button>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            <Grid Grid.Row="1">
+                                <Label   HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Margin="0 00 0 40 "  Content="{Binding Title}" FontSize="24" FontStyle="Italic" FontWeight="DemiBold">
 
+                                </Label>
+                                    <Label  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10 0 2 0" FontSize="11" >Last modified:</Label>
+                                    <Label  HorizontalAlignment="Left"  VerticalAlignment="Bottom"  Margin="80 0 2 0" FontSize="11" Content="{Binding UpdatedAt}"></Label>
+                                </Grid>
+                        </Grid>
+                    </Button>
+                     
+                    </DataTemplate>
+                 
+                <!--End defines Items Template -->
+ 
+            </ListView.ItemTemplate>
 
-            </Grid>
+        </ListView>
+        </ScrollViewer>
+
+        <!--End show list of essays -->
+
 
     </Grid>
-    </ScrollViewer>
+
 
 </Page>

@@ -215,16 +215,12 @@ namespace IT008_AppHocAV
                 {
                     page = new FlashCardPage(this);
                 }
-                else if (pageName == "ShowFlashCard")
-                {
-                /*if (pageCache["FlashCard"] is FlashCardPage listFlashCard)
-                    page = new ShowFlashCard(this, listFlashCard);*/
-                     page = new ShowFlashCardPage(this);
-                }
-                else if (pageName == "MakeFlashCard")
-                { 
-                    page = new MakeFlashCard(this);
-                }
+                
+                  else if (pageName == "MakeFlashCard")
+                  {
+                     page = new MakeFlashCard(this);
+
+                  }
 
 
                 else if (pageName == "NoInternet")
@@ -244,25 +240,17 @@ namespace IT008_AppHocAV
                         page = new WritingContentPage(this,writingPage.Essay );
                     }
 
-                    WordsStatusBarItem.Visibility = Visibility.Visible;     
-                } 
-                else if (pageName == "ShowListEssay")
-                {
+                  } 
+                  else if (pageName == "ShowListEssay")
+                  {
                     page = new ShowListEssayPage(this);
-                } 
-                else if (pageName == "ShowEssay")
-                {
+                  } 
+                  else if (pageName == "ShowEssay")
+                  {
                     if (_pageCache["ShowListEssay"] is  ShowListEssayPage listEssayPage )
                         page = new ShowEssayPage(this,listEssayPage);
-                }
-                
-                else if (pageName == "Translate")
-                {
-                    page = new TranslatePage();
-                }
-                
-                
-                return page;
+                  }
+                  return page;
             }
             
             public void NavigateToPage(string pageName)
@@ -311,7 +299,6 @@ namespace IT008_AppHocAV
                 }
             }
 
-            
         #endregion
         
         #region  UI Event Handler
@@ -335,24 +322,27 @@ namespace IT008_AppHocAV
 
             private void SearchTextContainer_OnLostFocus(object sender, RoutedEventArgs e)
             {
-                SearchTextContainer.BorderBrush = Brushes.Black;
+                SearchTextContainer.BorderBrush = Brushes.Transparent;
             }
         
+            private void NavButton_OnMouseEnter(object sender, MouseEventArgs e)
+            {
+                if (sender is Button btn)
+                    btn.Width = 130;
+            }
 
-
-
+            private void NavButton_OnMouseLeave(object sender, MouseEventArgs e)
+            {
+                if (sender is Button btn)
+                    if (MenuButton.IsChecked != null && !MenuButton.IsChecked.Value)
+                        btn.Width = 50;
+            }
 
             private void MenuButton_OnChecked(object sender, RoutedEventArgs e)
             {
-                NavBar.Width = 50;
                 foreach (var child in NavBar.Children)
-                {
                     if (child is Button btn)
-                    {
-                        btn.Width = 50;
-                    }
-                }
-                
+                        btn.Width = 130;
             }
 
 
@@ -362,20 +352,17 @@ namespace IT008_AppHocAV
 
             private void MenuButton_OnUnchecked(object sender, RoutedEventArgs e)
             {
-                NavBar.Width = 156;
                 foreach (var child in NavBar.Children)
                 {
                     if (child is Button btn)
                     {
-                        btn.Width = 156;
+                        btn.Width = 50;
                     }
                 }
             }
 
             #endregion
 
-
-            
     }
 
     internal class ShowFlashCard : Page
