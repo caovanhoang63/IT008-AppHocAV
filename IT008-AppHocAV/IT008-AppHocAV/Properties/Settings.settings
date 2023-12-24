@@ -16,7 +16,7 @@
       <Value Profile="(Default)">Data Source=it008.cf4wmocwq0b5.ap-southeast-1.rds.amazonaws.com,1433;Database=APP_HOC_AV;Integrated Security=false;User ID=caovanhoang204;Password=Hh12032004;Connection Timeout=30;</Value>
     </Setting>
     <Setting Name="ChatGptApiKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">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</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LocalDBConnectionString" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Data Source=DESKTOP-38JM1H0;Database=APP_HOC_AV;Integrated Security=false;User ID=sa;Password=123456;Connection Timeout=0;</Value>
