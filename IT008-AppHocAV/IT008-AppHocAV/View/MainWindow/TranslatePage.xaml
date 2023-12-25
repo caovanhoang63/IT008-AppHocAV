@@ -6,7 +6,18 @@
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
       Title="TranslatePage" Height="auto" Width="auto">
-    <Grid  x:Name="GoogleTranslateContainer" Height="350" Margin="0 20 0 0" 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <StackPanel Margin="20 0">
+        <Border BorderBrush="Black" BorderThickness="0 0 0  1">
+            <Label FontWeight="Medium" FontSize="30" Margin="0 10">Translate</Label>
+        </Border>
+        <Grid  x:Name="GoogleTranslateContainer" Height="350" Margin="0 20 0 0" 
            HorizontalAlignment="Center">
         <!-- Grid define -->
         <Grid.ColumnDefinitions>
@@ -28,7 +39,7 @@
         <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black" CornerRadius="12"  
                 Background="White">
             <RichTextBox  x:Name="GTransSlText" Background="Transparent" BorderThickness="0" Margin="0 12 0 12"
-                          TextChanged="GTransSlText_OnTextChanged" AcceptsReturn="False"></RichTextBox>
+                          TextChanged="GTransSlText_OnTextChanged" AcceptsReturn="True"></RichTextBox>
         </Border>
         
         <Button Name="SwitchLanBtn" Grid.Row="0" Grid.Column="1"
@@ -43,9 +54,12 @@
         </Border>
         
         <Border Grid.Row="1" Grid.Column="2" BorderThickness="1" BorderBrush="Black" CornerRadius="12" Background="White" >
-            <RichTextBox x:Name="GTransTlText"  Background="Transparent" BorderThickness="0"  Margin="0 12 0  12"></RichTextBox>
+            <RichTextBox x:Name="GTransTlText"  Background="Transparent" BorderThickness="0"  Margin="0 12 0  12" AcceptsReturn="True" ></RichTextBox>
         </Border>
         <!--End Google translate emulator -->
 
     </Grid>
+        
+    </StackPanel>
+    
 </Page>

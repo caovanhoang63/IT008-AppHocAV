@@ -48,9 +48,11 @@ namespace IT008_AppHocAV.View.MainWindow
 
         #endregion
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void EditTopicButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Click");
+            TopicTextBox.IsReadOnly = false;
+            TopicTextBox.SelectAll();
+            TopicTextBox.Focus();
         }
 
         private void EditTitleButton_OnClick(object sender, RoutedEventArgs e)
@@ -76,7 +78,14 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             if (e.Key == Key.S && Keyboard.Modifiers == ModifierKeys.Control)
             {
-                
+                FocusManager.SetFocusedElement(FocusManager.GetFocusScope(TopicTextBox), null);
+                FocusManager.SetFocusedElement(FocusManager.GetFocusScope(TitleTextBox), null);
+                TitleTextBox.IsReadOnly = true;
+                TopicTextBox.IsReadOnly = true;
+                TitleTextBox.BorderThickness = new Thickness(0);
+                Console.WriteLine(TopicTextBox.IsFocused);
+                Console.WriteLine(TitleTextBox.IsFocused);
+                _mainWindow.DbConnection.EssayQ.UpdateTitleAndTopic(_essay);
             }
         }
     }

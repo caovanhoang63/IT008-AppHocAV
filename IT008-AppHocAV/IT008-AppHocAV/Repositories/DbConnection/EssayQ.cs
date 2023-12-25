@@ -249,5 +249,39 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
 
         }
+
+        
+        /// <summary>
+        /// Update title and topic by essay id 
+        /// </summary>
+        /// <param name="essay"></param>
+        public void UpdateTitleAndTopic(Essay essay)
+        {
+            try
+            {
+                string query = "UPDATE ESSAY " +
+                               "SET title = @title, topic = @topic " +
+                               "WHERE id = @id";
+
+                using (SqlCommand command = new SqlCommand(query,_sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@id", essay.Id);
+                    command.Parameters.AddWithValue("@title", essay.Title);
+                    command.Parameters.AddWithValue("@topic", essay.Topic);
+                    _sqlConnection.Open();
+                    command.ExecuteScalar();
+                    Console.WriteLine(essay.Topic);
+                }
+                
+            }
+            catch (Exception e )
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+        }
     }
 }

@@ -24,7 +24,6 @@ namespace IT008_AppHocAV.View.MainWindow
             InitializeComponent();
             this._mainWindow = mainWindow;
             _data= _mainWindow.DbConnection.DeskQ.SelectListDeskByUserID(_mainWindow.UserId);
-              
             _currentCard= null;
             lvListFlash.ItemsSource = _data;
 

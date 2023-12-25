@@ -67,9 +67,9 @@
                         <StackPanel Orientation="Horizontal">
                               <Label  Style="{DynamicResource TagLabel}"  >Topic:</Label>
                               <Button Style="{DynamicResource EditButtonStyle}"
-                                      Click="ButtonBase_OnClick"/>
+                                      Click="EditTopicButton_OnClick"/>
                         </StackPanel>
-                        <TextBox  Style="{DynamicResource ReadOnlyTextBox}"  Text="{Binding Topic}"/> 
+                        <TextBox  x:Name="TopicTextBox" Style="{DynamicResource ReadOnlyTextBox}"  Text="{Binding Topic}"/> 
                         <!-- End topic -->
                         
 
@@ -84,7 +84,7 @@
                               <Button Style="{DynamicResource EditButtonStyle}"
                                       Click="ModifyEssayButton_OnClick"/>
                         </StackPanel>
-                        <TextBox Style="{DynamicResource ReadOnlyTextBox}" Text="{Binding Content}" />
+                        <TextBox Style="{DynamicResource ReadOnlyTextBox}" Text="{Binding Content}"/>
                         <!-- End content -->
                   </StackPanel>
             </ScrollViewer>
