@@ -119,6 +119,9 @@
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\App.xaml.cs">
@@ -296,6 +299,7 @@
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Image\LoadingGif.gif" />
     <Resource Include="Assets\Icon\refresh_icon.png" />
     <Resource Include="Assets\Icon\BookIcon.png" />
     <Resource Include="Assets\Icon\CheckIcon.png" />

@@ -159,9 +159,12 @@ namespace IT008_AppHocAV.View.MainWindow
             
             Func func = GetGptWritingFunc(sender);
 
-            GptResponsePupUpContent.Content = _popUp;
+            GptResponsePupUpContent.Content = new LoadingPage();
             
             await _popUp.LoadResult(func,topic,answer);
+            
+            GptResponsePupUpContent.Content = _popUp;
+
         }
 
 
