@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="IT008_AppHocAV.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -11,7 +11,6 @@
     <Setting Name="RememberMe" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    Server=tcp:it008.database.windows.net,1433;Initial Catalog=APP_HOC_AV;Persist Security Info=False;User ID=caovanhoang20
     <Setting Name="DbConnectionString" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
@@ -19,8 +18,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LocalDBConnectionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Data Source=DESKTOP-38JM1H0;Database=APP_HOC_AV;Integrated Security=false;User ID=sa;Password=123456;Connection Timeout=0;</Value>
+      <Value Profile="(Default)">Data Source=LAPTOP-EMD0MQBF\SQLEXPRESS;Database=APP_HOC_AV;Integrated Security=true;User ID=sa;Password=123456;Connection Timeout=30;</Value>
     </Setting>
   </Settings>
 </SettingsFile>
-
