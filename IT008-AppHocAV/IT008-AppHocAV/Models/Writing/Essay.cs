@@ -14,11 +14,10 @@ namespace IT008_AppHocAV.Models
             this._image = null;
             this._content = "";
         }
-        public Essay(string title, string topic, string description, string imagePath, BitmapImage image, DateTime updatedAt, DateTime createdAt)
+        public Essay(string title, string topic, string imagePath, BitmapImage image, DateTime updatedAt, DateTime createdAt)
         {
             this._title = title;
             this._topic = topic;
-            this._description = description;
             this._imagePath = imagePath;
             this._image = image;
         }
@@ -51,7 +50,6 @@ namespace IT008_AppHocAV.Models
         private int _userId;
         private string _title;
         private string _topic;
-        private string _description;
         private string _imagePath;
         private BitmapImage _image;
         private string _content;
@@ -91,11 +89,7 @@ namespace IT008_AppHocAV.Models
             set => _topic = value;
         }
 
-        public string Description
-        {
-            get => _description;
-            set => _description = value;
-        }
+      
 
         public string ImagePath
         {
