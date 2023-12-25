@@ -40,8 +40,9 @@
                              Width="auto"
                              Background="#46C679"
                              MinHeight="300"
-                             Height="300">
-                        <DockPanel>
+                             Height="300"
+                             HorizontalAlignment="Stretch">
+                        <DockPanel HorizontalAlignment="Stretch">
                                 <StackPanel DockPanel.Dock="Top"  Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button Style="{DynamicResource TransparentButtonStyle}"
                                             Height="35" MaxHeight="35"
@@ -56,9 +57,11 @@
                                 </StackPanel>
                             
                             <Frame DockPanel.Dock="Bottom"
+                                   HorizontalAlignment="Stretch"
+                                   HorizontalContentAlignment="Stretch"
                                    x:Name="GptResponsePupUpContent"
-                                   Margin="10" Background="Transparent">
-                    
+                                   Margin="10" Background="Transparent"
+                                   NavigationUIVisibility="Hidden">
                             </Frame>
                         </DockPanel>
                     </Border>

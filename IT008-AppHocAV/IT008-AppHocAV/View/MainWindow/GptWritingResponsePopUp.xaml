@@ -5,10 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="GptWritingResponsePopUp" Height="auto" Width="auto"
-      VerticalAlignment="Stretch"
+      Title="GptWritingResponsePopUp"
       HorizontalAlignment="Stretch">
-    
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,21 +17,31 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
-    <ListView x:Name="ContentListView" 
+
+    <ListView x:Name="ContentListView"
+              HorizontalAlignment="Stretch"
               Background="Transparent"
               BorderThickness="0"
               VerticalAlignment="Stretch"
-              HorizontalAlignment="Stretch">
+              HorizontalContentAlignment="Stretch"
+              VerticalContentAlignment="Stretch"
+              ScrollViewer.VerticalScrollBarVisibility="Visible"
+              ScrollViewer.CanContentScroll="False"
+              >
         <ListView.ItemTemplate>
             <DataTemplate>
-                <StackPanel>
-                    <TextBlock  Text="{Binding Header}" Style="{DynamicResource HeaderTbStyle}"/>
-                    <TextBox Text="{Binding Content}"   Style="{DynamicResource ContentTbStyle}"/>
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" Text="{Binding Header}" Style="{DynamicResource HeaderTbStyle}" />
+                    <TextBox DockPanel.Dock="Bottom" HorizontalAlignment="Stretch"
+                             Text="{Binding Content}"
+                             Width="700"
+                             Margin="10"
+                             HorizontalContentAlignment="Stretch"
+                             HorizontalScrollBarVisibility="Disabled"
+                             Style="{DynamicResource ContentTbStyle}" />
                 </StackPanel>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-    
     
 </Page>

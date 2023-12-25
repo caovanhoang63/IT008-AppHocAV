@@ -16,10 +16,12 @@ namespace IT008_AppHocAV.View.MainWindow
             InitializeComponent();
             _data = new List<GptWritingResponse>();
             ContentListView.ItemsSource = _data;
+               
         }
 
         public async Task LoadResult(Func func,string topic, string answer)
         {
+            
             GptWritingResponse result = await Task.Run(() =>
                 ChatGpt.WritingHelp(func, topic, answer)
             );
@@ -33,6 +35,7 @@ namespace IT008_AppHocAV.View.MainWindow
             _data.Remove(temp);
             
             _data.Insert(0,result);
+           
             RefeshPage();
         }
 
