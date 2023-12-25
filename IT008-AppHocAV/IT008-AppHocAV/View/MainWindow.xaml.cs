@@ -269,7 +269,7 @@ namespace IT008_AppHocAV
                         break;
 
                     case "Exam":
-                        page = new DoExamPage();
+                        page = new DoExamPage(this);
                         break;
 
                     // Add more cases as needed...

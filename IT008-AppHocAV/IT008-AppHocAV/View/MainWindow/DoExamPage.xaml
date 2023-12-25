@@ -32,43 +32,43 @@
             </Label>
             <TextBlock x:Name="TimerText" Width="80" 
                        Height="40"  Background="Transparent" 
-                       FontSize="18" Text="15:00" 
+                       FontSize="18" Text="{Binding TimerRemaining}" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
-                       Canvas.Left="50" Canvas.Top="5"/>
+                       Canvas.Left="50" Canvas.Top="5">15:00</TextBlock>
         </Canvas>
 
         <Label Grid.Column="1" Margin="0 0 0 0" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center">EXAM</Label>
-        <Border Grid.Row="0" Grid.Column="1"
-         BorderThickness="0 0 0 1"
-         BorderBrush="Red"
-         Margin="20 10">
-        </Border>
-        <Border Grid.Row="0" Grid.Column="0"
-         BorderThickness="0 0 0 1"
-         BorderBrush="Red"
-         Margin="0 10">
-        </Border>
-        
-        <!--List question-->
-        <ListView Grid.Row="1">
+
+        <ListView Name="ListQuestionListView" HorizontalAlignment="Center" 
+              VerticalAlignment="Stretch" Margin="0 20" Background="Transparent"
+              BorderThickness="0" 
+                  Grid.Row="1"
+              ScrollViewer.CanContentScroll="False" 
+              ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.ItemTemplate>
-                <!-- Defines Items Template -->
                 <DataTemplate>
-                    <Grid Height="200" Width="700" >
+                    <Grid Height="200" Width="700" x:Name="QuestionGrid">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0">Question<Run Text="{Binding Content}"></Run></TextBlock>
-                        <StackPanel>
-                            <CheckBox Content="{Binding Answera}"></CheckBox>
-                            <CheckBox Content="{Binding Answerb}"></CheckBox>
-                            <CheckBox Content="{Binding Answerc}"></CheckBox>
-                            <CheckBox Content="{Binding Answerd}"></CheckBox>
-                        </StackPanel>
+                        <TextBlock Grid.Row="0">Question: <Run Text="{Binding content}"></Run></TextBlock>
+                        <CheckBox x:Name="A" Grid.Row="1" Content= "{Binding Answersa}" Checked="CheckBox_Checked"></CheckBox>
+                        <CheckBox x:Name="B" Grid.Row="2" Content= "{Binding Answersb}" Checked="CheckBox_Checked"></CheckBox>
+                        <CheckBox x:Name="C" Grid.Row="3" Content= "{Binding Answersc}" Checked="CheckBox_Checked"></CheckBox>
+                        <CheckBox x:Name="D" Grid.Row="4" Content= "{Binding Answersd}" Checked="CheckBox_Checked"></CheckBox>
+
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
+
         </ListView>
+
+        <Button Width="200" Height="40" Content="Submit" Margin="10 10 10 10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="2" Click="Submit_btn_Click"></Button>
+
     </Grid>
 </Page>

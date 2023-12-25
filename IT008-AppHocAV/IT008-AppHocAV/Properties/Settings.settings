@@ -12,7 +12,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="DbConnectionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Data Source=it008.cf4wmocwq0b5.ap-southeast-1.rds.amazonaws.com,1433;Database=APP_HOC_AV;Integrated Security=false;User ID=caovanhoang204;Password=Hh12032004;Connection Timeout=15;</Value>
     </Setting>
     <Setting Name="ChatGptApiKey" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

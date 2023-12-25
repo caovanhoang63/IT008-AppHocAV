@@ -45,9 +45,7 @@
                             <Button x:Name="FilterExamButton"
                                         Canvas.Right="0" Width="40" Height="40"
                                         Background="#96B639"
-                                        Style="{DynamicResource RoundedButtonStyle }"
-                                        MouseEnter="SearchEssayButton_OnMouseEnter"
-                                        MouseLeave="SearchEssayButton_OnMouseLeave">
+                                        Style="{DynamicResource RoundedButtonStyle }">
                                 <Image Source="../../Assets/Icon/FilterIcon.png" Width="24"></Image>
                             </Button>
                         </Canvas>
@@ -65,10 +63,67 @@
                     </StackPanel>
 
                 </Grid>
-                
+                <ListView Grid.Row="1" Name="ListExamListView" HorizontalAlignment="Center" 
+                      VerticalAlignment="Stretch"
+                      Margin="0 20"
+                      Background="White"
+                      BorderThickness="0">
+                    <ListView.ItemTemplate >
+
+                        <DataTemplate>
+                            <Button Height="100" Width="700"
+                                Background="#F4EEEE"
+                                Style="{DynamicResource RoundedButtonStyle}"
+                                Margin="  0 8 "
+                                Click="ShowExamButton_OnClick">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Margin="20 10 10 10" FontSize="15">
+                                        <TextBlock>
+                                            <Run Text="Level: "/>
+                                            <Run Text="{Binding Level}"/>
+                                        </TextBlock>
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.Column="0" Margin="20 10 10 10" FontSize="15">
+                                        <TextBlock>
+                                            <Run Text="Score: "/>
+                                            <Run Text="{Binding Score}"/>
+                                        </TextBlock>
+                                    </Label>
+
+                                    <Label Grid.Row="1" Grid.Column="1" Margin="20 10 10 10" FontSize="15">
+                                        <TextBlock>
+                                            <Run Text="Create_time: "/>
+                                            <Run Text="{Binding Createtime}"/>
+                                        </TextBlock>
+                                    </Label>
+                                    <Button Name="DeleteExamButton" Style="{DynamicResource TransparentButtonStyle}"
+                                            Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            HorizontalContentAlignment="Right"
+                                            Grid.Row="0" Grid.RowSpan="2"
+                                            Height="30" Width="30">
+                                        <Image Source="../../Assets/Icon/DeleteIcon.png"></Image>
+                                    </Button>
+
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
             </Grid>
         </Border>
-        
+
     </Grid>
 
 </Page>

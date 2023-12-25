@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IT008_AppHocAV.Models;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -20,23 +21,22 @@ namespace IT008_AppHocAV.View.MainWindow
     /// </summary>
     public partial class ShowListExamPage : Page
     {
-        private readonly IT008_AppHocAV.MainWindow _mainwindow;
+        private readonly IT008_AppHocAV.MainWindow _mainWindow;
+        private List<Models.Exam> _data;
+
         public ShowListExamPage(IT008_AppHocAV.MainWindow mainwindow)
         {
             InitializeComponent();
-            this._mainwindow = mainwindow;
+            this._mainWindow = mainwindow;
+            _data = _mainWindow.DbConnection.ExamQ.SelectListExamByUserId(_mainWindow.UserId);
+            ListExamListView.ItemsSource = _data;
         }
         private void NewExamButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _mainwindow.NavigateToPage("CreateExam");
+            _mainWindow.NavigateToPage("CreateExam");
         }
 
-        private void SearchEssayButton_OnMouseEnter(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void SearchEssayButton_OnMouseLeave(object sender, MouseEventArgs e)
+        private void ShowExamButton_OnClick(object sender, RoutedEventArgs e)
         {
 
         }
