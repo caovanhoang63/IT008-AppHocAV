@@ -235,6 +235,7 @@ namespace IT008_AppHocAV
                         break;
 
                     case "WritingContent":
+                        WordsStatusBarItem.Visibility = Visibility.Visible;
                         if (_pageCache.TryGetValue("CreateEssay", out var value))
                         {
                             var writingPage = (CreateEssayPage)value;
@@ -277,15 +278,13 @@ namespace IT008_AppHocAV
              
                 }
 
-                
-
             return page;
             }
             
             public void NavigateToPage(string pageName)
             {
                 StatusBarCurrentPage.Text = pageName;
-
+                WordsStatusBarItem.Visibility = Visibility.Collapsed;
                 if (_pageCache.TryGetValue(pageName, out var value))
                 {
                     Content.Navigate(value);

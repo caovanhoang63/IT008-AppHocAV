@@ -179,9 +179,9 @@
                         </StackPanel>
                     </StatusBarItem>
                     
-                    <StatusBarItem Name="WordsStatusBarItem">
+                    <StatusBarItem Name="WordsStatusBarItem" Visibility="Collapsed">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock   x:Name="WordNum">1</TextBlock>
+                            <TextBlock   x:Name="WordNum"></TextBlock>
                             <TextBlock xml:space="preserve"> words</TextBlock>
                         </StackPanel>
                     </StatusBarItem>

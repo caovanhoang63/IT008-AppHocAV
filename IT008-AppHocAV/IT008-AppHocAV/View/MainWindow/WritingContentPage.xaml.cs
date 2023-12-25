@@ -17,9 +17,6 @@ namespace IT008_AppHocAV.View.MainWindow
             private readonly IT008_AppHocAV.MainWindow _mainWindow;
             private Essay _essay;
             private GptWritingResponsePopUp _popUp = new GptWritingResponsePopUp();
-            private int _words;
-
-            public int Words => _words;
         #endregion
         
                         
@@ -89,7 +86,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private void ContentRichTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             string richText = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
-            _words = WordCouting.WordCount(richText);
+            _mainWindow.WordNum.Text = WordCouting.WordCount(richText).ToString();
         }
 
         /// <summary>
