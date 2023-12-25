@@ -36,7 +36,7 @@ namespace IT008_AppHocAV.Models
             _words = words;
         }
 
-        public Essay(int id, string title, string topic, DateTime updatedAt, DateTime createdAt,int words)
+        public Essay(int id, string title, string topic, DateTime createdAt, DateTime updatedAt,int words)
         {
             _id = id;
             _title = title;

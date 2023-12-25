@@ -131,7 +131,7 @@
                                         <Label Padding="0 2" Margin="0 0 2 0" FontSize="10">Created at: </Label>
                                         <Label Padding="0 2" Margin="0 0 40 0" FontSize="10" Width="100" Content="{Binding CreatedAt }"></Label>
                                         <Label Padding="0 2" Margin="0 0 2 0" FontSize="10" >Last modified: </Label>
-                                        <Label Padding="0 2" Margin="0 0 40 0" FontSize="10" Width="100" Content="{Binding UpdatedAt}"></Label>
+                                        <Label Padding="0 2" Margin="0 0 40 0" FontSize="10" Width="100" Content="{Binding UpdatedAt }"></Label>
                                         <Label Padding="0 2" FontSize="10" Content="{Binding Words}"></Label>
                                         <Label Padding="0 2" Margin="2 0 0 0" FontSize="10" >words</Label>
                                     </StackPanel>

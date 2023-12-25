@@ -285,7 +285,7 @@ namespace IT008_AppHocAV
             public void NavigateToPage(string pageName)
             {
                 StatusBarCurrentPage.Text = pageName;
-                
+
                 if (_pageCache.TryGetValue(pageName, out var value))
                 {
                     Content.Navigate(value);

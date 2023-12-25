@@ -53,8 +53,13 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 WritingImage.Visibility = Visibility.Collapsed;
             }
+            ContentRichTextBox.Document.Blocks.Clear();
+            ContentRichTextBox.Document.Blocks.Add(new Paragraph(new Run(_essay.Content)));
+            
             DataContext = _essay;
 
+            
+            
         }
 
         /// <summary>
