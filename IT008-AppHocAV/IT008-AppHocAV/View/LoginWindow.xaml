@@ -93,7 +93,10 @@
                             Background="#D3E2F0" 
                             FontWeight="Medium" FontSize="15" Click="LoginBtn_OnClick"
                             Margin="0 15 0 0 "  >Login</Button>
-                <Label>Forgot password?</Label>
+                <Button Click="ForgotPassword_OnClick" Margin="10" Style="{DynamicResource TransparentButtonStyle}" Width="auto"
+                        Height="auto">
+                    <Label>Forgot password?</Label>
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

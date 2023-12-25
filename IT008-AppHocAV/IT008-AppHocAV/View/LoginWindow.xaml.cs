@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Repositories;
 using IT008_AppHocAV.Repositories.DbConnection;
+using IT008_AppHocAV.View.MainWindow;
 
 namespace IT008_AppHocAV.View
 {
@@ -199,6 +200,12 @@ namespace IT008_AppHocAV.View
 
         #endregion
 
-   
+
+        private void ForgotPassword_OnClick(object sender, RoutedEventArgs e)
+        {
+            ResetPasswordWindow window = new ResetPasswordWindow(this);
+            window.Show();
+            Hide();
+        }
     }
 }
