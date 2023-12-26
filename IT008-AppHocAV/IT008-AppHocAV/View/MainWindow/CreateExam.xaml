@@ -42,7 +42,9 @@
                     <ComboBoxItem Background="Transparent">Option 1</ComboBoxItem>
                     <ComboBoxItem Background="Transparent">Option 2</ComboBoxItem>
                 </ComboBox>
-                <Button Margin="0 50 0 0"  Content="Start" DockPanel.Dock="Bottom" Click="Button_Click"/>
+                <Button Margin="0 50 0 0"  Width="200"  Content="Start" DockPanel.Dock="Bottom" Click="Button_Click" 
+                        Background="AliceBlue"
+                        Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Center"/>
             </StackPanel>
         </Grid>
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
@@ -84,7 +85,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             List<Models.Exam> result = new List<Models.Exam>();
             try
             {
-                string query = " SELECT id, level,score,created_at" +
+                string query = " SELECT id,user_id,level,score,created_at" +
                                " FROM [test] " +
                                " WHERE user_id = " + userId + " ORDER BY created_at desc";
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
@@ -95,10 +96,12 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                         while (reader.Read())
                         {
                             Models.Exam Exam = new Models.Exam(
-                                reader.GetInt32(reader.GetOrdinal("id")),
+                                reader.GetInt32(reader.GetOrdinal("id")), 
+                                reader.GetInt32(reader.GetOrdinal("user_id")),
                                 reader.GetByte(reader.GetOrdinal("level")),
                                 reader.GetByte(reader.GetOrdinal("score")),
-                                reader.GetDateTime(reader.GetOrdinal("created_at")).ToString());
+                                reader.GetDateTime(reader.GetOrdinal("created_at")));
+
                             result.Add(Exam);
                         }
                     }
@@ -108,7 +111,6 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e);
                 return null;
             }
@@ -116,6 +118,64 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             {
                 _sqlConnection.Close();
             }
+        }
+
+        public void SaveResult(Models.Exam exam)
+        {
+            try 
+            {
+                string query = "INSERT INTO [test] (user_id,level,score,created_at) " +
+                    "VALUES (@user_id,@level,@score,GETDATE())";
+                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@user_id", exam.Userid);
+                    command.Parameters.AddWithValue("@level", exam.Level);
+                    command.Parameters.AddWithValue("@score", exam.Score);
+                    _sqlConnection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Save success");
+                    return ;
+
+
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Save fail");
+                Console.WriteLine(ex);
+                return;
+
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+        }
+        public bool DeleteExamById(int id)
+        {
+            try
+            {
+                string query = "DELETE [test] WHERE id = @id";
+
+                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    _sqlConnection.Open();
+                    command.ExecuteScalar();
+                    return true;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+
         }
 
     }

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,7 +27,8 @@ namespace IT008_AppHocAV.View.MainWindow
     {
         #region Declare Field
         private List<Models.Question> _question;
-        private List<int> Answer;
+        private List<String> Answer;
+        List<string> Result;
         private readonly IT008_AppHocAV.MainWindow _mainWindow;
         private DispatcherTimer _timer;
         private int TimeRemaining;
@@ -45,6 +48,8 @@ namespace IT008_AppHocAV.View.MainWindow
             #endregion
             _question = new List<Question>();
             _question = _mainWindow.DbConnection.ExamQ.GetRandomQuestion();
+            Result = GetCorrectAnswer(_question);
+
             ListQuestionListView.ItemsSource = _question;
 
         }
@@ -62,46 +67,6 @@ namespace IT008_AppHocAV.View.MainWindow
             }
         }
         #endregion
-        private void Submit_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Answer = new List<int>();
-            foreach (var item in ListQuestionListView.Items)
-            {
-                var listViewItem = ListQuestionListView.ItemContainerGenerator.ContainerFromItem(item) as ListViewItem;
-                if (listViewItem != null)
-                {
-                    CheckBox checkBox = FindVisualChild<CheckBox>(listViewItem);
-                    if (checkBox.IsChecked == true)
-                    {
-                        string selectedCheckBoxName = checkBox.Name;
-                        switch (selectedCheckBoxName)
-                        {
-                            case "A":
-                                Answer.Add(1);
-                                break;
-                            case "B":
-                                Answer.Add(2);
-                                break;
-                            case "C":
-                                Answer.Add(3);
-                                break;
-                            case "D":
-                                Answer.Add(4);
-                                break;
-                            default:
-                                Answer.Add(-1);
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        Answer.Add(0);
-                    }
-                }
-            }
-            string re = string.Join(", ", Answer); 
-            MessageBox.Show(re);
-        }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox checkedBox = sender as CheckBox;
@@ -123,28 +88,117 @@ namespace IT008_AppHocAV.View.MainWindow
             }
         }
 
-        private static T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
+        private void Submit_btn_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            MessageBoxResult Submit = MessageBox.Show("Are you sure want to submit?", "", MessageBoxButton.YesNo);
+            if (Submit == MessageBoxResult.Yes)
             {
-                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
-                if (child != null && child is T)
+                Answer = new List<String>();
+                int index = 0;
+                foreach (var item in ListQuestionListView.Items)
                 {
-                    return (T)child;
-                }
-                else
-                {
-                    T childOfChild = FindVisualChild<T>(child);
-                    if (childOfChild != null)
+                    bool flag = false;
+                    var listViewItem = ListQuestionListView.ItemContainerGenerator.ContainerFromItem(item) as ListViewItem;
+                    if (listViewItem != null)
                     {
-                        return childOfChild;
+                        List<CheckBox> checkBoxes = new List<CheckBox>();
+                        foreach (string c in new string[] { "A", "B", "C", "D" })
+                        {
+                            checkBoxes.Add(FindVisualChild<CheckBox>(listViewItem, c));
+                        }
+                        foreach (CheckBox checkBox in checkBoxes)
+                        {
+                            if (checkBox.IsChecked == true)
+                            {
+                                string selectedCheckBoxName = checkBox.Name;
+                                switch (selectedCheckBoxName)
+                                {
+                                    case "A":
+                                        Answer.Add("A");
+                                        flag = true;
+                                        break;
+                                    case "B":
+                                        Answer.Add("B");
+                                        flag = true;
+                                        break;
+                                    case "C":
+                                        Answer.Add("C");
+                                        flag = true;
+                                        break;
+                                    case "D":
+                                        Answer.Add("D");
+                                        flag = true;
+                                        break;
+                                }
+                            }
+                        }
+                        if (flag == false)
+                        {
+                            Answer.Add("None");
+                        }
                     }
+                    index++;
                 }
+                int score = Scoring_function(Answer, Result);
+                MessageBox.Show("Your score is " + score.ToString());
+                Exam exam = new Exam(_mainWindow.UserId,1,score);
+                _mainWindow.DbConnection.ExamQ.SaveResult(exam);
+                _mainWindow.NavigateToPage("ShowListExam");
             }
-            return null;
         }
 
 
+        #region Support function
+        public static T FindVisualChild<T>(DependencyObject parent, string childName) where T : DependencyObject
+        {
+            if (parent == null)
+            {
+                return null;
+            }
+
+            T foundChild = null;
+
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T && ((FrameworkElement)child).Name == childName)
+                {
+                    foundChild = (T)child;
+                    break;
+                }
+                else
+                {
+                    foundChild = FindVisualChild<T>(child, childName);
+                    if (foundChild != null)
+                    {
+                        break;
+                    }
+                }
+            }
+            return foundChild;
+        }
+        private List<string> GetCorrectAnswer(List<Models.Question> questions)
+        {
+            List<string> correct = new List<string>();
+            foreach (Question question in questions) 
+            {
+                correct.Add(question.Correct);
+            }
+            return correct;
+        }
+        private int Scoring_function(List<string> answer, List<string>result)
+        {
+            int score = 0;
+            for (int i = 0; i < Math.Min(answer.Count, result.Count); i++)
+            {
+                if (answer[i] == result[i])
+                {
+                    score++;
+                }
+            }
+            return score;
+        }
+        #endregion
     }
 
 }

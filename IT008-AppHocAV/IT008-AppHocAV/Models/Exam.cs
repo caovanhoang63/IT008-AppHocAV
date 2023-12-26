@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 
 namespace IT008_AppHocAV.Models
 {
@@ -6,23 +7,37 @@ namespace IT008_AppHocAV.Models
     {
         public Exam()
         {
+            this._userid=0;
             this._id = 0;
             this._level = 0;
             this._score = 0;
-            this._createtime = "";
         }
-        public Exam(int id, int level, float score, string createtime)
+        public Exam(int id, int userid, int level, float score, DateTime createtime)
         {
             this._id = id;
+            this._userid = userid;
             this._level = level;
             this._score = score;
-            this._createtime = createtime;
+            this._createdAt = createtime;
+        }
+        public Exam(int userid, int level, float score)
+        {
+            this._userid = userid;
+            this._level = level;
+            this._score = score;
         }
 
+        private int _userid;
         private int _id;
         private int _level;
         private float _score;
-        private string _createtime;
+        private DateTime _createdAt;
+        
+        public int Userid
+        {
+            get => _userid; 
+            set => _userid = value;
+        }
         public int Id
         {
             get => _id;
@@ -38,10 +53,10 @@ namespace IT008_AppHocAV.Models
             get => _score;
             set => _score = value;
         }
-        public string Createtime
+        public DateTime CreatedAt
         {
-            get => _createtime;
-            set => _createtime = value;
+            get => _createdAt;
+            set => _createdAt = value;
         }
     }
 }
