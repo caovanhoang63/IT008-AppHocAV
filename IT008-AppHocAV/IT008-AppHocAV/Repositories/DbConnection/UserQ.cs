@@ -47,14 +47,48 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         }
         
         
+        public int FindIdByEmail(string email)
+        {
+            try
+            {
+                string query = "SELECT id " +
+                               "FROM [user] " +
+                               "WHERE email = @email" ;
+
+                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
+                {
+                    command.Parameters.AddWithValue("email", email);
+                    _sqlConnection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+
+            return -1;
+        }
         
-        public bool UpdatePasswordByUserName(string userName,string password)
+        
+        public bool UpdatePasswordById(int id,string password)
         {
             try
             {
                 string query = "UPDATE [user] " +
                                "SET password = @password " +
-                               "WHERE user_name = @user_name" ;
+                               "WHERE id = @id" ;
 
                 byte[] hashvalue = Hashing.CalculateSHA256(password);
                 string hashpass = "";
@@ -65,7 +99,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                 
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
-                    command.Parameters.AddWithValue("@user_name", userName);
+                    command.Parameters.AddWithValue("@id", id);
                     command.Parameters.AddWithValue("@password", hashpass);
                     _sqlConnection.Open();
                     command.ExecuteScalar();

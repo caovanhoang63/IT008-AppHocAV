@@ -356,20 +356,12 @@ namespace IT008_AppHocAV
 
             private void MenuButton_OnChecked(object sender, RoutedEventArgs e)
             {
-                foreach (var child in NavBar.Children)
-                    if (child is Button btn)
-                        btn.Width = 130;
+                NavBar.Width = 156;
             }
 
             private void MenuButton_OnUnchecked(object sender, RoutedEventArgs e)
             {
-                foreach (var child in NavBar.Children)
-                {
-                    if (child is Button btn)
-                    {
-                        btn.Width = 50;
-                    }
-                }
+                NavBar.Width = 52;
             }
 
             #endregion

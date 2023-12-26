@@ -13,6 +13,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             private readonly DeskQ _deskQ;
             private readonly Register _register;
             private readonly ExamQ _examQ;
+            private readonly UserQ _userQ;
         #endregion
 
         #region Declare Properties
@@ -25,7 +26,8 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         public Register Register => _register;
 
         public ExamQ ExamQ => _examQ;
-        
+
+        public UserQ UserQ => _userQ;
         #endregion
 
         #region Declare Constructors
@@ -36,8 +38,8 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             _essayQ = new EssayQ(_sqlConnection);
             _deskQ = new DeskQ(_sqlConnection);
             _cardQ = new CardQ(_sqlConnection);
+            _userQ = new UserQ(_sqlConnection);
             _register = new Register(_sqlConnection);
-
         }
         #endregion
         

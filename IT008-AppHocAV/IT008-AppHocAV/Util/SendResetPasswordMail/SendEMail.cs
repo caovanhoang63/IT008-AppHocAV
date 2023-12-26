@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MimeKit;
 namespace IT008_AppHocAV.Util
 {
     public class SendEMail
     {
-        public static int Send(string userEmail)
+        public static async Task<int> Send(string userEmail)
         {
             try
             {
