@@ -99,7 +99,7 @@ namespace IT008_AppHocAV.View.MainWindow
                             if (dep is ListViewItem item)
                             {
                                 // Tìm Image trong ListViewItem và đặt thuộc tính Visibility
-                                var cardImage = FindVisualChild<Image>(item, "CardImage");
+                                Image cardImage = FindVisualChild<Image>(item, "CardImage");
                                 if (cardImage != null)
                                 {
                                     cardImage.Source=image;
@@ -121,35 +121,30 @@ namespace IT008_AppHocAV.View.MainWindow
      
                     
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LvListCard.Items.Count ==0)
             {
+                MessageBox.Show("Please add card!");
+            }
+            else
+            {
+
                 _data.UserId= mainWindow.UserId;
                 _data.Title= TitleTextBox.Text;
                 _data.Description= DescriptionTextBox.Text;
                 _data.CreatedAt = DateTime.Now;
                 _data.UpdatedAt = DateTime.Now;
                 _data.Quantity = LvListCard.Items.Count;
-                
+
 
 
                 _data.Id = mainWindow.DbConnection.DeskQ.CreateDesk(_data);
 
                 foreach (FlashCard item in LvListCard.Items)
                 {
-                   item.Id = _data.Id;
+                    item.Id = _data.Id;
                     mainWindow.DbConnection.DeskQ.InsertCards(item);
                 }
-
-                /*foreach( var item in LvListCard.Items )
-                {
-                    _card.DeskId = _data.Id;
-                    _card.UpdatedAt = DateTime.Now;
-
-                    TextBox term = (TextBox)FindName("TermBox");
-                    TextBox define = (TextBox)FindName("DefineBox");
-                    _card.Question =term.Text;
-                    _card.Answer = define.Text;
-                    _card.Id = mainWindow.DbConnection.CardQ.CreateCard(_card);
-                }   */
                 if (_data.Id==0)
                 {
                     MessageBox.Show("Fail to create new essay!");
@@ -161,7 +156,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 mainWindow.PageCache.Remove("MakeFlashCard");
                 mainWindow.NavigateToPage("FlashCard");
 
-            
+            }
 
  
         }
@@ -216,7 +211,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void TermBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-           /* TextBox textBox = (TextBox)sender;
+            TextBox textBox = (TextBox)sender;
             string termContent = textBox.Text;
             TextBlock termBlock = (TextBlock)textBox.FindName("TermBlock");
 
@@ -224,10 +219,11 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 termBlock.Visibility = Visibility.Hidden;
             }
-            else {
-                termBlock.Visibility = Visibility.Visible; 
+            else
+            {
+                termBlock.Visibility = Visibility.Visible;
             }
-*/
+
 
 
 
@@ -235,7 +231,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void DefineBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-           /* TextBox textBox = (TextBox)sender;
+            TextBox textBox = (TextBox)sender;
             string defineContent = textBox.Text;
             TextBlock termBlock = (TextBlock)textBox.FindName("DefineBlock");
 
@@ -243,7 +239,7 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 termBlock.Visibility = Visibility.Hidden;
             }
-            else { termBlock.Visibility = Visibility.Visible; }*/
+            else { termBlock.Visibility = Visibility.Visible; }
 
         }
 
@@ -298,7 +294,7 @@ namespace IT008_AppHocAV.View.MainWindow
             }
             return null;
         }
-
+        // Import File
         private void ImportFileButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("The request is to format a file.txt with the following pattern:(Term + ' : '+ Definition).", "Attention");
@@ -316,7 +312,12 @@ namespace IT008_AppHocAV.View.MainWindow
                 while ((line =  streamReader.ReadLine()) != null)
                 {
                     string[] text = line.Trim().Split(':');
-
+                    if(text.Length !=2)
+                    {
+                        MessageBox.Show(" Invalid format pattern! ");
+                        return;
+                    }   
+                    
                     FlashCard card = new FlashCard(text[0], text[1]);
 
                     _data.FlashCards.Add(card);
@@ -325,11 +326,13 @@ namespace IT008_AppHocAV.View.MainWindow
                 
                
             }
+
+
             LvListCard.SelectedIndex =-1;
             
             
         }
-
+        // Scroll in ListView
         private void LvListCard_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
             if (e.Handled)

@@ -134,7 +134,7 @@
                             Height="140" Width="240"
                             Background="#F4EEEE"
                             Style="{DynamicResource RoundedButtonStyle}"
-                            Margin="10 10 10 10">
+                            Margin="10 10 5 10">
                  
 
 
@@ -161,7 +161,7 @@
                                     </Button>
                                     <Button x:Name="DeleteCardButton" HorizontalAlignment="Right" Margin="5 0 5 0" Background="{x:Null}" Click="DeleteCardButton_Click"  >
                                         <Button.Clip>
-                                            <RectangleGeometry Rect="1.2,2,31,31" RadiusX="10" RadiusY="10"/>
+                                            <RectangleGeometry Rect="2,2,31,31" RadiusX="10" RadiusY="10"/>
                                         </Button.Clip>
                                         <Image Source="/Assets/Icon/DeleteIcon.png" Width="30" Height="30" />
 

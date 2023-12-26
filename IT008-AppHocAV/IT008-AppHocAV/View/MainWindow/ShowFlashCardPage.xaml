@@ -48,7 +48,7 @@
         </StackPanel>
         <!--// Define a 3D viewport //-->
 
-            <Viewport3D Grid.Row="1"  Margin="30 40 30 40"
+            <Viewport3D Grid.Row="1"  Height="300" Width="780" Margin="10 20 10 10"
                     >
 
                 <!--// Set the camera for the viewport //-->
@@ -150,7 +150,7 @@
                                                                  Width="200"
                                                                  Background="Beige"
                                                                   Opacity="1">
-                                                                
+                                                            <StackPanel>
                                                                 <Label VerticalAlignment="Center"
                                                                 HorizontalAlignment="Center" 
                                                                 FontWeight="ExtraBold"
@@ -159,7 +159,15 @@
                                                                 Content="{Binding Answer}"
                                                                 >
 
+
+
                                                                 </Label>
+                                                            </StackPanel>
+                                                               
+                                                           
+                                                                
+                                                             
+                                                                
                                                             
                                                         </Border>
 
@@ -210,13 +218,16 @@
                                                                   Opacity="1">
 
                                                             <!--// Add Content //-->
-
-                                                            <Label VerticalAlignment="Center"
+                                                            
+                                                                <Label VerticalAlignment="Center"
                                                               HorizontalAlignment="Center" 
                                                               FontWeight="ExtraBold"
                                                                FontFamily="Fonts/#Comforter"
                                                                 FontSize="14"
                                                                   Content="{Binding Question}"></Label>
+                                                            
+
+                                                            
 
                                                         </Border>
 
@@ -420,15 +431,15 @@
 
             </Button>
             <Label Name ="CurrentCard"  Height="35" Width="35" HorizontalAlignment="Center"
-                      VerticalAlignment="Bottom" Margin="0 0 20 40" 
-                        Content="10" FontSize="22" FontWeight="DemiBold"></Label>
+                      VerticalAlignment="Bottom" Margin="15 0 20 40" 
+                        Content="{Binding Current}" FontSize="22" FontWeight="DemiBold"></Label>
             <Label Height="35" Width="35" HorizontalAlignment="Center"
                     VerticalAlignment="Bottom" Margin="30 0 0 40" 
                    Content="/" FontSize="22" FontWeight="DemiBold" 
                    ></Label>
             <Label  Name="TotalCard" Height="35" Width="35" HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom" Margin="50 0 0 40" 
-                   Content="20" FontSize="22" FontWeight="DemiBold"
+                    VerticalAlignment="Bottom" Margin="60 0 0 40" 
+                   Content="{Binding Total}" FontSize="22" FontWeight="DemiBold"
                   ></Label>
             <Button   Name="ReturnButton" Background="Transparent"
                         Style="{DynamicResource RoundedButtonStyle }"
