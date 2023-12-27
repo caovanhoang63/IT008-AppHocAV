@@ -60,9 +60,7 @@ namespace IT008_AppHocAV.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=it008.cf4wmocwq0b5.ap-southeast-1.rds.amazonaws.com,1433;Database=APP" +
-            "_HOC_AV;Integrated Security=false;User ID=caovanhoang204;Password=Hh12032004;Con" +
-            "nection Timeout=15;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DbConnectionString {
             get {
                 return ((string)(this["DbConnectionString"]));
@@ -71,7 +69,7 @@ namespace IT008_AppHocAV.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("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")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ChatGptApiKey {
             get {
                 return ((string)(this["ChatGptApiKey"]));
