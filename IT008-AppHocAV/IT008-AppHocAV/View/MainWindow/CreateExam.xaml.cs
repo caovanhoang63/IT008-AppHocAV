@@ -42,6 +42,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            _mainWindow.PageCache.Remove("Exam");
             _mainWindow.NavigateToPage("Exam");
         }
     }

@@ -14,7 +14,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
-                <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml">
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -26,17 +27,18 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Canvas Height="40" Width="120"  Margin="0 0 0 0"  Grid.Row="0" Grid.Column="0" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Canvas Height="40" Width="140"  Margin="0 0 0 0"  Grid.Row="0" Grid.Column="0" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Label x:Name="ClockLabel" Canvas.Left="0" Width="40" Height="40"
                                         Background="Transparent">
                 <Image Source="../../Assets/Icon/clock.png" Width="24"></Image>
             </Label>
             <TextBlock x:Name="TimerText" Width="80" 
+                       Margin="20 0 0 0"
                        Height="40"  Background="Transparent" 
-                       FontSize="18" Text="{Binding TimerRemaining}" 
+                       FontSize="18" Text="{ Binding TimeRemaining, StringFormat={}{0:mm\\:ss}}" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
-                       Canvas.Left="50" Canvas.Top="5">15:00</TextBlock>
+                       Canvas.Left="50" Canvas.Top="5"></TextBlock>
         </Canvas>
         <Border Grid.Row="0" BorderBrush="Black" BorderThickness="0 0 0 1"></Border>
         <Label Grid.Row="0" Grid.Column="1" Margin="0 0 0 0" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center">EXAM</Label>
@@ -71,7 +73,8 @@
                 Margin="10 10 10 10" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" Grid.Row="2" 
-                Background="GreenYellow"
+                Background="LightBlue"
+                x:Name="Submit_btn"
                 Click="Submit_btn_Click" Style="{DynamicResource RoundedButtonStyle}"></Button>
 
     </Grid>

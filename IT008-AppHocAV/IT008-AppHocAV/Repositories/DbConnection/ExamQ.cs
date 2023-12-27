@@ -15,14 +15,16 @@ namespace IT008_AppHocAV.Repositories.DbConnection
     public class ExamQ
     {
         private readonly SqlConnection _sqlConnection;
+        private List<Question> Questions;
+
 
         public ExamQ(SqlConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
         }
         public List<Question> GetRandomQuestion()
-        {   
-            List<Question> result = new List<Question>();
+        {
+            Questions = new List<Question>();
             Random random = new Random();
             HashSet<int> questionIds = new HashSet<int>();
             string queslist = "(";
@@ -60,12 +62,13 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                                 reader.GetDateTime(reader.GetOrdinal("created_at")),
                                 reader.GetDateTime(reader.GetOrdinal("updated_at"))
                             );
-                            result.Add(question);
+                            Questions.Add(question);
                         }
                     }
 
                 }
-                return result;
+                questionIds.Clear();
+                return Questions;
 
             }
             catch (Exception ex)
@@ -150,6 +153,11 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             {
                 _sqlConnection.Close();
             }
+        }
+
+        public void SaveDetail()
+        {
+
         }
         public bool DeleteExamById(int id)
         {

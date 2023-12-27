@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -30,8 +32,8 @@ namespace IT008_AppHocAV.View.MainWindow
         private List<String> Answer;
         List<string> Result;
         private readonly IT008_AppHocAV.MainWindow _mainWindow;
-        private DispatcherTimer _timer;
-        private int TimeRemaining;
+        private int _remainingTimeInSeconds; // 15 phút đổi thành giây
+        private DispatcherTimer _countdownTimer;
         #endregion
 
         #region Constructor
@@ -39,32 +41,15 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             InitializeComponent();
             this._mainWindow = mainWindow;
-
             #region Timer
-            TimeRemaining = 15 * 60;
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1);
-            _timer.Tick += _timer_Tick;
+            _remainingTimeInSeconds = 5;
             #endregion
             _question = new List<Question>();
             _question = _mainWindow.DbConnection.ExamQ.GetRandomQuestion();
             Result = GetCorrectAnswer(_question);
-
             ListQuestionListView.ItemsSource = _question;
+            InitializeCountdownTimer();
 
-        }
-
-        private void _timer_Tick(object sender, EventArgs e)
-        {
-            if (TimeRemaining > 0)
-            {
-                TimeRemaining--;  // Decrement the time remaining
-            }
-            else
-            {
-                // Handle timer expiration
-                ((DispatcherTimer)sender).Stop(); // Stop the timer
-            }
         }
         #endregion
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -141,12 +126,14 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
                 int score = Scoring_function(Answer, Result);
                 MessageBox.Show("Your score is " + score.ToString());
-                Exam exam = new Exam(_mainWindow.UserId,1,score);
+                Exam exam = new Exam(_mainWindow.UserId, 1, score);
+                _countdownTimer.Stop();
                 _mainWindow.DbConnection.ExamQ.SaveResult(exam);
+                _mainWindow.PageCache.Remove("ShowListExam");
+                _mainWindow.PageCache.Remove("DoExamPage");
                 _mainWindow.NavigateToPage("ShowListExam");
             }
         }
-
 
         #region Support function
         public static T FindVisualChild<T>(DependencyObject parent, string childName) where T : DependencyObject
@@ -180,13 +167,13 @@ namespace IT008_AppHocAV.View.MainWindow
         private List<string> GetCorrectAnswer(List<Models.Question> questions)
         {
             List<string> correct = new List<string>();
-            foreach (Question question in questions) 
+            foreach (Question question in questions)
             {
                 correct.Add(question.Correct);
             }
             return correct;
         }
-        private int Scoring_function(List<string> answer, List<string>result)
+        private int Scoring_function(List<string> answer, List<string> result)
         {
             int score = 0;
             for (int i = 0; i < Math.Min(answer.Count, result.Count); i++)
@@ -199,6 +186,92 @@ namespace IT008_AppHocAV.View.MainWindow
             return score;
         }
         #endregion
-    }
+        private void InitializeCountdownTimer()
+        {
+            _remainingTimeInSeconds = 15*60;
+            _countdownTimer = new DispatcherTimer();
+            _countdownTimer.Interval = TimeSpan.FromSeconds(1);
+            _countdownTimer.Tick += CountdownTimer_Tick;
+            _countdownTimer.Start();
+        }
 
+        private void CountdownTimer_Tick(object sender, EventArgs e)
+        {
+            if (_remainingTimeInSeconds > 0)
+            {
+                _remainingTimeInSeconds--;
+                UpdateCountdownDisplay();
+            }
+            else
+            {
+                _remainingTimeInSeconds = 15 * 60;
+                _countdownTimer.Stop();
+                Answer = new List<String>();
+                int index = 0;
+                foreach (var item in ListQuestionListView.Items)
+                {
+                    bool flag = false;
+                    var listViewItem = ListQuestionListView.ItemContainerGenerator.ContainerFromItem(item) as ListViewItem;
+                    if (listViewItem != null)
+                    {
+                        List<CheckBox> checkBoxes = new List<CheckBox>();
+                        foreach (string c in new string[] { "A", "B", "C", "D" })
+                        {
+                            checkBoxes.Add(FindVisualChild<CheckBox>(listViewItem, c));
+                        }
+                        foreach (CheckBox checkBox in checkBoxes)
+                        {
+                            if (checkBox.IsChecked == true)
+                            {
+                                string selectedCheckBoxName = checkBox.Name;
+                                switch (selectedCheckBoxName)
+                                {
+                                    case "A":
+                                        Answer.Add("A");
+                                        flag = true;
+                                        break;
+                                    case "B":
+                                        Answer.Add("B");
+                                        flag = true;
+                                        break;
+                                    case "C":
+                                        Answer.Add("C");
+                                        flag = true;
+                                        break;
+                                    case "D":
+                                        Answer.Add("D");
+                                        flag = true;
+                                        break;
+                                }
+                            }
+                        }
+                        if (flag == false)
+                        {
+                            Answer.Add("None");
+                        }
+                    }
+                    index++;
+                }
+                int score = Scoring_function(Answer, Result);
+                MessageBox.Show("Your score is " + score.ToString());
+                Exam exam = new Exam(_mainWindow.UserId, 1, score);
+                _mainWindow.DbConnection.ExamQ.SaveResult(exam);
+                _mainWindow.PageCache.Remove("DoExamPage");
+                _mainWindow.PageCache.Remove("ShowListExam");
+                _mainWindow.NavigateToPage("ShowListExam");
+            }
+        }
+
+        private void UpdateCountdownDisplay()
+        {
+            TimeSpan timeSpan = TimeSpan.FromSeconds(_remainingTimeInSeconds);
+            string formattedTime = timeSpan.ToString(@"mm\:ss", CultureInfo.InvariantCulture);
+            TimerText.Text = formattedTime;
+        }
+        private void RefreshPage()
+        {
+            ListQuestionListView.Items.Refresh();
+        }
+    }
+    
 }

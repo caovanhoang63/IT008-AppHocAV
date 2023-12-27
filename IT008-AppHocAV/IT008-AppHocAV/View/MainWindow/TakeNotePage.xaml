@@ -23,7 +23,7 @@
                      FontFamily="Inter"
                      FontSize="18" 
                      TextWrapping="Wrap"
-                     PreviewKeyDown="NoteTextBox_KeyDown"/>
+                     PreviewKeyDown="NoteTextBox_KeyDown" TextChanged="NoteTextBox_TextChanged" TextInput="NoteTextBox_TextChanged"/>
 
             <Button Name="SaveButton"
                 Width="80"

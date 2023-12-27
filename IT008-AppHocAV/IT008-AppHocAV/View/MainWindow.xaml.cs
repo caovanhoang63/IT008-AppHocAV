@@ -11,6 +11,7 @@ using IT008_AppHocAV.Repositories.DbConnection;
 using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View;
 using IT008_AppHocAV.View.MainWindow;
+using static IT008_AppHocAV.View.MainWindow.TakeNotePage;
 
 namespace IT008_AppHocAV
 {
@@ -24,6 +25,7 @@ namespace IT008_AppHocAV
         
         #region Declare Fields
             private Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
+            public string NoteCache;
             private readonly LoginWindow _loginWindow;
         #endregion
         
@@ -139,8 +141,18 @@ namespace IT008_AppHocAV
             if (Note.Visibility != Visibility.Visible)
             {
                 Note.Visibility = Visibility.Visible;
-                TakeNotePage takeNotePage = new TakeNotePage();
-                Note.Content = takeNotePage;
+                if (NoteCache != null)
+                {
+                    TakeNotePage takeNotePage = new TakeNotePage(NoteCache);
+                    takeNotePage.NoteValueChanged += UpdateNoteCache;
+                    Note.Content = takeNotePage;
+                }
+                else 
+                {
+                    TakeNotePage takeNotePage = new TakeNotePage();
+                    takeNotePage.NoteValueChanged += UpdateNoteCache;
+                    Note.Content = takeNotePage;
+                }
             }
             else
             {
@@ -373,9 +385,13 @@ namespace IT008_AppHocAV
                 }
             }
 
-            #endregion
+        #endregion
+
+        private void UpdateNoteCache(object sender, string newNoteValue)
+        {
+            NoteCache = newNoteValue;
+        }
 
 
-            
     }
 }

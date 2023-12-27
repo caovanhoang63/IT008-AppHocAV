@@ -22,10 +22,16 @@ namespace IT008_AppHocAV.View.MainWindow
     /// </summary>
     public partial class TakeNotePage : Page
     {
+        private readonly IT008_AppHocAV.MainWindow _mainWindow;
         public TakeNotePage()
         {
             InitializeComponent();
-            //NoteTextBox.Text = Note;
+        }
+
+        public TakeNotePage(string note)
+        {
+            InitializeComponent();
+            NoteTextBox.Text = note;
         }
 
         private void Minimal_Button_Click(object sender, RoutedEventArgs e)
@@ -56,6 +62,8 @@ namespace IT008_AppHocAV.View.MainWindow
             filename += ".txt";
             File.WriteAllText(filename, noteContent);
             Note.Visibility = Visibility.Collapsed;
+            NoteTextBox.Clear();
+
         }
         private void NoteTextBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -68,5 +76,25 @@ namespace IT008_AppHocAV.View.MainWindow
             }
         }
 
+        public partial class TakeNotePages : Page
+        {
+            public TextBox NoteTextBox
+            {
+                get { return NoteTextBox; }
+            }
+        }
+        public event EventHandler<string> NoteValueChanged;
+
+        private void NoteTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            NoteValueChanged?.Invoke(this, NoteTextBox.Text);
+        }
+
+        private void NoteTextBox_TextChanged(object sender, TextCompositionEventArgs e)
+        {
+            NoteValueChanged?.Invoke(this, NoteTextBox.Text);
+            IT008_AppHocAV.MainWindow main = Application.Current.MainWindow as IT008_AppHocAV.MainWindow;
+            main.NoteCache = NoteTextBox.Text;
+        }
     }
 }
