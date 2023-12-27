@@ -70,7 +70,8 @@
                         </Canvas>
                         
                         <Button Width="40" Height="40" Background="#96B639" Margin="0 0 10 0"
-                                Style="{DynamicResource RoundedButtonStyle}" Click="SortEssayButton_OnClick">
+                                Style="{DynamicResource RoundedButtonStyle}" Click="SortEssayButton_OnClick"
+                                ToolTip="Sort">
                             <Button.ContextMenu>
                                 <ContextMenu Placement="Bottom" IsOpen="False">
                                     <uc:RadioButtonMenuItem Header="Title" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>

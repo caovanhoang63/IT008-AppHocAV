@@ -17,9 +17,11 @@
                 <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
                 <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../../Assets/Styles/ShowEssayStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../Assets/Styles/WriteContentPageStyle.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+
     <Grid Margin="20 10">
         
  
@@ -31,7 +33,7 @@
             <DockPanel DockPanel.Dock="Top" Margin="0 0 0 10" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                 <Grid x:Name="GptResponsePopUpGrid" ZIndex="1000"
                       DockPanel.Dock="Bottom"
-                      Margin="0 5 0 0"  
+                      Margin="0 5 0 0"
                       Visibility="Collapsed"
                       >
                     <Border  x:Name="GptResponsePupUpContainer"
@@ -39,17 +41,31 @@
                              CornerRadius="12"
                              Width="auto"
                              Background="#46C679"
-                             MinHeight="300"
                              Height="300"
-                             HorizontalAlignment="Stretch">
+                             HorizontalAlignment="Stretch"
+                             >
                         <DockPanel HorizontalAlignment="Stretch">
-                                <StackPanel DockPanel.Dock="Top"  Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button Style="{DynamicResource TransparentButtonStyle}"
-                                            Height="35" MaxHeight="35"
-                                            Click="ResizeGPTButton_OnClick">
-                                        🗖
+                                <StackPanel x:Name="GptPopUpControlButton" DockPanel.Dock="Top"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Right"
+                                            >
+                                    <Button x:Name="DropDownButton"
+                                            VerticalAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            Click="DropDownButton_OnClick"
+                                            Style="{DynamicResource DropDownStyle}"
+                                            Width="1600"
+                                            Visibility="Collapsed"
+                                            >
+                                        <Image Source="../../Assets/Icon/DropDownBtnIcon.png" />
                                     </Button>
-                                    <Button  Style="{DynamicResource TransparentButtonStyle}" 
+                                    <Button x:Name="GptPopUpResizeButton" Style="{DynamicResource TransparentButtonStyle}"
+                                            Height="35" MaxHeight="35"
+                                            Click="ResizeGPTButton_OnClick"
+                                            >
+                                        _
+                                    </Button>
+                                    <Button  x:Name="GptPopUpCloseButton" Style="{DynamicResource TransparentButtonStyle}" 
                                              Click="CloseGPTButton_OnClick"
                                              Height="35" MaxHeight="35">
                                         X

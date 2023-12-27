@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Services;
@@ -130,18 +131,10 @@ namespace IT008_AppHocAV.View.MainWindow
         /// <param name="e"></param>
         private void CloseGPTButton_OnClick(object sender, RoutedEventArgs e)
         {
-            GptResponsePopUpGrid.Visibility = Visibility.Collapsed;
+            GptResponsePopUpGrid.Visibility = Visibility.Visible;
         }
 
-        /// <summary>
-        /// Handles ResizeGPT Button's click event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ResizeGPTButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            GptResponsePupUpContainer.Height = 350;
-        }
+
 
         
         /// <summary>
@@ -159,10 +152,13 @@ namespace IT008_AppHocAV.View.MainWindow
             
             Func func = GetGptWritingFunc(sender);
 
+            //load page load
             GptResponsePupUpContent.Content = new LoadingPage();
             
+            //request
             await _popUp.LoadResult(func,topic,answer);
             
+            //result page
             GptResponsePupUpContent.Content = _popUp;
 
         }
@@ -197,6 +193,36 @@ namespace IT008_AppHocAV.View.MainWindow
             }
 
             throw new Exception("This function does not exist");
+        }
+
+        private void DropDownButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            GptResponsePopUpGrid.Height = 300;
+            GptResponsePupUpContainer.Height = 300;
+            GptPopUpControlButton.HorizontalAlignment = HorizontalAlignment.Right;
+            GptPopUpResizeButton.Visibility = Visibility.Visible;
+            GptPopUpCloseButton.Visibility = Visibility.Visible;
+            DropDownButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void DropDownButton_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            
+        }
+        
+        /// <summary>
+        /// Handles ResizeGPT Button's click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ResizeGPTButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            GptResponsePopUpGrid.Height = 32;
+            GptResponsePupUpContainer.Height = 32;
+            GptPopUpControlButton.HorizontalAlignment = HorizontalAlignment.Center;
+            GptPopUpResizeButton.Visibility = Visibility.Collapsed;
+            GptPopUpCloseButton.Visibility = Visibility.Collapsed;
+            DropDownButton.Visibility = Visibility.Visible;
         }
     }
 }

@@ -27,15 +27,16 @@
               VerticalContentAlignment="Stretch"
               ScrollViewer.VerticalScrollBarVisibility="Visible"
               ScrollViewer.CanContentScroll="False"
+              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
               >
         <ListView.ItemTemplate>
             <DataTemplate>
-                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" Text="{Binding Header}" Style="{DynamicResource HeaderTbStyle}" />
-                    <TextBox DockPanel.Dock="Bottom" HorizontalAlignment="Stretch"
+                <StackPanel  VerticalAlignment="Stretch">
+                    <TextBlock  HorizontalAlignment="Stretch" Text="{Binding Header}" Style="{DynamicResource HeaderTbStyle}" />
+                    <TextBox  HorizontalAlignment="Stretch"
                              Text="{Binding Content}"
-                             Width="700"
                              Margin="10"
+                             Width="700"
                              HorizontalContentAlignment="Stretch"
                              HorizontalScrollBarVisibility="Disabled"
                              Style="{DynamicResource ContentTbStyle}" />
