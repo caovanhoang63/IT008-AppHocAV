@@ -55,8 +55,8 @@
             </StackPanel>
             
             <StackPanel Grid.Column="1" Margin="0 0 50 0 ">
-                <Label FontSize="50" FontWeight="Medium">Login</Label>
-                <Label>User name:</Label>
+                <Label  FontSize="50" FontWeight="Medium">Login</Label>
+                <Label HorizontalAlignment="Left">User name:</Label>
                 <Border Name="UserNameBoxBorder" Width="400" Height="42" CornerRadius="12" BorderThickness="1"
                         BorderBrush="Black"
                         GotFocus="BoxBorder_OnGotFocus"
@@ -64,7 +64,7 @@
                     <TextBox Name="UserNameBox" Background="Transparent" BorderThickness="0" VerticalAlignment="Center"
                              FontSize="18" Margin="12 0  12 0" ></TextBox>
                 </Border>
-                <Label>Password:</Label>
+                <Label HorizontalAlignment="Left">Password:</Label>
                 <Border Name="PasswordBoxBorder" Width="400" Height="42" CornerRadius="12" BorderThickness="1" 
                         BorderBrush="Black"
                         GotFocus="BoxBorder_OnGotFocus"

@@ -185,11 +185,11 @@ namespace IT008_AppHocAV
                 else
                 {
                     NavigateToPage("Searching");
-                    while (!(Content.Content is SearchingPage))
+                    while (!(Content.Content is WordPage))
                     {
                         await Task.Delay(10);
                     }
-                    if (Content.Content is SearchingPage page)
+                    if (Content.Content is WordPage page)
                     {
                         await page.Search(TextBoxSearching.Text);
                     }
@@ -203,7 +203,7 @@ namespace IT008_AppHocAV
                 switch (pageName)
                 {
                     case "Searching":
-                        page = new SearchingPage(this);
+                        page = new WordPage(this);
                         break;
 
                     case "EditFlashCard":

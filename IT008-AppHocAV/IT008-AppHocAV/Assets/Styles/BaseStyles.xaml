@@ -181,6 +181,9 @@
         <!-- set the MouseOverColor to Transparent when you do not need the effect in the unselected items -->
         <Color x:Key="MouseOverColor" >#00FFFFFF</Color>
         <Style TargetType="ListViewItem">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Padding" Value="0"></Setter>
+
             <Setter Property="SnapsToDevicePixels"
                     Value="true" />
             <Setter Property="OverridesDefaultStyle"

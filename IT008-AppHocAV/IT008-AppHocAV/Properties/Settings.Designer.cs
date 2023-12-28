@@ -60,7 +60,9 @@ namespace IT008_AppHocAV.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=it008.cf4wmocwq0b5.ap-southeast-1.rds.amazonaws.com,1433;Database=APP" +
+            "_HOC_AV;Integrated Security=false;User ID=caovanhoang204;Password=Hh12032004;Con" +
+            "nection Timeout=15;")]
         public string DbConnectionString {
             get {
                 return ((string)(this["DbConnectionString"]));
@@ -81,7 +83,7 @@ namespace IT008_AppHocAV.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-38JM1H0;Database=APP_HOC_AV;Integrated Security=false;User ID" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-38JM1H0;Database=DICTIONARY;Integrated Security=false;User ID" +
             "=sa;Password=123456;Connection Timeout=0;")]
         public string LocalDBConnectionString {
             get {

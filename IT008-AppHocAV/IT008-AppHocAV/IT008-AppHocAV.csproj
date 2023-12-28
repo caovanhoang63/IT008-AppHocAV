@@ -154,6 +154,7 @@
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
     <Compile Include="Repositories\DbConnection\DeskQ.cs" />
+    <Compile Include="Repositories\DbConnection\DictionaryRepository.cs" />
     <Compile Include="Repositories\DbConnection\EssayQ.cs" />
     <Compile Include="Repositories\DbConnection\ExamQ.cs" />
     <Compile Include="Repositories\DbConnection\Register.cs" />
@@ -166,6 +167,9 @@
     <Compile Include="Util\InternetAvailability.cs" />
     <Compile Include="Util\InternetConnectionManager.cs" />
     <Compile Include="Util\SendResetPasswordMail\SendEMail.cs" />
+    <Compile Include="View\CustomMessageBox\CTMessageBox.xaml.cs">
+      <DependentUpon>CTMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
@@ -214,6 +218,10 @@
       <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
 
+    <Compile Include="View\MainWindow\WordPage.xaml.cs">
+      <DependentUpon>WordPage.xaml</DependentUpon>
+    </Compile>
+
     <Compile Include="View\ResetPasswordWindow.xaml.cs">
       <DependentUpon>ResetPasswordWindow.xaml</DependentUpon>
     </Compile>
@@ -260,7 +268,13 @@
 
     <Page Include="Assets\Styles\HomeStyle.xaml" />
 
+    <Page Include="Assets\Styles\MessageBoxStyle.xaml" />
+
+    <Page Include="Assets\Styles\WordPageStyle.xaml" />
+
     <Page Include="Assets\Styles\WriteContentPageStyle.xaml" />
+
+    <Page Include="View\CustomMessageBox\CTMessageBox.xaml" />
 
     <Page Include="View\MainWindow\CreateExam.xaml">
       <SubType>Designer</SubType>
@@ -317,6 +331,7 @@
     <Resource Include="Assets\Icon\SortIcon.png" />
     <Resource Include="Assets\Image\LogoWithOutELF.png" />
     <Resource Include="Assets\Icon\ThreeStickMenuIcon.png" />
+    <Page Include="View\MainWindow\WordPage.xaml" />
     <Page Include="View\ResetPasswordWindow.xaml" />
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>

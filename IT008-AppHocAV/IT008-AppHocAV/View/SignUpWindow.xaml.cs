@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Util;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.View
 {
@@ -33,7 +34,7 @@ namespace IT008_AppHocAV.View
 
             private void BtnClose_OnClick(object sender, RoutedEventArgs e)
             {
-                MessageBoxResult result =  MessageBox.Show("Are you sure want to continue?","",MessageBoxButton.YesNo);
+                MessageBoxResult result =  CTMessageBox.Show("Are you sure want to continue?","",MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     _loginWindow.Show();

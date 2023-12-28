@@ -272,30 +272,30 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
                 
                 string synonyms = "";
-                for (int i = 0; i < definition.synonyms.Length; i++)
-                {
-                    if (i != definition.synonyms.Length - 1)
-                    {
-                        synonyms += definition.synonyms[i] + ", ";
-                    }
-                    else
-                    {
-                        synonyms += definition.synonyms[i] + ". ";
-                    }
-                }
+                // for (int i = 0; i < definition.synonyms.text.Count; i++)
+                // {
+                //     if (i != definition.synonyms.text.Count - 1)
+                //     {
+                //         synonyms += definition.synonyms.text[i] + ", ";
+                //     }
+                //     else
+                //     {
+                //         synonyms += definition.synonyms.text[i] + ". ";
+                //     }
+                // }
                 
                 string antonyms = "";
-                for (int i = 0; i < definition.antonyms.Length; i++)
-                {
-                    if (i != definition.antonyms.Length - 1)
-                    {
-                        antonyms += definition.antonyms[i] + ", ";
-                    }
-                    else
-                    {
-                        antonyms += definition.antonyms[i] + ". ";
-                    }
-                }
+                // for (int i = 0; i < definition.antonyms.text.Count; i++)
+                // {
+                //     if (i != definition.antonyms.text.Count - 1)
+                //     {
+                //         antonyms += definition.antonyms.text[i] + ", ";
+                //     }
+                //     else
+                //     {
+                //         antonyms += definition.antonyms.text[i] + ". ";
+                //     }
+                // }
                 if (synonyms.Trim() != "")
                 {
                     xaml += $@"

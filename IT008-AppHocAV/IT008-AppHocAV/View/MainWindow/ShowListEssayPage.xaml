@@ -105,7 +105,6 @@
             <ListView Grid.Row="1" Name="ListEssayListView" HorizontalAlignment="Center" 
                       VerticalAlignment="Stretch"
                       Margin="0 20"
-                      Background="Transparent"
                       BorderThickness="0">
                 <ListView.ItemTemplate >
                     <!-- Defines Items Template -->
@@ -164,7 +163,6 @@
             </ListView>
              
             <!--End show list of essays -->
-
             
         </Grid>
         
