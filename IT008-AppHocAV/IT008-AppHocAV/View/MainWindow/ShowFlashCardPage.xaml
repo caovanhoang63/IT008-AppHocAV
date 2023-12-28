@@ -356,8 +356,8 @@
 
                                         <DoubleAnimation Storyboard.TargetName="Back_Side"
                                                      Storyboard.TargetProperty="(Image.Opacity)"
-                                                     BeginTime="0:0:0.2"
-                                                     Duration="0:0:0.3"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.1"
                                                      From="1.0"
                                                      To="0.0" />
 
@@ -371,8 +371,8 @@
 
                                         <DoubleAnimation Storyboard.TargetName="Front_Side"
                                                      Storyboard.TargetProperty="(Image.Opacity)"
-                                                     BeginTime="0:0:0.2"
-                                                     Duration="0:0:0.3"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.1"
                                                      From="0.0"
                                                      To="1.0" />
 
@@ -383,8 +383,8 @@
                                     <Storyboard>
                                         <Rotation3DAnimation Storyboard.TargetName="ViewPort"
                                                          Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
-                                                         Duration="0:0:0.3"
-                                                         BeginTime="0:0:0.2">
+                                                         Duration="0:0:0.1"
+                                                         BeginTime="0:0:0">
 
                                             <Rotation3DAnimation.From>
                                                 <AxisAngleRotation3D Angle="-10"
@@ -400,8 +400,8 @@
 
                                         <Rotation3DAnimation Storyboard.TargetName="ViewPort"
                                                          Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
-                                                         Duration="0:0:0.3"
-                                                         BeginTime="0:0:0.2">
+                                                         Duration="0:0:0.1"
+                                                         BeginTime="0:0:0">
 
                                             <Rotation3DAnimation.From>
                                                 <AxisAngleRotation3D Angle="100"
@@ -450,7 +450,7 @@
                     Height="35" Width="35" HorizontalAlignment="Center" 
                     VerticalAlignment="Bottom" Margin="160 0 0 40" Click="NextButton_Click">
             <Image Source="/Assets/Icon/nextBut.png" />
-
+            
             </Button>
             <Label Name ="CurrentCard"  Height="35" Width="35" HorizontalAlignment="Center"
                       VerticalAlignment="Bottom" Margin="15 0 20 40" 

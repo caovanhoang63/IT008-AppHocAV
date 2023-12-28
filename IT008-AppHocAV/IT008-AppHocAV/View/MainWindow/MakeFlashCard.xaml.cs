@@ -105,11 +105,7 @@ namespace IT008_AppHocAV.View.MainWindow
                                     cardImage.Source=image;
                                     cardImage.Visibility = Visibility.Visible;
                                 }
-                                var setImage = FindVisualChild<Image>(item, "SetImage");
-                                if(setImage != null)
-                                {
-                                    setImage.Visibility = Visibility.Hidden;
-                                }    
+                                 
                             }
                         }
                     }
@@ -118,9 +114,51 @@ namespace IT008_AppHocAV.View.MainWindow
                  
             }
         }
-     
-                    
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteImageButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            e.Handled = true;
+            int index = -1;
+            index = LvListCard.SelectedIndex;
+
+            if (index != -1)
+            {
+
+                _data.FlashCards[index].ImagePath = null;
+                //  BitmapImage image = new BitmapImage(new Uri(fileName));
+                _data.FlashCards[index].Image = null;
+                _datatemp[index].ImagePath = null;
+                _datatemp[index].Image = null;
+                DependencyObject dep = (DependencyObject)e.OriginalSource;
+                while ((dep != null) && !(dep is ListViewItem))
+                {
+                    dep = VisualTreeHelper.GetParent(dep);
+                }
+
+                if (dep is ListViewItem item)
+                {
+                    // Tìm Image trong ListViewItem và đặt thuộc tính Visibility
+
+                    var cardImage = FindVisualChild<Image>(item, "CardImage");
+                    if (cardImage != null)
+                    {
+                        // cardImage.Source=image;
+                        cardImage.Visibility = Visibility.Hidden;
+                    }
+                    var Button = FindVisualChild<Button>(item, "DeleteImageButton");
+                    if (Button != null)
+                    {
+                        Button.Visibility = Visibility.Hidden;
+                    }
+                }
+            }
+
+
+
+
+         }
+
+            private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             if (LvListCard.Items.Count ==0)
             {
@@ -324,7 +362,7 @@ namespace IT008_AppHocAV.View.MainWindow
                     _data.FlashCards.Add(card);
                     _datatemp.Add(card);
                 }
-                
+                    
                
             }
 
@@ -347,5 +385,7 @@ namespace IT008_AppHocAV.View.MainWindow
             };
             LvListCard.RaiseEvent(eventArg);
         }
+
+       
     }
 }

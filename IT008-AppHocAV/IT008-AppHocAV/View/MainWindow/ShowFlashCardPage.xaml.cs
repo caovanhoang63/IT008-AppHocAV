@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -61,6 +62,15 @@ namespace IT008_AppHocAV.View.MainWindow
                 CurrentCard.Content = (IndexOfCurrentCard + 1).ToString();
 
             }
+            ToggleButton flipCardToggleButton = Flip_Card;
+
+             if ( flipCardToggleButton.IsChecked==true)
+            {
+                Flip_Card.IsChecked = false;
+            }    
+             
+            
+
 
 
         }
@@ -74,8 +84,13 @@ namespace IT008_AppHocAV.View.MainWindow
 
                 CurrentCard.Content = (IndexOfCurrentCard+1).ToString();
 
-            }    
+            }
+            ToggleButton flipCardToggleButton = Flip_Card;
 
+            if (flipCardToggleButton.IsChecked==true)
+            {
+                Flip_Card.IsChecked = false;
+            }
         }
 
         private void RefeshButton_Click(object sender, RoutedEventArgs e)
