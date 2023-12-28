@@ -164,6 +164,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void DeleteCardButton_Click(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             int index = -1;
             index = LvListCard.SelectedIndex;
             if( index != -1)

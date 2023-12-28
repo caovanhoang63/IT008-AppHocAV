@@ -230,7 +230,26 @@
                                                 <Image x:Name="SetImage" Visibility="Visible"  Source="/Assets/Icon/AddImageIcon.png"    />
 
                                             </Button>
-                                            <Image x:Name="CardImage"  Height="60" Width="70" Visibility="Visible"  Source="{Binding Image}"/>
+                                            
+                                            <Image x:Name="CardImage"  Height="45" Width="70" Visibility="Visible"  Source="{Binding Image}"/>
+                                           
+                                            <Button Name ="DeleteImageButton" Height="20" Width="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 11 17 0" Click="DeleteImageButton_Click" BorderThickness=" 0 0 0 0" Background="Silver" Opacity="0.7"  >
+                                                <Image Name ="PicDeleteImage"   Source="/Assets/Icon/DeleteIcon.png"  ></Image >
+
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding ElementName=CardImage, Path=Source}" Value="{x:Null}">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                            
+                                           
+
+
                                         </Grid>
 
                                     </Grid>

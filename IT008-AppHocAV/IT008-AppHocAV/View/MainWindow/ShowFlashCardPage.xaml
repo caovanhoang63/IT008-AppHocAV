@@ -48,7 +48,8 @@
         </StackPanel>
         <!--// Define a 3D viewport //-->
 
-            <Viewport3D Grid.Row="1"  Height="300" Width="780" Margin="10 20 10 10"
+            <Viewport3D x:Name="CardViewport" Grid.Row="1"
+                        Height="300" Width="780" Margin="10 20 10 10"
                     >
 
                 <!--// Set the camera for the viewport //-->
@@ -139,44 +140,66 @@
 
                                                     <!--// Create a canvas to hold the visual elements //-->
 
-                                                    <Canvas>
 
                                                         
 
                                                             <!--// Add Content //-->
                                                             <!--<ContentControl   Template="{StaticResource BackSide_Content}" />-->
                                                         <Border x:Name="Back"
-                                                              Height="200"
+                                                                 Height="200"
                                                                  Width="200"
                                                                  Background="Beige"
-                                                                  Opacity="1">
-                                                            <StackPanel>
-                                                                <Label VerticalAlignment="Center"
-                                                                HorizontalAlignment="Center" 
-                                                                FontWeight="ExtraBold"
-                                                                FontFamily="Fonts/#Comforter"
-                                                                FontSize="14"
-                                                                Content="{Binding Answer}"
-                                                                >
+                                                                  Opacity="1"
+                                                                 >
+                                                        <StackPanel>
 
-
-
-                                                                </Label>
-                                                            </StackPanel>
-                                                               
-                                                           
+                                                            <Image  Margin="0 60 0 0 "
+                                                                    Width="auto" Height="60" MaxWidth="180"
+                                                                        Source="{Binding Image}"
+                                                                        >
+                                                                <Image.Style>
+                                                                    <Style TargetType="Image">
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger  Binding="{Binding Image}" Value="{x:Null}">
+                                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Image.Style>
+                                                            </Image>
+                                                            <Label VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center" 
+                                                              FontWeight="ExtraBold"
+                                                               FontFamily="Fonts/#Comforter"
+                                                                FontSize="14" 
+                                                                  Content="{Binding Answer}" >
+                                                                <Label.Style>
+                                                                    <Style TargetType="Label">
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Image}" Value="{x:Null}">
+                                                                                 
+                                                                                <Setter Property="Margin" Value="0 90 0 0" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Label.Style>
                                                                 
-                                                             
-                                                                
-                                                            
-                                                        </Border>
+                                                            </Label>
+
+                                                        </StackPanel>
 
 
 
 
 
 
-                                                    </Canvas>
+                                                    </Border>
+
+
+
+
+
+
 
                                                 </VisualBrush.Visual>
 
@@ -223,11 +246,10 @@
                                                               HorizontalAlignment="Center" 
                                                               FontWeight="ExtraBold"
                                                                FontFamily="Fonts/#Comforter"
-                                                                FontSize="14"
-                                                                  Content="{Binding Question}"></Label>
-                                                            
+                                                                FontSize="14" 
+                                                                  Content="{Binding Question}" ></Label>
 
-                                                            
+                                                         
 
                                                         </Border>
 
@@ -439,7 +461,7 @@
                    ></Label>
             <Label  Name="TotalCard" Height="35" Width="35" HorizontalAlignment="Center"
                     VerticalAlignment="Bottom" Margin="60 0 0 40" 
-                   Content="{Binding Total}" FontSize="22" FontWeight="DemiBold"
+                   Content="{Binding Quantity}" FontSize="22" FontWeight="DemiBold"
                   ></Label>
             <Button   Name="ReturnButton" Background="Transparent"
                         Style="{DynamicResource RoundedButtonStyle }"

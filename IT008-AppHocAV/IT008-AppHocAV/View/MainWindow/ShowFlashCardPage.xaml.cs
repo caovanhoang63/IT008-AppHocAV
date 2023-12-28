@@ -25,58 +25,8 @@ namespace IT008_AppHocAV.View.MainWindow
         private ListFlashCard _data;
         private FlashCardPage FlashCardPage;
 
-
-        int x = 0;
-        public class Data
-        {
-            public Data(string quest, string answ, int current, int total, BitmapImage image)
-            {
-                this.current=current;
-                this.total=total;
-                this.quest=quest;
-                this.answ=answ;
-            }
-            public Data()
-            {
-                this.total=0;
-                this.current=0;
-                this.quest=null;
-                this.answ=null;
-                image=null;
-            }
-
-            public int current;
-            public int total;
-            public string quest;
-            public string answ;
-            public BitmapImage image;
-            public int Total
-            {
-                get => total;
-                set => total= value;
-            }
-            public int Current
-            {
-                get => current;
-                set => current = value;
-            }
-            public string Question
-            {
-                get => quest;
-                set => quest=value;
-            }
-            public string Answer
-            {
-                get => answ;
-                set => answ = value;
-            }
-            public BitmapImage Image
-            {
-                get => image;
-                set => image = value;
-            }
-
-        }
+        int IndexOfCurrentCard = 0;
+        
 
 
         public ShowFlashCardPage()
@@ -92,55 +42,47 @@ namespace IT008_AppHocAV.View.MainWindow
             this.FlashCardPage = flashCardPage;
             this._data= FlashCardPage.CurrentCard;
             _data.FlashCards = _mainWindow.DbConnection.CardQ.SelectCardByID(_data.Id);
-            Data datatemp = new Data();
-            //  LvListCard.ItemsSource = _data.FlashCards;
-            if (_data.FlashCards != null)
-            {
-                datatemp = new Data(_data.FlashCards[0].Question, _data.FlashCards[0].Answer, x+1, _data.Quantity, _data.FlashCards[0].Image);
+            CurrentCard.Content = (IndexOfCurrentCard + 1).ToString();
 
-            }
-            this.DataContext=datatemp;
-
-
-
+            
+            CardViewport.DataContext = _data.FlashCards[IndexOfCurrentCard];
+            this.DataContext= _data;
+            
+            
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (x<_data.Quantity-1)
+        { 
+            if(IndexOfCurrentCard < _data.Quantity-1)
             {
-                x++;
+                IndexOfCurrentCard++;
+                CardViewport.DataContext = _data.FlashCards[IndexOfCurrentCard];
 
-                Data datatemp1 = new Data(_data.FlashCards[x].Question, _data.FlashCards[x].Answer, x+1, _data.Quantity, _data.FlashCards[x].Image);
-               
-                this.DataContext=datatemp1;
+                CurrentCard.Content = (IndexOfCurrentCard + 1).ToString();
+
             }
-
-
-
 
 
         }
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (x>0)
+        { 
+            if(IndexOfCurrentCard > 0)
             {
-                x--;
-                Data datatemp1 = new Data(_data.FlashCards[x].Question, _data.FlashCards[x].Answer, x+1, _data.Quantity, _data.FlashCards[x].Image);
+                IndexOfCurrentCard--;
+                CardViewport.DataContext = _data.FlashCards[IndexOfCurrentCard];
 
-                this.DataContext=datatemp1;
+                CurrentCard.Content = (IndexOfCurrentCard+1).ToString();
 
+            }    
 
-            }
-        } 
+        }
 
         private void RefeshButton_Click(object sender, RoutedEventArgs e)
         {
-            x=0;
-            Data datatemp1 = new Data(_data.FlashCards[x].Question, _data.FlashCards[x].Answer, x+1, _data.Quantity, _data.FlashCards[x].Image);
-
-            this.DataContext=datatemp1;
+            IndexOfCurrentCard =0;
+            CardViewport.DataContext = _data.FlashCards[IndexOfCurrentCard];
+            CurrentCard.Content = (IndexOfCurrentCard+1).ToString();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
