@@ -66,12 +66,19 @@
                                          MouseLeave="SearchEssayButton_MouseLeave">
 
                             <Image Source="../../Assets/Icon/SearchIcon.png" Width="24"></Image>
+                            <Button.ToolTip>
+                                <ToolTip Content="Search" />
+                            </Button.ToolTip>
                         </Button>
                     </Canvas>
 
                     <Button x:Name="SortCard" Width="40" Height="40" Background="#96B639" Margin="0 0 10 0" 
                                 Style="{DynamicResource RoundedButtonStyle}" Click="SortCard_Click"  >
+                        <Button.ToolTip>
+                            <ToolTip Content="Sort" />
+                        </Button.ToolTip>
                         <Button.ContextMenu>
+                           
                             <ContextMenu Placement="Bottom" IsOpen="False">
                                 <uc:RadioButtonMenuItem Header="Title" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
                                 <uc:RadioButtonMenuItem Header="Date modified" IsChecked="True" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
