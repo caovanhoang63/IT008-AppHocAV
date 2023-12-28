@@ -167,7 +167,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-
     <Compile Include="View\MainWindow\FlashCardPage.xaml.cs">
       <DependentUpon>FlashCardPage.xaml</DependentUpon>
     </Compile>
@@ -186,16 +185,12 @@
     <Compile Include="View\MainWindow\SearchingPage.xaml.cs">
       <DependentUpon>SearchingPage.xaml</DependentUpon>
     </Compile>
-
-
     <Compile Include="View\MainWindow\TranslatePage.xaml.cs">
       <DependentUpon>TranslatePage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\CreateEssayPage.xaml.cs">
       <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -235,9 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Styles\GptWritingPopUpStyle.xaml" />
-
     <Page Include="Assets\Styles\HomeStyle.xaml" />
-
     <Page Include="View\MainWindow\CreateExam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -296,6 +289,9 @@
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Icon\Shuffle.png" />
+    <Resource Include="Assets\Icon\ArrowsIcon.png" />
+    <Resource Include="Assets\Icon\ShuffleIcon.png" />
     <Resource Include="Assets\Icon\refresh_icon.png" />
     <Resource Include="Assets\Icon\BookIcon.png" />
     <Resource Include="Assets\Icon\CheckIcon.png" />
@@ -338,9 +334,7 @@
     <Resource Include="Assets\Icon\MaxSizeIcon.png" />
     <Resource Include="Assets\Icon\MaxiumSizeIcon.png" />
     <Resource Include="Assets\Icon\LexicalItemsIcon.png" />
-
     <Resource Include="Assets\Icon\nextbuttonFl.png" />
-
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -353,7 +347,6 @@
     <Compile Include="View\MainWindow\ShowListEssayPage.xaml.cs">
       <DependentUpon>ShowListEssayPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\ShowFlashCardPage.xaml.cs">
       <DependentUpon>ShowFlashCardPage.xaml</DependentUpon>
     </Compile>
@@ -363,11 +356,9 @@
     <Compile Include="View\MainWindow\WritingContentPage.xaml.cs">
       <DependentUpon>WritingContentPage.xaml</DependentUpon>
     </Compile>
- 
     <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
       <DependentUpon>TakeNotePage.xaml</DependentUpon>
     </Compile>
-
     <Page Include="Assets\Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -395,27 +386,17 @@
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
     <Resource Include="View\MainWindow\background.png" />
-
-      <Compile Include="Models\SortExamOptions.cs" />
-      <Compile Include="Models\SortFlashCardDesk.cs" />
-      <Compile Include="Models\Writing\Essay.cs" />
-      <Compile Include="Models\Writing\GptWritingResponse.cs" />
-      <Compile Include="Models\Writing\SortEssayOptions.cs" />
-      <Compile Include="Repositories\DbConnection\CardQ.cs" />
-      <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
-      <Compile Include="Services\ChatGPT.cs" />
- 
-      <Compile Include="View\MainWindow\EditFlashCard.xaml.cs">
-          <DependentUpon>EditFlashCard.xaml</DependentUpon>
-      </Compile>
-
-
- 
+    <Compile Include="Models\SortExamOptions.cs" />
+    <Compile Include="Models\SortFlashCardDesk.cs" />
+    <Compile Include="Models\Writing\Essay.cs" />
+    <Compile Include="Models\Writing\GptWritingResponse.cs" />
+    <Compile Include="Models\Writing\SortEssayOptions.cs" />
+    <Compile Include="Repositories\DbConnection\CardQ.cs" />
+    <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
+    <Compile Include="Services\ChatGPT.cs" />
+    <Compile Include="View\MainWindow\EditFlashCard.xaml.cs">
+      <DependentUpon>EditFlashCard.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
-    
-
-
-
-   
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
