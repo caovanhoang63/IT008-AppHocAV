@@ -21,11 +21,14 @@
             </ResourceDictionary.MergedDictionaries>
             <local:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
             <local:ListToVisibilityConverter x:Key="ListToVisibilityConverter"/>
+            <local:MoreSyAntonymsVisibility x:Key="MoreSyAntonymsVisibility"/>
+            
         </ResourceDictionary>
 
     </Page.Resources >
 
-        <ScrollViewer  x:Name="Container" HorizontalAlignment="Stretch" Loaded="instScroll_Loaded" >
+        <ScrollViewer  x:Name="Container" HorizontalAlignment="Stretch" Loaded="instScroll_Loaded" 
+                       >
             <StackPanel  >
                 <Grid x:Name="Header" Background="Beige" VerticalAlignment="Center">
                     <Grid Margin="20 30  20 30">
@@ -37,6 +40,7 @@
                         <StackPanel Grid.Column="0" >
                             <StackPanel Orientation="Horizontal" Margin="0 60 0 0 " >
                                 <TextBox FontSize="28" FontWeight="Bold" Text="{Binding word}"/>
+                                <CheckBox x:Name="RecallCheckBox" ToolTip="Vocabulary Recall" Margin="0 0 0 20" Style="{DynamicResource StarCheckBoxStyle}"></CheckBox>
                             </StackPanel>
                             <!-- Phonetics -->
                             <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
@@ -103,14 +107,14 @@
                                 <ItemsControl  ItemsSource="{Binding definitions}"
                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                           BorderThickness="0" IsHitTestVisibleChanged="Listview_OnIsHitTestVisibleChanged"
+                                           BorderThickness="0" 
                                            HorizontalAlignment="Stretch"
                                            Padding="0"  Margin="30 0 0 0">
                                     <ItemsControl.ItemTemplate>
                                         
                                         <DataTemplate>
                                             
-                                            <StackPanel>
+                                            <StackPanel Margin="0 0 0 10">
                                                 
                                                 <!-- definition -->
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
@@ -129,21 +133,23 @@
                                                 <!-- end definition -->
                                                 
                                                 <!-- example -->
-                                                <StackPanel Orientation="Horizontal" Visibility="{Binding example, Converter={StaticResource StringToVisibilityConverter}}"
-                                                            HorizontalAlignment="Stretch">
-                                                    <TextBox Style="{DynamicResource ContentTextBlock}" FontSize="14"  Padding="0" Width="auto">Example: </TextBox>
+                                                <StackPanel Orientation="Horizontal"
+                                                            Visibility="{Binding example, Converter={StaticResource StringToVisibilityConverter}}"
+                                                            HorizontalAlignment="Stretch" Margin="15 0 0 0 ">
+                                                    <TextBox Style="{DynamicResource ContentTextBlock}" FontSize="16"  Padding="0" Width="auto">Example: </TextBox>
                                                     
                                                     <TextBox Style="{DynamicResource ContentTextBlock}"
-                                                             FontSize="14"  Text="{Binding example}"/>
+                                                             FontSize="16"  Text="{Binding example}"/>
                                                     
                                                 </StackPanel>
                                                 <!-- end example -->
                                                 
                                                 <!-- synonyms -->
                                                 <StackPanel Orientation="Horizontal"
-                                                            Visibility="{Binding synonyms,Converter={StaticResource ListToVisibilityConverter} }">
-                                                    <TextBox Foreground="#1d2a57" FontSize="18">Synonyms: </TextBox>
-                                                    <ItemsControl ItemsSource="{Binding synonyms}">
+                                                            Visibility="{Binding synonyms,Converter={StaticResource ListToVisibilityConverter} }"
+                                                            Margin="15 0 0 0 ">
+                                                    <TextBox Foreground="#1d2a57" FontSize="16">Synonyms: </TextBox>
+                                                    <ItemsControl ItemsSource="{Binding synonyms}" >
                                                         <ItemsControl.ItemsPanel>
                                                             <ItemsPanelTemplate>
                                                                 <WrapPanel Orientation="Horizontal" />
@@ -161,8 +167,9 @@
                                                 
                                                 <!-- antonym -->
                                                 <StackPanel Orientation="Horizontal"
-                                                            Visibility="{Binding antonyms,Converter={StaticResource ListToVisibilityConverter} }">
-                                                    <TextBox Foreground="#1d2a57" FontSize="18">Atonyms: </TextBox>
+                                                            Visibility="{Binding antonyms,Converter={StaticResource ListToVisibilityConverter} }"
+                                                            Margin="15 0 0 0 ">
+                                                    <TextBox Foreground="#1d2a57" FontSize="16">Atonyms: </TextBox>
                                                     <ItemsControl ItemsSource="{Binding antonyms}">
                                                         <ItemsControl.ItemsPanel>
                                                             <ItemsPanelTemplate>
@@ -189,8 +196,16 @@
                                 
                                 <StackPanel Background="#fff8e4" 
                                             Orientation="Vertical"
-                                            Margin="0 20"
-                                             >
+                                            Margin="0 20" Height="40"
+                                            x:Name="MoreSyAntoStackPanel"
+                                            >
+                                    <StackPanel.Visibility>
+                                        <MultiBinding  Converter="{StaticResource MoreSyAntonymsVisibility}">
+                                            <Binding Path="synonyms"></Binding>
+                                            <Binding Path="antonyms"></Binding>
+                                        </MultiBinding>
+                                    </StackPanel.Visibility>
+                                    
                                     <Button Background="Transparent" Height="40" Width="auto"
                                             HorizontalAlignment="Stretch" VerticalContentAlignment="Center"
                                             HorizontalContentAlignment="Left"
@@ -202,9 +217,11 @@
                                     </Button>
                                     <StackPanel  Orientation="Horizontal"   Margin="50 0 0 0">
                                     <!-- synonyms -->
-                                        <StackPanel Visibility="{Binding synonyms,Converter={StaticResource ListToVisibilityConverter} }">
-                                            <TextBox Foreground="#1d2a57" FontSize="18">Synonyms: </TextBox>
-                                            <ItemsControl ItemsSource="{Binding synonyms}" Width="auto">
+                                        <StackPanel Visibility="{Binding synonyms,Converter={StaticResource ListToVisibilityConverter} }"
+                                                    Margin="0 0 50 0 ">
+                                            <TextBox Foreground="#1d2a57" FontSize="16">Synonyms: </TextBox>
+                                            <ItemsControl ItemsSource="{Binding synonyms}" Width="auto"
+                                                          Margin="20 0 0 0">
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <Button Width="auto" HorizontalAlignment="Left" Click="SearchSyAntonym_OnClick" Style="{DynamicResource SyAntonymButton}" Content="{Binding text}"></Button>
@@ -217,8 +234,9 @@
                                     
                                         <!-- antonym -->
                                         <StackPanel Visibility="{Binding antonyms,Converter={StaticResource ListToVisibilityConverter} }">
-                                            <TextBox Foreground="#1d2a57" FontSize="18">Atonyms: </TextBox>
-                                            <ItemsControl ItemsSource="{Binding antonyms}" Width="auto">
+                                            <TextBox Foreground="#1d2a57" FontSize="16">Atonyms: </TextBox>
+                                            <ItemsControl ItemsSource="{Binding antonyms}" Width="auto"
+                                                          Margin="20 0 0 0">
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <Button Width="auto" HorizontalAlignment="Left" Click="SearchSyAntonym_OnClick" Style="{DynamicResource SyAntonymButton}" Content="{Binding text}"></Button>

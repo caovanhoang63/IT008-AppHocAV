@@ -261,6 +261,36 @@
     <!-- End MenuContext Button -->
 
     
+    
+    <Style x:Key="StarCheckBoxStyle" TargetType="CheckBox">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Grid>
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Vocabulary Recall"/>
+                        </ToolTipService.ToolTip>
+                        <Path Name="Star"
+                              Fill="{TemplateBinding Background}"
+                              Stroke="{TemplateBinding BorderBrush}"
+                              StrokeThickness="1"
+                              Data="F1 M 13.9328,25.8L 26.328,25.8L 30.4,14.4L 34.4719,25.8L 46.8781,25.8L 36.5432,33.1952L 40.5504,44.8L 30.4,38.4664L 20.2496,44.8L 24.2568,33.1952L 13.9328,25.8 Z"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Star" Property="Fill" Value="Gold"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Star" Property="Stroke" Value="DarkGoldenrod"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
 
     
 </ResourceDictionary>

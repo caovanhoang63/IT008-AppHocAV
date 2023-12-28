@@ -336,6 +336,7 @@
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Icon\VocabularyRecallIcon.png" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-1.png" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-2.png" />
     <Content Include="Util\SendResetPasswordMail\Template\index.html" />

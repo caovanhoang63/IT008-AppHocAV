@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style TargetType="TextBox" x:Key="ContentTextBlock">
-        <Setter Property="Padding" Value="0 0 75 0"></Setter>
+        <Setter Property="Padding" Value="0 0 50 0"></Setter>
         <Setter Property="Width" Value="{Binding ElementName=Container,Path=ActualWidth}"> </Setter>
         <Setter Property="TextWrapping" Value="Wrap"> </Setter>
         <Setter Property="IsReadOnly" Value="True"></Setter>
@@ -15,7 +15,7 @@
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
         <Setter Property="Foreground" Value="#1d2a57"></Setter>
-        <Setter Property="FontSize" Value="18"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
         <Setter Property="Margin" Value="0 0 20 0"></Setter>
         
         <!-- <Setter Property="Template"> -->

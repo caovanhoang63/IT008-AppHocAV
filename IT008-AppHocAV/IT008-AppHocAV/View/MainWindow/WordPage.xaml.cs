@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -43,6 +44,11 @@ namespace IT008_AppHocAV.View.MainWindow
         }
 
 
+        
+        /// <summary>
+        /// Handles to display phonetic
+        /// </summary>
+        /// <param name="word"></param>
         private void PhoneticHandler(DictionaryEntry word)
         {
             string usPhonetic = "";
@@ -111,7 +117,8 @@ namespace IT008_AppHocAV.View.MainWindow
                 this.AuPhoneticContainer.Visibility = Visibility.Collapsed;
             }
         }
-        
+
+        #region Sound
         //play Pronunciation sound
         private async void BtnUkSpeaker_OnClick(object sender, RoutedEventArgs e)
         {
@@ -140,6 +147,10 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
             }
         }
+        
+
+        #endregion
+        
 
         
         //fix scrolling issue when using a listview inside a scroll viewer
@@ -157,10 +168,6 @@ namespace IT008_AppHocAV.View.MainWindow
             double y = Container.VerticalOffset;
 
             Container.ScrollToVerticalOffset(y - x);
-        }
-
-        private void Listview_OnIsHitTestVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
         }
         
         
@@ -207,8 +214,8 @@ namespace IT008_AppHocAV.View.MainWindow
                         stackPanel.Height =  Double.NaN;
                     }
         }
-        
     }
+    
     
     public class StringToVisibilityConverter : IValueConverter
     {
@@ -243,10 +250,29 @@ namespace IT008_AppHocAV.View.MainWindow
             throw new NotImplementedException();
         }
     }
-    
-    
 
+    public class MoreSyAntonymsVisibility : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] is List<Text> list1 && values[1] is List<Text> list2)
+            {
+                if (list1.Count == 1
+                    && list1[0].text.Trim() == string.Empty
+                    && list2.Count == 1
+                    && list2[0].text.Trim() == string.Empty)
+                {
+                    return Visibility.Collapsed;
+                }
+                return Visibility.Visible;
+            }
 
-    
-    
+            return System.Windows.Visibility.Collapsed;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
