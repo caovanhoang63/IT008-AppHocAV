@@ -151,12 +151,14 @@
     <Compile Include="Models\Exam.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\SortCardOptions.cs" />
+    <Compile Include="Models\VocabularyRecallLog.cs" />
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
     <Compile Include="Repositories\DbConnection\DeskQ.cs" />
     <Compile Include="Repositories\DbConnection\DictionaryRepository.cs" />
     <Compile Include="Repositories\DbConnection\EssayQ.cs" />
     <Compile Include="Repositories\DbConnection\ExamQ.cs" />
+    <Compile Include="Repositories\DbConnection\RecallRepository.cs" />
     <Compile Include="Repositories\DbConnection\Register.cs" />
     <Compile Include="Repositories\DbConnection\UserQ.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
@@ -218,6 +220,10 @@
       <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
 
+    <Compile Include="View\MainWindow\VocabularyRecallPage.xaml.cs">
+      <DependentUpon>VocabularyRecallPage.xaml</DependentUpon>
+    </Compile>
+
     <Compile Include="View\MainWindow\WordPage.xaml.cs">
       <DependentUpon>WordPage.xaml</DependentUpon>
     </Compile>
@@ -269,6 +275,8 @@
     <Page Include="Assets\Styles\HomeStyle.xaml" />
 
     <Page Include="Assets\Styles\MessageBoxStyle.xaml" />
+
+    <Page Include="Assets\Styles\VocabularyRecallPageStyle.xaml" />
 
     <Page Include="Assets\Styles\WordPageStyle.xaml" />
 
@@ -331,12 +339,14 @@
     <Resource Include="Assets\Icon\SortIcon.png" />
     <Resource Include="Assets\Image\LogoWithOutELF.png" />
     <Resource Include="Assets\Icon\ThreeStickMenuIcon.png" />
+    <Page Include="View\MainWindow\VocabularyRecallPage.xaml" />
     <Page Include="View\MainWindow\WordPage.xaml" />
     <Page Include="View\ResetPasswordWindow.xaml" />
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\VocabularyRecallIcon.png" />
+    <Resource Include="Assets\Icon\PlusIcon1.png" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-1.png" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-2.png" />
     <Content Include="Util\SendResetPasswordMail\Template\index.html" />

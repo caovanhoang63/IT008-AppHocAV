@@ -18,21 +18,31 @@ namespace IT008_AppHocAV.View.MainWindow
     public partial class WordPage : Page
     {
         private DictionaryEntry _word;
-        private DbConnection _dbConnection = new DbConnection();
+        private DbConnection _dbConnection;
         private IT008_AppHocAV.MainWindow _mainWindow;
         private bool _already = false;
+        private int RecallId = -1;
+        
         public WordPage(IT008_AppHocAV.MainWindow mainWindow)
         {
             InitializeComponent();
+            _dbConnection = mainWindow.DbConnection;
             _mainWindow = mainWindow;
         }
 
 
         public async Task<bool> Search(string word)
         {
-            await Task.Run(()=> _word = _mainWindow.DbConnection.DictionaryRepository.GetDictionaryEntry(word));
+            await Task.Run(()=> _word = _dbConnection.DictionaryRepository.GetDictionaryEntry(word));
             if (_word != null)
             {
+                ResetPage();
+                RecallId = _dbConnection.RecallRepository.IsRecalled(_mainWindow.UserId, _word.word);
+                Console.WriteLine(RecallId);
+                if (RecallId != -1)
+                    RecallCheckBox.IsChecked = true;
+                else
+                    RecallCheckBox.IsChecked = false;
                 MeaningsListview.ItemsSource = _word.meanings;
                 PhoneticHandler(_word);
                 DataContext = _word;
@@ -213,6 +223,36 @@ namespace IT008_AppHocAV.View.MainWindow
                     {
                         stackPanel.Height =  Double.NaN;
                     }
+        }
+
+
+        private void ResetPage()
+        {
+            DataContext = null;
+            RecallId = -1;
+            MeaningsListview.ItemsSource = null;
+            UkPhoneticContainer.Visibility = Visibility.Collapsed;
+            UsPhoneticContainer.Visibility = Visibility.Collapsed;
+            AuPhoneticContainer.Visibility = Visibility.Collapsed;
+            AuPhonetic.Visibility = Visibility.Collapsed;
+            UkPhonetic.Text = string.Empty;
+            UsPhonetic.Text = string.Empty;
+            AuPhonetic.Text = string.Empty;
+            UkSpeakerUri.Text = string.Empty;
+            UsSpeakerUri.Text = string.Empty;
+            AuSpeakerUri.Text = string.Empty;
+        }
+
+        private void RecallCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            if (RecallId == -1)
+                RecallId = _dbConnection.RecallRepository.AddNewWord(_mainWindow.UserId, _word.word);
+        }
+
+        private void RecallCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            _dbConnection.RecallRepository.DeleteById(RecallId);
+            RecallId = -1;
         }
     }
     

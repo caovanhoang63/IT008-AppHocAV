@@ -133,6 +133,12 @@ namespace IT008_AppHocAV
         {
             NavigateToPage("FlashCard");
         }
+        
+        
+        private void NavToRecall_OnClick(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage("Recall");
+        }
 
         private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
         {
@@ -205,7 +211,11 @@ namespace IT008_AppHocAV
                     case "Searching":
                         page = new WordPage(this);
                         break;
-
+                    
+                    case "Recall":
+                        page = new VocabularyRecallPage(this);
+                        break;
+                    
                     case "EditFlashCard":
                     {
                         if (_pageCache["FlashCard"] is FlashCardPage listcard)
@@ -367,6 +377,5 @@ namespace IT008_AppHocAV
             #endregion
 
 
-            
     }
 }

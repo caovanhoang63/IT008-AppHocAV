@@ -16,6 +16,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             private readonly ExamQ _examQ;
             private readonly UserQ _userQ;
             private readonly DictionaryRepository _dictionaryRepository;
+            private readonly RecallRepository _recallRepository;
         #endregion
 
         #region Declare Properties
@@ -31,6 +32,8 @@ namespace IT008_AppHocAV.Repositories.DbConnection
 
         public UserQ UserQ => _userQ;
         public DictionaryRepository DictionaryRepository => _dictionaryRepository;
+        
+        public RecallRepository RecallRepository => _recallRepository;
         #endregion
 
         #region Declare Constructors
@@ -44,6 +47,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             _userQ = new UserQ(_sqlConnection);
             _register = new Register(_sqlConnection);
             _dictionaryRepository = new DictionaryRepository(_sqlConnection);
+            _recallRepository = new RecallRepository(_sqlConnection);
         }
         #endregion
         

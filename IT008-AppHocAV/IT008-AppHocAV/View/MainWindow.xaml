@@ -107,6 +107,13 @@
                                 <Label Margin="10 0 0 0" FontSize="15" VerticalAlignment="Center">FlashCard</Label>
                             </StackPanel>
                         </Button>
+                        
+                        <Button  Click="NavToRecall_OnClick" Style="{DynamicResource NavigateButtonStyle}">
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Source="../Assets/Icon/VocabularyRecallIcon.png"></Image>
+                                <Label Margin="10 0 0 0" FontSize="15" VerticalAlignment="Center">Recall</Label>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                     
                     
