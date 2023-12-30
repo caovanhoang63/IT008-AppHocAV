@@ -59,6 +59,7 @@ namespace IT008_AppHocAV.View.MainWindow
                     return;
                 }
                 _mainWindow.NavigateToPage("WritingContent");
+                _mainWindow.PageCache.Remove("CreateEssay");
                 _mainWindow.PageCache.Remove("Writing");
             }
 
@@ -92,6 +93,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 if (result == MessageBoxResult.Yes)
                 {
                     _mainWindow.PageCache.Remove("Writing");
+                    _mainWindow.PageCache.Remove("CreateEssay");
                     _mainWindow.NavigateToPage("ShowListEssay");
                 }
             }
