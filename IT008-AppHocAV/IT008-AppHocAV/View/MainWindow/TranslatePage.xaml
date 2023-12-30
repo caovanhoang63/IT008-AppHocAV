@@ -58,7 +58,13 @@
                           FontWeight="Medium"
                           FontSize="20"
                           TextChanged="GTransSlText_OnTextChanged"
-                          AcceptsReturn="True"></RichTextBox>
+                          AcceptsReturn="True">
+                <RichTextBox.Resources>
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </RichTextBox.Resources>
+            </RichTextBox>
         </Border>
         
         <Button Name="SwitchLanBtn" Grid.Row="0" Grid.Column="1"
@@ -87,7 +93,13 @@
                          BorderThickness="0"
                          Margin="0 12 0  12"
                          FontSize="20"
-                         AcceptsReturn="True" ></RichTextBox>
+                         AcceptsReturn="True" TextChanged="GTransTlText_OnTextChanged">
+                <RichTextBox.Resources>
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </RichTextBox.Resources>
+            </RichTextBox>
         </Border>
         <!--End Google translate emulator -->
 

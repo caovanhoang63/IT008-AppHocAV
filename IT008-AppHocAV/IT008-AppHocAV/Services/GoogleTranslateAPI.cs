@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 
 namespace IT008_AppHocAV.Services
@@ -16,10 +18,16 @@ namespace IT008_AppHocAV.Services
                     sl, tl, Uri.EscapeUriString(text));
                 HttpClient client = new HttpClient();
                 var response = await client.GetStringAsync(url);
-                Console.WriteLine(response);
-                int first = response.IndexOf('"');
-                int second = response.Substring(first + 1).IndexOf('"');
-                string result = response.Substring(first + 1, second);
+                string result = "";
+                List<object> data = JArray.Parse(response).ToObject<List<object>>();
+                List<object> data2 = JArray.Parse(data[0].ToString()).ToObject<List<object>>();
+
+                for (int i = 0; i < data2.Count; i++)
+                {
+                    List<object> data3 = JArray.Parse(data2[i].ToString()).ToObject<List<object>>();
+                    result += data3[0].ToString();
+                }
+
                 return result;
             }
             catch (HttpRequestException e)

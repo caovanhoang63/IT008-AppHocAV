@@ -49,22 +49,53 @@ namespace IT008_AppHocAV.View.MainWindow
         /// <param name="e"></param>
         private void GTransSlText_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            // Cancel all previously expected commands (if any)
-            if (_debounceTimer != null)
+            if (GTransSlText.IsFocused)
             {
-                _debounceTimer.Stop();
-            }
-            // create new timer
-            _debounceTimer = new DispatcherTimer();
-            _debounceTimer.Interval = TimeSpan.FromMilliseconds(500); // Wait 500ms after no more changes
-            _debounceTimer.Tick += async (s, args) =>
-            {
-                _debounceTimer.Stop();
-                TranslateRtb();
-            };
+                // Cancel all previously expected commands (if any)
+                if (_debounceTimer != null)
+                {
+                    _debounceTimer.Stop();
+                }
+                // create new timer
+                _debounceTimer = new DispatcherTimer();
+                _debounceTimer.Interval = TimeSpan.FromMilliseconds(500); // Wait 500ms after no more changes
+                _debounceTimer.Tick += async (s, args) =>
+                {
+                    _debounceTimer.Stop();
+                    TranslateRtb();
+                };
 
-            // start countdown after 500ms when nothing change
-            _debounceTimer.Start();
+                // start countdown after 500ms when nothing change
+                _debounceTimer.Start();
+            }
+            
+        }
+        
+        
+        /// <summary>
+        /// Calls Google translate with each text changed event every 500ms
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GTransTlText_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (GTransTlText.IsFocused)
+            {
+                if (_debounceTimer != null)
+                {
+                    _debounceTimer.Stop();
+                }
+                // create new timer
+                _debounceTimer = new DispatcherTimer();
+                _debounceTimer.Interval = TimeSpan.FromMilliseconds(500); // Wait 500ms after no more changes
+                _debounceTimer.Tick += async (s, args) =>
+                {
+                    _debounceTimer.Stop();
+                    TranslateTlRtb();
+                };
+                // start countdown after 500ms when nothing change
+                _debounceTimer.Start();
+            }
         }
         
         
@@ -79,13 +110,33 @@ namespace IT008_AppHocAV.View.MainWindow
                 string sl = _languages[GtslLabel.Content.ToString()];
                 string tl = _languages[GttlLabel.Content.ToString()];
                 string tltext = await GoogleTranslateApi.GoogleTranslate(sl, tl, sltext);
-                Console.WriteLine(tltext);
                 GTransTlText.Document.Blocks.Clear();
                 GTransTlText.Document.Blocks.Add(new Paragraph(new Run(tltext)));
             }
             else
             {
                 GTransTlText.Document.Blocks.Clear();
+            }
+        }
+        
+        /// <summary>
+        /// Get text from input rich text box and calls google translate api 
+        /// </summary>
+        private async void TranslateTlRtb()
+        {
+            string sltext = new TextRange(GTransTlText.Document.ContentStart, GTransTlText.Document.ContentEnd).Text;
+            if (!string.IsNullOrEmpty(sltext.Trim()))
+            {
+                string sl = _languages[GtslLabel.Content.ToString()];
+                string tl = _languages[GttlLabel.Content.ToString()];
+                string tltext = await GoogleTranslateApi.GoogleTranslate(tl, sl, sltext);
+                Console.WriteLine(tltext);
+                GTransSlText.Document.Blocks.Clear();
+                GTransSlText.Document.Blocks.Add(new Paragraph(new Run(tltext)));
+            }
+            else
+            {
+                GTransSlText.Document.Blocks.Clear();
             }
         }
     }
