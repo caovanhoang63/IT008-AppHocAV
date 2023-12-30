@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using IT008_AppHocAV.Models;
@@ -363,19 +364,31 @@ namespace IT008_AppHocAV
                 SearchTextContainer.BorderBrush = Brushes.Black;
             }
         
-
-            private void MenuButton_OnChecked(object sender, RoutedEventArgs e)
+            private void MenuButton_OnClick(object sender, RoutedEventArgs e)
             {
-                NavBar.Width = 156;
-            }
-
-            private void MenuButton_OnUnchecked(object sender, RoutedEventArgs e)
-            {
-                NavBar.Width = 52;
+                if (NavBar.Width == 52)
+                {
+                    NavBar.Width = 156;
+                    foreach (var child in  NavBar.Children)
+                    {
+                        if (child is Button button)
+                            button.Width = 156;
+                    }
+                }
+                else
+                {
+                    NavBar.Width = 52;
+                    foreach (var child in  NavBar.Children)
+                    {
+                        if (child is Button button)
+                            button.Width = 50;
+                    }
+                }
             }
 
             #endregion
 
 
+           
     }
 }
