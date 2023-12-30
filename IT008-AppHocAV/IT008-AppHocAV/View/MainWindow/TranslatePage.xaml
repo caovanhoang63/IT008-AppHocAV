@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
       mc:Ignorable="d"
-      Title="TranslatePage" Height="auto" Width="auto">
+      Title="TranslatePage" Height="auto" Width="auto"
+      VerticalAlignment="Stretch">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -13,33 +14,51 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <StackPanel Margin="20 0">
-        <Border BorderBrush="Black" BorderThickness="0 0 0  1">
+    <Grid Margin="20 0 20 20" VerticalAlignment="Stretch"
+          >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"  BorderBrush="Black" BorderThickness="0 0 0  1">
             <Label FontWeight="Medium" FontSize="30" Margin="0 10">Translate</Label>
-        </Border>
-        <Grid  x:Name="GoogleTranslateContainer" Height="350" Margin="0 20 0 0" 
-           HorizontalAlignment="Center">
+        </Border> 
+        <Grid Grid.Row="1"  VerticalAlignment="Stretch"
+              x:Name="GoogleTranslateContainer"
+              Margin="0 20 0 40" 
+              HorizontalAlignment="Center">
         <!-- Grid define -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="320"></ColumnDefinition>
-            <ColumnDefinition Width="60"></ColumnDefinition>
-            <ColumnDefinition Width="320"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <!-- End grid define -->
         
         <!-- Google translate emulator -->
-        <Border Grid.Row="0" Grid.Column="0" BorderThickness="1" BorderBrush="Black" CornerRadius="12"
-                Margin="0 0 0  20" >
-            <Label Name="GtslLabel" HorizontalAlignment="Center">English</Label>
+        <Border Grid.Row="0" Grid.Column="0"
+                BorderThickness="1"
+                BorderBrush="Black"
+                CornerRadius="12" 
+                Margin="0 0 0  20"
+                HorizontalAlignment="Stretch">
+            <Label FontWeight="Medium" VerticalContentAlignment="Center" FontSize="20"  Name="GtslLabel" HorizontalAlignment="Center">English</Label>
         </Border>
-        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black" CornerRadius="12"  
+        <Border Grid.Row="1" Grid.Column="0"
+                BorderThickness="1"
+                BorderBrush="Black"
+                CornerRadius="12"  
                 Background="White">
-            <RichTextBox  x:Name="GTransSlText" Background="Transparent" BorderThickness="0" Margin="0 12 0 12"
-                          TextChanged="GTransSlText_OnTextChanged" AcceptsReturn="True"></RichTextBox>
+            <RichTextBox  x:Name="GTransSlText" Background="Transparent" 
+                          BorderThickness="0" Margin="0 12 0 12"
+                          FontWeight="Medium"
+                          FontSize="20"
+                          TextChanged="GTransSlText_OnTextChanged"
+                          AcceptsReturn="True"></RichTextBox>
         </Border>
         
         <Button Name="SwitchLanBtn" Grid.Row="0" Grid.Column="1"
@@ -48,18 +67,32 @@
             <Image Source="../../Assets/Icon/switchIcon.png"></Image>
         </Button>
         
-        <Border Grid.Row="0" Grid.Column="2"  BorderThickness="1" BorderBrush="Black" CornerRadius="12"
-                Margin="0 0 0  20">
-            <Label Name="GttlLabel" HorizontalAlignment="Center"> Vietnamese </Label>
+        <Border Grid.Row="0" Grid.Column="2" 
+                BorderThickness="1"
+                BorderBrush="Black"
+                CornerRadius="12"
+                Margin="0 0 0  20"
+                HorizontalAlignment="Stretch">
+            <Label FontSize="20" FontWeight="Medium" VerticalContentAlignment="Center" Name="GttlLabel" HorizontalAlignment="Center"> Vietnamese </Label>
         </Border>
         
-        <Border Grid.Row="1" Grid.Column="2" BorderThickness="1" BorderBrush="Black" CornerRadius="12" Background="White" >
-            <RichTextBox x:Name="GTransTlText"  Background="Transparent" BorderThickness="0"  Margin="0 12 0  12" AcceptsReturn="True" ></RichTextBox>
+        <Border Grid.Row="1" Grid.Column="2"
+                BorderThickness="1"
+                BorderBrush="Black"
+                CornerRadius="12"
+                Background="White" >
+            <RichTextBox x:Name="GTransTlText"
+                         FontWeight="Medium"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Margin="0 12 0  12"
+                         FontSize="20"
+                         AcceptsReturn="True" ></RichTextBox>
         </Border>
         <!--End Google translate emulator -->
 
     </Grid>
         
-    </StackPanel>
+    </Grid>
     
 </Page>
