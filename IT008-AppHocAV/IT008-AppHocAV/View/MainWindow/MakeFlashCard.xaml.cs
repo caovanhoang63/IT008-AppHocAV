@@ -27,6 +27,8 @@ namespace IT008_AppHocAV.View.MainWindow
 
         // public List<FlashCard> _data;
         private ObservableCollection<FlashCard> _datatemp;
+        public bool IsImportButtonClicked=false;
+
         public MakeFlashCard(IT008_AppHocAV.MainWindow mainWindow)
         {
 
@@ -333,6 +335,9 @@ namespace IT008_AppHocAV.View.MainWindow
             }
             return null;
         }
+
+      
+
         // Import File
         private void ImportFileButton_Click(object sender, RoutedEventArgs e)
         {
@@ -362,15 +367,23 @@ namespace IT008_AppHocAV.View.MainWindow
                     _data.FlashCards.Add(card);
                     _datatemp.Add(card);
                 }
-                    
-               
+                
+
+
             }
+            
+
+          
+            
 
 
             LvListCard.SelectedIndex =-1;
             
             
         }
+        
+ 
+        
         // Scroll in ListView
         private void LvListCard_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {

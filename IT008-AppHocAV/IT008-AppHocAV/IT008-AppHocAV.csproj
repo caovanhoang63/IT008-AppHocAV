@@ -289,6 +289,8 @@
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Icon\RefreshButton.png" />
+    <Resource Include="Assets\Icon\ReturnButton.png" />
     <Resource Include="Assets\Icon\Shuffle.png" />
     <Resource Include="Assets\Icon\ArrowsIcon.png" />
     <Resource Include="Assets\Icon\ShuffleIcon.png" />
