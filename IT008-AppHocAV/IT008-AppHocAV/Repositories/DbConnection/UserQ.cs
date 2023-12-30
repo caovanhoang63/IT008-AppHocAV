@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Dynamic;
+using System.Windows.Media.Imaging;
+using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Util;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
@@ -116,6 +119,111 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                 _sqlConnection.Close();
             }
 
+        }
+
+
+        public User GetUserById(int id)
+        {
+            try
+            {
+
+                User user = new User();
+                string query = "SELECT * " +
+                               "FROM [user] " +
+                               "WHERE id = @id" ;
+
+                using (SqlCommand command = new SqlCommand(query,_sqlConnection))
+                {
+                    command.Parameters.Add("@id", id);
+                    _sqlConnection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            user.Id = (int)reader["id"];
+                            user.FullName = (string)reader["full_name"];
+                            user.DateOfBirth = (DateTime)reader["date_of_birth"];
+                            user.DateOfBirth = user.DateOfBirth.Date;
+                            user.Avatar = Util.BitmapConverter.ToImage((byte[])reader["avatar"]);
+                            user.Email = (string)reader["email"];
+                            user.PhoneNumber = (string)reader["phone_number"];
+                            return user;
+                        }
+                        return null;
+
+                    }
+                }
+                
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+        }
+
+        public void UpdateAvatar(int id, BitmapImage bitmap)
+        {
+            try
+            {
+                string query = "UPDATE [user] " +
+                               "SET avatar = @avatar " +
+                               "WHERE id = @id" ;
+                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    Byte[] binary =  Util.BitmapConverter.ConvertToByteFromBitmapImage(bitmap);
+                    command.Parameters.AddWithValue("@avatar", binary);
+                    _sqlConnection.Open();
+                    command.ExecuteScalar();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+            
+        }
+
+        public void UpdateUserInfo(int id, string fullname,
+            string email, string s, DateTime dateofbirth)
+        {
+            try
+            {
+                string query = "UPDATE [user] " +
+                               "SET full_name = @full_name, " +
+                               "email = @email, "+
+                               "phone_number = @phone_number, "+
+                               "date_of_birth = @date_of_birth "+
+                               "WHERE id = @id" ;
+                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@full_name", fullname);
+                    command.Parameters.AddWithValue("@email", email);
+                    command.Parameters.AddWithValue("@phone_number", s);
+                    command.Parameters.AddWithValue("@date_of_birth", dateofbirth);
+                    _sqlConnection.Open();
+                    command.ExecuteScalar();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
         }
     }
 }

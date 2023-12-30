@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:uc="clr-namespace:IT008_AppHocAV.Components.RadioButtonMenuItem"
-                    >
+                    xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     
 
     
@@ -315,6 +315,35 @@
         </Setter>
     </Style>
     
+    
+    <Style x:Key="SmallStarCheckBoxStyle" TargetType="CheckBox">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Grid Background="Transparent"> 
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Vocabulary Recall"/>
+                        </ToolTipService.ToolTip>
+                        <Path Name="Star"
+                              Fill="{TemplateBinding Background}"
+                              Stroke="{TemplateBinding BorderBrush}"
+                              StrokeThickness="1"
+                              Data="F1 M 8.708,16.125L 16.455,16.125L 19,9L 21.545,16.125L 29.292,16.125L 22.839,20.747L 25.729,28L 19,24.041L 13.062,28L 15.299,20.855L 8.708,16.125 Z"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Star" Property="Fill" Value="Gold"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Star" Property="Stroke" Value="DarkGoldenrod"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!--End StarCheckBox -->
 
     
@@ -441,6 +470,23 @@
     
 
     <!--End MenuContext Base Style -->
+    
+    <Style x:Key="CircleCheckBox" TargetType="{x:Type CheckBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <BulletDecorator Background="Transparent" SnapsToDevicePixels="true">
+                        <BulletDecorator.Bullet>
+                            <Border Background="#FFAEB3B9" BorderThickness="2" CornerRadius="10">
+                                <themes:BulletChrome IsChecked="{TemplateBinding IsChecked}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}"/>
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </BulletDecorator>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     
     
 </ResourceDictionary>

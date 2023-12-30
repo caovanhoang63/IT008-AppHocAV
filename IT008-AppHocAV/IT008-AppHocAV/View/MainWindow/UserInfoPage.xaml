@@ -1,0 +1,104 @@
+﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.UserInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:IT008_AppHocAV.View.MainWindow"
+      mc:Ignorable="d"
+      Title="UserInfoPage" Height="auto" Width="auto">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../Assets/Styles/ButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../Assets/Styles/UserInfoStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Margin="20" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="0 0 0 1"
+                Padding="0 0 0 10"
+                Margin="0 40 0 0">
+            <StackPanel HorizontalAlignment="Center">
+                <Button Width="100"  Height="100" Padding="0"
+                        Margin="0"
+                        Style="{DynamicResource AvatarButtonStyle}"
+                        MouseEnter="AvatarButton_MouseEnter"
+                        MouseLeave="AvatarButton_MouseLeave"
+                        Click="AvatarButton_OnClick">
+                    <Grid>
+                        <Image x:Name="AddImageIcon" Width="40" Source="../../Assets/Icon/AddImageIcon.png"  Visibility="Collapsed"></Image>
+                        <Image x:Name="AvatarImage" Width="100" Height="100" Stretch="Fill" >
+                            <Image.Clip>
+                                <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50"></EllipseGeometry>
+                            </Image.Clip>
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="{Binding User.Avatar}" />
+                                    <Style.Triggers>
+                                        <!-- DataTrigger kiểm tra nếu user.Avatar là null -->
+                                        <DataTrigger Binding="{Binding Path=User.Avatar}" Value="{x:Null}">
+                                            <Setter Property="Source" Value="{Binding DefaultAvatar}" />
+                                        </DataTrigger>
+                                        
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Grid>
+                    
+                </Button>
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0"> 
+                    <TextBox x:Name="FullNameTb" BorderThickness="0"
+                             FontWeight="Medium" Margin="0 0 0 0" Padding="0"
+                             VerticalAlignment="Center" IsReadOnly="True"
+                             FontSize="24" Text="{Binding User.FullName}"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 10 0 0 ">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" HorizontalAlignment="Stretch">
+                <Grid DockPanel.Dock="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="0 0 10 0 ">
+                        <TextBox  Style="{DynamicResource InfomationTextBlockStyle}" xml:space="preserve">Date of birth: </TextBox>
+                        <TextBox  Style="{DynamicResource InfomationTextBlockStyle}" xml:space="preserve">Email:</TextBox>
+                        <TextBox  Style="{DynamicResource InfomationTextBlockStyle}" xml:space="preserve">Phone number:</TextBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <DatePicker x:Name="DateOfBirthPicker" SelectedDate="{Binding User.DateOfBirth}" Visibility="Collapsed"></DatePicker>
+                        <TextBox x:Name="DateOfBirthTb" Style="{DynamicResource InfomationTextBlockStyle}" xml:space="preserve" Text="{Binding DateOfBirth}"></TextBox>
+                        <TextBox x:Name="EmailTb" Style="{DynamicResource InfomationTextBlockStyle}" xml:space="preserve" Text="{Binding User.Email}"></TextBox>
+                        <TextBox x:Name="PhoneNumberTb" Style="{DynamicResource InfomationTextBlockStyle}" xml:space="preserve" Text="{Binding User.PhoneNumber}"></TextBox>
+                    </StackPanel>
+                </Grid>
+                
+                <Button  x:Name="EditInfoButton" DockPanel.Dock="Right" Style="{DynamicResource TransparentButtonStyle}" Width="auto" Height="auto"
+                         HorizontalAlignment="Right" VerticalAlignment="Top"
+                         Click="EditInfo_OnClick">
+                    <TextBlock FontSize="16" FontWeight="Medium" Foreground="Navy">Edit your information</TextBlock>
+                </Button>
+                <Button  x:Name="SaveInfoButton" DockPanel.Dock="Right" Style="{DynamicResource TransparentButtonStyle}" Width="auto" Height="auto"
+                         HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Collapsed"
+                         Click="SaveInfo_OnClick">
+                    <TextBlock FontSize="16" FontWeight="Medium" Foreground="Navy">Save</TextBlock>
+                </Button>
+            </DockPanel>
+            
+            <Button Click="ChangePassword_OnClick" Grid.Row="1" Margin="0 10" Padding="0" HorizontalAlignment="Left" Width="auto" Height="auto"  Style="{DynamicResource TransparentButtonStyle}" >
+                <TextBlock FontSize="16" FontWeight="Medium" Foreground="Navy"> Change password</TextBlock>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

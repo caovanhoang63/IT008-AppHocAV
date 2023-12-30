@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using IT008_AppHocAV.Repositories.DbConnection;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -12,9 +13,10 @@ namespace IT008_AppHocAV.View.MainWindow
     {
         private int _code;
         
-        private LoginWindow _loginWindow;
-        
+        private LoginWindow _loginWindow = null;
+        private IT008_AppHocAV.MainWindow _mainWindow = null;
         private DispatcherTimer _timer;
+        private DbConnection _dbConnection;
         private int _id;
         private int _timeCount = 5 * 60;
         public ResetPasswordWindow(LoginWindow loginWindow)
@@ -24,6 +26,18 @@ namespace IT008_AppHocAV.View.MainWindow
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += Tick;
+            _dbConnection = _loginWindow.DbConnection;
+        }
+        
+        public ResetPasswordWindow(IT008_AppHocAV.MainWindow mainWindow)
+        {
+            InitializeComponent();
+            InputEmailContainer.Visibility = Visibility.Collapsed;
+            InputPinContainer.Visibility = Visibility.Collapsed;
+            ChangePasswordContainer.Visibility = Visibility.Visible;
+            _mainWindow = mainWindow;
+            _dbConnection = _mainWindow.DbConnection;
+            _id = _mainWindow.UserId;
         }
 
         private void Tick(object sender, EventArgs args)
@@ -49,7 +63,14 @@ namespace IT008_AppHocAV.View.MainWindow
         
         private void BtnClose_OnClick(object sender, RoutedEventArgs e)
         {
-            _loginWindow.Show();
+            if (_loginWindow != null)
+            {
+                _loginWindow.Show();
+            }
+            else
+            {
+                _mainWindow.Show();
+            }
             Close();
         }
 
@@ -72,7 +93,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private async void ContinueButton_OnClick(object sender, RoutedEventArgs e)
         {
             string email = EmailTextBox.Text.Trim();
-            _id =  _loginWindow.DbConnection.UserQ.FindIdByEmail(email);
+            _id =  _dbConnection.UserQ.FindIdByEmail(email);
             if (_id == -1)
             {
                 MessageBox.Show("Email does not exist!");
@@ -144,10 +165,17 @@ namespace IT008_AppHocAV.View.MainWindow
                 return;
             }
 
-            if (_loginWindow.DbConnection.UserQ.UpdatePasswordById(_id, PasswordBox.Password))
+            if (_dbConnection.UserQ.UpdatePasswordById(_id, PasswordBox.Password))
             {
                 MessageBox.Show("Password was changed!");
-                _loginWindow.Show();
+                if (_loginWindow != null)
+                {
+                    _loginWindow.Show();
+                }
+                else
+                {
+                    _mainWindow.Show();
+                }
                 this.Close();
             }
             else

@@ -37,7 +37,12 @@
                         </Button>
                         <Border Padding="0" Name="DatePickerBorder" Height="40" Width="200" Margin="0" BorderThickness="1" BorderBrush="Black"
                                 CornerRadius="12" >
-                            <DatePicker Name="DateOfBirth" FontSize="16" FontWeight="Medium" SelectedDate="{x:Static sys:DateTime.Now}" BorderThickness="0" Margin=" 12 0 12 0" 
+                            <DatePicker x:Name="RecallDate" 
+                                        
+                                        SelectedDateChanged="RecallDate_OnSelectedDateChanged" 
+                                        FontSize="16" FontWeight="Medium" 
+                                        SelectedDate="{x:Static sys:DateTime.Now}" 
+                                        BorderThickness="0" Margin=" 12 0 12 0" 
                                         VerticalAlignment="Center" ></DatePicker>
                         </Border>
                     </StackPanel>

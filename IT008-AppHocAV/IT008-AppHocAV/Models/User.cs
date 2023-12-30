@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Windows.Media.Imaging;
 
 namespace IT008_AppHocAV.Models
 {
     public class User
     {
+        public int Id;
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
@@ -12,6 +14,7 @@ namespace IT008_AppHocAV.Models
         public string UserName { get; set; }
         public string Password { get; set; }
 
+        public BitmapImage Avatar { get; set; }
         public User()
         {
             

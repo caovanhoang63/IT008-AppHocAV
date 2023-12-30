@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Repositories.DbConnection;
 using IT008_AppHocAV.Util;
@@ -37,12 +38,16 @@ namespace IT008_AppHocAV
                 _loginWindow = loginWindow;
                 _loginWindow.InternetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
                 Content.Navigate(defaultPage);
+                User = DbConnection.UserQ.GetUserById(UserId);
+                DataContext = this;
             }
         #endregion
 
         #region Declare properties
-
+    
+        public BitmapImage DefaultAvatar { get; set; } =  new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/AvatarIcon.png"));
             public int UserId => _loginWindow.UserId;
+            public User User { get; set; }
             public DbConnection DbConnection => _loginWindow.DbConnection;
 
             public Dictionary<string, Page> PageCache
@@ -215,6 +220,9 @@ namespace IT008_AppHocAV
                     
                     case "Recall":
                         page = new VocabularyRecallPage(this);
+                        break;
+                    case "UserInfo":
+                        page = new UserInfoPage(this);
                         break;
                     
                     case "EditFlashCard":
@@ -389,6 +397,9 @@ namespace IT008_AppHocAV
             #endregion
 
 
-           
+        private void UserInfo_OnClick(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage("UserInfo");
+        }
     }
 }

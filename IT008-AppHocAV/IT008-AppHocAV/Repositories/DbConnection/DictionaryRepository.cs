@@ -241,12 +241,9 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                         {
                             partOfSpeech = reader["name"].ToString();
                         }
-
                         return partOfSpeech;
                     }                    
                 }
-                
-                
             }
             catch (Exception e)
             {

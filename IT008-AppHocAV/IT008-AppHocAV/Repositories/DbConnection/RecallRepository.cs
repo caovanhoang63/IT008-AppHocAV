@@ -57,6 +57,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                     command.Parameters.Add("@UserId", vocabularyRecallLog.UserId);
                     command.Parameters.Add("@Word", vocabularyRecallLog.Word);
                     command.Parameters.Add("@Meaning", vocabularyRecallLog.Meaning);
+                    
                     _sqlConnection.Open();
                     int id = (int)command.ExecuteScalar();
                     if (_sqlConnection.State == System.Data.ConnectionState.Open)
@@ -95,17 +96,21 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                         while (reader.Read())
                         {
                             VocabularyRecallLog vocabularyRecallLog = new VocabularyRecallLog();
-                            vocabularyRecallLog.Id = reader.GetInt32(0);
-                            vocabularyRecallLog.UserId = reader.GetInt32(1);
-                            vocabularyRecallLog.Word = reader.GetString(2);
-                            vocabularyRecallLog.Meaning = reader.GetString(3);
+                            vocabularyRecallLog.Id = (int)reader["id"];
+                            vocabularyRecallLog.UserId = (int)reader["user_id"];
+                            vocabularyRecallLog.Word = reader["word"].ToString();
+                            vocabularyRecallLog.Meaning = reader["meaning"].ToString();
                             vocabularyRecallLog.IsSuccessful = reader.GetBoolean(reader.GetOrdinal("Is_Successful"));
-                            vocabularyRecallLog.Example = reader.GetString(5);
-                            vocabularyRecallLog.CreatedAt = reader.GetDateTime(6);
-                            vocabularyRecallLog.UpdatedAt = reader.GetDateTime(7);
+                            vocabularyRecallLog.Example = reader["example"].ToString();
+
+                            vocabularyRecallLog.DefinitionId = reader["definition_id"] == DBNull.Value
+                                ? null
+                                : (int?)reader["definition_id"];
+                            vocabularyRecallLog.CreatedAt = (DateTime)reader["created_at"];
+                            vocabularyRecallLog.UpdatedAt = (DateTime)reader["updated_at"];
                             vocabularyRecallLogs.Add(vocabularyRecallLog);
                         }
-
+                        
                         return vocabularyRecallLogs;
                     }
                 }
@@ -158,6 +163,35 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
         }
 
+
+        public void AddDefinitionId(int id, int definitionId)
+        {
+            try
+            {
+                string query = "UPDATE VocabularyRecallLog " +
+                               "SET Definition_Id = @Definition_Id " +
+                               "WHERE id = @Id";
+
+                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
+                {
+                    command.Parameters.Add("@Id", id);
+                    command.Parameters.Add("@Definition_Id", definitionId);
+                    _sqlConnection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+            
+            
+        }
+        
         public bool DeleteById(int id)
         {
             try

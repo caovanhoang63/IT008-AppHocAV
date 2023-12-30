@@ -220,6 +220,10 @@
       <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
 
+    <Compile Include="View\MainWindow\UserInfoPage.xaml.cs">
+      <DependentUpon>UserInfoPage.xaml</DependentUpon>
+    </Compile>
+
     <Compile Include="View\MainWindow\VocabularyRecallPage.xaml.cs">
       <DependentUpon>VocabularyRecallPage.xaml</DependentUpon>
     </Compile>
@@ -230,6 +234,10 @@
 
     <Compile Include="View\ResetPasswordWindow.xaml.cs">
       <DependentUpon>ResetPasswordWindow.xaml</DependentUpon>
+    </Compile>
+
+    <Compile Include="View\SettingWindow.xaml.cs">
+      <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
 
     <Compile Include="View\SignUpWindow.xaml.cs">
@@ -275,6 +283,8 @@
     <Page Include="Assets\Styles\HomeStyle.xaml" />
 
     <Page Include="Assets\Styles\MessageBoxStyle.xaml" />
+
+    <Page Include="Assets\Styles\UserInfoStyle.xaml" />
 
     <Page Include="Assets\Styles\VocabularyRecallPageStyle.xaml" />
 
@@ -339,14 +349,17 @@
     <Resource Include="Assets\Icon\SortIcon.png" />
     <Resource Include="Assets\Image\LogoWithOutELF.png" />
     <Resource Include="Assets\Icon\ThreeStickMenuIcon.png" />
+    <Page Include="View\MainWindow\UserInfoPage.xaml" />
     <Page Include="View\MainWindow\VocabularyRecallPage.xaml" />
     <Page Include="View\MainWindow\WordPage.xaml" />
     <Page Include="View\ResetPasswordWindow.xaml" />
+    <Page Include="View\SettingWindow.xaml" />
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\VocabularyRecallIcon.png" />
     <Resource Include="Assets\Icon\PlusIcon1.png" />
+    <Content Include="Assets\Icon\ShareIcon.jpg" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-1.png" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-2.png" />
     <Content Include="Util\SendResetPasswordMail\Template\index.html" />

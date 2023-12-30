@@ -120,17 +120,17 @@
                                             <StackPanel Margin="0 0 0 10">
                                                 
                                                 <!-- definition -->
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                                                    <TextBox   Style="{DynamicResource ContentTextBlock}" Padding="0"
-                                                               Width="auto"
-                                                               FontWeight="Bold"
-                                                               FontSize="18"
-                                                               >•</TextBox>
-                                                    <TextBox   Style="{DynamicResource ContentTextBlock}"
-                                                               Foreground="#3B6449"
-                                                               FontWeight="Medium"
-                                                               FontSize="18"
-                                                               Text="{Binding definition}"/>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch"
+                                                            VerticalAlignment="Top">
+                                                    <CheckBox Style="{DynamicResource SmallStarCheckBoxStyle}" Margin="0 0 0 0" ></CheckBox>
+                                                    <Border>
+                                                        <TextBox   Style="{DynamicResource ContentTextBlock}"
+                                                                   Margin="5 8 0 0 "
+                                                                   Foreground="#3B6449"
+                                                                   FontWeight="Medium"
+                                                                   FontSize="18"
+                                                                   Text="{Binding definition}"/>
+                                                    </Border>
                                                     
                                                 </StackPanel>
                                                 <!-- end definition -->

@@ -14,6 +14,7 @@ namespace IT008_AppHocAV.View.MainWindow
     {
         private IT008_AppHocAV.MainWindow _mainWindow;
         private DbConnection _dbConnection;
+        private bool _isAlready = false;
         public List<VocabularyRecallLog> _data { get; set; }
         public List<VocabularyRecallLog> _dataMoc { get; set; }
         public VocabularyRecallPage(IT008_AppHocAV.MainWindow mainWindow)
@@ -55,6 +56,25 @@ namespace IT008_AppHocAV.View.MainWindow
             double y = ContentScrollViewer.VerticalOffset;
 
             ContentScrollViewer.ScrollToVerticalOffset(y - x);
+        }
+
+        private void RecallDate_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (_isAlready && RecallDate.SelectedDate != null)
+                {
+                    _data = _dbConnection.RecallRepository.GetAllRecallLogsByDateAndUserId(_mainWindow.UserId,RecallDate.SelectedDate.Value);
+                    DataGrid.ItemsSource = _data;
+                    DataGrid.Items.Refresh();
+                    _isAlready = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            
         }
     }
 }

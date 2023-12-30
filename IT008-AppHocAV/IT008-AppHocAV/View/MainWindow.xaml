@@ -129,16 +129,33 @@
                         <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0">
                             <Image Source="../Assets/Icon/NotifyICon.png"></Image>
                         </Button>
-                        <Button x:Name="BtnAvatar" Click="btnAvatar_Click"
+                        <Button Click="btnAvatar_Click"
+                                Padding="0"
                                 Style="{DynamicResource RoundedCircleButtonStyle }" 
                                 Margin="0,0,10,0" >
                             <Button.ContextMenu>
                                 <ContextMenu x:Name="AvtContextMenu" Placement="Bottom">
-                                    <MenuItem Header="Info" />
+                                    <MenuItem Header="Info" Click="UserInfo_OnClick"/>
                                     <MenuItem Header="Log out" Click="LogOutMenuItem_OnClick" />
                                 </ContextMenu>
                             </Button.ContextMenu>
-                            <Image Source="../Assets/Icon/AvatarIcon.png"></Image>
+                            <Image Width="35" Height="35" Stretch="Fill">
+                                <Image.Clip>
+                                    <EllipseGeometry Center="17.5,17.5" RadiusX="17.5" RadiusY="17.5"></EllipseGeometry>
+                                </Image.Clip>
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Source" Value="{Binding User.Avatar}" />
+                                        <Style.Triggers>
+                                            <!-- DataTrigger kiểm tra nếu user.Avatar là null -->
+                                            <DataTrigger Binding="{Binding Path=User.Avatar}" Value="{x:Null}">
+                                                <Setter Property="Source" Value="{Binding DefaultAvatar}" />
+                                            </DataTrigger>
+                                        
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
                         </Button>
                     </StackPanel>
                     

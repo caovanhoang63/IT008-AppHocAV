@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using IT008_AppHocAV.Models.GPT;
 using System.Text.Json;
-using System.Windows.Controls.Primitives;
 using IT008_AppHocAV.Models;
 
 namespace IT008_AppHocAV.Services
@@ -17,8 +16,6 @@ namespace IT008_AppHocAV.Services
         
         private static string _apiKey = Properties.Settings.Default.ChatGptApiKey;
 
-  
-        
         
         private static async Task<string> Request(GptRequest request)
         {
