@@ -197,5 +197,12 @@ namespace IT008_AppHocAV.View.MainWindow
         }
 
 
+        private void ModifyEssayButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;
+            modelEssay = _mainWindow.DbConnection.EssayQ.SelectEssayById(modelEssay.Id);
+            _mainWindow.Content.Navigate(new WritingContentPage(_mainWindow, modelEssay));
+        }
     }
 }

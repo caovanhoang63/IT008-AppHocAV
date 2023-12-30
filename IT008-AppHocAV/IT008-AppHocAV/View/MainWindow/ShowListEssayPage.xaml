@@ -103,11 +103,10 @@
 
             <!--Show list of essays -->
             <ScrollViewer Grid.Row="1" Width="{Binding ElementName=HeaderBorder, Path=ActualWidth}">
-                <ItemsControl  Name="ListEssayListView" HorizontalAlignment="Stretch" 
+                <ItemsControl  Name="ListEssayListView" 
                               VerticalAlignment="Stretch"
                               Margin="30 20"
-                              BorderThickness="0"
-                              >
+                              BorderThickness="0">
                     <ItemsControl.ItemTemplate >
                         <!-- Defines Items Template -->
                         <DataTemplate >
@@ -115,14 +114,28 @@
                                     Width="{Binding ElementName=ListEssayListView, Path=ActualWidth}"
                                     Background="#F4EEEE"
                                     Style="{DynamicResource RoundedButtonStyle}"
+                                    HorizontalContentAlignment="Stretch"
                                     Margin="0 10"
-                                    HorizontalContentAlignment="Left"
                                     Click="ShowEssayButton_OnClick">
-                                <DockPanel Margin="24 0 24  0">
-                                   
+                                <DockPanel Margin="24 0 24 0" HorizontalAlignment="Stretch" >
+                                    <!-- Show, Modify and Delete Button -->
+                                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" >
+                                         
+                                        <Button Style="{DynamicResource ModifyButton }"
+                                                Height="25" Width="25"
+                                                Click="ModifyEssayButton_OnClick">
+                                            <Image Source="../../Assets/Icon/EditIcon.png"></Image>
+                                        </Button>
+                                        <Button Name="DeleteEssayButton" Style="{DynamicResource DeleteButton }"
+                                                Click="DeleteEssayButton_OnClick"
+                                                Height="25" Width="25">
+                                            <Image Source="../../Assets/Icon/DeleteIcon.png"></Image>
+                                        </Button>
+                                    </StackPanel>
+                                    <!--End show, Modify and Delete Button -->
+
                                     <!-- Shows essay information -->
-                                    <StackPanel DockPanel.Dock="Left"
-                                                Width="{Binding ElementName=ListEssayListView, Path=ActualWidth}">
+                                    <StackPanel DockPanel.Dock="Left" Margin="0 0 10 0 ">
                                         <Label Padding="0 2" FontWeight="Medium" FontSize="20"
                                                Content="{Binding Title}"/>
                                         <Label  MaxHeight="30"
@@ -140,20 +153,7 @@
                                     </StackPanel>
                                     <!-- End shows essay information -->
 
-                                    <!-- Show, Modify and Delete Button -->
-                                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                        
-                                        <Button Style="{DynamicResource TransparentButtonStyle }"
-                                                Height="30" Width="30">
-                                            <Image Source="../../Assets/Icon/EditIcon.png"></Image>
-                                        </Button>
-                                        <Button Name="DeleteEssayButton" Style="{DynamicResource TransparentButtonStyle }"
-                                                Click="DeleteEssayButton_OnClick"
-                                                Height="30" Width="30">
-                                            <Image Source="../../Assets/Icon/DeleteIcon.png"></Image>
-                                        </Button>
-                                    </StackPanel>
-                                    <!--End show, Modify and Delete Button -->
+                                   
                                     
                                 </DockPanel>
                             </Button>
