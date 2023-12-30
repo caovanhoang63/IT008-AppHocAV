@@ -1,8 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:IT008_AppHocAV.Components.RadioButtonMenuItem">
-    <ControlTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelItemTemplateKey}"
-                     TargetType="{x:Type MenuItem}">
+        
+        <ControlTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelItemTemplateKey}"
+                         TargetType="{x:Type MenuItem}">
         <Border x:Name="templateRoot"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -498,8 +499,15 @@
     </ControlTemplate>
     <Style x:Key="{x:Type local:RadioButtonMenuItem}"
            TargetType="{x:Type local:RadioButtonMenuItem}">
+            
+        <Setter Property="Padding" Value="3"></Setter>
+        <Setter Property="Margin" Value="6 0"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="FontWeight" Value="Medium"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+            
         <Setter Property="Control.HorizontalContentAlignment"
-                Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                    Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="Control.VerticalContentAlignment"
                 Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="Control.Background"
