@@ -117,9 +117,9 @@
                                 </TextBlock>
                             </Label>
 
-                            <Label Grid.Row="1" Grid.Column="1" Margin="20 10 10 10" FontSize="15">
+                            <Label Grid.Row="1" Grid.Column="1" Margin="10 10 10 10" FontSize="15">
                                 <TextBlock>
-                                                <Run Text="Create_time: "/>
+                                                <Run Text="Create time: "/>
                                                 <Run Text="{Binding CreatedAt}"/>
                                 </TextBlock>
                             </Label>

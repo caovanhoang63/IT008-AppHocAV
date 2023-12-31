@@ -32,7 +32,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private List<String> Answer;
         List<string> Result;
         private readonly IT008_AppHocAV.MainWindow _mainWindow;
-        private int _remainingTimeInSeconds; // 15 phút đổi thành giây
+        private int _remainingTimeInSeconds; 
         private DispatcherTimer _countdownTimer;
         #endregion
 
@@ -42,7 +42,6 @@ namespace IT008_AppHocAV.View.MainWindow
             InitializeComponent();
             this._mainWindow = mainWindow;
             #region Timer
-            _remainingTimeInSeconds = 5;
             #endregion
             _question = new List<Question>();
             _question = _mainWindow.DbConnection.ExamQ.GetRandomQuestion();
@@ -75,7 +74,9 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void Submit_btn_Click(object sender, RoutedEventArgs e)
         {
+            _countdownTimer.Stop();
             MessageBoxResult Submit = MessageBox.Show("Are you sure want to submit?", "", MessageBoxButton.YesNo);
+
             if (Submit == MessageBoxResult.Yes)
             {
                 Answer = new List<String>();
@@ -127,7 +128,6 @@ namespace IT008_AppHocAV.View.MainWindow
                 int score = Scoring_function(Answer, Result);
                 MessageBox.Show("Your score is " + score.ToString());
                 Exam exam = new Exam(_mainWindow.UserId, 1, score);
-                _countdownTimer.Stop();
                 _mainWindow.DbConnection.ExamQ.SaveResult(exam);
                 _mainWindow.PageCache.Remove("ShowListExam");
                 _mainWindow.PageCache.Remove("DoExamPage");
@@ -267,10 +267,6 @@ namespace IT008_AppHocAV.View.MainWindow
             TimeSpan timeSpan = TimeSpan.FromSeconds(_remainingTimeInSeconds);
             string formattedTime = timeSpan.ToString(@"mm\:ss", CultureInfo.InvariantCulture);
             TimerText.Text = formattedTime;
-        }
-        private void RefreshPage()
-        {
-            ListQuestionListView.Items.Refresh();
         }
     }
     
