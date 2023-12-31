@@ -55,6 +55,7 @@ namespace IT008_AppHocAV.View.MainWindow
             _data.FlashCards.Add(card);
 
             _datatemp.Add(card);
+
             // RefreshPage();
           
           
@@ -287,13 +288,14 @@ namespace IT008_AppHocAV.View.MainWindow
         private void RefreshPage()
         {
             LvListCard.Items.Refresh();
-            
+           
 
         }
        
 
         private void LvListCard_Loaded(object sender, RoutedEventArgs e)
         {
+            
             ListView listView = (ListView)sender;
 
             foreach (var item in listView.Items)
@@ -317,6 +319,8 @@ namespace IT008_AppHocAV.View.MainWindow
 
         }
 
+         
+
         private T FindVisualChild<T>(DependencyObject depObj, string name) where T : DependencyObject
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
@@ -336,10 +340,10 @@ namespace IT008_AppHocAV.View.MainWindow
             return null;
         }
 
-      
-
+        
+        
         // Import File
-        private void ImportFileButton_Click(object sender, RoutedEventArgs e)
+        public void ImportFileButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("The request is to format a file.txt with the following pattern:(Term + ' : '+ Definition).", "Attention");
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -356,34 +360,54 @@ namespace IT008_AppHocAV.View.MainWindow
                 while ((line =  streamReader.ReadLine()) != null)
                 {
                     string[] text = line.Trim().Split(':');
-                    if(text.Length !=2)
+                    if (text.Length !=2)
                     {
                         MessageBox.Show(" Invalid format pattern! ");
                         return;
-                    }   
-                    
+                    }
+
                     FlashCard card = new FlashCard(text[0], text[1]);
 
                     _data.FlashCards.Add(card);
                     _datatemp.Add(card);
                 }
-                
-
 
             }
-            
+            MessageBox.Show("Success!");
 
-          
-            
+            foreach (var item in _datatemp)
+            {
 
+                ListViewItem listViewItem = LvListCard.ItemContainerGenerator.ContainerFromItem(item) as ListViewItem;
+
+                if (listViewItem != null)
+                {
+                    
+                    TextBlock termBlock = FindVisualChild<TextBlock>(listViewItem, "TermBlock");
+                    TextBlock defineBlock = FindVisualChild<TextBlock>(listViewItem, "DefineBlock");
+                    if (termBlock != null)
+                    {
+                        termBlock.Visibility = Visibility.Hidden;
+                    }
+                    if (defineBlock != null)
+                    {
+                        defineBlock.Visibility = Visibility.Hidden;
+                    }
+                }
+            }
+
+             
 
             LvListCard.SelectedIndex =-1;
             
             
         }
-        
- 
-        
+      
+
+
+
+
+
         // Scroll in ListView
         private void LvListCard_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {

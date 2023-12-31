@@ -173,7 +173,7 @@
                                                      Background="Transparent" VerticalAlignment="Center"  
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="TermBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="TermBlock"  IsHitTestVisible="False" Text="Enter term..."
-                                                        VerticalAlignment="Center" FontSize="16" 
+                                                        VerticalAlignment="Center" FontSize="16"    
                                                          HorizontalAlignment="Left" 
                                                           Foreground="DarkGray" Margin="7 0 0 0" >
                                                         <TextBlock.Style>
@@ -185,6 +185,8 @@
                                                                     <DataTrigger Binding="{Binding ElementName=TermBox, Path=Text.Length}" Value="1">
                                                                         <Setter Property="Visibility" Value="Hidden"/>
                                                                     </DataTrigger>
+                                                                   
+
                                                                     <!-- Add more DataTriggers if needed for different lengths -->
                                                                 </Style.Triggers>
                                                             </Style>
