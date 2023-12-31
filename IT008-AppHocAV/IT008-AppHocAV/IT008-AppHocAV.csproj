@@ -141,6 +141,7 @@
     <Compile Include="Repositories\DbConnection\EssayQ.cs" />
     <Compile Include="Repositories\DbConnection\ExamQ.cs" />
     <Compile Include="Repositories\DbConnection\Register.cs" />
+    <Compile Include="Util\Converter.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
@@ -336,6 +337,7 @@
     <Resource Include="Assets\Icon\MaxiumSizeIcon.png" />
     <Resource Include="Assets\Icon\LexicalItemsIcon.png" />
     <Resource Include="Assets\Icon\nextbuttonFl.png" />
+    <Resource Include="Assets\Icon\Clock.png" />
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>

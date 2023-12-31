@@ -88,7 +88,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             List<Models.Exam> result = new List<Models.Exam>();
             try
             {
-                string query = " SELECT id,user_id,level,score,created_at" +
+                string query = " SELECT id,user_id,level,score,created_at,time_taken" +
                                " FROM [test] " +
                                " WHERE user_id = " + userId + " ORDER BY created_at desc";
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
@@ -99,15 +99,18 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                         while (reader.Read())
                         {
                             Models.Exam Exam = new Models.Exam(
-                                reader.GetInt32(reader.GetOrdinal("id")), 
+                                reader.GetInt32(reader.GetOrdinal("id")),
                                 reader.GetInt32(reader.GetOrdinal("user_id")),
                                 reader.GetByte(reader.GetOrdinal("level")),
                                 reader.GetByte(reader.GetOrdinal("score")),
-                                reader.GetDateTime(reader.GetOrdinal("created_at")));
-
+                                reader.GetDateTime(reader.GetOrdinal("created_at")),
+                                reader.GetInt32(reader.GetOrdinal("time_taken")));
                             result.Add(Exam);
+                            MessageBox.Show(reader.GetInt32(reader.GetOrdinal("time_taken")).ToString());
                         }
                     }
+
+                    MessageBox.Show(result[1].Id.ToString());
 
                 }
                 return result;
@@ -121,28 +124,30 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             {
                 _sqlConnection.Close();
             }
+
         }
 
         public void SaveResult(Models.Exam exam)
         {
-            try 
+            try
             {
-                string query = "INSERT INTO [test] (user_id,level,score,created_at) " +
-                    "VALUES (@user_id,@level,@score,GETDATE())";
+                string query = "INSERT INTO [test] (user_id,level,score,created_at,time_taken) " +
+                    "VALUES (@user_id,@level,@score,GETDATE(),@time_taken)";
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     command.Parameters.AddWithValue("@user_id", exam.Userid);
                     command.Parameters.AddWithValue("@level", exam.Level);
                     command.Parameters.AddWithValue("@score", exam.Score);
+                    command.Parameters.AddWithValue("@time_taken", Int32.Parse(exam.TimeTaken));
                     _sqlConnection.Open();
                     command.ExecuteNonQuery();
                     MessageBox.Show("Save success");
-                    return ;
+                    return;
 
 
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Save fail");
                 Console.WriteLine(ex);

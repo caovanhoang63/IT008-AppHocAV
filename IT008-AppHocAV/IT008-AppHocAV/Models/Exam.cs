@@ -12,6 +12,15 @@ namespace IT008_AppHocAV.Models
             this._level = 0;
             this._score = 0;
         }
+        public Exam(int id, int userid, int level, float score, DateTime createtime,int timetaken)
+        {
+            this._id = id;
+            this._userid = userid;
+            this._level = level;
+            this._score = score;
+            this._createdAt = createtime;
+            this._timeTaken = ConvertTime(timetaken);
+        }
         public Exam(int id, int userid, int level, float score, DateTime createtime)
         {
             this._id = id;
@@ -20,11 +29,13 @@ namespace IT008_AppHocAV.Models
             this._score = score;
             this._createdAt = createtime;
         }
-        public Exam(int userid, int level, float score)
+
+        public Exam(int userid, int level, float score,int timetaken)
         {
             this._userid = userid;
             this._level = level;
             this._score = score;
+            this._timeTaken = timetaken.ToString();
         }
 
         private int _userid;
@@ -32,6 +43,7 @@ namespace IT008_AppHocAV.Models
         private int _level;
         private float _score;
         private DateTime _createdAt;
+        private string _timeTaken;
         
         public int Userid
         {
@@ -57,6 +69,17 @@ namespace IT008_AppHocAV.Models
         {
             get => _createdAt;
             set => _createdAt = value;
+        }
+        public string TimeTaken
+        {
+            get => _timeTaken;
+            set => _timeTaken = value;
+        }
+        private string ConvertTime(int time)
+        {
+            TimeSpan ts = TimeSpan.FromSeconds(time);
+            string FormatedTime = ts.ToString(@"mm\:ss");
+            return FormatedTime;
         }
     }
 }

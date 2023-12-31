@@ -10,7 +10,6 @@
       Title="ShowListExamPage">
 
     <Page.Resources>
-
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
@@ -114,6 +113,13 @@
                                 <TextBlock>
                                                 <Run Text="Score: "/>
                                                 <Run Text="{Binding Score}"/>
+                                </TextBlock>
+                            </Label>
+
+                            <Label Grid.Row="0" Grid.Column="1" Margin="10 10 10 10" FontSize="15">
+                                <TextBlock>
+                                        <Run Text="Time completed: "/>
+                                        <Run Text="{Binding TimeTaken}"/>
                                 </TextBlock>
                             </Label>
 

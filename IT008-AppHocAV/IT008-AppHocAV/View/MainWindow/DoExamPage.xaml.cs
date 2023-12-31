@@ -32,7 +32,8 @@ namespace IT008_AppHocAV.View.MainWindow
         private List<String> Answer;
         List<string> Result;
         private readonly IT008_AppHocAV.MainWindow _mainWindow;
-        private int _remainingTimeInSeconds; 
+        private int _remainingTimeInSeconds;
+        private int _timetaken;
         private DispatcherTimer _countdownTimer;
         #endregion
 
@@ -41,8 +42,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             InitializeComponent();
             this._mainWindow = mainWindow;
-            #region Timer
-            #endregion
+            _timetaken = 0;
             _question = new List<Question>();
             _question = _mainWindow.DbConnection.ExamQ.GetRandomQuestion();
             Result = GetCorrectAnswer(_question);
@@ -127,7 +127,8 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
                 int score = Scoring_function(Answer, Result);
                 MessageBox.Show("Your score is " + score.ToString());
-                Exam exam = new Exam(_mainWindow.UserId, 1, score);
+                
+                Exam exam = new Exam(_mainWindow.UserId, 1, score, _timetaken);
                 _mainWindow.DbConnection.ExamQ.SaveResult(exam);
                 _mainWindow.PageCache.Remove("ShowListExam");
                 _mainWindow.PageCache.Remove("DoExamPage");
@@ -200,6 +201,7 @@ namespace IT008_AppHocAV.View.MainWindow
             if (_remainingTimeInSeconds > 0)
             {
                 _remainingTimeInSeconds--;
+                _timetaken++;
                 UpdateCountdownDisplay();
             }
             else
@@ -254,7 +256,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
                 int score = Scoring_function(Answer, Result);
                 MessageBox.Show("Your score is " + score.ToString());
-                Exam exam = new Exam(_mainWindow.UserId, 1, score);
+                Exam exam = new Exam(_mainWindow.UserId, 1, score,_timetaken);
                 _mainWindow.DbConnection.ExamQ.SaveResult(exam);
                 _mainWindow.PageCache.Remove("DoExamPage");
                 _mainWindow.PageCache.Remove("ShowListExam");

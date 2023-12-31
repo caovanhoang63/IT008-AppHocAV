@@ -9,7 +9,6 @@
       Title="Exam">
 
     <Page.Resources>
-
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
@@ -26,22 +25,21 @@
             <!-- Define the row for the list view -->
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-
         <Canvas Height="40" Width="140"  Margin="0 0 0 0"  Grid.Row="0" Grid.Column="0" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Label x:Name="ClockLabel" HorizontalAlignment="Left" Width="40" Height="40"
-                                        Background="White">
+                   Margin="10 0 0 0"  Background="White">
                 <Image Source="../../Assets/Icon/clock.png" Width="24"></Image>
             </Label>
 
             <TextBlock x:Name="TimerText" Width="80" 
-                       Margin="20 0 0 0"
+                       Margin="0 0 0 0"
                        Height="40"  Background="Transparent" 
                        FontSize="18" Text="{ Binding TimeRemaining, StringFormat={}{0:mm\\:ss}}" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
                        Canvas.Left="50" Canvas.Top="5"></TextBlock>
         </Canvas>
-        <Button Width="200" Height="40" Content="Submit" 
+        <Button Width="100" Height="40" Content="Submit" 
                 Margin="10 10 10 10" 
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" Grid.Row="0" 
@@ -51,12 +49,13 @@
 
         <Border Grid.Row="0" BorderBrush="Black" BorderThickness="0 0 0 1"></Border>
         <Label Grid.Row="0" Grid.Column="1" Margin="0 0 0 0" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center">EXAM</Label>
-            <ListView Name="ListQuestionListView" HorizontalAlignment="Center" 
+        <ListView Name="ListQuestionListView" HorizontalAlignment="Center" 
               VerticalAlignment="Stretch" Margin="0 20" Background="Transparent"
               BorderThickness="0" 
                   Grid.Row="1"
               ScrollViewer.CanContentScroll="False" 
               ScrollViewer.VerticalScrollBarVisibility="Auto">
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="200" Width="700" x:Name="QuestionGrid">
@@ -68,7 +67,6 @@
                             <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" FontSize="15" >Question: <Run Text="{Binding content}" FontSize="15"></Run></TextBlock>
-
                         <CheckBox x:Name="A" Grid.Row="1" Style="{DynamicResource RoundCheckBox}" Content= "{Binding Answersa}" FontSize="15" Checked="CheckBox_Checked" ></CheckBox>
                         <CheckBox x:Name="B" Grid.Row="2" Style="{DynamicResource RoundCheckBox}" Content= "{Binding Answersb}" FontSize="15" Checked="CheckBox_Checked"></CheckBox>
                         <CheckBox x:Name="C" Grid.Row="3" Style="{DynamicResource RoundCheckBox}" Content= "{Binding Answersc}" FontSize="15" Checked="CheckBox_Checked"></CheckBox>
