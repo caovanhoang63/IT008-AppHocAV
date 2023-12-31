@@ -39,7 +39,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         #region Declare Constructors
         public DbConnection()
         {   
-            _sqlConnection = new SqlConnection(Settings.Default.LocalDBConnectionString);
+            _sqlConnection = new SqlConnection(Settings.Default.DbConnectionString);
             _authentication = new Authentication(_sqlConnection);
             _essayQ = new EssayQ(_sqlConnection);
             _deskQ = new DeskQ(_sqlConnection);
