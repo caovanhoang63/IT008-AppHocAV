@@ -89,9 +89,6 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Formats.Asn1, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Formats.Asn1.7.0.0\lib\net462\System.Formats.Asn1.dll</HintPath>
-    </Reference>
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -102,7 +99,6 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security" />
     <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.AccessControl.4.7.0\lib\net461\System.Security.AccessControl.dll</HintPath>
     </Reference>
@@ -191,6 +187,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+
     <Compile Include="View\MainWindow\FlashCardPage.xaml.cs">
       <DependentUpon>FlashCardPage.xaml</DependentUpon>
     </Compile>
@@ -209,9 +206,12 @@
     <Compile Include="View\MainWindow\SearchingPage.xaml.cs">
       <DependentUpon>SearchingPage.xaml</DependentUpon>
     </Compile>
+
+
     <Compile Include="View\MainWindow\TranslatePage.xaml.cs">
       <DependentUpon>TranslatePage.xaml</DependentUpon>
     </Compile>
+
     <Compile Include="View\MainWindow\CreateEssayPage.xaml.cs">
       <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
@@ -339,6 +339,11 @@
     <Page Include="View\SignUpWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Icon\RefreshButton.png" />
+    <Resource Include="Assets\Icon\ReturnButton.png" />
+    <Resource Include="Assets\Icon\Shuffle.png" />
+    <Resource Include="Assets\Icon\ArrowsIcon.png" />
+    <Resource Include="Assets\Icon\ShuffleIcon.png" />
     <Resource Include="Assets\Icon\VocabularyRecallIcon.png" />
     <Resource Include="Assets\Icon\PlusIcon1.png" />
     <Content Include="Assets\Icon\ShareIcon.jpg" />
@@ -393,7 +398,9 @@
     <Resource Include="Assets\Icon\MaxSizeIcon.png" />
     <Resource Include="Assets\Icon\MaxiumSizeIcon.png" />
     <Resource Include="Assets\Icon\LexicalItemsIcon.png" />
+
     <Resource Include="Assets\Icon\nextbuttonFl.png" />
+
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -406,6 +413,7 @@
     <Compile Include="View\MainWindow\ShowListEssayPage.xaml.cs">
       <DependentUpon>ShowListEssayPage.xaml</DependentUpon>
     </Compile>
+
     <Compile Include="View\MainWindow\ShowFlashCardPage.xaml.cs">
       <DependentUpon>ShowFlashCardPage.xaml</DependentUpon>
     </Compile>
@@ -415,9 +423,11 @@
     <Compile Include="View\MainWindow\WritingContentPage.xaml.cs">
       <DependentUpon>WritingContentPage.xaml</DependentUpon>
     </Compile>
+ 
     <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
       <DependentUpon>TakeNotePage.xaml</DependentUpon>
     </Compile>
+
     <Page Include="Assets\Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -457,6 +467,10 @@
       <DependentUpon>EditFlashCard.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+    
+
+
+
+   
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

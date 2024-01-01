@@ -76,7 +76,7 @@
 
         <Border Grid.Row="1"  BorderThickness="0 0 0 1"
                     BorderBrush="Black"
-                    Margin="20 0 20 5">
+                    Margin="20 0 10 5">
             <Grid>
                 <Grid.RowDefinitions >
                     <RowDefinition Height="40"></RowDefinition>
@@ -85,7 +85,7 @@
 
                 <Border Grid.Row="0" Margin=" 0 0 0 5" CornerRadius="10"  Background= "#D9D9D9">
                     <Grid>
-                        <TextBox  Name="TitleTextBox" Margin="10  0 0 0 "  FontSize="18" Width="auto"  BorderThickness="0" 
+                        <TextBox  Name="TitleTextBox" Margin="10  0 10 0 "  FontSize="18" Width="auto"  BorderThickness="0" 
                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                    TextChanged="TitleTextBox_TextChanged" Height="25"
                                 AcceptsReturn="True" TextWrapping="Wrap" FontFamily="Segoe UI Semibold" Background="#D9D9D9"
@@ -106,7 +106,7 @@
                 <Border Grid.Row="1" Margin=" 0 5 0 10 " CornerRadius="10"  Background= "#D9D9D9" >
                     <Grid>
                         
-                        <TextBox Name ="DescriptionTextBox" Margin="10,10,0,0"  FontSize="16" BorderThickness="0"
+                        <TextBox Name ="DescriptionTextBox" Margin="10,10,10,0"  FontSize="16" BorderThickness="0"
                              HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="50" TextChanged="DescriptionTextBox_TextChanged"
                               AcceptsReturn="True" TextWrapping="Wrap"   Background="#D9D9D9"
                              />
@@ -173,9 +173,26 @@
                                                      Background="Transparent" VerticalAlignment="Center"  
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="TermBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="TermBlock"  IsHitTestVisible="False" Text="Enter term..."
-                                                        VerticalAlignment="Center" FontSize="16" 
+                                                        VerticalAlignment="Center" FontSize="16"    
                                                          HorizontalAlignment="Left" 
-                                                          Foreground="DarkGray" Margin="7 0 0 0" ></TextBlock>
+                                                          Foreground="DarkGray" Margin="7 0 0 0" >
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ElementName=TermBox, Path=Text.Length}" Value="0">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding ElementName=TermBox, Path=Text.Length}" Value="1">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                    </DataTrigger>
+                                                                   
+
+                                                                    <!-- Add more DataTriggers if needed for different lengths -->
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                        
+                                                    </TextBlock>
                                                 </Grid>
                                             </Border>
                                             <Label   Height="30" FontSize="16" Content="TERM"></Label>
@@ -213,10 +230,29 @@
                                         </StackPanel>
                                         <Grid Grid.Column="2" >
                                             <Button Name="AddImageButton" BorderThickness="0" Height="40" Width="40" Background="Transparent" Click="AddImageButton_Click"  >
-                                                <Image x:Name="SetImage" Visibility="Visible"  Source="/Assets/Icon/AddImageIcon.png" />
+                                                <Image x:Name="SetImage" Visibility="Visible"  Source="/Assets/Icon/AddImageIcon.png"    />
 
                                             </Button>
-                                            <Image x:Name="CardImage"  Height="60" Width="70" Visibility="Visible" Source="{Binding ImagePath}" />
+
+                                            <Image x:Name="CardImage"  Height="45" Width="70" Visibility="Visible"  Source="{Binding Image}"/>
+
+                                            <Button Name ="DeleteImageButton" Height="20" Width="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 11 17 0" Click="DeleteImageButton_Click" BorderThickness=" 0 0 0 0" Background="Silver" Opacity="0.7"  >
+                                                <Image Name ="PicDeleteImage"   Source="/Assets/Icon/DeleteIcon.png"  ></Image >
+
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding ElementName=CardImage, Path=Source}" Value="{x:Null}">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+
+
+
+
                                         </Grid>
 
                                     </Grid>
@@ -231,7 +267,7 @@
                 </ListView>
                 <Button 
                    HorizontalAlignment="Stretch" 
-                    x:Name="AddCardButton" Margin="0 5 0 0 "
+                    x:Name="AddCardButton" Margin="0 5 0 10 "
                     Background="AliceBlue" Height="60"  Width= "auto"
                      Style="{DynamicResource RoundedButtonStyle}" Click="AddCardButton_Click"
                     >

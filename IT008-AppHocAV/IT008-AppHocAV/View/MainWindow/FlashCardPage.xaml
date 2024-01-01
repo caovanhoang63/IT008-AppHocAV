@@ -35,7 +35,7 @@
             <Grid  >
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="180"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
@@ -43,8 +43,8 @@
 
                 <!-- Search, Filter and Create new Essay Button -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
-                    <Canvas Height="40" Width="200"  Margin="10 0 10 0"  >
-                        <TextBox x:Name="SearchFlashCardTextBox" Margin="10 0 10 0" Width="170"
+                    <Canvas Height="40" Width="240"  Margin=" 0 0 10 0"  >
+                        <TextBox  x:Name="SearchFlashCardTextBox"  Background="#D9D9D9" Margin="30 0 0 0"
                                              Style="{DynamicResource SearchTextBoxStyle}"
                                              Visibility="Collapsed"  
                                               TextChanged="SearchFlashCardTextBox_TextChanged"/>
@@ -66,12 +66,19 @@
                                          MouseLeave="SearchEssayButton_MouseLeave">
 
                             <Image Source="../../Assets/Icon/SearchIcon.png" Width="24"></Image>
+                            <Button.ToolTip>
+                                <ToolTip Content="Search" />
+                            </Button.ToolTip>
                         </Button>
                     </Canvas>
 
                     <Button x:Name="SortCard" Width="40" Height="40" Background="#96B639" Margin="0 0 10 0" 
                                 Style="{DynamicResource RoundedButtonStyle}" Click="SortCard_Click"  >
+                        <Button.ToolTip>
+                            <ToolTip Content="Sort" />
+                        </Button.ToolTip>
                         <Button.ContextMenu>
+                           
                             <ContextMenu Placement="Bottom" IsOpen="False">
                                 <uc:RadioButtonMenuItem Header="Title" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
                                 <uc:RadioButtonMenuItem Header="Date modified" IsChecked="True" GroupName="OrderByGroup" Click="OrderBy_OnClick"/>
@@ -134,7 +141,7 @@
                             Height="140" Width="240"
                             Background="#F4EEEE"
                             Style="{DynamicResource RoundedButtonStyle}"
-                            Margin="10 10 10 10">
+                            Margin="10 10 5 10">
                  
 
 
@@ -161,7 +168,7 @@
                                     </Button>
                                     <Button x:Name="DeleteCardButton" HorizontalAlignment="Right" Margin="5 0 5 0" Background="{x:Null}" Click="DeleteCardButton_Click"  >
                                         <Button.Clip>
-                                            <RectangleGeometry Rect="1.2,2,31,31" RadiusX="10" RadiusY="10"/>
+                                            <RectangleGeometry Rect="2,2,31,31" RadiusX="10" RadiusY="10"/>
                                         </Button.Clip>
                                         <Image Source="/Assets/Icon/DeleteIcon.png" Width="30" Height="30" />
 

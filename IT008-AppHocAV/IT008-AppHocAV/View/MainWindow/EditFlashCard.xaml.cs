@@ -17,6 +17,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
+using Image = System.Windows.Controls.Image;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -130,6 +132,9 @@ namespace IT008_AppHocAV.View.MainWindow
                             _data.FlashCards[index].ImagePath = fileName;
                             BitmapImage image = new BitmapImage(new Uri(fileName));
                             _data.FlashCards[index].Image = image;
+                            _datatemp[index].ImagePath = fileName;
+                            _datatemp[index].Image = image;
+
                             // Hiển thị hình ảnh ra 
                             DependencyObject dep = (DependencyObject)e.OriginalSource;
                             while ((dep != null) && !(dep is ListViewItem))
@@ -140,17 +145,14 @@ namespace IT008_AppHocAV.View.MainWindow
                             if (dep is ListViewItem item)
                             {
                                 // Tìm Image trong ListViewItem và đặt thuộc tính Visibility
+                                
                                 Image cardImage = FindVisualChild<Image>(item, "CardImage");
                                 if (cardImage != null)
                                 {
                                     cardImage.Source=image;
                                     cardImage.Visibility = Visibility.Visible;
                                 }
-                                var setImage = FindVisualChild<Image>(item, "SetImage");
-                                if (setImage != null)
-                                {
-                                    setImage.Visibility = Visibility.Hidden;
-                                }
+                             
                             }
                         }
 
@@ -159,7 +161,51 @@ namespace IT008_AppHocAV.View.MainWindow
                
             }
         }
-            private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void DeleteImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            int index = -1;
+            index = LvListCard.SelectedIndex;
+           
+            if (index != -1)
+            {
+               
+                _data.FlashCards[index].ImagePath = null;
+                //  BitmapImage image = new BitmapImage(new Uri(fileName));
+                _data.FlashCards[index].Image = null;
+                _datatemp[index].ImagePath = null;
+                _datatemp[index].Image = null;
+                DependencyObject dep = (DependencyObject)e.OriginalSource;
+                while ((dep != null) && !(dep is ListViewItem))
+                {
+                    dep = VisualTreeHelper.GetParent(dep);
+                }
+
+                if (dep is ListViewItem item)
+                {
+                    // Tìm Image trong ListViewItem và đặt thuộc tính Visibility
+
+                    var cardImage = FindVisualChild<Image>(item, "CardImage");
+                    if (cardImage != null)
+                    {
+                        // cardImage.Source=image;
+                        cardImage.Visibility = Visibility.Hidden;
+                    }
+                    var Button = FindVisualChild<Button>(item, "DeleteImageButton");
+                    if (Button != null)
+                    {
+                        Button.Visibility = Visibility.Hidden;
+                    }
+                }
+
+           
+         
+                    
+
+
+            }
+        }
+        private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
             if (TitleTextBox.Text != string.Empty)
@@ -210,7 +256,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void DeleteCardButton_Click(object sender, RoutedEventArgs e)
         {
-           // e.Handled = true;
+            e.Handled = true;
 
             FlashCard modelCard = (FlashCard)((FrameworkElement)sender).DataContext;
 
@@ -219,20 +265,22 @@ namespace IT008_AppHocAV.View.MainWindow
             {
 
 
-                foreach (FlashCard card in _data.FlashCards)
+                foreach (FlashCard card in _datatemp)
                 {
                     if (card.Id == modelCard.Id)
                     {
                         _data.FlashCards.Remove(card);
+                        _datatemp.Remove(card);
                         break;
                     }
                 }
-                RefreshPage();
+             
             }
             else
                 MessageBox.Show("Delete fail! ");
 
         }
+       
 
         private void TermBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -305,5 +353,7 @@ namespace IT008_AppHocAV.View.MainWindow
             };
             LvListCard.RaiseEvent(eventArg);
         }
+
+        
     }
 }

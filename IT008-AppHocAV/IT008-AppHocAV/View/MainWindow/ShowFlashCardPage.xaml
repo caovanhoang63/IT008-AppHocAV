@@ -31,30 +31,54 @@
             <RowDefinition Height="0.3*"></RowDefinition>
         </Grid.RowDefinitions>
 
-
+    
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Name ="RefeshButton"  BorderThickness="0 0 0 0" Background="Transparent" 
-                    Style="{DynamicResource RoundedButtonStyle }"
-                    Height="35" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0" Click="RefeshButton_Click">
-                <Image Source="/Assets/Icon/refresh_icon.png" />
 
-            </Button>
             <Button Name="ExitButton" BorderThickness="0 0 0 0" Background="Transparent" 
                     Style="{DynamicResource RoundedButtonStyle }"
                     Height="35" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0" Click="ExitButton_Click">
                 <Image Source="/Assets/Icon/ExitIcon.png" />
 
             </Button>
+
+
         </StackPanel>
         <!--// Define a 3D viewport //-->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center"   Margin="0 0 505 0">
+                    
+                    <Button Name ="RefeshButton"  BorderThickness="0 0 0 0" Background="Transparent" 
+                    Style="{DynamicResource RoundedButtonStyle }"
+                    Height="35" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0" Click="RefeshButton_Click">
+                        <Image Height="30" Width="35" Source="/Assets/Icon/ReturnIcon.png"   />
 
-            <Viewport3D Grid.Row="1"  Margin="30 40 30 40"
+                    </Button>
+                    <Border CornerRadius="10">
+                        <Button Name ="ShuffleButton" Style="{DynamicResource RoundedButtonStyle }" Height="35" Width="35" HorizontalAlignment="Right" BorderThickness="0 0 0 0" Background="Transparent"   Margin="10 0 20 0" Click="ShuffleButton_Click" >
+                            
+                                <Image Name="Shuffle" Source="/Assets/Icon/ShuffleIcon.png" Visibility="Visible"></Image>
+                          
+                        </Button>
+                    </Border>
+
+
+
+                </StackPanel>
+            </Grid>
+           
+            <Viewport3D x:Name="CardViewport" Grid.Row="1"
+                        Height="auto" MaxHeight="400" Width="auto" MaxWidth ="800"  Margin="10 0 10 10"
                     >
 
                 <!--// Set the camera for the viewport //-->
 
                 <Viewport3D.Camera>
-                <PerspectiveCamera Position="0,0,3"  />
+                    <PerspectiveCamera Position="0,0,3"  />
                 </Viewport3D.Camera>
 
                 <!--// Define a 2D visual element within the 3D viewport //-->
@@ -88,7 +112,7 @@
                     </Viewport2DVisual3D.Material>
 
                     <!--// Add a Toggle Button //-->
-
+                    
                     <ToggleButton x:Name="Flip_Card"    
                               Cursor="Hand">
 
@@ -113,127 +137,159 @@
 
                             <Grid>
 
-                               
 
 
-                            <!--// Back //-->
 
-                            <UserControl  Name="Back_Side" >
+                                <!--// Back //-->
 
-                                <Grid>
+                                <UserControl  Name="Back_Side" >
 
-                                    <!--// Background //-->
+                                    <Grid>
 
-                                    <Border
+                                        <!--// Background //-->
+
+                                        <Border
                                              Height="400"
                                              Width="700"
                                              CornerRadius="10">
 
-                                        <Border.Background>
+                                            <Border.Background>
 
-                                            <!--// Use a visual brush for the background //-->
+                                                <!--// Use a visual brush for the background //-->
 
-                                            <VisualBrush>
+                                                <VisualBrush>
 
-                                                <VisualBrush.Visual>
+                                                    <VisualBrush.Visual>
 
-                                                    <!--// Create a canvas to hold the visual elements //-->
+                                                        <!--// Create a canvas to hold the visual elements //-->
 
-                                                    <Canvas>
 
-                                                        
 
-                                                            <!--// Add Content //-->
-                                                            <!--<ContentControl   Template="{StaticResource BackSide_Content}" />-->
+
+                                                        <!--// Add Content //-->
+                                                        <!--<ContentControl   Template="{StaticResource BackSide_Content}" />-->
                                                         <Border x:Name="Back"
-                                                              Height="200"
+                                                                 Height="200"
                                                                  Width="200"
                                                                  Background="Beige"
-                                                                  Opacity="1">
-                                                                
+                                                                  Opacity="1"
+                                                                 >
+                                                            <StackPanel>
+
+                                                                <Image  Margin="0 60 0 0 "
+                                                                    Width="auto" Height="60" MaxWidth="180"
+                                                                        Source="{Binding Image}"
+                                                                        >
+                                                                    <Image.Style>
+                                                                        <Style TargetType="Image">
+                                                                            <Style.Triggers>
+                                                                                <DataTrigger  Binding="{Binding Image}" Value="{x:Null}">
+                                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                                </DataTrigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </Image.Style>
+                                                                </Image>
                                                                 <Label VerticalAlignment="Center"
-                                                                HorizontalAlignment="Center" 
-                                                                FontWeight="ExtraBold"
-                                                                FontFamily="Fonts/#Comforter"
-                                                                FontSize="14"
-                                                                Content="{Binding Answer}"
-                                                                >
-
-                                                                </Label>
-                                                            
-                                                        </Border>
-
-
-
-
-
-
-                                                    </Canvas>
-
-                                                </VisualBrush.Visual>
-
-                                            </VisualBrush>
-
-                                        </Border.Background>
-
-                                    </Border>
-
-                                </Grid>
-                            </UserControl>
-
-                            <!--// Front //-->
-
-                            <UserControl Name="Front_Side" >
-                                <Grid>
-                                    <Border Height="400"
-                                             Width="700"
-                                              CornerRadius="10">
-
-                                        <Border.Background>
-
-                                            <!--// Use a visual brush for the background //-->
-
-                                            <VisualBrush>
-
-                                                <VisualBrush.Visual>
-
-                                                    <!--// Create a canvas to hold the visual elements //-->
-
-                                                    <Canvas>
-
-                                                        <!--// Front Side //-->
-
-                                                        <Border x:Name="Front"
-                                                              Height="200"
-                                                                 Width="200"
-                                                                 Background="Beige"
-                                                                  Opacity="1">
-
-                                                            <!--// Add Content //-->
-
-                                                            <Label VerticalAlignment="Center"
                                                               HorizontalAlignment="Center" 
                                                               FontWeight="ExtraBold"
                                                                FontFamily="Fonts/#Comforter"
-                                                                FontSize="14"
-                                                                  Content="{Binding Question}"></Label>
+                                                                FontSize="14" 
+                                                                  Content="{Binding Answer}" >
+                                                                    <Label.Style>
+                                                                        <Style TargetType="Label">
+                                                                            <Style.Triggers>
+                                                                                <DataTrigger Binding="{Binding Image}" Value="{x:Null}">
+
+                                                                                    <Setter Property="Margin" Value="0 90 0 0" />
+                                                                                </DataTrigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </Label.Style>
+
+                                                                </Label>
+
+                                                            </StackPanel>
+
+
+
+
+
 
                                                         </Border>
 
-                                                    </Canvas>
 
-                                                </VisualBrush.Visual>
 
-                                            </VisualBrush>
 
-                                        </Border.Background>
 
-                                    </Border>
 
-                                </Grid>
-                            </UserControl>
 
-                        </Grid>
+                                                    </VisualBrush.Visual>
+
+                                                </VisualBrush>
+
+                                            </Border.Background>
+
+                                        </Border>
+
+                                    </Grid>
+                                </UserControl>
+
+                                <!--// Front //-->
+
+                                <UserControl Name="Front_Side" >
+                                    <Grid>
+                                        <Border Height="400"
+                                             Width="700"
+                                              CornerRadius="10">
+
+                                            <Border.Background>
+
+                                                <!--// Use a visual brush for the background //-->
+
+                                                <VisualBrush>
+
+                                                    <VisualBrush.Visual>
+
+                                                        <!--// Create a canvas to hold the visual elements //-->
+
+                                                        <Canvas>
+
+                                                            <!--// Front Side //-->
+
+                                                            <Border x:Name="Front"
+                                                              Height="200"
+                                                                 Width="200"
+                                                                 Background="Beige"
+                                                                  Opacity="1">
+
+                                                                <!--// Add Content //-->
+
+                                                                <Label VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center" 
+                                                              FontWeight="ExtraBold"
+                                                               FontFamily="Fonts/#Comforter"
+                                                                FontSize="14" 
+                                                                  Content="{Binding Question}" ></Label>
+
+
+
+                                                            </Border>
+
+                                                        </Canvas>
+
+                                                    </VisualBrush.Visual>
+
+                                                </VisualBrush>
+
+                                            </Border.Background>
+
+                                        </Border>
+
+                                    </Grid>
+                                </UserControl>
+
+                            </Grid>
 
                         </ToggleButton.Content>
 
@@ -323,8 +379,8 @@
 
                                         <DoubleAnimation Storyboard.TargetName="Back_Side"
                                                      Storyboard.TargetProperty="(Image.Opacity)"
-                                                     BeginTime="0:0:0.2"
-                                                     Duration="0:0:0.3"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.1"
                                                      From="1.0"
                                                      To="0.0" />
 
@@ -338,8 +394,8 @@
 
                                         <DoubleAnimation Storyboard.TargetName="Front_Side"
                                                      Storyboard.TargetProperty="(Image.Opacity)"
-                                                     BeginTime="0:0:0.2"
-                                                     Duration="0:0:0.3"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.1"
                                                      From="0.0"
                                                      To="1.0" />
 
@@ -350,8 +406,8 @@
                                     <Storyboard>
                                         <Rotation3DAnimation Storyboard.TargetName="ViewPort"
                                                          Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
-                                                         Duration="0:0:0.3"
-                                                         BeginTime="0:0:0.2">
+                                                         Duration="0:0:0.1"
+                                                         BeginTime="0:0:0">
 
                                             <Rotation3DAnimation.From>
                                                 <AxisAngleRotation3D Angle="-10"
@@ -367,8 +423,8 @@
 
                                         <Rotation3DAnimation Storyboard.TargetName="ViewPort"
                                                          Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
-                                                         Duration="0:0:0.3"
-                                                         BeginTime="0:0:0.2">
+                                                         Duration="0:0:0.1"
+                                                         BeginTime="0:0:0">
 
                                             <Rotation3DAnimation.From>
                                                 <AxisAngleRotation3D Angle="100"
@@ -410,25 +466,28 @@
                 </ModelVisual3D>
 
             </Viewport3D>
+        </Grid>
+
 
         <Grid Grid.Row="2" Margin="0 0 0 30">
+            
             <Button x:Name="NextButton" Background="Transparent"
                       Style="{DynamicResource RoundedButtonStyle }"
                     Height="35" Width="35" HorizontalAlignment="Center" 
                     VerticalAlignment="Bottom" Margin="160 0 0 40" Click="NextButton_Click">
-            <Image Source="/Assets/Icon/nextBut.png" />
+                <Image Source="/Assets/Icon/nextBut.png" />
 
             </Button>
             <Label Name ="CurrentCard"  Height="35" Width="35" HorizontalAlignment="Center"
-                      VerticalAlignment="Bottom" Margin="0 0 20 40" 
-                        Content="10" FontSize="22" FontWeight="DemiBold"></Label>
+                      VerticalAlignment="Bottom" Margin="15 0 20 40" 
+                        Content="{Binding Current}" FontSize="22" FontWeight="DemiBold"></Label>
             <Label Height="35" Width="35" HorizontalAlignment="Center"
                     VerticalAlignment="Bottom" Margin="30 0 0 40" 
                    Content="/" FontSize="22" FontWeight="DemiBold" 
                    ></Label>
             <Label  Name="TotalCard" Height="35" Width="35" HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom" Margin="50 0 0 40" 
-                   Content="20" FontSize="22" FontWeight="DemiBold"
+                    VerticalAlignment="Bottom" Margin="60 0 0 40" 
+                   Content="{Binding Quantity}" FontSize="22" FontWeight="DemiBold"
                   ></Label>
             <Button   Name="ReturnButton" Background="Transparent"
                         Style="{DynamicResource RoundedButtonStyle }"
@@ -451,6 +510,6 @@
 
     </Grid>
 
- 
+
 
 </Page>
