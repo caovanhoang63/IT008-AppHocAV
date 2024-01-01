@@ -6,7 +6,6 @@ using System.Windows.Media;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View.CustomMessageBox;
-
 namespace IT008_AppHocAV.View
 {
     public partial class SignUpWindow : Window

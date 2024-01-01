@@ -51,13 +51,11 @@ namespace IT008_AppHocAV.Models
 
     public class Text
     {
-
         public Text(string text)
         {
             this.text = text;
         }
         public string text { get; set; }
-
     }
     
     

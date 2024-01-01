@@ -8,6 +8,7 @@
       x:Name="Page"
       Title="WordPage" Height="auto" Width="auto" 
       HorizontalAlignment="Stretch"
+      LayoutUpdated="WordPage_OnLayoutUpdated"
       >
     <Page.Resources>
 
@@ -24,7 +25,7 @@
             <local:MoreSyAntonymsVisibility x:Key="MoreSyAntonymsVisibility"/>
             <local:ItemsLimiter x:Key="ItemsLimiter"/>
             <local:NumberDefinitionToVisibility  x:Key="NumberDefinitionToVisibility"/>
-            
+            <local:CheckDefinitionCheckBoxConverter x:Key="CheckDefinitionCheckBoxConverter"/>
         </ResourceDictionary>
 
     </Page.Resources >
@@ -95,14 +96,16 @@
                 
                 
                 <ItemsControl x:Name="MeaningsListview"
-                          ItemsSource="{Binding Word.meanings}"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                          BorderThickness="0" 
-                          Padding="0"
-                          HorizontalAlignment="Stretch"
-                          Margin="10 0 0 0 "
+                              ItemsSource="{Binding Word.meanings}"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              BorderThickness="0" 
+                              Padding="0"
+                              HorizontalAlignment="Stretch"
+                              Margin="10 0 0 0 " 
                           >
+                    
+                    
                     <ItemsControl.ItemTemplate >
                         <DataTemplate>
                             <StackPanel>
@@ -114,7 +117,8 @@
                                            ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                            BorderThickness="0" 
                                            HorizontalAlignment="Stretch"
-                                           Padding="0"  Margin="30 0 0 0">
+                                           Padding="0"  Margin="30 0 0 0"
+                                           >
                                     <ItemsControl.ItemTemplate>
                                         
                                         <DataTemplate>
@@ -124,7 +128,22 @@
                                                 <!-- definition -->
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch"
                                                             VerticalAlignment="Top">
-                                                    <CheckBox Style="{DynamicResource SmallStarCheckBoxStyle}" Margin="0 0 0 0" ></CheckBox>
+                                                    <CheckBox Checked="Definition_Checked"
+                                                              Unchecked="Definition_UnChecked"
+                                                              Style="{DynamicResource SmallStarCheckBoxStyle}" Margin="0 0 0 0"
+                                                              Loaded="DefinitionCheckBox_OnLoaded"
+                                                              Tag="{Binding id}"
+                                                              >
+                                                        <CheckBox.IsChecked>
+                                                            <MultiBinding Converter="{StaticResource CheckDefinitionCheckBoxConverter}">
+                                                                <Binding Path="DataContext" ElementName="Page"></Binding>
+                                                                <Binding Path="id"></Binding>
+                                                                
+                                                            </MultiBinding>                                                            
+                                                        </CheckBox.IsChecked>
+                                                    </CheckBox>
+                                                    
+                                                    
                                                     <Border>
                                                         <TextBox   Style="{DynamicResource ContentTextBlock}"
                                                                    Margin="5 8 0 0 "

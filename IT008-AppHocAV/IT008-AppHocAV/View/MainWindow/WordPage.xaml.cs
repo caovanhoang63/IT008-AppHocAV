@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Repositories.DbConnection;
 using IT008_AppHocAV.Services;
@@ -22,7 +23,9 @@ namespace IT008_AppHocAV.View.MainWindow
         private IT008_AppHocAV.MainWindow _mainWindow;
         private bool _already = false;
         private int RecallId = -1;
-
+        public List<int?> CheckedDefinitionIds { get; set; } = new List<int?>();
+        private bool LoadSuccess = false;
+        
         public WordPage(IT008_AppHocAV.MainWindow mainWindow)
         {
             InitializeComponent();
@@ -33,13 +36,15 @@ namespace IT008_AppHocAV.View.MainWindow
 
         public async Task<bool> Search(string word)
         {
+            LoadSuccess = false;
             await Task.Run(() => Word = _dbConnection.DictionaryRepository.GetDictionaryEntry(word));
             if (Word != null)
             {
                 ResetPage();
                 Container.ScrollToTop();
+                CheckedDefinitionIds = _dbConnection.RecallRepository.FindDefinitionIdByWordAndUserId(Word.word,_mainWindow.UserId);
                 RecallId = _dbConnection.RecallRepository.IsRecalled(_mainWindow.UserId, Word.word);
-                Console.WriteLine(RecallId);
+                
                 if (RecallId != -1)
                     RecallCheckBox.IsChecked = true;
                 else
@@ -170,8 +175,6 @@ namespace IT008_AppHocAV.View.MainWindow
 
         #endregion
 
-
-
         //fix scrolling issue when using a listview inside a scroll viewer
         private void instScroll_Loaded(object sender, RoutedEventArgs e)
         {
@@ -248,7 +251,105 @@ namespace IT008_AppHocAV.View.MainWindow
                 
         }
 
+        private void RecallCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            if (RecallId == -1)
+                RecallId = _dbConnection.RecallRepository.AddNewWord(_mainWindow.UserId, Word.word);
+        }
 
+        private void RecallCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            _dbConnection.RecallRepository.DeleteById(RecallId);
+            RecallId = -1;
+        }
+
+        private void MoreDefinition_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                CheckedDefinitionIds = _dbConnection.RecallRepository.FindDefinitionIdByWordAndUserId(Word.word,_mainWindow.UserId);
+                if (button.Content is Label label)
+                {
+                    Console.WriteLine(label.Content);
+                    if (label.Content != "- Less definition")
+                    {
+
+                        Console.WriteLine("more Click");
+                        if (button.Parent is StackPanel stackPanel)
+                        {
+                            if (stackPanel.Children[1] is ItemsControl itemsControl)
+                            {
+                                Meaning meaning = (Meaning)((FrameworkElement)(sender)).DataContext;
+
+                                itemsControl.ItemsSource = meaning.definitions;
+
+                            }
+                          
+                        }
+                        label.Content = "- Less definition";
+                    }
+                    else
+                    {
+                        Console.WriteLine("Less Click");
+
+                        if (button.Parent is StackPanel stackPanel)
+                        {
+                            if (stackPanel.Children[1] is ItemsControl itemsControl)
+                            {
+                                Meaning meaning = (Meaning)((FrameworkElement)(sender)).DataContext;
+                                itemsControl.ItemsSource = meaning.definitions.Take(5);
+                            }
+                        }
+                        label.Content = "+ More definition";
+                    }
+                }
+            }
+            
+            
+        }
+        
+        private void Definition_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!LoadSuccess) return;
+            
+            if (RecallCheckBox.IsChecked == false)
+                RecallCheckBox.IsChecked = true;
+            
+            if (!(sender is CheckBox checkBox)) return;
+            
+            int id = (int)checkBox.Tag;
+            List<VocabularyRecallLog> logs = _dbConnection.RecallRepository.FindVocabularyRecallLogsByWord(Word.word);
+            
+            foreach (var log  in logs)
+            {
+                if (log.Meaning == string.Empty && log.DefinitionId == null)
+                {
+                    _dbConnection.RecallRepository.AddDefinitionId(log.Id,id);
+                    return;
+                }
+            }
+            
+            VocabularyRecallLog recallLog = new VocabularyRecallLog();
+            recallLog.UserId = _mainWindow.UserId;
+            recallLog.Word = Word.word;
+            recallLog.DefinitionId = id;
+            _dbConnection.RecallRepository.AddNewRecallLog(recallLog);
+        }
+
+        private void Definition_UnChecked(object sender, RoutedEventArgs e)
+        {
+            if (!LoadSuccess) return;
+            
+            if (!(sender is CheckBox checkBox)) return;
+            
+            int id = (int)checkBox.Tag;
+            
+            _dbConnection.RecallRepository.DeleteByDefinitionIdAndWord(id, Word.word);
+        }
+
+     
+        
+        
         private void ResetPage()
         {
             DataContext = null;
@@ -266,57 +367,41 @@ namespace IT008_AppHocAV.View.MainWindow
             AuSpeakerUri.Text = string.Empty;
         }
 
-        private void RecallCheckBox_OnChecked(object sender, RoutedEventArgs e)
+
+        private void DefinitionCheckBox_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (RecallId == -1)
-                RecallId = _dbConnection.RecallRepository.AddNewWord(_mainWindow.UserId, Word.word);
+            LoadSuccess = true;
         }
 
-        private void RecallCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
+        private void WordPage_OnLayoutUpdated(object sender, EventArgs e)
         {
-            _dbConnection.RecallRepository.DeleteById(RecallId);
-            RecallId = -1;
-        }
 
-        private void MoreDefinition_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button)
-            {
-                if (button.Content is Label label)
-                {
-                    if (label.Content == "+ More definition")
-                    {
-                        if (button.Parent is StackPanel stackPanel)
-                        {
-                            if (stackPanel.Children[1] is ItemsControl itemsControl)
-                            {
-                                Meaning meaning = (Meaning)((FrameworkElement)(sender)).DataContext;
-                                itemsControl.ItemsSource = meaning.definitions;
-                            }
-                        }
-                        label.Content = "- Less definition";
-                    }
-                    else
-                    {
-                        if (button.Parent is StackPanel stackPanel)
-                        {
-                            if (stackPanel.Children[1] is ItemsControl itemsControl)
-                            {
-                                Meaning meaning = (Meaning)((FrameworkElement)(sender)).DataContext;
-                                itemsControl.ItemsSource = meaning.definitions.Take(5);
-                            }
-                        }
-                        label.Content = "+ More definition";
-                    }
-
-
-
-                }
-            }
         }
     }
+  
+    #region Converters
 
+    public class CheckDefinitionCheckBoxConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] is WordPage wordPage && values[1] is int id)
+            {
+                if (wordPage.CheckedDefinitionIds.Contains(id))
+                    return true;
+                return false;
+            }
 
+            return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return new object[] { Binding.DoNothing };
+        }
+    }
+    
+    
     public class StringToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -399,6 +484,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             return value;
         }
+        
     }
 
     public class NumberDefinitionToVisibility : IValueConverter
@@ -407,7 +493,6 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             if (value is List<Definition> definitions)
             {
-                Console.WriteLine(definitions.Count);
                 if (definitions.Count > 5)
                     return Visibility.Visible;
                 else
@@ -423,6 +508,11 @@ namespace IT008_AppHocAV.View.MainWindow
             return Visibility.Visible;
         }
     }
+
+    #endregion
+
+
+  
 
 
 }
