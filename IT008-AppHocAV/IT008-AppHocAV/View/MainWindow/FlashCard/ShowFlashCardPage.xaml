@@ -12,9 +12,9 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/ButtonStyle.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/BaseStyles.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
 

@@ -11,10 +11,10 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
-                <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/RoundCheckbox.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/BaseStyles.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/RoundCheckbox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -28,7 +28,7 @@
         <Canvas Height="40" Width="140"  Margin="0 0 0 0"  Grid.Row="0" Grid.Column="0" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Label x:Name="ClockLabel" HorizontalAlignment="Left" Width="40" Height="40"
                    Margin="10 0 0 0"  Background="White">
-                <Image Source="../../Assets/Icon/clock.png" Width="24"></Image>
+                <Image Source="../../../Assets/Icon/clock.png" Width="24"></Image>
             </Label>
 
             <TextBlock x:Name="TimerText" Width="80" 

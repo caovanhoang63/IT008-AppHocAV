@@ -10,7 +10,7 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -70,7 +70,7 @@
         <Button Name="SwitchLanBtn" Grid.Row="0" Grid.Column="1"
                 Margin="10 0 10  20" Background="Transparent"
                 BorderThickness="0" Click="SwitchLanBtn_OnClick">
-            <Image Source="../../Assets/Icon/switchIcon.png"></Image>
+            <Image Source="../../../Assets/Icon/switchIcon.png"></Image>
         </Button>
         
         <Border Grid.Row="0" Grid.Column="2" 

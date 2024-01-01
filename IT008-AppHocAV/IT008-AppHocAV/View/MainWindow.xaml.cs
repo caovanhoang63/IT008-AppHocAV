@@ -30,6 +30,7 @@ namespace IT008_AppHocAV
             private Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
             public string NoteCache;
             private readonly LoginWindow _loginWindow;
+            private LoadingPage _loadingPage = new LoadingPage();
         #endregion
         
         #region Declare Constructors
@@ -317,6 +318,7 @@ namespace IT008_AppHocAV
             
             public void NavigateToPage(string pageName)
             {
+                Content.Navigate(_loadingPage);
                 StatusBarCurrentPage.Text = pageName;
                 WordsStatusBarItem.Visibility = Visibility.Collapsed;
                 if (_pageCache.TryGetValue(pageName, out var value))

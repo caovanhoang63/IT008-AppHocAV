@@ -10,12 +10,12 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/ButtonStyle.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/BaseStyles.xaml"/>
               
-                <ResourceDictionary Source="../../Assets/Styles/ShowListEssayStyle.xaml"/>
-                <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/ShowListEssayStyle.xaml"/>
+                <ResourceDictionary Source="../../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
@@ -65,7 +65,7 @@
                                          MouseEnter="SearchEssayButton_MouseEnter" 
                                          MouseLeave="SearchEssayButton_MouseLeave">
 
-                            <Image Source="../../Assets/Icon/SearchIcon.png" Width="24"></Image>
+                            <Image Source="../../../Assets/Icon/SearchIcon.png" Width="24"></Image>
                             <Button.ToolTip>
                                 <ToolTip Content="Search" />
                             </Button.ToolTip>
@@ -88,14 +88,14 @@
                                 <uc:RadioButtonMenuItem x:Name="Descending" Header="Descending" GroupName="OrderOptionGroup" Click="OrderOption_OnClick"/>
                             </ContextMenu>
                         </Button.ContextMenu>
-                        <Image Source="../../Assets/Icon/FilterIcon.png" Width="24"></Image>
+                        <Image Source="../../../Assets/Icon/FilterIcon.png" Width="24"></Image>
                     </Button>
 
                     <Button x:Name="NewFlashCard" Width="150" Height="40" Background="#55AF6E"
                                 Style="{DynamicResource RoundedButtonStyle}" Click="NewFlashCard_Click">
 
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../../Assets/Icon/AddIcon1.png" Width="24"></Image>
+                            <Image Source="../../../Assets/Icon/AddIcon1.png" Width="24"></Image>
                             <Label FontSize="16" VerticalAlignment="Center">New FlashCard</Label>
                         </StackPanel>
                     </Button>

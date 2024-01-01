@@ -11,8 +11,8 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/WritingPageStyle.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/WritingPageStyle.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -25,7 +25,7 @@
                 <Button Style="{DynamicResource TransparentButtonStyle}" 
                         HorizontalAlignment="Left"
                         Click="CloseButton_OnClick">
-                    <Image Source="../../Assets/Icon/CloseIcon.png" ></Image>
+                    <Image Source="../../../Assets/Icon/CloseIcon.png" ></Image>
                 </Button>
             
                 <Label FontSize="40" HorizontalAlignment="Center"
@@ -53,7 +53,7 @@
                              BorderThickness="0"
                              VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="30" Source="../../Assets/Icon/AddImageIcon.png"></Image>
+                            <Image Width="30" Source="../../../Assets/Icon/AddImageIcon.png"></Image>
                             <TextBlock TextDecorations="Underline" FontSize="14" VerticalAlignment="Center">Add image</TextBlock>
                         </StackPanel>
                     </Button>

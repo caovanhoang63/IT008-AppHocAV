@@ -14,10 +14,10 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../../Assets/Styles/ShowEssayStyle.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../../Assets/Styles/WriteContentPageStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/BaseStyles.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/ScrollBarStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/ShowEssayStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/WriteContentPageStyle.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -57,7 +57,7 @@
                                             Width="1600"
                                             Visibility="Collapsed"
                                             >
-                                        <Image Source="../../Assets/Icon/DropDownBtnIcon.png" />
+                                        <Image Source="../../../Assets/Icon/DropDownBtnIcon.png" />
                                     </Button>
                                     <Button x:Name="GptPopUpResizeButton" Style="{DynamicResource TransparentButtonStyle}"
                                             Height="35" MaxHeight="35"
@@ -90,34 +90,34 @@
                         Background="#46C679" 
                         Click="GPTWrite_OnClick">
                     <StackPanel Orientation="Horizontal">
-                        <Image Margin="12 0 0 0" Source="../../Assets/Icon/ChatGptIcon.png" Width="24"></Image>
+                        <Image Margin="12 0 0 0" Source="../../../Assets/Icon/ChatGptIcon.png" Width="24"></Image>
                         <Label FontSize="16" Margin="0 0 12 0" VerticalAlignment="Center">GPT Writing Help</Label>
                     </StackPanel>
                     <Button.ContextMenu>
                         <ContextMenu Placement="Bottom" IsOpen="False">
                             <MenuItem Header="Ideas!" Click="GptFunc_OnClick">
                                 <MenuItem.Icon>
-                                    <Image Source="../../Assets/Icon/lightbulb.png"></Image>
+                                    <Image Source="../../../Assets/Icon/lightbulb.png"></Image>
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="Outline" Click="GptFunc_OnClick">
                                 <MenuItem.Icon>
-                                    <Image Source="../../Assets/Icon/OutLineIcon.png"></Image>
+                                    <Image Source="../../../Assets/Icon/OutLineIcon.png"></Image>
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="Lexical items" Click="GptFunc_OnClick">
                                 <MenuItem.Icon>
-                                    <Image Source="../../Assets/Icon/LexicalItemsIcon.png"></Image>
+                                    <Image Source="../../../Assets/Icon/LexicalItemsIcon.png"></Image>
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="Make a sample" Click="GptFunc_OnClick">
                                 <MenuItem.Icon>
-                                    <Image Source="../../Assets/Icon/SampleEssayIcon.png"></Image>
+                                    <Image Source="../../../Assets/Icon/SampleEssayIcon.png"></Image>
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="Preview and enhance" Click="GptFunc_OnClick">
                                 <MenuItem.Icon>
-                                    <Image Source="../../Assets/Icon/EnhanceIcon.png"></Image>
+                                    <Image Source="../../../Assets/Icon/EnhanceIcon.png"></Image>
                                 </MenuItem.Icon>
                             </MenuItem>
                         </ContextMenu>
@@ -128,11 +128,11 @@
                         <Button 
                                 Style="{DynamicResource TransparentButtonStyle}"  Height="35" MaxHeight="35"
                                 Click="SubmitButton_OnClick">
-                            <Image Source="../../Assets/Icon/SaveIcon.png"></Image>
+                            <Image Source="../../../Assets/Icon/SaveIcon.png"></Image>
                         </Button>
                         <Button  Click="CloseButton_OnClick" Height="35" MaxHeight="35"
                                 Style="{DynamicResource TransparentButtonStyle}">
-                            <Image Source="../../Assets/Icon/CloseIcon.png"></Image>
+                            <Image Source="../../../Assets/Icon/CloseIcon.png"></Image>
                         </Button>
                 </StackPanel>
                 

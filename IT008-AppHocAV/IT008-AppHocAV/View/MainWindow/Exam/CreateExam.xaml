@@ -11,7 +11,7 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -24,7 +24,7 @@
                 <Button Style="{DynamicResource TransparentButtonStyle}" 
                         HorizontalAlignment="Left"
                         Click="CloseButton_OnClick">
-                    <Image Source="../../Assets/Icon/CloseIcon.png" ></Image>
+                    <Image Source="../../../Assets/Icon/CloseIcon.png" ></Image>
                 </Button>
 
                 <Label FontSize="40" HorizontalAlignment="Center"

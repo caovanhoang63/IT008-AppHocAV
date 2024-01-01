@@ -11,10 +11,10 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../../Assets/Styles/ButtonStyle.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../../Assets/Styles/VocabularyRecallPageStyle.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/ButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/VocabularyRecallPageStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/ScrollBarStyle.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -31,7 +31,7 @@
                         <Button x:Name="NewFlashCard" Width="auto" Height="40" Margin="10 0" Background="#55AF6E"
                                 Style="{DynamicResource RoundedButtonStyle}" >
                             <StackPanel Orientation="Horizontal" Margin="12 0">
-                                <Image Source="../../Assets/Icon/AddIcon1.png" Width="24"></Image>
+                                <Image Source="../../../Assets/Icon/AddIcon1.png" Width="24"></Image>
                                 <Label FontSize="16" VerticalAlignment="Center">New FlashCard</Label>
                             </StackPanel>
                         </Button>
@@ -132,7 +132,7 @@
             <ScrollViewer Grid.Row="3" >
                 <Button  Click="AddNewRecallLog_OnClick" 
                          Margin="20 0 20 0" Background="#F4EEEE" BorderBrush="#DDDDDD" HorizontalContentAlignment="Left">
-                    <Image Margin="3" Width="15" Source="../../Assets/Icon/PlusIcon1.png"></Image>
+                    <Image Margin="3" Width="15" Source="../../../Assets/Icon/PlusIcon1.png"></Image>
                 </Button>
             </ScrollViewer>
             

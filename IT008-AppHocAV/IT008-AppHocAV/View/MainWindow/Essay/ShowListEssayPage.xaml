@@ -12,10 +12,10 @@
         
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Assets/Styles/BaseStyles.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/ScrollBarStyle.xaml"/>
-                <ResourceDictionary Source="../../Assets/Styles/ShowListEssayStyle.xaml"/>
-                <ResourceDictionary Source="../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/BaseStyles.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="../../../Assets/Styles/ShowListEssayStyle.xaml"/>
+                <ResourceDictionary Source="../../../Components/RadioButtonMenuItem/RadioButtonMenuItem.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -65,7 +65,7 @@
                                         Style="{DynamicResource RoundedButtonStyle }"
                                         MouseEnter="SearchEssayButton_OnMouseEnter"
                                         MouseLeave="SearchEssayButton_OnMouseLeave">
-                                    <Image Source="../../Assets/Icon/SearchIcon.png" Width="24"></Image>
+                                    <Image Source="../../../Assets/Icon/SearchIcon.png" Width="24"></Image>
                                 </Button>
                         </Canvas>
                         
@@ -83,14 +83,14 @@
                                     <uc:RadioButtonMenuItem x:Name="Descending" Header="Descending" GroupName="OrderOptionGroup" Click="OrderOption_OnClick"/>
                                 </ContextMenu>
                             </Button.ContextMenu>
-                            <Image Source="../../Assets/Icon/SortIcon.png" Width="24"></Image>
+                            <Image Source="../../../Assets/Icon/SortIcon.png" Width="24"></Image>
                         </Button>
                         
                         <Button Width="auto" Height="40" Background="#55AF6E"
                                 Style="{DynamicResource RoundedButtonStyle}"
                                 Click="NewEssayButton_OnClick">
                             <StackPanel Orientation="Horizontal">
-                                <Image Margin="12 0 0 0" Source="../../Assets/Icon/AddIcon1.png" Width="24"></Image>
+                                <Image Margin="12 0 0 0" Source="../../../Assets/Icon/AddIcon1.png" Width="24"></Image>
                                 <Label Margin="0 0 12 0" FontSize="16" VerticalAlignment="Center">New Essay</Label>
                             </StackPanel>
                         </Button>
@@ -124,12 +124,12 @@
                                         <Button Style="{DynamicResource ModifyButton }"
                                                 Height="25" Width="25"
                                                 Click="ModifyEssayButton_OnClick">
-                                            <Image Source="../../Assets/Icon/EditIcon.png"></Image>
+                                            <Image Source="../../../Assets/Icon/EditIcon.png"></Image>
                                         </Button>
                                         <Button Name="DeleteEssayButton" Style="{DynamicResource DeleteButton }"
                                                 Click="DeleteEssayButton_OnClick"
                                                 Height="25" Width="25">
-                                            <Image Source="../../Assets/Icon/DeleteIcon.png"></Image>
+                                            <Image Source="../../../Assets/Icon/DeleteIcon.png"></Image>
                                         </Button>
                                     </StackPanel>
                                     <!--End show, Modify and Delete Button -->
