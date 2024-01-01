@@ -126,7 +126,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         {
             try
             {
-
+                Console.WriteLine(id);
                 User user = new User();
                 string query = "SELECT * " +
                                "FROM [user] " +
@@ -144,7 +144,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                             user.FullName = (string)reader["full_name"];
                             user.DateOfBirth = (DateTime)reader["date_of_birth"];
                             user.DateOfBirth = user.DateOfBirth.Date;
-                            user.Avatar = Util.BitmapConverter.ToImage((byte[])reader["avatar"]);
+                            user.Avatar = reader["avatar"] != DBNull.Value ? Util.BitmapConverter.ToImage((byte[])reader["avatar"]) : null;
                             user.Email = (string)reader["email"];
                             user.PhoneNumber = (string)reader["phone_number"];
                             return user;

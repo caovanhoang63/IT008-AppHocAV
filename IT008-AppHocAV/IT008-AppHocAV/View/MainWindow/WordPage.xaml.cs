@@ -37,6 +37,7 @@ namespace IT008_AppHocAV.View.MainWindow
         public async Task<bool> Search(string word)
         {
             LoadSuccess = false;
+            _mainWindow.NavigateToPage("Loading");
             await Task.Run(() => Word = _dbConnection.DictionaryRepository.GetDictionaryEntry(word));
             if (Word != null)
             {
@@ -53,6 +54,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 PhoneticHandler(Word);
                 DataContext = this;
                 _already = true;
+                _mainWindow.NavigateToPage("Searching");
                 return true;
             }
 

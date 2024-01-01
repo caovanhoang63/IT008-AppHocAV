@@ -35,7 +35,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         #region Declare Constructors
         public DbConnection()
         {   
-            _sqlConnection = new SqlConnection(Settings.Default.LocalDBConnectionString);
+            _sqlConnection = new SqlConnection(Settings.Default.DbConnectionString);
             _authentication = new Authentication(_sqlConnection);
             _essayRepository = new EssayRepository(_sqlConnection);
             _examRepository = new ExamRepository(_sqlConnection);

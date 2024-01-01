@@ -231,6 +231,9 @@ namespace IT008_AppHocAV
                     case "Searching":
                         page = new WordPage(this);
                         break;
+                    case "Loading":
+                        page = new LoadingPage();
+                        break;
                     
                     case "Recall":
                         page = new VocabularyRecallPage(this);
