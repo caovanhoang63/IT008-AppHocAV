@@ -25,14 +25,10 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         public DeskRepository DeskRepository => _deskRepository;
         public EssayRepository EssayRepository => _essayRepository;
         public CardRepository CardRepository => _cardRepository;
-
         public RegisterRepository RegisterRepository => _registerRepository;
-
         public ExamRepository ExamRepository => _examRepository;
-
         public UserRepository UserRepository => _userRepository;
         public DictionaryRepository DictionaryRepository => _dictionaryRepository;
-        
         public RecallRepository RecallRepository => _recallRepository;
         #endregion
 

@@ -15,7 +15,6 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             _sqlConnection = sqlConnection;
         }
 
-
         public List<int?> FindDefinitionIdByWordAndUserId(string word, int userId)
         {
             try
@@ -114,13 +113,20 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
         }
 
-        public List<VocabularyRecallLog> GetAllRecallLogsByDateAndUserId(int UserID, DateTime dateTime)
+        public List<VocabularyRecallLog> FindAllRecallLogsByDateAndUserId(int UserID, DateTime dateTime)
         {
             try
             {
-                string query = "SELECT * " +
-                               "FROM VocabularyRecallLog " +
-                               "WHERE User_Id = @UserId AND Year(Created_At) = Year(@Created_At) " +
+                string query = "SELECT v.id as id, v.user_id as user_id, v.word as word, v.definition_id as definition_id, " +
+                               "d.definitionText as definitionText, v.meaning as meaning, v.is_successful as is_successful, " +
+                               "v.example as example, v.created_at as created_at, v.updated_at as updated_at " +
+                               "FROM " +
+                               "VocabularyRecallLog V " +
+                               "LEFT JOIN " +
+                               "Definition D " +
+                               "On V.Definition_id = D.id " +
+                               "WHERE " +
+                               " User_Id = @UserId AND Year(Created_At) = Year(@Created_At) " +
                                "And Month(Created_At) = Month(@Created_At) And Day(Created_At) = Day(@Created_At)";
 
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
@@ -134,16 +140,24 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                         while (reader.Read())
                         {
                             VocabularyRecallLog vocabularyRecallLog = new VocabularyRecallLog();
+                            
                             vocabularyRecallLog.Id = (int)reader["id"];
                             vocabularyRecallLog.UserId = (int)reader["user_id"];
                             vocabularyRecallLog.Word = reader["word"].ToString();
-                            vocabularyRecallLog.Meaning = reader["meaning"].ToString();
-                            vocabularyRecallLog.IsSuccessful = reader.GetBoolean(reader.GetOrdinal("Is_Successful"));
-                            vocabularyRecallLog.Example = reader["example"].ToString();
-
                             vocabularyRecallLog.DefinitionId = reader["definition_id"] == DBNull.Value
                                 ? null
                                 : (int?)reader["definition_id"];
+                            if (vocabularyRecallLog.DefinitionId != null)
+                            {
+                                vocabularyRecallLog.DefinitionText = reader["definitionText"].ToString();
+                            }
+                            vocabularyRecallLog.Meaning = reader["meaning"].ToString();
+                            if (vocabularyRecallLog.Meaning == "" && vocabularyRecallLog.DefinitionId != null)
+                            {
+                                vocabularyRecallLog.Meaning = vocabularyRecallLog.DefinitionText;
+                            }
+                            vocabularyRecallLog.IsSuccessful = reader.GetBoolean(reader.GetOrdinal("Is_Successful"));
+                            vocabularyRecallLog.Example = reader["example"].ToString();
                             vocabularyRecallLog.CreatedAt = (DateTime)reader["created_at"];
                             vocabularyRecallLog.UpdatedAt = (DateTime)reader["updated_at"];
                             vocabularyRecallLogs.Add(vocabularyRecallLog);
@@ -279,6 +293,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                             vocabularyRecallLog.DefinitionId = reader["definition_id"] == DBNull.Value
                                 ? null
                                 : (int?) reader["definition_id"];
+                            
                             vocabularyRecallLog.CreatedAt = (DateTime) reader["created_at"];
                             vocabularyRecallLog.UpdatedAt = (DateTime) reader["updated_at"];
                             vocabularyRecallLogs.Add(vocabularyRecallLog);
@@ -292,31 +307,6 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             {
                 Console.WriteLine(e);
                 return null;
-            }
-            finally
-            {
-                _sqlConnection.Close();
-            }
-        }
-
-        public void UpdateVocabularyRecallLog(VocabularyRecallLog log)
-        {
-            try
-            {
-                string query = "UPDATE VocabularyRecallLog " +
-                               "SET definition_id = @definition_id, Updated_At = GETDATE() " +
-                               "WHERE id = @Id";
-                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
-                {
-                    command.Parameters.Add("@Id", log.Id);
-                    command.Parameters.Add("@definition_id", log.DefinitionId);
-                    _sqlConnection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
             }
             finally
             {
@@ -345,6 +335,36 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             {
                 Console.WriteLine(e);
                 return false;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+        }
+
+        public void UpdateRecallLog(VocabularyRecallLog rowData)
+        {
+            try
+            {
+                string query = "UPDATE VocabularyRecallLog " +
+                               "SET Word = @Word, Meaning = @Meaning, " +
+                               "Is_Successful = @Is_Successful, Example = @Example, Updated_At = GETDATE() " +
+                               "WHERE id = @Id";
+
+                using (SqlCommand command = new SqlCommand(query, _sqlConnection))
+                {
+                    command.Parameters.Add("@Id", rowData.Id);
+                    command.Parameters.Add("@Word", rowData.Word);
+                    command.Parameters.Add("@Meaning", rowData.Meaning);
+                    command.Parameters.Add("@Is_Successful", rowData.IsSuccessful);
+                    command.Parameters.Add("@Example", rowData.Example);
+                    _sqlConnection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
             finally
             {

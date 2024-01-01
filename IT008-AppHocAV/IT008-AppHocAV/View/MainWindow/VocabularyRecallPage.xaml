@@ -83,7 +83,8 @@
                             <DataGridTemplateColumn Width="3*" Header="Word"> 
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBox Style="{DynamicResource DataGridTextBox}" Text="{Binding Word}"></TextBox>
+                                        <TextBox Text="{Binding Word, UpdateSourceTrigger=PropertyChanged}" 
+                                                 TextChanged="RecallRow_OnTextChanged" Style="{DynamicResource DataGridTextBox}" ></TextBox>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -91,7 +92,8 @@
                             <DataGridTemplateColumn Width="3*" Header="Meaning"> 
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBox TextAlignment="Left" Style="{DynamicResource DataGridTextBox}" Text="{Binding Meaning}"></TextBox>
+                                        <TextBox Text="{Binding Meaning, UpdateSourceTrigger=PropertyChanged}"  
+                                                 TextChanged="RecallRow_OnTextChanged" TextAlignment="Left" Style="{DynamicResource DataGridTextBox}" ></TextBox>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -99,7 +101,9 @@
                             <DataGridTemplateColumn Width="3*" Header="Example"> 
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBox TextAlignment="Left" Style="{DynamicResource DataGridTextBox}" Text="{Binding Example}"></TextBox>
+                                        <TextBox TextChanged="RecallRow_OnTextChanged"
+                                                 Text="{Binding Example, UpdateSourceTrigger=PropertyChanged}" 
+                                                 TextAlignment="Left" Style="{DynamicResource DataGridTextBox}" ></TextBox>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -108,7 +112,9 @@
                                 <DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate>
                                             <CheckBox IsChecked="{Binding IsSuccessful}"
-                                                     BorderBrush="Transparent">
+                                                     BorderBrush="Transparent"
+                                                     Checked="CheckBox_OnChecked"
+                                                     Unchecked="CheckBox_OnChecked">
                                                 <CheckBox.LayoutTransform>
                                                     <ScaleTransform ScaleX="2" ScaleY="2"></ScaleTransform>
                                                 </CheckBox.LayoutTransform>

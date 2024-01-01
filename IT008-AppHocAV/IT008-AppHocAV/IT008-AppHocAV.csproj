@@ -150,6 +150,7 @@
     <Compile Include="Models\VocabularyRecallLog.cs" />
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
+    <Compile Include="Repositories\DbConnection\DefinitionRepository.cs" />
     <Compile Include="Repositories\DbConnection\DeskRepository.cs" />
     <Compile Include="Repositories\DbConnection\DictionaryRepository.cs" />
     <Compile Include="Repositories\DbConnection\EssayRepository.cs" />

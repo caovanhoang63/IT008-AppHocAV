@@ -73,34 +73,22 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                 byte[] data = card.Image == null ? null : BitmapConverter.ConvertToByteFromBitmapImage(card.Image);
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
-               
                     command.Parameters.AddWithValue("@desk_id", card.Id);
-
                     command.Parameters.AddWithValue("@question", card.Question);
                     command.Parameters.AddWithValue("@answer", card.Answer);
-
                     if (data != null)
                         command.Parameters.AddWithValue("@image", data);
                     else
                         command.Parameters.AddWithValue("@image", SqlBinary.Null);
-
-
                     _sqlConnection.Open();
-                 
                     command.ExecuteScalar();
                     if (_sqlConnection.State == System.Data.ConnectionState.Open)
                         _sqlConnection.Close();
-                   
-
                 }
-
-
             }
             catch(Exception e)
             {
-
                 MessageBox.Show(e.ToString());
-
             }
             finally
             {
@@ -138,7 +126,6 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         {
             try
             {
-
                 string query = " SELECT *" +
                                " FROM [desk] " +
                                " WHERE id = @id";
@@ -152,21 +139,14 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                         if (reader.Read())
                         {
 
-
-
                             Models.ListFlashCard desk = new Models.ListFlashCard(
                                 reader.GetInt32(reader.GetOrdinal("id")),
                                 reader.GetInt32(reader.GetOrdinal("user_id")),
                                 reader.GetString(reader.GetOrdinal("title")),
-
                                 reader.GetString(reader.GetOrdinal("description")),
-
                                 reader.GetInt32(reader.GetOrdinal("quantity")),
                                 reader.GetDateTime(reader.GetOrdinal("created_at")),
                                 reader.GetDateTime(reader.GetOrdinal("updated_at")));
-                            
-                          
-
                             return desk;
                         }
                     }
@@ -199,10 +179,8 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                     _sqlConnection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                       
                         while (reader.Read())
                         {
-                           
                             Models.ListFlashCard desk = new Models.ListFlashCard(
                                 reader.GetInt32(reader.GetOrdinal("id")),
                                 reader.GetString(reader.GetOrdinal("title")),
@@ -212,9 +190,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                                reader.GetDateTime(reader.GetOrdinal("created_at"))
 
                             );
-                         
                             result.Add(desk);
-                            
                         }
                     }
 
@@ -268,7 +244,5 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                 _sqlConnection.Close();
             }
         }
-
-
     }
 }
