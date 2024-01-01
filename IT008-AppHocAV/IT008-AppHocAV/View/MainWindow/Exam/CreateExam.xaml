@@ -46,6 +46,7 @@
                           Width="330" Height="30" SelectionChanged="Category_SelectionChanged">
                     <ComboBoxItem Background="Transparent">Gramar</ComboBoxItem>
                     <ComboBoxItem Background="Transparent">Vocabulary</ComboBoxItem>
+                    <ComboBoxItem Background="Transparent">Gramar+Vocabulary</ComboBoxItem>
                 </ComboBox>
                 <Button Margin="0 50 0 0"  Name="StartExam" Width="200" Height="40"  Content="Start" DockPanel.Dock="Bottom" Click="Button_Click" 
                         Background="#DEEAF1" IsEnabled="False"

@@ -103,21 +103,21 @@
                                 <RowDefinition Height="50"></RowDefinition>
                                 <RowDefinition Height="50"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0"  Margin="20 10 10 10" FontSize="15" HorizontalContentAlignment="Left">
+                            <Label Grid.Row="0" Grid.Column="0"  Margin="10 10 10 10" FontSize="15" HorizontalContentAlignment="Left">
                                 <TextBlock>
                                         <Run Text="Level:"/>
                                         <Run Text="{Binding Level}"/>
 
                                 </TextBlock>
                             </Label>
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="20 10 10 10" FontSize="15" HorizontalContentAlignment="Right">
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 10 80 10" FontSize="15" HorizontalContentAlignment="Center">
                                 <TextBlock>
                                         <Run Text="Category: "/>
                                         <Run Text="{Binding Category}"/>
 
                                 </TextBlock>
                             </Label>
-                            <Label Grid.Row="0" Grid.Column="1" Margin="60 10 10 10" FontSize="15" HorizontalContentAlignment="Right">
+                            <Label Grid.Row="0" Grid.Column="1" Margin="10 10 10 10" FontSize="15" HorizontalContentAlignment="Center">
                                 <TextBlock>
                                                 <Run Text="Score: "/>
                                                 <Run Text="{Binding Score}"/>
