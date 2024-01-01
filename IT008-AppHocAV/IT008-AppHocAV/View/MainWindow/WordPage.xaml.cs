@@ -17,12 +17,12 @@ namespace IT008_AppHocAV.View.MainWindow
 {
     public partial class WordPage : Page
     {
-        private DictionaryEntry _word;
+        public DictionaryEntry Word { get; set; }
         private DbConnection _dbConnection;
         private IT008_AppHocAV.MainWindow _mainWindow;
         private bool _already = false;
         private int RecallId = -1;
-        
+
         public WordPage(IT008_AppHocAV.MainWindow mainWindow)
         {
             InitializeComponent();
@@ -33,28 +33,30 @@ namespace IT008_AppHocAV.View.MainWindow
 
         public async Task<bool> Search(string word)
         {
-            await Task.Run(()=> _word = _dbConnection.DictionaryRepository.GetDictionaryEntry(word));
-            if (_word != null)
+            await Task.Run(() => Word = _dbConnection.DictionaryRepository.GetDictionaryEntry(word));
+            if (Word != null)
             {
                 ResetPage();
-                RecallId = _dbConnection.RecallRepository.IsRecalled(_mainWindow.UserId, _word.word);
+                Container.ScrollToTop();
+                RecallId = _dbConnection.RecallRepository.IsRecalled(_mainWindow.UserId, Word.word);
                 Console.WriteLine(RecallId);
                 if (RecallId != -1)
                     RecallCheckBox.IsChecked = true;
                 else
                     RecallCheckBox.IsChecked = false;
-                MeaningsListview.ItemsSource = _word.meanings;
-                PhoneticHandler(_word);
-                DataContext = _word;
+                MeaningsListview.ItemsSource = Word.meanings;
+                PhoneticHandler(Word);
+                DataContext = this;
                 _already = true;
                 return true;
             }
+
             await NavToTranslate(word);
             return false;
         }
 
 
-        
+
         /// <summary>
         /// Handles to display phonetic
         /// </summary>
@@ -64,7 +66,7 @@ namespace IT008_AppHocAV.View.MainWindow
             string usPhonetic = "";
             string ukPhonetic = "";
             string auPhonetic = "";
-            
+
             foreach (Phonetic phonetic in word.phonetics)
             {
                 if (phonetic.audio != string.Empty)
@@ -78,7 +80,7 @@ namespace IT008_AppHocAV.View.MainWindow
                     {
                         usPhonetic = phonetic.text;
                         UsSpeakerUri.Text = phonetic.audio;
-                    } 
+                    }
                     else if (phonetic.audio.Contains("au"))
                     {
                         auPhonetic = phonetic.text;
@@ -86,6 +88,7 @@ namespace IT008_AppHocAV.View.MainWindow
                     }
                 }
             }
+
             //If auPhonetic == "", auPhonetic = default phonetic
             if (auPhonetic == String.Empty)
             {
@@ -96,6 +99,7 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 BtnUaSpeaker.Visibility = Visibility.Visible;
             }
+
             AuPhonetic.Text = auPhonetic;
             //If ukPhonetic != "", show it
             if (ukPhonetic != string.Empty)
@@ -107,6 +111,7 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 this.UkPhoneticContainer.Visibility = Visibility.Collapsed;
             }
+
             //If usPhonetic != "", show it
             if (usPhonetic != string.Empty)
             {
@@ -117,8 +122,9 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 this.UsPhoneticContainer.Visibility = Visibility.Collapsed;
             }
+
             //if usPhonetic and ukPhonetic neither == "", show auPhonetic
-            if (usPhonetic == string.Empty && ukPhonetic == string.Empty )
+            if (usPhonetic == string.Empty && ukPhonetic == string.Empty)
             {
                 this.AuPhonetic.Visibility = Visibility.Visible;
             }
@@ -129,25 +135,28 @@ namespace IT008_AppHocAV.View.MainWindow
         }
 
         #region Sound
+
         //play Pronunciation sound
         private async void BtnUkSpeaker_OnClick(object sender, RoutedEventArgs e)
         {
             await PlaySound(UkSpeakerUri.Text.ToString());
         }
+
         private async void BtnUsSpeaker_OnClick(object sender, RoutedEventArgs e)
         {
             await PlaySound(UsSpeakerUri.Text.ToString());
         }
+
         private async void BtnUaSpeaker_OnClick(object sender, RoutedEventArgs e)
         {
             await PlaySound(AuSpeakerUri.Text.ToString());
         }
-        
+
         // Play sound with https://github.com/naudio/NAudio/blob/master/Docs/PlayAudioFromUrl.md?fbclid=IwAR23AvVfary9oc8IpOIFh_en6wkbLptkKvxDNLxyJeR1VVjZ3FvZG9smGPA
         private static async Task PlaySound(string url)
         {
-            using(var mf = new MediaFoundationReader(url))
-            using(var wo = new WasapiOut())
+            using (var mf = new MediaFoundationReader(url))
+            using (var wo = new WasapiOut())
             {
                 wo.Init(mf);
                 wo.Play();
@@ -157,20 +166,21 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
             }
         }
-        
+
 
         #endregion
-        
 
-        
+
+
         //fix scrolling issue when using a listview inside a scroll viewer
         private void instScroll_Loaded(object sender, RoutedEventArgs e)
         {
-            MeaningsListview.AddHandler(MouseWheelEvent,new RoutedEventHandler(MyMouseWheelH),true);
+            MeaningsListview.AddHandler(MouseWheelEvent, new RoutedEventHandler(MyMouseWheelH), true);
         }
+
         private void MyMouseWheelH(object sender, RoutedEventArgs e)
         {
-          
+
             MouseWheelEventArgs eargs = (MouseWheelEventArgs)e;
 
             double x = (double)eargs.Delta;
@@ -179,8 +189,8 @@ namespace IT008_AppHocAV.View.MainWindow
 
             Container.ScrollToVerticalOffset(y - x);
         }
-        
-        
+
+
         /// <summary>
         /// Navigate Mainwindow to translate if api return null
         /// </summary>
@@ -191,9 +201,9 @@ namespace IT008_AppHocAV.View.MainWindow
 
             TranslatePage page = new TranslatePage(text);
 
-            _mainWindow.PageCache.Add("Translate",page);
+            _mainWindow.PageCache.Add("Translate", page);
             _mainWindow.NavigateToPage("Translate");
-                
+
             page.GoogleTranslateContainer.Visibility = Visibility.Visible;
             page.GTransSlText.Selection.Text = text;
             page.GTransTlText.Selection.Text = await GoogleTranslateApi.GoogleTranslate("en", "vi", text);
@@ -207,7 +217,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             e.Handled = true;
             if (sender is Button button)
-            { 
+            {
                 if (await Search(button.Content.ToString()))
                     _mainWindow.NavigateToPage("Searching");
             }
@@ -216,13 +226,26 @@ namespace IT008_AppHocAV.View.MainWindow
         private void MoreSyAntonym_OnClick(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
-                if (button.Parent is StackPanel stackPanel)
-                    if (stackPanel.Height != 40)
-                        stackPanel.Height = 40;
-                    else
-                    {
-                        stackPanel.Height =  Double.NaN;
-                    }
+            {
+                if (button.Content is Label label)
+                {
+                    if (button.Parent is StackPanel stackPanel)
+                        if (stackPanel.Height != 40)
+                        {
+                            stackPanel.Height = 40;
+                            label.Content = "+ More synonym and antonyms";
+
+                        }
+                        else
+                        {
+                            stackPanel.Height = Double.NaN;
+                            label.Content = "- Less synonym and antonyms";
+                        }
+                }
+                
+                
+            }
+                
         }
 
 
@@ -246,7 +269,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private void RecallCheckBox_OnChecked(object sender, RoutedEventArgs e)
         {
             if (RecallId == -1)
-                RecallId = _dbConnection.RecallRepository.AddNewWord(_mainWindow.UserId, _word.word);
+                RecallId = _dbConnection.RecallRepository.AddNewWord(_mainWindow.UserId, Word.word);
         }
 
         private void RecallCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
@@ -254,22 +277,62 @@ namespace IT008_AppHocAV.View.MainWindow
             _dbConnection.RecallRepository.DeleteById(RecallId);
             RecallId = -1;
         }
+
+        private void MoreDefinition_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                if (button.Content is Label label)
+                {
+                    if (label.Content == "+ More definition")
+                    {
+                        if (button.Parent is StackPanel stackPanel)
+                        {
+                            if (stackPanel.Children[1] is ItemsControl itemsControl)
+                            {
+                                Meaning meaning = (Meaning)((FrameworkElement)(sender)).DataContext;
+                                itemsControl.ItemsSource = meaning.definitions;
+                            }
+                        }
+                        label.Content = "- Less definition";
+                    }
+                    else
+                    {
+                        if (button.Parent is StackPanel stackPanel)
+                        {
+                            if (stackPanel.Children[1] is ItemsControl itemsControl)
+                            {
+                                Meaning meaning = (Meaning)((FrameworkElement)(sender)).DataContext;
+                                itemsControl.ItemsSource = meaning.definitions.Take(5);
+                            }
+                        }
+                        label.Content = "+ More definition";
+                    }
+
+
+
+                }
+            }
+        }
     }
-    
-    
+
+
     public class StringToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return string.IsNullOrEmpty(value as string) ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
+            return string.IsNullOrEmpty(value as string)
+                ? System.Windows.Visibility.Collapsed
+                : System.Windows.Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }
     }
-    
+
     public class ListToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -278,14 +341,15 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 if (list.Count == 1 && list[0].text.Trim() == string.Empty)
                     return Visibility.Collapsed;
-                
+
                 return list.Any() ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             }
 
             return System.Windows.Visibility.Collapsed;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }
@@ -304,6 +368,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 {
                     return Visibility.Collapsed;
                 }
+
                 return Visibility.Visible;
             }
 
@@ -315,4 +380,49 @@ namespace IT008_AppHocAV.View.MainWindow
             throw new NotImplementedException();
         }
     }
+
+    public class ItemsLimiter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            int count;
+            if (Int32.TryParse((string)parameter, out count))
+            {
+                return ((IEnumerable<object>)value).Take(count);
+            }
+
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
+    public class NumberDefinitionToVisibility : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is List<Definition> definitions)
+            {
+                Console.WriteLine(definitions.Count);
+                if (definitions.Count > 5)
+                    return Visibility.Visible;
+                else
+                    return Visibility.Collapsed;
+                
+            }
+
+            return Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return Visibility.Visible;
+        }
+    }
+
+
 }

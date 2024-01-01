@@ -22,6 +22,8 @@
             <local:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
             <local:ListToVisibilityConverter x:Key="ListToVisibilityConverter"/>
             <local:MoreSyAntonymsVisibility x:Key="MoreSyAntonymsVisibility"/>
+            <local:ItemsLimiter x:Key="ItemsLimiter"/>
+            <local:NumberDefinitionToVisibility  x:Key="NumberDefinitionToVisibility"/>
             
         </ResourceDictionary>
 
@@ -39,7 +41,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" >
                             <StackPanel Orientation="Horizontal" Margin="0 60 0 0 " >
-                                <TextBox FontSize="28" FontWeight="Bold" Text="{Binding word}"/>
+                                <TextBox FontSize="28" FontWeight="Bold" Text="{Binding Word.word}"/>
                                 <CheckBox x:Name="RecallCheckBox"
                                           Checked="RecallCheckBox_OnChecked" Unchecked="RecallCheckBox_OnUnchecked"
                                           ToolTip="Vocabulary Recall" Margin="0 0 0 20"
@@ -93,7 +95,7 @@
                 
                 
                 <ItemsControl x:Name="MeaningsListview"
-                          ItemsSource="{Binding meanings}"
+                          ItemsSource="{Binding Word.meanings}"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
                           BorderThickness="0" 
@@ -107,7 +109,7 @@
                                 
                                 <Label FontSize="24" Foreground="#5d2fc1" FontWeight="Medium" Content="{Binding partOfSpeech}"></Label>
                                 <!-- definition container-->
-                                <ItemsControl  ItemsSource="{Binding definitions}"
+                                <ItemsControl  ItemsSource="{Binding definitions,Converter={StaticResource ItemsLimiter}, ConverterParameter=5 }"
                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                            ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                            BorderThickness="0" 
@@ -188,6 +190,7 @@
                                                 </StackPanel>
                                                 
                                                 <!-- end antonym -->
+                                               
                                                 
                                             </StackPanel>
                                             
@@ -196,6 +199,17 @@
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                                 <!--end definition container-->
+                                
+                                <Button Background="#fff8e4" Height="40" Width="auto"
+                                        HorizontalAlignment="Stretch" VerticalContentAlignment="Center"
+                                        Visibility="{Binding definitions,Converter={StaticResource NumberDefinitionToVisibility}}"
+                                        HorizontalContentAlignment="Left"
+                                        BorderThickness="0"
+                                        Margin="30 0 30  0"
+                                        Click="MoreDefinition_OnClick">
+                                    <Label Padding="5 0" Foreground="#3B6449" FontWeight="Medium" FontSize="16">+ More definition</Label>
+                                    
+                                </Button>
                                 
                                 <StackPanel Background="#fff8e4" 
                                             Orientation="Vertical"
@@ -214,9 +228,7 @@
                                             HorizontalContentAlignment="Left"
                                             BorderThickness="0"
                                             Click="MoreSyAntonym_OnClick">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                             <Label Padding="5 0" Foreground="#1d2a57" FontWeight="Medium" FontSize="16">+ More synonym and antonyms</Label>
-                                        </StackPanel>
                                     </Button>
                                     <StackPanel  Orientation="Horizontal"   Margin="50 0 0 0">
                                     <!-- synonyms -->
@@ -252,7 +264,7 @@
                                     </StackPanel>
                                      
                                 </StackPanel>
-                                </StackPanel>
+                            </StackPanel>
                                 
                             
                         </DataTemplate>
