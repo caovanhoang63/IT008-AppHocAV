@@ -42,6 +42,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             _sqlConnection = new SqlConnection(Settings.Default.LocalDBConnectionString);
             _authentication = new Authentication(_sqlConnection);
             _essayQ = new EssayQ(_sqlConnection);
+            _examQ = new ExamQ(_sqlConnection);
             _deskQ = new DeskQ(_sqlConnection);
             _cardQ = new CardQ(_sqlConnection);
             _userQ = new UserQ(_sqlConnection);

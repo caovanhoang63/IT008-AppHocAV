@@ -33,16 +33,18 @@
                 <!-- End Header -->
                 <Label Margin="0 20 0 0" FontSize="18">Level</Label>
                 <ComboBox Name="LevelCombobox" Background="Blue" FontSize="18">
-                    <ComboBoxItem Background="Transparent">Option 1</ComboBoxItem>
-                    <ComboBoxItem Background="Transparent">Option 2</ComboBoxItem>
+                    <ComboBoxItem Background="Transparent">Level 1</ComboBoxItem>
+                    <ComboBoxItem Background="Transparent">Level 2</ComboBoxItem>
                 </ComboBox>
 
                 <Label Margin="0 20 0 0" FontSize="18">Category</Label>
                 <ComboBox Name="Category" Background="White" FontSize="18">
-                    <ComboBoxItem Background="Transparent">Option 1</ComboBoxItem>
-                    <ComboBoxItem Background="Transparent">Option 2</ComboBoxItem>
+                    <ComboBoxItem Background="Transparent">Gramar</ComboBoxItem>
+                    <ComboBoxItem Background="Transparent">Vocabulary</ComboBoxItem>
                 </ComboBox>
-                <Button Margin="0 50 0 0"  Content="Start" DockPanel.Dock="Bottom" Click="Button_Click"/>
+                <Button Margin="0 50 0 0"  Width="200"  Content="Start" DockPanel.Dock="Bottom" Click="Button_Click" 
+                        Background="#DEEAF1"
+                        Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Center"/>
             </StackPanel>
         </Grid>
 

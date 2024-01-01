@@ -217,6 +217,7 @@
                 <Grid VerticalAlignment="Bottom" DockPanel.Dock="Right" Width="50" >
                     <Button Height="50" x:Name="ShowTakeNote" Click="ShowTakeNote_OnClick"
                             Background="Transparent" BorderThickness="0">
+                        <Button.ToolTip>Take Note</Button.ToolTip>
                         <Image Source="../Assets/Icon/TakeNoteIcon.png"></Image>
                     </Button>
                 </Grid>

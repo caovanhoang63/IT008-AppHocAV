@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -26,6 +28,7 @@ namespace IT008_AppHocAV
         
         #region Declare Fields
             private Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
+            public string NoteCache;
             private readonly LoginWindow _loginWindow;
         #endregion
         
@@ -151,8 +154,18 @@ namespace IT008_AppHocAV
             if (Note.Visibility != Visibility.Visible)
             {
                 Note.Visibility = Visibility.Visible;
-                TakeNotePage takeNotePage = new TakeNotePage();
-                Note.Content = takeNotePage;
+                if (NoteCache != null)
+                {
+                    TakeNotePage takeNotePage = new TakeNotePage(NoteCache);
+                    takeNotePage.NoteValueChanged += UpdateNoteCache;
+                    Note.Content = takeNotePage;
+                }
+                else 
+                {
+                    TakeNotePage takeNotePage = new TakeNotePage();
+                    takeNotePage.NoteValueChanged += UpdateNoteCache;
+                    Note.Content = takeNotePage;
+                }
             }
             else
             {
@@ -224,7 +237,7 @@ namespace IT008_AppHocAV
                     case "UserInfo":
                         page = new UserInfoPage(this);
                         break;
-                    
+
                     case "EditFlashCard":
                     {
                         if (_pageCache["FlashCard"] is FlashCardPage listcard)
@@ -289,13 +302,15 @@ namespace IT008_AppHocAV
                         break;
 
                     case "Exam":
-                        page = new DoExamPage();
+                        page = new DoExamPage(this);
                         break;
 
                     // Add more cases as needed...
 
              
                 }
+
+                
 
             return page;
             }
@@ -394,8 +409,12 @@ namespace IT008_AppHocAV
                 }
             }
 
-            #endregion
+        #endregion
 
+        private void UpdateNoteCache(object sender, string newNoteValue)
+        {
+            NoteCache = newNoteValue;
+        }
 
         private void UserInfo_OnClick(object sender, RoutedEventArgs e)
         {

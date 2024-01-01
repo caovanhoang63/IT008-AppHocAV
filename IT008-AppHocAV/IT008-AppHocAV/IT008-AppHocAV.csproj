@@ -157,6 +157,7 @@
     <Compile Include="Repositories\DbConnection\RecallRepository.cs" />
     <Compile Include="Repositories\DbConnection\Register.cs" />
     <Compile Include="Repositories\DbConnection\UserQ.cs" />
+    <Compile Include="Util\Converter.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
     <Compile Include="Services\PexelsImageAPI.cs" />
@@ -269,7 +270,12 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Styles\GptWritingPopUpStyle.xaml" />
+
     <Page Include="Assets\Styles\HomeStyle.xaml" />
+    <Page Include="Assets\Styles\RoundCheckbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Styles\MessageBoxStyle.xaml" />
     <Page Include="Assets\Styles\UserInfoStyle.xaml" />
     <Page Include="Assets\Styles\VocabularyRecallPageStyle.xaml" />
