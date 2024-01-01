@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Title="CTMessageBox" Height="300" Width="400">
+        Title="CTMessageBox" Height="200" Width="400">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../../Assets/Styles/MessageBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Assets/Styles/MessageBoxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Border  BorderBrush="LightSlateGray" 
-             BorderThickness="0" CornerRadius="0">
+    <Border   
+         BorderThickness="0" CornerRadius="20" Background="Transparent">
         <Grid  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -27,45 +27,29 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.Row="1" Grid.Column="0" 
-            Grid.RowSpan="2" Grid.ColumnSpan="2">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0,0" 
-                    EndPoint="0,1" Opacity="0.8">
-                        <GradientStop Color="#70A4B9" 
-                        Offset="0.0"/>
-                        <GradientStop Color="#CDDFE9" 
-                        Offset="1.0"/>
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
+            <Rectangle   Grid.Row="1" Grid.Column="0" Fill="#ECF0F1 "
+            Grid.RowSpan="2" Grid.ColumnSpan="2" >
+                 
             </Rectangle>
             <Rectangle Grid.Row="0" 
-            Grid.Column="0"  Grid.ColumnSpan="2">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0,0" 
-                    EndPoint="0,1" Opacity="0.5">
-                        <GradientStop Color="#26508A" 
-                        Offset="0.0"/>
-                        <GradientStop Color="#2A739E" 
-                        Offset="1.0"/>
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
+            Grid.Column="0"  Grid.ColumnSpan="2" Fill="#DEEAF1">
+                
             </Rectangle>
             <Grid Grid.Row="0" Grid.ColumnSpan="2" 
             MinHeight="40" >
                 <TextBlock Margin="5,1,0,1" Name="MessageTitle"  
                 FontWeight="Bold" TextTrimming="CharacterEllipsis" 
                 LineHeight="22" FontSize="16" 
-                VerticalAlignment="Center" Foreground="White"/>
+                VerticalAlignment="Center" Foreground="Black"/>
             </Grid>
-            <Image Name="img" Margin="5" Grid.Row="1" 
-            Grid.Column="0" Width="50" 
-            Height="50"  Stretch="Fill" />
+            <Image Name="img" Margin="20 0 10 0" Grid.Row="1" 
+            Grid.Column="0" Width="40" 
+            Height="40"  Stretch="Fill" />
             <TextBlock Margin="10,5,10,5"   
             VerticalAlignment="Center" 
             TextWrapping="Wrap" Name="txtMsg" 
             Grid.Row="1" 
-                    Grid.Column="1" FontSize="14" 
+                    Grid.Column="1" FontSize="16" 
                     LineHeight="20"  />
             <Grid Grid.Row="2" Grid.ColumnSpan="2"  
             Grid.Column="0" >
@@ -73,7 +57,7 @@
                 HorizontalAlignment="Right" >
 
                     <Button Name="btnOk" Content="OK" 
-                    Margin="3,5" MinWidth="70" Height="35"  
+                    Margin="3,5" MinWidth="70" Height="30"  
                     Click="Button_Click" Foreground="Black" 
                     FontSize="14" 
                             Style="{StaticResource MessageBoxButtonStyle}"     
@@ -82,7 +66,7 @@
                             VerticalContentAlignment="Center" 
                             HorizontalContentAlignment="Center" />
                     <Button Name="btnYes" Content="Yes"  
-                    Margin="3,5" MinWidth="70" Height="35" 
+                    Margin="3,5" MinWidth="70" Height="30" 
                     Click="Button_Click" Foreground="Black" FontSize="14" 
                             Style="{StaticResource MessageBoxButtonStyle}"    
                             Background="#b6dbd6" VerticalAlignment="Center" 
@@ -90,7 +74,7 @@
                             VerticalContentAlignment="Center" 
                             HorizontalContentAlignment="Center"/>
                     <Button Name="btnNo" Content="No"  
-                    Margin="3,5" MinWidth="70" Height="35" 
+                    Margin="3,5" MinWidth="70" Height="30" 
                     Click="Button_Click" Foreground="Black" 
                     FontSize="14" 
                               Style="{StaticResource MessageBoxButtonStyle}"   
@@ -100,7 +84,7 @@
                               HorizontalContentAlignment="Center" />
                     <Button Name="btnCancel" Margin="3,5" 
                     Content="Cancel" MinWidth="70" 
-                    Height="35" Click="Button_Click"
+                    Height="30" Click="Button_Click"
                                 Style="{StaticResource MessageBoxButtonStyle}" 
                                 Foreground="Black" 
                                 Background="#dbb6b6" FontSize="14" 

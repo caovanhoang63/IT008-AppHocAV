@@ -34,7 +34,7 @@ namespace IT008_AppHocAV.View
 
             private void BtnClose_OnClick(object sender, RoutedEventArgs e)
             {
-                MessageBoxResult result =  CTMessageBox.Show("Are you sure want to continue?","",MessageBoxButton.YesNo);
+                MessageBoxResult result =  CTMessageBox.Show("Message","Are you sure want to continue?",MessageBoxType.ConfirmationWithYesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     _loginWindow.Show();
@@ -54,11 +54,13 @@ namespace IT008_AppHocAV.View
                 string gender = GetRadioButonsValue();
 
                 if (PasswordBox.Password != ConfirmPasswordBox.Password)
-                {
+                {/*
                     MessageBox.Show(
                         "Your passwords do not match", "",
-                        MessageBoxButton.OK);
-                    return;
+                        MessageBoxButton.OK);*/
+
+                  MessageBoxResult result = CTMessageBox.Show("Warning", "Your passwords do not match!", MessageBoxType.Warning);
+                return;
                 }
 
                 User user = new User(

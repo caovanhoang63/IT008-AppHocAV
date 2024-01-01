@@ -153,7 +153,7 @@ namespace IT008_AppHocAV.View.CustomMessageBox
         }
         private void SetImage(string imageName)
         {
-            string uri = string.Format("/Resources/images/{0}", imageName);
+            string uri = string.Format("/Assets/MessageBoxIcon/{0}", imageName);
             var uriSource = new Uri(uri, UriKind.RelativeOrAbsolute);
             img.Source = new BitmapImage(uriSource);
         }

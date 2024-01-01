@@ -191,7 +191,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-
     <Compile Include="View\MainWindow\FlashCardPage.xaml.cs">
       <DependentUpon>FlashCardPage.xaml</DependentUpon>
     </Compile>
@@ -210,36 +209,27 @@
     <Compile Include="View\MainWindow\SearchingPage.xaml.cs">
       <DependentUpon>SearchingPage.xaml</DependentUpon>
     </Compile>
-
-
     <Compile Include="View\MainWindow\TranslatePage.xaml.cs">
       <DependentUpon>TranslatePage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\CreateEssayPage.xaml.cs">
       <DependentUpon>CreateEssayPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\UserInfoPage.xaml.cs">
       <DependentUpon>UserInfoPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\VocabularyRecallPage.xaml.cs">
       <DependentUpon>VocabularyRecallPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\WordPage.xaml.cs">
       <DependentUpon>WordPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\ResetPasswordWindow.xaml.cs">
       <DependentUpon>ResetPasswordWindow.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -279,21 +269,13 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Styles\GptWritingPopUpStyle.xaml" />
-
     <Page Include="Assets\Styles\HomeStyle.xaml" />
-
     <Page Include="Assets\Styles\MessageBoxStyle.xaml" />
-
     <Page Include="Assets\Styles\UserInfoStyle.xaml" />
-
     <Page Include="Assets\Styles\VocabularyRecallPageStyle.xaml" />
-
     <Page Include="Assets\Styles\WordPageStyle.xaml" />
-
     <Page Include="Assets\Styles\WriteContentPageStyle.xaml" />
-
     <Page Include="View\CustomMessageBox\CTMessageBox.xaml" />
-
     <Page Include="View\MainWindow\CreateExam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -360,6 +342,11 @@
     <Resource Include="Assets\Icon\VocabularyRecallIcon.png" />
     <Resource Include="Assets\Icon\PlusIcon1.png" />
     <Content Include="Assets\Icon\ShareIcon.jpg" />
+    <Resource Include="Assets\MessageBoxIcon\Error.png" />
+    <Resource Include="Assets\MessageBoxIcon\Information.png" />
+    <Resource Include="Assets\MessageBoxIcon\Question.png" />
+    <Resource Include="Assets\MessageBoxIcon\Successed.png" />
+    <Resource Include="Assets\MessageBoxIcon\Warning.png" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-1.png" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-2.png" />
     <Content Include="Util\SendResetPasswordMail\Template\index.html" />
@@ -406,9 +393,7 @@
     <Resource Include="Assets\Icon\MaxSizeIcon.png" />
     <Resource Include="Assets\Icon\MaxiumSizeIcon.png" />
     <Resource Include="Assets\Icon\LexicalItemsIcon.png" />
-
     <Resource Include="Assets\Icon\nextbuttonFl.png" />
-
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -421,7 +406,6 @@
     <Compile Include="View\MainWindow\ShowListEssayPage.xaml.cs">
       <DependentUpon>ShowListEssayPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\ShowFlashCardPage.xaml.cs">
       <DependentUpon>ShowFlashCardPage.xaml</DependentUpon>
     </Compile>
@@ -431,11 +415,9 @@
     <Compile Include="View\MainWindow\WritingContentPage.xaml.cs">
       <DependentUpon>WritingContentPage.xaml</DependentUpon>
     </Compile>
- 
     <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
       <DependentUpon>TakeNotePage.xaml</DependentUpon>
     </Compile>
-
     <Page Include="Assets\Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -463,27 +445,18 @@
       <DependentUpon>TakeNoteWindow.xaml</DependentUpon>
     </Compile>
     <Resource Include="View\MainWindow\background.png" />
-
-      <Compile Include="Models\SortExamOptions.cs" />
-      <Compile Include="Models\SortFlashCardDesk.cs" />
-      <Compile Include="Models\Writing\Essay.cs" />
-      <Compile Include="Models\Writing\GptWritingResponse.cs" />
-      <Compile Include="Models\Writing\SortEssayOptions.cs" />
-      <Compile Include="Repositories\DbConnection\CardQ.cs" />
-      <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
-      <Compile Include="Services\ChatGPT.cs" />
- 
-      <Compile Include="View\MainWindow\EditFlashCard.xaml.cs">
-          <DependentUpon>EditFlashCard.xaml</DependentUpon>
-      </Compile>
-
-
- 
+    <Compile Include="Models\SortExamOptions.cs" />
+    <Compile Include="Models\SortFlashCardDesk.cs" />
+    <Compile Include="Models\Writing\Essay.cs" />
+    <Compile Include="Models\Writing\GptWritingResponse.cs" />
+    <Compile Include="Models\Writing\SortEssayOptions.cs" />
+    <Compile Include="Repositories\DbConnection\CardQ.cs" />
+    <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
+    <Compile Include="Services\ChatGPT.cs" />
+    <Compile Include="View\MainWindow\EditFlashCard.xaml.cs">
+      <DependentUpon>EditFlashCard.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
-    
-
-
-
-   
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
