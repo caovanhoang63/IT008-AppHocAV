@@ -34,15 +34,20 @@ namespace IT008_AppHocAV.View.MainWindow
         private readonly IT008_AppHocAV.MainWindow _mainWindow;
         private int _remainingTimeInSeconds;
         private int _timetaken;
+        private int level;
+        private string category;
         private DispatcherTimer _countdownTimer;
         #endregion
 
         #region Constructor
-        public DoExamPage(IT008_AppHocAV.MainWindow mainWindow)
+        public DoExamPage(IT008_AppHocAV.MainWindow mainWindow, int lvl, string cate)
         {
             InitializeComponent();
             this._mainWindow = mainWindow;
             _timetaken = 0;
+            level = lvl;
+            category = cate;
+
             _question = new List<Question>();
             _question = _mainWindow.DbConnection.ExamRepository.GetRandomQuestion();
             Result = GetCorrectAnswer(_question);
@@ -128,7 +133,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 int score = Scoring_function(Answer, Result);
                 MessageBox.Show("Your score is " + score.ToString());
                 
-                Exam exam = new Exam(_mainWindow.UserId, 1, score, _timetaken);
+                Exam exam = new Exam(_mainWindow.UserId, level, category, score, _timetaken);
                 _mainWindow.DbConnection.ExamRepository.SaveResult(exam);
                 _mainWindow.PageCache.Remove("ShowListExam");
                 _mainWindow.PageCache.Remove("DoExamPage");
@@ -256,7 +261,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
                 int score = Scoring_function(Answer, Result);
                 MessageBox.Show("Your score is " + score.ToString());
-                Exam exam = new Exam(_mainWindow.UserId, 1, score,_timetaken);
+                Exam exam = new Exam(_mainWindow.UserId, level,category, score,_timetaken);
                 _mainWindow.DbConnection.ExamRepository.SaveResult(exam);
                 _mainWindow.PageCache.Remove("DoExamPage");
                 _mainWindow.PageCache.Remove("ShowListExam");

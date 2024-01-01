@@ -12,6 +12,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../../Assets/Styles/BaseStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../../Assets/Styles/RoundComboBox.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -32,18 +33,22 @@
 
                 <!-- End Header -->
                 <Label Margin="0 20 0 0" FontSize="18">Level</Label>
-                <ComboBox Name="LevelCombobox" Background="Blue" FontSize="18">
-                    <ComboBoxItem Background="Transparent">Level 1</ComboBoxItem>
-                    <ComboBoxItem Background="Transparent">Level 2</ComboBoxItem>
+                <ComboBox Name="LevelCombobox" Style="{DynamicResource roundedCornersComboBox}" 
+                          Background="Blue" FontSize="18" 
+                          Width="330" Height="30" SelectionChanged="LevelCombobox_SelectionChanged">
+                    <ComboBoxItem Background="Transparent">Easy</ComboBoxItem>
+                    <ComboBoxItem Background="Transparent">Advanced</ComboBoxItem>
                 </ComboBox>
 
                 <Label Margin="0 20 0 0" FontSize="18">Category</Label>
-                <ComboBox Name="Category" Background="White" FontSize="18">
+                <ComboBox Name="Category" Style="{DynamicResource roundedCornersComboBox}" 
+                          Background="White" FontSize="18" 
+                          Width="330" Height="30" SelectionChanged="Category_SelectionChanged">
                     <ComboBoxItem Background="Transparent">Gramar</ComboBoxItem>
                     <ComboBoxItem Background="Transparent">Vocabulary</ComboBoxItem>
                 </ComboBox>
-                <Button Margin="0 50 0 0"  Width="200"  Content="Start" DockPanel.Dock="Bottom" Click="Button_Click" 
-                        Background="#DEEAF1"
+                <Button Margin="0 50 0 0"  Name="StartExam" Width="200" Height="40"  Content="Start" DockPanel.Dock="Bottom" Click="Button_Click" 
+                        Background="#DEEAF1" IsEnabled="False"
                         Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Center"/>
             </StackPanel>
         </Grid>

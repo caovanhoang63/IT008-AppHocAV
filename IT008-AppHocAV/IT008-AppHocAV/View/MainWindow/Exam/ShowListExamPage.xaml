@@ -88,7 +88,7 @@
             <ListView.ItemTemplate >
 
                 <DataTemplate>
-                    <Button Height="100" Width="700"
+                    <Button Height="120" Width="700"
                                     Background="#F4EEEE"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Margin="  0 8 "
@@ -103,29 +103,37 @@
                                 <RowDefinition Height="50"></RowDefinition>
                                 <RowDefinition Height="50"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Margin="20 10 10 10" FontSize="15">
+                            <Label Grid.Row="0" Grid.Column="0"  Margin="20 10 10 10" FontSize="15" HorizontalContentAlignment="Left">
                                 <TextBlock>
-                                                <Run Text="Level: "/>
-                                                <Run Text="{Binding Level}"/>
+                                        <Run Text="Level:"/>
+                                        <Run Text="{Binding Level}"/>
+
                                 </TextBlock>
                             </Label>
-                            <Label Grid.Row="1" Grid.Column="0" Margin="20 10 10 10" FontSize="15">
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="20 10 10 10" FontSize="15" HorizontalContentAlignment="Right">
+                                <TextBlock>
+                                        <Run Text="Category: "/>
+                                        <Run Text="{Binding Category}"/>
+
+                                </TextBlock>
+                            </Label>
+                            <Label Grid.Row="0" Grid.Column="1" Margin="60 10 10 10" FontSize="15" HorizontalContentAlignment="Right">
                                 <TextBlock>
                                                 <Run Text="Score: "/>
                                                 <Run Text="{Binding Score}"/>
                                 </TextBlock>
                             </Label>
 
-                            <Label Grid.Row="0" Grid.Column="1" Margin="10 10 10 10" FontSize="15">
+                            <Label Grid.Row="1" Grid.Column="1" Margin="10 10 10 10" FontSize="15">
                                 <TextBlock>
-                                        <Run Text="Time completed: "/>
+                                        <Run Text="Time completed:"/>
                                         <Run Text="{Binding TimeTaken}"/>
                                 </TextBlock>
                             </Label>
 
-                            <Label Grid.Row="1" Grid.Column="1" Margin="10 10 10 10" FontSize="15">
+                            <Label Grid.Row="1" Grid.Column="0" Margin="10 10 10 10" FontSize="15">
                                 <TextBlock>
-                                                <Run Text="Create time: "/>
+                                                <Run Text="Create time:"/>
                                                 <Run Text="{Binding CreatedAt}"/>
                                 </TextBlock>
                             </Label>

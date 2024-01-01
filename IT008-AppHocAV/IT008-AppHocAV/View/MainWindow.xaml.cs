@@ -306,7 +306,7 @@ namespace IT008_AppHocAV
                         break;
 
                     case "Exam":
-                        page = new DoExamPage(this);
+                        page = new DoExamPage(this,LevelValue,CategoryValue);
                         break;
 
                     // Add more cases as needed...
@@ -425,5 +425,16 @@ namespace IT008_AppHocAV
         {
             NavigateToPage("UserInfo");
         }
+        public int LevelValue { get; set; }
+        public void SetLevelValue(int value)
+        {
+            LevelValue = value;
+        }
+        public string CategoryValue { get; set; }
+        public void SetCategoryValue(string value)
+        {
+            CategoryValue = value;
+        }
+
     }
 }

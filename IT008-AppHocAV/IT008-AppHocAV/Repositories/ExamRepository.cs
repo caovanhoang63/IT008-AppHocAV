@@ -17,7 +17,6 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         private readonly SqlConnection _sqlConnection;
         private List<Question> Questions;
 
-
         public ExamRepository(SqlConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
@@ -31,19 +30,19 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             int a = random.Next(1, 81);
             questionIds.Add(a);
             queslist += a.ToString();
-            while (questionIds.Count < 20) 
+            while (questionIds.Count < 20)
             {
                 int newId = random.Next(1, 81);
-                if (!questionIds.Contains(newId)) 
+                if (!questionIds.Contains(newId))
                 {
-                    questionIds.Add(newId); 
+                    questionIds.Add(newId);
                     queslist += "," + newId;
                 }
             }
             queslist += ")";
             try
             {
-                string query = "Select * from question where id in"+queslist;
+                string query = "Select * from question where id in" + queslist;
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     _sqlConnection.Open();
@@ -86,9 +85,11 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         public List<Models.Exam> SelectListExamByUserId(int userId)
         {
             List<Models.Exam> result = new List<Models.Exam>();
+
+
             try
             {
-                string query = " SELECT id,user_id,level,score,created_at,time_taken" +
+                string query = " SELECT id,user_id,level,category,score,created_at,time_taken" +
                                " FROM [test] " +
                                " WHERE user_id = " + userId + " ORDER BY created_at desc";
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
@@ -102,16 +103,13 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                                 reader.GetInt32(reader.GetOrdinal("id")),
                                 reader.GetInt32(reader.GetOrdinal("user_id")),
                                 reader.GetByte(reader.GetOrdinal("level")),
+                                reader.GetString(reader.GetOrdinal("category")),
                                 reader.GetByte(reader.GetOrdinal("score")),
                                 reader.GetDateTime(reader.GetOrdinal("created_at")),
                                 reader.GetInt32(reader.GetOrdinal("time_taken")));
                             result.Add(Exam);
-                            MessageBox.Show(reader.GetInt32(reader.GetOrdinal("time_taken")).ToString());
                         }
                     }
-
-                    MessageBox.Show(result[1].Id.ToString());
-
                 }
                 return result;
             }
@@ -131,12 +129,13 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         {
             try
             {
-                string query = "INSERT INTO [test] (user_id,level,score,created_at,time_taken) " +
-                    "VALUES (@user_id,@level,@score,GETDATE(),@time_taken)";
+                string query = "INSERT INTO [test] (user_id,level,category,score,created_at,time_taken) " +
+                    "VALUES (@user_id,@level,@cate,@score,GETDATE(),@time_taken)";
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     command.Parameters.AddWithValue("@user_id", exam.Userid);
-                    command.Parameters.AddWithValue("@level", exam.Level);
+                    command.Parameters.AddWithValue("@level", Int32.Parse(exam.Level));
+                    command.Parameters.AddWithValue("@cate", exam.Category);
                     command.Parameters.AddWithValue("@score", exam.Score);
                     command.Parameters.AddWithValue("@time_taken", Int32.Parse(exam.TimeTaken));
                     _sqlConnection.Open();
@@ -190,6 +189,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
 
         }
+
 
     }
 }

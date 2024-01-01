@@ -58,10 +58,10 @@
                                          Panel.ZIndex="1"
                                          HorizontalAlignment="Right"
                                          VerticalAlignment="Center"
-                                         BorderBrush="Transparent"
+                                         BorderBrush="LightGray"
                                          Background="Transparent"
                                          Height="{TemplateBinding Height}"
-                                         Width="299"
+                                         Width="329"
                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                          HorizontalContentAlignment="Right"
                                          ClickMode="Press">
