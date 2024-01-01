@@ -31,15 +31,15 @@
             
             <StackPanel Grid.Column="0" Margin="50 35 0 0"
                         HorizontalAlignment="Left">
-                <Label FontSize="35" FontWeight="Bold">Explore ELF</Label>
-                <Label FontSize="16" FontWeight="Medium"> English Dictionary</Label>
+                <Label FontSize="38" FontWeight="Bold">Explore ELF</Label>
+                <Label FontSize="18" FontWeight="Medium"> English Dictionary</Label>
                 <Button Click="NavigateToSearchPage" Margin="30 0 0 0" HorizontalAlignment="Left" Style="{DynamicResource TransparentButtonStyle}" Width="auto" Height="auto">
-                    <Label FontSize="16" FontWeight="Regular" >
+                    <Label FontSize="18" FontWeight="Regular" >
                         <TextBlock  TextDecorations="Underline">English - English</TextBlock>
                     </Label>
                 </Button>
                 <Button Click="NavigateToTranslate_OnClick" Margin="30 0 0 0" HorizontalAlignment="Left" Style="{DynamicResource TransparentButtonStyle}" Width="auto" Height="auto">
-                    <Label FontSize="16" FontWeight="Regular">
+                    <Label FontSize="18" FontWeight="Regular">
                         <TextBlock TextDecorations="Underline">
                             English - Vietnamese (by Google Translate)
                         </TextBlock>
@@ -50,7 +50,7 @@
             <Image Grid.Column="1" Source="../../Assets/Image/Logo.png"></Image>
         </Grid>
         
-        <Grid MaxWidth="750"  Grid.Row="1" Margin="0 30 0 0" HorizontalAlignment="Stretch">
+        <Grid MaxWidth="750"  Grid.Row="1" Margin="0 20 0 0" HorizontalAlignment="Stretch">
             
             <Grid.ColumnDefinitions>
                 <ColumnDefinition ></ColumnDefinition>
@@ -58,7 +58,7 @@
                 <ColumnDefinition ></ColumnDefinition>
             </Grid.ColumnDefinitions>
             
-            <Grid Grid.Column="0" Width="180" Height="200" Style="{DynamicResource ShadowingBorder}" >
+            <Grid Grid.Column="0" Width="180" Height="230" Style="{DynamicResource ShadowingBorder}" >
                 <StackPanel >
                     <Border Width="130"
                             Height="50"
@@ -73,13 +73,13 @@
                         </Grid>
                     </Border>
                     <StackPanel Margin="18 10" Width="125">
-                        <TextBlock FontSize="16"
+                        <TextBlock FontSize="18"
                                    FontWeight="Medium">Exam</TextBlock>
-                        <TextBlock Height="60" 
+                        <TextBlock Height="90" 
                                    TextWrapping="Wrap"
-                                   FontSize="12"
+                                   FontSize="14"
                                    FontWeight="Light">Review your grammar and vocabulary.</TextBlock>
-                        <Button Click="NavigateToExamPage_OnClick" Height="25" Margin="0 10 0 0 " Background="White">
+                        <Button Click="NavigateToExamPage_OnClick" Height="30" Margin="0 10 0 0 " Background="White">
                             Let's Test
                         </Button>
                     </StackPanel>
@@ -88,7 +88,7 @@
             
             
             
-            <Grid Width="180" Height="200" Grid.Column="1" Style="{DynamicResource ShadowingBorder}">
+            <Grid Width="180" Height="230" Grid.Column="1" Style="{DynamicResource ShadowingBorder}">
                 <StackPanel >
                     <Border Width="130"
                             Height="50"
@@ -103,13 +103,13 @@
                         </Grid>
                     </Border>
                     <StackPanel Margin="18 10" Width="125">
-                        <TextBlock FontSize="16"
+                        <TextBlock FontSize="18"
                                    FontWeight="Medium">Writing</TextBlock>
-                        <TextBlock Height="60" 
+                        <TextBlock Height="90" 
                             TextWrapping="Wrap"
-                            FontSize="12"
+                            FontSize="16"
                             FontWeight="Light">Create your essay and enhance it with AI.</TextBlock>
-                        <Button Click="NavigateToWriting_OnClick" Height="25"  Margin="0 10 0 0 " Background="White">
+                        <Button Click="NavigateToWriting_OnClick" Height="30"  Margin="0 10 0 0 " Background="White">
                             Write now
                         </Button>
                     </StackPanel>
@@ -118,7 +118,7 @@
             
             
             
-            <Grid Width="180" Height="200" Grid.Column="2" Style="{DynamicResource ShadowingBorder}">
+            <Grid Width="180" Height="230" Grid.Column="2" Style="{DynamicResource ShadowingBorder}">
                 <StackPanel >
                     <Border Width="130"
                             Height="50"
@@ -133,13 +133,13 @@
                         </Grid>
                     </Border>
                     <StackPanel Margin="18 10" Width="125">
-                        <TextBlock FontSize="16"
+                        <TextBlock FontSize="18"
                                    FontWeight="Medium">Flash card</TextBlock>
-                        <TextBlock Height="60"
+                        <TextBlock Height="90"
                             TextWrapping="Wrap"
-                            FontSize="12"
+                            FontSize="16"
                             FontWeight="Light">Make your own flashcards to review your knowledge.</TextBlock>
-                        <Button Click="NavigateToFlashCard_OnClick" Height="25"  Margin="0 10 0 0 " Background="White">
+                        <Button Click="NavigateToFlashCard_OnClick" Height="30"  Margin="0 10 0 0 " Background="White">
                             Let's Make
                         </Button>
                     </StackPanel>
