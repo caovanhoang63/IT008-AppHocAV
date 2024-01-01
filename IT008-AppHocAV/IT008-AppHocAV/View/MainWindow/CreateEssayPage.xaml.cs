@@ -52,7 +52,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 _essay.CreatedAt =  DateTime.Now; 
                 _essay.UpdatedAt =  DateTime.Now;
                 
-                _essay.Id =  _mainWindow.DbConnection.EssayQ.CreateEssay(_essay);
+                _essay.Id =  _mainWindow.DbConnection.EssayRepository.CreateEssay(_essay);
                 if (_essay.Id == 0)
                 {
                     MessageBox.Show("Fail to create new essay!");

@@ -26,7 +26,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 InitializeComponent();
                 this._mainWindow = mainWindow;
 
-                _data = _mainWindow.DbConnection.EssayQ.SelectListEssayByUserId(_mainWindow.UserId);
+                _data = _mainWindow.DbConnection.EssayRepository.SelectListEssayByUserId(_mainWindow.UserId);
                 _currentEssay = null;
                 ListEssayListView.ItemsSource = _data;
             }
@@ -51,7 +51,7 @@ namespace IT008_AppHocAV.View.MainWindow
             private void ShowEssayButton_OnClick(object sender, RoutedEventArgs e)
             {
                 Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;
-                _currentEssay = _mainWindow.DbConnection.EssayQ.SelectEssayById(modelEssay.Id);
+                _currentEssay = _mainWindow.DbConnection.EssayRepository.SelectEssayById(modelEssay.Id);
                 _mainWindow.NavigateToPage("ShowEssay");
             }
 
@@ -63,7 +63,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 if (result == MessageBoxResult.Yes)
                 {
                     Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;
-                    if (_mainWindow.DbConnection.EssayQ.DeleteEssayById(modelEssay.Id))
+                    if (_mainWindow.DbConnection.EssayRepository.DeleteEssayById(modelEssay.Id))
                     {
 
                         foreach (Essay essay in _data)
@@ -201,7 +201,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             e.Handled = true;
             Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;
-            modelEssay = _mainWindow.DbConnection.EssayQ.SelectEssayById(modelEssay.Id);
+            modelEssay = _mainWindow.DbConnection.EssayRepository.SelectEssayById(modelEssay.Id);
             _mainWindow.Content.Navigate(new WritingContentPage(_mainWindow, modelEssay));
         }
     }

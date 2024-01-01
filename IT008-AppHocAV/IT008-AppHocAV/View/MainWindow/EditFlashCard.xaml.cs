@@ -39,10 +39,10 @@ namespace IT008_AppHocAV.View.MainWindow
             this._data= FlashCardPage.CurrentCard;
             _datatemp = new ObservableCollection<FlashCard>();
 
-            _data.FlashCards = _mainWindow.DbConnection.CardQ.SelectCardByID(_data.Id);
+            _data.FlashCards = _mainWindow.DbConnection.CardRepository.SelectCardByID(_data.Id);
 
             // Chuyển đổi List<FlashCard> thành ObservableCollection<FlashCard>
-            ObservableCollection<FlashCard> flashCardCollection = new ObservableCollection<FlashCard>(_mainWindow.DbConnection.CardQ.SelectCardByID(_data.Id));
+            ObservableCollection<FlashCard> flashCardCollection = new ObservableCollection<FlashCard>(_mainWindow.DbConnection.CardRepository.SelectCardByID(_data.Id));
 
             // Gán vào _datatemp
             _datatemp = flashCardCollection;
@@ -73,12 +73,12 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {   //update desk
-            _mainWindow.DbConnection.DeskQ.UpdateDeskContent(_data.Id,_data.Quantity,TitleTextBox.Text,DescriptionTextBox.Text);
+            _mainWindow.DbConnection.DeskRepository.UpdateDeskContent(_data.Id,_data.Quantity,TitleTextBox.Text,DescriptionTextBox.Text);
              // update card
             foreach( FlashCard item in LvListCard.ItemsSource )
             {
                 
-                _mainWindow.DbConnection.CardQ.UpdateCardContent(item.Id, item.Question, item.Answer,item.Image);
+                _mainWindow.DbConnection.CardRepository.UpdateCardContent(item.Id, item.Question, item.Answer,item.Image);
             }    
             MessageBoxResult result = MessageBox.Show("Submit successes! Do you want to back to List FlashCard?", "", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
@@ -97,9 +97,9 @@ namespace IT008_AppHocAV.View.MainWindow
             card.ImagePath = null;
             _data.Quantity++;
             card.DeskId = _data.Id;
-            card.Id = _mainWindow.DbConnection.CardQ.SelectTopId() +1;
+            card.Id = _mainWindow.DbConnection.CardRepository.SelectTopId() +1;
 
-            if (_mainWindow.DbConnection.CardQ.CreateCard(card))
+            if (_mainWindow.DbConnection.CardRepository.CreateCard(card))
             {
                 _data.FlashCards.Add(card);
                 _datatemp.Add(card);
@@ -261,7 +261,7 @@ namespace IT008_AppHocAV.View.MainWindow
             FlashCard modelCard = (FlashCard)((FrameworkElement)sender).DataContext;
 
 
-            if (_mainWindow.DbConnection.CardQ.DeleteCardById(modelCard.Id))
+            if (_mainWindow.DbConnection.CardRepository.DeleteCardById(modelCard.Id))
             {
 
 

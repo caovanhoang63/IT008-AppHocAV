@@ -44,7 +44,7 @@ namespace IT008_AppHocAV.View.MainWindow
             this._mainWindow = mainWindow;
             _timetaken = 0;
             _question = new List<Question>();
-            _question = _mainWindow.DbConnection.ExamQ.GetRandomQuestion();
+            _question = _mainWindow.DbConnection.ExamRepository.GetRandomQuestion();
             Result = GetCorrectAnswer(_question);
             ListQuestionListView.ItemsSource = _question;
             InitializeCountdownTimer();
@@ -129,7 +129,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 MessageBox.Show("Your score is " + score.ToString());
                 
                 Exam exam = new Exam(_mainWindow.UserId, 1, score, _timetaken);
-                _mainWindow.DbConnection.ExamQ.SaveResult(exam);
+                _mainWindow.DbConnection.ExamRepository.SaveResult(exam);
                 _mainWindow.PageCache.Remove("ShowListExam");
                 _mainWindow.PageCache.Remove("DoExamPage");
                 _mainWindow.NavigateToPage("ShowListExam");
@@ -257,7 +257,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 int score = Scoring_function(Answer, Result);
                 MessageBox.Show("Your score is " + score.ToString());
                 Exam exam = new Exam(_mainWindow.UserId, 1, score,_timetaken);
-                _mainWindow.DbConnection.ExamQ.SaveResult(exam);
+                _mainWindow.DbConnection.ExamRepository.SaveResult(exam);
                 _mainWindow.PageCache.Remove("DoExamPage");
                 _mainWindow.PageCache.Remove("ShowListExam");
                 _mainWindow.NavigateToPage("ShowListExam");

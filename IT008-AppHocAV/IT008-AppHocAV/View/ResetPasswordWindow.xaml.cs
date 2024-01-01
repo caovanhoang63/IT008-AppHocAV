@@ -93,7 +93,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private async void ContinueButton_OnClick(object sender, RoutedEventArgs e)
         {
             string email = EmailTextBox.Text.Trim();
-            _id =  _dbConnection.UserQ.FindIdByEmail(email);
+            _id =  _dbConnection.UserRepository.FindIdByEmail(email);
             if (_id == -1)
             {
                 MessageBox.Show("Email does not exist!");
@@ -165,7 +165,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 return;
             }
 
-            if (_dbConnection.UserQ.UpdatePasswordById(_id, PasswordBox.Password))
+            if (_dbConnection.UserRepository.UpdatePasswordById(_id, PasswordBox.Password))
             {
                 MessageBox.Show("Password was changed!");
                 if (_loginWindow != null)

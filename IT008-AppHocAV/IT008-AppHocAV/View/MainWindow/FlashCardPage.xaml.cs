@@ -23,7 +23,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             InitializeComponent();
             this._mainWindow = mainWindow;
-            _data= _mainWindow.DbConnection.DeskQ.SelectListDeskByUserID(_mainWindow.UserId);
+            _data= _mainWindow.DbConnection.DeskRepository.SelectListDeskByUserID(_mainWindow.UserId);
             _currentCard= null;
             lvListFlash.ItemsSource = _data;
 
@@ -50,7 +50,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
             
             var modelCard = (ListFlashCard)((FrameworkElement)sender).DataContext;
-            _currentCard = _mainWindow.DbConnection.DeskQ.SelectDeskById(modelCard.Id);
+            _currentCard = _mainWindow.DbConnection.DeskRepository.SelectDeskById(modelCard.Id);
             _mainWindow.NavigateToPage("ShowFlashCard");
  
         }
@@ -62,7 +62,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             e.Handled = true;
             var modelCard=  (ListFlashCard)((FrameworkElement)sender).DataContext;
-           _currentCard = _mainWindow.DbConnection.DeskQ.SelectDeskById(modelCard.Id);
+           _currentCard = _mainWindow.DbConnection.DeskRepository.SelectDeskById(modelCard.Id);
             _mainWindow.NavigateToPage("EditFlashCard");
 
         }
@@ -80,7 +80,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
                 ListFlashCard modelCard = (ListFlashCard)((FrameworkElement)sender).DataContext;
             
-                if (_mainWindow.DbConnection.DeskQ.DeleteDeskById(modelCard.Id))
+                if (_mainWindow.DbConnection.DeskRepository.DeleteDeskById(modelCard.Id))
                 {
 
 

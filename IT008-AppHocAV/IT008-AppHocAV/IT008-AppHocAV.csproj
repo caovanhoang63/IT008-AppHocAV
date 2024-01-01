@@ -150,13 +150,13 @@
     <Compile Include="Models\VocabularyRecallLog.cs" />
     <Compile Include="Repositories\DbConnection\Authentication.cs" />
     <Compile Include="Repositories\DbConnection\DbConnection.cs" />
-    <Compile Include="Repositories\DbConnection\DeskQ.cs" />
+    <Compile Include="Repositories\DbConnection\DeskRepository.cs" />
     <Compile Include="Repositories\DbConnection\DictionaryRepository.cs" />
-    <Compile Include="Repositories\DbConnection\EssayQ.cs" />
-    <Compile Include="Repositories\DbConnection\ExamQ.cs" />
+    <Compile Include="Repositories\DbConnection\EssayRepository.cs" />
+    <Compile Include="Repositories\DbConnection\ExamRepository.cs" />
     <Compile Include="Repositories\DbConnection\RecallRepository.cs" />
-    <Compile Include="Repositories\DbConnection\Register.cs" />
-    <Compile Include="Repositories\DbConnection\UserQ.cs" />
+    <Compile Include="Repositories\DbConnection\RegisterRepository.cs" />
+    <Compile Include="Repositories\DbConnection\UserRepository.cs" />
     <Compile Include="Util\Converter.cs" />
     <Compile Include="Services\DictionaryAPI.cs" />
     <Compile Include="Services\GoogleTranslateAPI.cs" />
@@ -466,8 +466,8 @@
     <Compile Include="Models\Writing\Essay.cs" />
     <Compile Include="Models\Writing\GptWritingResponse.cs" />
     <Compile Include="Models\Writing\SortEssayOptions.cs" />
-    <Compile Include="Repositories\DbConnection\CardQ.cs" />
-    <Compile Include="Repositories\DbConnection\FlashCardQ.cs" />
+    <Compile Include="Repositories\DbConnection\CardRepository.cs" />
+    <Compile Include="Repositories\DbConnection\FlashCardRepository.cs" />
     <Compile Include="Services\ChatGPT.cs" />
     <Compile Include="View\MainWindow\EditFlashCard.xaml.cs">
       <DependentUpon>EditFlashCard.xaml</DependentUpon>

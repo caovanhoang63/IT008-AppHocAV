@@ -5,11 +5,11 @@ using IT008_AppHocAV.Util;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
 {
-    public class Register
+    public class RegisterRepository
     {
         private readonly SqlConnection _sqlConnection;
 
-        public Register(SqlConnection sqlConnection)
+        public RegisterRepository(SqlConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
         }

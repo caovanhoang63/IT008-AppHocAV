@@ -30,7 +30,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             InitializeComponent();
             this._mainWindow = mainwindow;
-            _data = _mainWindow.DbConnection.ExamQ.SelectListExamByUserId(_mainWindow.UserId);
+            _data = _mainWindow.DbConnection.ExamRepository.SelectListExamByUserId(_mainWindow.UserId);
             ListExamListView.ItemsSource = _data;
         }
         private void NewExamButton_OnClick(object sender, RoutedEventArgs e)
@@ -92,7 +92,7 @@ namespace IT008_AppHocAV.View.MainWindow
             if (result == MessageBoxResult.Yes)
             {
                 Exam modelExam = (Models.Exam)((FrameworkElement)sender).DataContext;
-                if (_mainWindow.DbConnection.ExamQ.DeleteExamById(modelExam.Id))
+                if (_mainWindow.DbConnection.ExamRepository.DeleteExamById(modelExam.Id))
                 {
 
                     foreach (Exam exam in _data)

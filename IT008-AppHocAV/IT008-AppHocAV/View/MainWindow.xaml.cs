@@ -41,7 +41,7 @@ namespace IT008_AppHocAV
                 _loginWindow = loginWindow;
                 _loginWindow.InternetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
                 Content.Navigate(defaultPage);
-                User = DbConnection.UserQ.GetUserById(UserId);
+                User = DbConnection.UserRepository.GetUserById(UserId);
                 DataContext = this;
             }
         #endregion

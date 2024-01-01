@@ -179,12 +179,12 @@ namespace IT008_AppHocAV.View.MainWindow
 
 
 
-                _data.Id = mainWindow.DbConnection.DeskQ.CreateDesk(_data);
+                _data.Id = mainWindow.DbConnection.DeskRepository.CreateDesk(_data);
 
                 foreach (FlashCard item in LvListCard.Items)
                 {
                     item.Id = _data.Id;
-                    mainWindow.DbConnection.DeskQ.InsertCards(item);
+                    mainWindow.DbConnection.DeskRepository.InsertCards(item);
                 }
                 if (_data.Id==0)
                 {

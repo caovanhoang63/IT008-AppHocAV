@@ -69,7 +69,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private void SubmitButton_OnClick(object sender, RoutedEventArgs e)
         {
             string richText = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
-            _mainWindow.DbConnection.EssayQ.UpdateEssayContent(_essay.Id,WordCouting.WordCount(richText),richText);
+            _mainWindow.DbConnection.EssayRepository.UpdateEssayContent(_essay.Id,WordCouting.WordCount(richText),richText);
             MessageBoxResult result = MessageBox.Show("Submit successes! Do you want to back to List Essay?","",MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {

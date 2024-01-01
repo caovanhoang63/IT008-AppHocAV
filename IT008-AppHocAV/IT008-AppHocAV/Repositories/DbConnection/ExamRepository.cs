@@ -12,13 +12,13 @@ using PexelsDotNetSDK.Models;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
 {
-    public class ExamQ
+    public class ExamRepository
     {
         private readonly SqlConnection _sqlConnection;
         private List<Question> Questions;
 
 
-        public ExamQ(SqlConnection sqlConnection)
+        public ExamRepository(SqlConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
         }

@@ -14,11 +14,11 @@ using System.Windows.Media.Imaging;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
 {
-    public class CardQ
+    public class CardRepository
     {
         private readonly SqlConnection _sqlConnection;
 
-        public CardQ(SqlConnection sqlConnection)
+        public CardRepository(SqlConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
         }

@@ -7,10 +7,10 @@ using IT008_AppHocAV.Util;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
 {
-    public class UserQ
+    public class UserRepository
     {
         private readonly SqlConnection _sqlConnection;
-        public UserQ(SqlConnection sqlConnection)
+        public UserRepository(SqlConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
         }

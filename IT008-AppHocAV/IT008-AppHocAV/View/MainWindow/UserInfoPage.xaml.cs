@@ -20,7 +20,7 @@ namespace IT008_AppHocAV.View.MainWindow
             InitializeComponent();
             _mainWindow = mainWindow;
             _dbConnection = _mainWindow.DbConnection;
-            User = _dbConnection.UserQ.GetUserById(_mainWindow.UserId);
+            User = _dbConnection.UserRepository.GetUserById(_mainWindow.UserId);
             DateOfBirth = User.DateOfBirth.ToString("dd/MM/yyyy");
             DataContext = this;
         }
@@ -47,7 +47,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 var uri = new Uri(dialog.FileName);
                 BitmapImage bitmap = new BitmapImage(uri);
                 AvatarImage.Source = bitmap;
-                _dbConnection.UserQ.UpdateAvatar(_mainWindow.UserId, bitmap);
+                _dbConnection.UserRepository.UpdateAvatar(_mainWindow.UserId, bitmap);
             } 
         }
 
@@ -89,7 +89,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
             try
             {
-                _dbConnection.UserQ.UpdateUserInfo(_mainWindow.UserId, FullNameTb.Text, EmailTb.Text,
+                _dbConnection.UserRepository.UpdateUserInfo(_mainWindow.UserId, FullNameTb.Text, EmailTb.Text,
                     PhoneNumberTb.Text, DateOfBirthPicker.SelectedDate.Value);
                 MessageBox.Show("Save successfully!");
             }

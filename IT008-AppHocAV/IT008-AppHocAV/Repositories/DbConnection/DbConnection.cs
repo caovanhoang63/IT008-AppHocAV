@@ -9,12 +9,12 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         #region Declare Fields
             private readonly SqlConnection _sqlConnection;
             private readonly Authentication _authentication;
-            private readonly EssayQ _essayQ;
-            private readonly CardQ _cardQ;
-            private readonly DeskQ _deskQ;
-            private readonly Register _register;
-            private readonly ExamQ _examQ;
-            private readonly UserQ _userQ;
+            private readonly EssayRepository _essayRepository;
+            private readonly CardRepository _cardRepository;
+            private readonly DeskRepository _deskRepository;
+            private readonly RegisterRepository _registerRepository;
+            private readonly ExamRepository _examRepository;
+            private readonly UserRepository _userRepository;
             private readonly DictionaryRepository _dictionaryRepository;
             private readonly RecallRepository _recallRepository;
         #endregion
@@ -22,15 +22,15 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         #region Declare Properties
 
         public Authentication Authentication => _authentication;
-        public DeskQ DeskQ => _deskQ;
-        public EssayQ EssayQ => _essayQ;
-        public CardQ CardQ => _cardQ;
+        public DeskRepository DeskRepository => _deskRepository;
+        public EssayRepository EssayRepository => _essayRepository;
+        public CardRepository CardRepository => _cardRepository;
 
-        public Register Register => _register;
+        public RegisterRepository RegisterRepository => _registerRepository;
 
-        public ExamQ ExamQ => _examQ;
+        public ExamRepository ExamRepository => _examRepository;
 
-        public UserQ UserQ => _userQ;
+        public UserRepository UserRepository => _userRepository;
         public DictionaryRepository DictionaryRepository => _dictionaryRepository;
         
         public RecallRepository RecallRepository => _recallRepository;
@@ -39,14 +39,14 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         #region Declare Constructors
         public DbConnection()
         {   
-            _sqlConnection = new SqlConnection(Settings.Default.DbConnectionString);
+            _sqlConnection = new SqlConnection(Settings.Default.LocalDBConnectionString);
             _authentication = new Authentication(_sqlConnection);
-            _essayQ = new EssayQ(_sqlConnection);
-            _examQ = new ExamQ(_sqlConnection);
-            _deskQ = new DeskQ(_sqlConnection);
-            _cardQ = new CardQ(_sqlConnection);
-            _userQ = new UserQ(_sqlConnection);
-            _register = new Register(_sqlConnection);
+            _essayRepository = new EssayRepository(_sqlConnection);
+            _examRepository = new ExamRepository(_sqlConnection);
+            _deskRepository = new DeskRepository(_sqlConnection);
+            _cardRepository = new CardRepository(_sqlConnection);
+            _userRepository = new UserRepository(_sqlConnection);
+            _registerRepository = new RegisterRepository(_sqlConnection);
             _dictionaryRepository = new DictionaryRepository(_sqlConnection);
             _recallRepository = new RecallRepository(_sqlConnection);
         }

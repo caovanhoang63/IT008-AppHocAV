@@ -69,7 +69,7 @@ namespace IT008_AppHocAV.View.MainWindow
             if (result == MessageBoxResult.Cancel)
                 return;
             
-            _mainWindow.DbConnection.EssayQ.DeleteEssayById(_essay.Id);
+            _mainWindow.DbConnection.EssayRepository.DeleteEssayById(_essay.Id);
             _mainWindow.NavigateToPage("ShowListEssay");
             _mainWindow.PageCache.Remove("ShowEssay");
         }
@@ -85,7 +85,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 TitleTextBox.BorderThickness = new Thickness(0);
                 Console.WriteLine(TopicTextBox.IsFocused);
                 Console.WriteLine(TitleTextBox.IsFocused);
-                _mainWindow.DbConnection.EssayQ.UpdateTitleAndTopic(_essay);
+                _mainWindow.DbConnection.EssayRepository.UpdateTitleAndTopic(_essay);
             }
         }
     }

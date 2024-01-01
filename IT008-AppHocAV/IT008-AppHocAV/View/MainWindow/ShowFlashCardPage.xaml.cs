@@ -43,7 +43,7 @@ namespace IT008_AppHocAV.View.MainWindow
             this._mainWindow = mainWindow;
             this.FlashCardPage = flashCardPage;
             this._data= FlashCardPage.CurrentCard;
-            _data.FlashCards = _mainWindow.DbConnection.CardQ.SelectCardByID(_data.Id);
+            _data.FlashCards = _mainWindow.DbConnection.CardRepository.SelectCardByID(_data.Id);
             CurrentCard.Content = (IndexOfCurrentCard + 1).ToString();
 
             

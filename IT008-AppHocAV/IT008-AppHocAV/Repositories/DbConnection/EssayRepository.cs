@@ -8,11 +8,11 @@ using IT008_AppHocAV.Util;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
 {
-    public class EssayQ
+    public class EssayRepository
     {
         private readonly SqlConnection _sqlConnection;
 
-        public EssayQ(SqlConnection sqlConnection)
+        public EssayRepository(SqlConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
         }

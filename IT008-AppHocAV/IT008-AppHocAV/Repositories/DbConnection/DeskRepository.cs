@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
 {
-    public class DeskQ
+    public class DeskRepository
     {
 
         private readonly SqlConnection _sqlConnection;
 
-        public DeskQ(SqlConnection sqlConnection)
+        public DeskRepository(SqlConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
         }
