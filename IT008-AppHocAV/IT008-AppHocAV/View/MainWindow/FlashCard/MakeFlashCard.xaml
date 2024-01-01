@@ -170,7 +170,7 @@
                                             <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
                                                 <Grid>
                                                     <TextBox x:Name="TermBox" BorderThickness="0" Text="{Binding Question}"
-                                                     Background="Transparent" VerticalAlignment="Center"  
+                                                     Background="Transparent" VerticalAlignment="Center" TextWrapping="Wrap"  
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="TermBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="TermBlock"  IsHitTestVisible="False" Text="Enter term..."
                                                         VerticalAlignment="Center" FontSize="16"    
@@ -202,7 +202,7 @@
                                             <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
                                                 <Grid>
                                                     <TextBox x:Name="DefineBox" BorderThickness="0" Text="{Binding Answer}"
-                                                     Background="Transparent" VerticalAlignment="Center" 
+                                                     Background="Transparent" VerticalAlignment="Center"  TextWrapping="Wrap" 
                                                      Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="DefineBox_TextChanged"  ></TextBox>
                                                     <TextBlock x:Name="DefineBlock"  IsHitTestVisible="False" Text="Enter defination..."
                                                         VerticalAlignment="Center" FontSize="16"  
