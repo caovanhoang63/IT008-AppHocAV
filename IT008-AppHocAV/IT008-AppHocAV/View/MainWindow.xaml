@@ -238,7 +238,7 @@
                        >
                     <Frame.Template>
                         <ControlTemplate TargetType="Frame">
-                            <Border CornerRadius="10" BorderBrush="Black" BorderThickness="0">
+                            <Border BorderBrush="Black" BorderThickness="0">
                                 <ContentPresenter />
                             </Border>
                         </ControlTemplate>

@@ -378,6 +378,8 @@
     <Resource Include="Assets\Icon\ShuffleIcon.png" />
     <Resource Include="Assets\Icon\VocabularyRecallIcon.png" />
     <Resource Include="Assets\Icon\PlusIcon1.png" />
+    <Content Include="Assets\Icon\clock.png" />
+    <Content Include="Assets\Icon\LeftUpArrow.png" />
     <Content Include="Assets\Icon\ShareIcon.jpg" />
     <Resource Include="Assets\MessageBoxIcon\Error.png" />
     <Resource Include="Assets\MessageBoxIcon\Information.png" />

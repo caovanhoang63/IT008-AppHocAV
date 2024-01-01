@@ -25,24 +25,7 @@
                      TextWrapping="Wrap"
                      PreviewKeyDown="NoteTextBox_KeyDown" TextChanged="NoteTextBox_TextChanged" TextInput="NoteTextBox_TextChanged"/>
 
-            <Button Name="SaveButton"
-                Width="80"
-                Height="20"
-                Background="LightBlue"
-                BorderThickness="1"
-                BorderBrush="Black"
-                Content="Save"
-                FontFamily="Inter"
-                FontSize="18" Margin="130 390 50 0" Click="SaveButton_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="3" Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-
-            </Button>
+            
 
 
             <Button  x:Name="Minimal_Button"
@@ -65,23 +48,6 @@
             <Border  Height="25" Width="25" 
                  Margin="5,2,0,370" 
                  BorderBrush="Black"></Border>
-            <Button x:Name="Popup_Button"
-                Height="25" Width="25" 
-                Margin="5,2,0,370"
-                Background="LightBlue"
-                BorderThickness="1" 
-                HorizontalAlignment="Right"
-                FontSize="30"
-                Click="Popup_Button_Click">
-                <Image Source="\Assets\Icon\LeftUpArrow.png" Width="15" Height="15" Margin="0 0 0 4"/>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="5" BorderBrush="Black">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
 
         </Canvas>
     </Grid>
