@@ -190,14 +190,18 @@
                                                                         </Style>
                                                                     </Image.Style>
                                                                 </Image>
-                                                                <Label  VerticalAlignment="Center"
-                                                              HorizontalAlignment="Center" 
-                                                              FontWeight="ExtraBold"
-                                                               FontFamily="Fonts/#Comforter"
-                                                                FontSize="14" 
-                                                                  Content="{Binding Answer}" >
-                                                                    <Label.Style>
-                                                                        <Style TargetType="Label">
+                                                                <TextBlock  VerticalAlignment="Center"
+                                                                            HorizontalAlignment="Center" 
+                                                                            FontWeight="ExtraBold"
+                                                                            FontFamily="Fonts/#Comforter"
+                                                                            Margin="20 10"
+                                                                            MaxWidth="280"
+                                                                            Height="auto"
+                                                                            TextWrapping="Wrap"
+                                                                            FontSize="14" 
+                                                                            Text="{Binding Answer}" >
+                                                                    <TextBlock.Style>
+                                                                        <Style TargetType="TextBlock">
                                                                             <Style.Triggers>
                                                                                 <DataTrigger Binding="{Binding Image}" Value="{x:Null}">
 
@@ -205,9 +209,9 @@
                                                                                 </DataTrigger>
                                                                             </Style.Triggers>
                                                                         </Style>
-                                                                    </Label.Style>
+                                                                    </TextBlock.Style>
 
-                                                                </Label>
+                                                                </TextBlock>
 
                                                             </StackPanel>
 
@@ -265,12 +269,16 @@
 
                                                                 <!--// Add Content //-->
 
-                                                                <Label VerticalAlignment="Center"
-                                                              HorizontalAlignment="Center" 
-                                                              FontWeight="ExtraBold"
-                                                               FontFamily="Fonts/#Comforter"
-                                                                FontSize="14" 
-                                                                  Content="{Binding Question}" ></Label>
+                                                                <TextBlock VerticalAlignment="Center"
+                                                                            HorizontalAlignment="Center" 
+                                                                            FontWeight="ExtraBold"
+                                                                            FontFamily="Fonts/#Comforter"
+                                                                            MaxWidth="280"
+                                                                            Margin="20 10"
+                                                                            Height="auto"
+                                                                            TextWrapping="Wrap"
+                                                                            FontSize="14" 
+                                                                            Text="{Binding Question}" ></TextBlock>
 
 
 
