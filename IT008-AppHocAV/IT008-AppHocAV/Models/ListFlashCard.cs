@@ -12,6 +12,7 @@ namespace IT008_AppHocAV.Models
         //quantity tinyint      NOT NULL,
         //   updated_at datetime NOT NULL,
         //created_at datetime     NOT NULL,
+        
         private int _id;
         private int _userId;
         private string _title;

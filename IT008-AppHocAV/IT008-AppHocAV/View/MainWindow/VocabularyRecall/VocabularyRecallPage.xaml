@@ -29,12 +29,20 @@
                 <DockPanel DockPanel.Dock="Top" Height="90">
                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button x:Name="NewFlashCard" Width="auto" Height="40" Margin="10 0" Background="#55AF6E"
-                                Style="{DynamicResource RoundedButtonStyle}" >
+                                Style="{DynamicResource RoundedButtonStyle}" 
+                                Click="MakeNewFlashCards_OnClick">
                             <StackPanel Orientation="Horizontal" Margin="12 0">
                                 <Image Source="../../../Assets/Icon/AddIcon1.png" Width="24"></Image>
-                                <Label FontSize="16" VerticalAlignment="Center">New FlashCard</Label>
+                                <Label FontSize="16" VerticalAlignment="Center">New FlashCards</Label>
                             </StackPanel>
                         </Button>
+                        <Button Style="{DynamicResource RoundedButtonStyle}" Height="40"
+                                Background="#55AF6E" Width="auto"
+                                Click="SeeAllRecallLog_OnClick"
+                                Margin="10">
+                                <Label FontSize="16" VerticalAlignment="Center" Margin="12 0 ">See all</Label>
+                        </Button>
+                        
                         <Border Padding="0" Name="DatePickerBorder" Height="40" Width="200" Margin="0" BorderThickness="1" BorderBrush="Black"
                                 CornerRadius="12" >
                             <DatePicker x:Name="RecallDate" 

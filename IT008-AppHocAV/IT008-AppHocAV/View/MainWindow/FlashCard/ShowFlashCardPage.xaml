@@ -190,7 +190,7 @@
                                                                         </Style>
                                                                     </Image.Style>
                                                                 </Image>
-                                                                <Label VerticalAlignment="Center"
+                                                                <Label  VerticalAlignment="Center"
                                                               HorizontalAlignment="Center" 
                                                               FontWeight="ExtraBold"
                                                                FontFamily="Fonts/#Comforter"

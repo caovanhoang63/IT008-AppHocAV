@@ -113,26 +113,44 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
         }
 
-        public List<VocabularyRecallLog> FindAllRecallLogsByDateAndUserId(int UserID, DateTime dateTime)
+        public List<VocabularyRecallLog> FindAllRecallLogsByDateAndUserId(int UserID, DateTime? dateTime = null )
         {
             try
             {
-                string query = "SELECT v.id as id, v.user_id as user_id, v.word as word, v.definition_id as definition_id, " +
-                               "d.definitionText as definitionText, v.meaning as meaning, v.is_successful as is_successful, " +
-                               "v.example as example, v.created_at as created_at, v.updated_at as updated_at " +
-                               "FROM " +
-                               "VocabularyRecallLog V " +
-                               "LEFT JOIN " +
-                               "Definition D " +
-                               "On V.Definition_id = D.id " +
-                               "WHERE " +
-                               " User_Id = @UserId AND Year(Created_At) = Year(@Created_At) " +
-                               "And Month(Created_At) = Month(@Created_At) And Day(Created_At) = Day(@Created_At)";
+                string query = "";
+                if (dateTime != null)
+                {
+                    query = "SELECT v.id as id, v.user_id as user_id, v.word as word, v.definition_id as definition_id, " +
+                            "d.definitionText as definitionText, v.meaning as meaning, v.is_successful as is_successful, " +
+                            "v.example as example, v.created_at as created_at, v.updated_at as updated_at " +
+                            "FROM " +
+                            "VocabularyRecallLog V " +
+                            "LEFT JOIN " +
+                            "Definition D " +
+                            "On V.Definition_id = D.id " +
+                            "WHERE " +
+                            " User_Id = @UserId AND Year(Created_At) = Year(@Created_At) " +
+                            "And Month(Created_At) = Month(@Created_At) And Day(Created_At) = Day(@Created_At)";
+                }
+                else
+                {
+                    query =
+                        "SELECT v.id as id, v.user_id as user_id, v.word as word, v.definition_id as definition_id, " +
+                        "d.definitionText as definitionText, v.meaning as meaning, v.is_successful as is_successful, " +
+                        "v.example as example, v.created_at as created_at, v.updated_at as updated_at " +
+                        "FROM " +
+                        "VocabularyRecallLog V " +
+                        "LEFT JOIN " +
+                        "Definition D " +
+                        "On V.Definition_id = D.id ";
+                }
+                
 
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     command.Parameters.AddWithValue("@UserId", UserID);
-                    command.Parameters.AddWithValue("@Created_At", dateTime);
+                    if (dateTime != null)
+                        command.Parameters.AddWithValue("@Created_At", dateTime);
                     _sqlConnection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

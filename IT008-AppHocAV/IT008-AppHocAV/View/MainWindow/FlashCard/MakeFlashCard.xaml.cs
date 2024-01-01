@@ -28,7 +28,9 @@ namespace IT008_AppHocAV.View.MainWindow
         // public List<FlashCard> _data;
         private ObservableCollection<FlashCard> _datatemp;
         public bool IsImportButtonClicked=false;
-
+        public ObservableCollection<FlashCard> Datatemp { get => _datatemp; set => _datatemp = value; }
+        public ListFlashCard Data { get => _data; set => _data = value; }
+        
         public MakeFlashCard(IT008_AppHocAV.MainWindow mainWindow)
         {
 
@@ -42,6 +44,8 @@ namespace IT008_AppHocAV.View.MainWindow
             LvListCard.ItemsSource = _datatemp;
 
         }
+        
+        
 
 
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
@@ -159,9 +163,9 @@ namespace IT008_AppHocAV.View.MainWindow
 
 
 
-         }
-
-            private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        }
+        
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             if (LvListCard.Items.Count ==0)
             {

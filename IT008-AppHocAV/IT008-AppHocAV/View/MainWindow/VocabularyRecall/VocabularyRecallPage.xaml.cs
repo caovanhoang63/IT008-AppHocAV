@@ -20,6 +20,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private DispatcherTimer _debounceTimer;
         public List<VocabularyRecallLog> _data { get; set; }
         public List<VocabularyRecallLog> _dataMoc { get; set; }
+        private bool IsSeeAll = false;
         public VocabularyRecallPage(IT008_AppHocAV.MainWindow mainWindow)
         {
             InitializeComponent();
@@ -71,6 +72,7 @@ namespace IT008_AppHocAV.View.MainWindow
                     DataGrid.ItemsSource = _data;
                     DataGrid.Items.Refresh();
                     _isAlready = true;
+                    IsSeeAll = false;
                 }
             }
             catch (Exception exception)
@@ -115,6 +117,68 @@ namespace IT008_AppHocAV.View.MainWindow
                 rowData.IsSuccessful = checkBox.IsChecked.Value;
                 _dbConnection.RecallRepository.UpdateRecallLog(rowData);
             }
+
+        }
+
+        private void SeeAllRecallLog_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _data = _dbConnection.RecallRepository.FindAllRecallLogsByDateAndUserId(_mainWindow.UserId);
+                DataGrid.ItemsSource = _data;
+                DataGrid.Items.Refresh();
+                _isAlready = true;
+                IsSeeAll = true;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+        }
+
+        private void MakeNewFlashCards_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            ListFlashCard listFlashCard = new ListFlashCard();
+
+            listFlashCard.UserId= _mainWindow.UserId;
+            
+            // listFlashCard.Title= TitleTextBox.Text;
+            // listFlashCard.Description= DescriptionTextBox.Text;
+            
+            listFlashCard.CreatedAt = DateTime.Now;
+            listFlashCard.UpdatedAt = DateTime.Now;
+            listFlashCard.Quantity = DataGrid.Items.Count;
+            listFlashCard.FlashCards = new List<FlashCard>();
+            MakeFlashCard makeFlashCard = new MakeFlashCard(_mainWindow);
+
+            foreach (var item in _data)
+            {
+                FlashCard flashCard = new FlashCard();
+                flashCard.Answer = item.Word;
+                flashCard.Question = item.Meaning;
+                makeFlashCard.Datatemp.Add(flashCard);
+                makeFlashCard.Data.FlashCards.Add(flashCard);
+            }
+
+            if (IsSeeAll)
+            {
+                makeFlashCard.TitleTextBox.Text = "All recall logs";
+            }
+            else
+            {
+                if (RecallDate.SelectedDate != null)
+                    makeFlashCard.TitleTextBox.Text = RecallDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+                else 
+                    return;
+            }
+
+            _mainWindow.PageCache.Remove("MakeFlashCard");
+            
+            
+            _mainWindow.PageCache.Add("MakeFlashCard",makeFlashCard);
+            
+            _mainWindow.Content.Navigate(makeFlashCard);
 
         }
     }
