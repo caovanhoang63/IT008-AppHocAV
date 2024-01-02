@@ -43,10 +43,11 @@ namespace IT008_AppHocAV
                 _pageCache["Home"] = defaultPage;
                 _loginWindow = loginWindow;
                 StatusBarCurrentPage.Text = "Home";
+                
                 _loginWindow.InternetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
                 // _checkInternetConnectionTimer.Tick += CheckInternetConnectionTimerOnTick;
                 Content.Navigate(defaultPage);
-                // User = DbConnection.UserRepository.GetUserById(UserId);
+                User = DbConnection.UserRepository.GetUserById(UserId);
                 DataContext = this;
             }
         #endregion

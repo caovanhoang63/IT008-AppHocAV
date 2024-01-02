@@ -6,7 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using IT008_AppHocAV.Models.GPT;
 using System.Text.Json;
+using System.Windows;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.Properties;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.Services
 {
