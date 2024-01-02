@@ -366,7 +366,7 @@
                     <Style.Triggers>
                         <!-- Highlight a grid row as the mouse passes over -->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="LightCyan" />
+                            <Setter Property="Background" Value="White" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
