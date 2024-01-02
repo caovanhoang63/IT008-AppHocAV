@@ -123,12 +123,8 @@
                 <!-- User, Notify and Setting Button -->
                 <DockPanel DockPanel.Dock="Top" Height="85">
                     <StackPanel DockPanel.Dock="Right" Margin="0 0 0 0 " Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0">
-                            <Image Source="../Assets/Icon/SettingIcon.png"></Image>
-                        </Button>
-                        <Button Style="{DynamicResource RoundedCircleButtonStyle}" Margin="0,0,10,0">
-                            <Image Source="../Assets/Icon/NotifyICon.png"></Image>
-                        </Button>
+                       
+                        
                         <Button Click="btnAvatar_Click"
                                 Padding="0"
                                 Style="{DynamicResource RoundedCircleButtonStyle }" 
