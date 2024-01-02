@@ -387,6 +387,7 @@
     <Resource Include="Assets\MessageBoxIcon\Question.png" />
     <Resource Include="Assets\MessageBoxIcon\Successed.png" />
     <Resource Include="Assets\MessageBoxIcon\Warning.png" />
+    <Resource Include="Assets\Image\Loading_icegif.gif" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-1.png" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-2.png" />
     <Content Include="Util\SendResetPasswordMail\Template\index.html" />

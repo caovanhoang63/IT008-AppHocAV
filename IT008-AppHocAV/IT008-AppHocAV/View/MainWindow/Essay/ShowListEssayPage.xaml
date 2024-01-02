@@ -117,7 +117,7 @@
                                     HorizontalContentAlignment="Stretch"
                                     Margin="0 10"
                                     Click="ShowEssayButton_OnClick">
-                                <DockPanel Margin="24 0 24 0" HorizontalAlignment="Stretch" >
+                                <DockPanel Margin="24 0 24 0" >
                                     <!-- Show, Modify and Delete Button -->
                                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" >
                                          
