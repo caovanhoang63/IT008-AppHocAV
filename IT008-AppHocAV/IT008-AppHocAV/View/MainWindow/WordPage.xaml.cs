@@ -38,6 +38,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             LoadSuccess = false;
             _mainWindow.NavigateToPage("Loading");
+            _mainWindow.StatusBarCurrentPage.Text = "Searching";
             await Task.Run(() => Word = _dbConnection.DictionaryRepository.GetDictionaryEntry(word));
             if (Word != null)
             {
@@ -59,6 +60,7 @@ namespace IT008_AppHocAV.View.MainWindow
             }
 
             await NavToTranslate(word);
+            _mainWindow.StatusBarCurrentPage.Text = "Translate";
             return false;
         }
 

@@ -207,8 +207,12 @@ namespace IT008_AppHocAV.View.MainWindow
             if (sender is Button button)
             {
                 VocabularyRecallLog rowData = button.DataContext as VocabularyRecallLog;
-                _dbConnection.RecallRepository.DeleteById(rowData.Id);
-                _data.Remove(rowData);
+                if (rowData != null)
+                {
+                    _dbConnection.RecallRepository.DeleteById(rowData.Id);
+                    _data.Remove(rowData);
+                }
+
                 DataGrid.Items.Refresh();
             }
         }

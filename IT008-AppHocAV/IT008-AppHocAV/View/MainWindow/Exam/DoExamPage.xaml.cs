@@ -81,8 +81,8 @@ namespace IT008_AppHocAV.View.MainWindow
         private void Submit_btn_Click(object sender, RoutedEventArgs e)
         {
             _countdownTimer.Stop();
-            MessageBoxResult Submit = MessageBox.Show("Are you sure want to submit?", "", MessageBoxButton.YesNo);
-
+            MessageBoxResult Submit = CTMessageBox.Show("Are you sure want to submit?", "", MessageBoxButton.YesNo);
+            
             if (Submit == MessageBoxResult.Yes)
             {
                 Answer = new List<String>();
@@ -132,7 +132,6 @@ namespace IT008_AppHocAV.View.MainWindow
                     index++;
                 }
                 int score = Scoring_function(Answer, Result);
-                MessageBox.Show("Your score is " + score.ToString());
                 
                 Exam exam = new Exam(_mainWindow.UserId, level, category, score, _timetaken);
                 CTMessageBox.Show("Message", "Your score is " + score.ToString(), MessageBoxType.Information);

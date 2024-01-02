@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.Net.NetworkInformation;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Properties;
 

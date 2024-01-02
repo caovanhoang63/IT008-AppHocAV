@@ -167,6 +167,7 @@
     <Compile Include="Util\CheckValidate.cs" />
     <Compile Include="Util\Hashing.cs" />
     <Compile Include="Util\InternetAvailability.cs" />
+    <Compile Include="Util\InternetConnection.cs" />
     <Compile Include="Util\InternetConnectionManager.cs" />
     <Compile Include="Util\SendResetPasswordMail\SendEMail.cs" />
     <Compile Include="View\CustomMessageBox\CTMessageBox.xaml.cs">

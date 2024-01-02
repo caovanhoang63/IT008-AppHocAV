@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Repositories;
 using IT008_AppHocAV.Repositories.DbConnection;
+using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View.CustomMessageBox;
 using IT008_AppHocAV.View.MainWindow;
 
@@ -16,7 +17,6 @@ namespace IT008_AppHocAV.View
 {
     public partial class LoginWindow : Window
     {
-        
         
         #region Declare attributes
             private readonly BitmapImage _showPwdIcon = new BitmapImage(new Uri("pack://application:,,,/Assets/Icon/showpwdIcon.png"));

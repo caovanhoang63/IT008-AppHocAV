@@ -10,6 +10,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Repositories.DbConnection;
 using IT008_AppHocAV.Util;
@@ -25,13 +26,13 @@ namespace IT008_AppHocAV
     public partial class MainWindow : Window
     {
 
-
-        
         #region Declare Fields
             private Dictionary<string, Page> _pageCache = new Dictionary<string, Page>();
             public string NoteCache;
             private readonly LoginWindow _loginWindow;
             private LoadingPage _loadingPage = new LoadingPage();
+            private NoInternetPage _noInternetPage = new NoInternetPage();
+            
         #endregion
         
         #region Declare Constructors
@@ -41,12 +42,17 @@ namespace IT008_AppHocAV
                 Page defaultPage = new HomePage(this);
                 _pageCache["Home"] = defaultPage;
                 _loginWindow = loginWindow;
+                StatusBarCurrentPage.Text = "Home";
                 _loginWindow.InternetConnectionManager.InternetConnectionChanged += ChangedInternectConnectionStatusBar;
+                // _checkInternetConnectionTimer.Tick += CheckInternetConnectionTimerOnTick;
                 Content.Navigate(defaultPage);
-                User = DbConnection.UserRepository.GetUserById(UserId);
+                // User = DbConnection.UserRepository.GetUserById(UserId);
                 DataContext = this;
             }
         #endregion
+        
+  
+        
 
         #region Declare properties
     
@@ -124,31 +130,38 @@ namespace IT008_AppHocAV
                 return;
             }
             NavigateToPage("ShowListEssay");
+            StatusBarCurrentPage.Text = "Essay";
+
         }
         
         private void NavToTranslate_OnClick(object sender, RoutedEventArgs e)
         {
             NavigateToPage("Translate");
+            StatusBarCurrentPage.Text = "Translate";
         }
 
         private void NavToExam_OnClick(object sender, RoutedEventArgs e)
         {
             NavigateToPage("ShowListExam");
+            StatusBarCurrentPage.Text = "Exam";
         }
         private void NavToHome_OnClick(object sender, RoutedEventArgs e)
         {
             NavigateToPage("Home");
+            StatusBarCurrentPage.Text = "Home";
         }
 
         private void NavToFlashCard_OnClick(object sender, RoutedEventArgs e)
         {
             NavigateToPage("FlashCard");
+            StatusBarCurrentPage.Text = "Flash Card";
         }
         
         
         private void NavToRecall_OnClick(object sender, RoutedEventArgs e)
         {
             NavigateToPage("Recall");
+            StatusBarCurrentPage.Text = "Vocabulary Recall";
         }
 
         private void ShowTakeNote_OnClick(object sender, RoutedEventArgs e)
@@ -232,6 +245,7 @@ namespace IT008_AppHocAV
                 {
                     case "Searching":
                         page = new WordPage(this);
+
                         break;
                     case "Loading":
                         page = new LoadingPage();
@@ -323,8 +337,7 @@ namespace IT008_AppHocAV
             
             public void NavigateToPage(string pageName)
             {
-                Content.Navigate(_loadingPage);
-                StatusBarCurrentPage.Text = pageName;
+                ShowLoadingPage();
                 WordsStatusBarItem.Visibility = Visibility.Collapsed;
                 if (_pageCache.TryGetValue(pageName, out var value))
                 {
@@ -341,6 +354,12 @@ namespace IT008_AppHocAV
 
         #endregion
 
+        
+        public void ShowLoadingPage()
+        {
+            Content.Navigate(_loadingPage);
+        }
+        
         private async void TextBoxSearching_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -356,17 +375,17 @@ namespace IT008_AppHocAV
 
         #region Statusbar Handlers
 
-            private void ChangedInternectConnectionStatusBar(bool isConnected)
+        private void ChangedInternectConnectionStatusBar(bool isConnected)
+        {
+            if (!isConnected)
             {
-                if (!isConnected)
-                {
-                    InternetConnectionStatusBarItem.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    InternetConnectionStatusBarItem.Visibility = Visibility.Collapsed;
-                }
+                InternetConnectionStatusBarItem.Visibility = Visibility.Visible;
             }
+            else
+            {
+                InternetConnectionStatusBarItem.Visibility = Visibility.Collapsed;
+            }
+        }
 
         #endregion
         

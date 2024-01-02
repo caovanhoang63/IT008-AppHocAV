@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace IT008_AppHocAV.Repositories
+namespace IT008_AppHocAV.Util
 {
     public class InternetConnectionManager
     {
