@@ -190,18 +190,14 @@
                                                                         </Style>
                                                                     </Image.Style>
                                                                 </Image>
-                                                                <TextBlock  VerticalAlignment="Center"
-                                                                            HorizontalAlignment="Center" 
-                                                                            FontWeight="ExtraBold"
-                                                                            FontFamily="Fonts/#Comforter"
-                                                                            Margin="20 10"
-                                                                            MaxWidth="280"
-                                                                            Height="auto"
-                                                                            TextWrapping="Wrap"
-                                                                            FontSize="14" 
-                                                                            Text="{Binding Answer}" >
-                                                                    <TextBlock.Style>
-                                                                        <Style TargetType="TextBlock">
+                                                                <Label VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center" 
+                                                              FontWeight="ExtraBold"
+                                                               FontFamily="Fonts/#Comforter"
+                                                                FontSize="14" 
+                                                                  Content="{Binding Answer}" >
+                                                                    <Label.Style>
+                                                                        <Style TargetType="Label">
                                                                             <Style.Triggers>
                                                                                 <DataTrigger Binding="{Binding Image}" Value="{x:Null}">
 
@@ -209,9 +205,9 @@
                                                                                 </DataTrigger>
                                                                             </Style.Triggers>
                                                                         </Style>
-                                                                    </TextBlock.Style>
+                                                                    </Label.Style>
 
-                                                                </TextBlock>
+                                                                </Label>
 
                                                             </StackPanel>
 
