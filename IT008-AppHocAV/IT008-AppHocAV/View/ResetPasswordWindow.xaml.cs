@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using IT008_AppHocAV.Repositories.DbConnection;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -96,7 +97,9 @@ namespace IT008_AppHocAV.View.MainWindow
             _id =  _dbConnection.UserRepository.FindIdByEmail(email);
             if (_id == -1)
             {
-                MessageBox.Show("Email does not exist!");
+                
+                 CTMessageBox.Show("Message", "Email does not exist!", MessageBoxType.Error);
+
                 return;
             }
             
@@ -120,13 +123,15 @@ namespace IT008_AppHocAV.View.MainWindow
             int inputCode = int.Parse(PinTextBox.Text);
             if (inputCode != _code)
             {
-                MessageBox.Show("Pin does not match!");
+                
+                CTMessageBox.Show("Message", "Pin does not match!", MessageBoxType.Error);
                 return;
             }
 
             if (_timeCount == 0)
             {
-                MessageBox.Show("Pin expired!");
+               
+                CTMessageBox.Show("Message", "Pin expired!", MessageBoxType.Error);
                 return;
             }
 
@@ -161,13 +166,15 @@ namespace IT008_AppHocAV.View.MainWindow
                 return;
             if (!PasswordBox.Password.Equals(ConfirmPassword.Password))
             {
-                MessageBox.Show("Password does not match!");
+               
+                CTMessageBox.Show("Message", "Password does not match!", MessageBoxType.Error);
                 return;
             }
 
             if (_dbConnection.UserRepository.UpdatePasswordById(_id, PasswordBox.Password))
             {
-                MessageBox.Show("Password was changed!");
+                 
+                CTMessageBox.Show("Message", "Password was changed!", MessageBoxType.Error);
                 if (_loginWindow != null)
                 {
                     _loginWindow.Show();
@@ -180,7 +187,7 @@ namespace IT008_AppHocAV.View.MainWindow
             }
             else
             {
-                MessageBox.Show("Error!");
+                CTMessageBox.Show("Message", "Error!", MessageBoxType.Error);
             }
         }
     }

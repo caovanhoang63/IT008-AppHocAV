@@ -1,4 +1,5 @@
 ﻿using IT008_AppHocAV.Models;
+using IT008_AppHocAV.View.CustomMessageBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -157,7 +158,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure want to continue?", "", MessageBoxButton.YesNo);
+            MessageBoxResult result = CTMessageBox.Show("Message", "Are you sure want to continue?", MessageBoxType.ConfirmationWithYesNo);
             if (result == MessageBoxResult.Yes)
             {
                 _mainWindow.NavigateToPage("FlashCard");

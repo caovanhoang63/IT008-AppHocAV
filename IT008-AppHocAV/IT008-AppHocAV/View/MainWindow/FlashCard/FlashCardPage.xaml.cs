@@ -7,6 +7,7 @@ using System.Windows.Threading;
 using IT008_AppHocAV;
 using IT008_AppHocAV.Components.RadioButtonMenuItem;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -73,8 +74,10 @@ namespace IT008_AppHocAV.View.MainWindow
         {
 
             e.Handled = true;
-            MessageBoxResult result =
-                    MessageBox.Show("You sure you want to delete this essay", null, MessageBoxButton.YesNo);
+            
+
+            MessageBoxResult result = CTMessageBox.Show("Message", "Are you sure want to delete this card?", MessageBoxType.ConfirmationWithYesNo);
+
             if (result == MessageBoxResult.Yes)
             {
 
@@ -93,12 +96,14 @@ namespace IT008_AppHocAV.View.MainWindow
                         }
                     }
 
-                    MessageBox.Show("Delete successes! ");
+                    CTMessageBox.Show("Message", "Deleted successfully ", MessageBoxType.Information);
+
 
                     RefreshPage();
                 }
                 else
-                    MessageBox.Show("Delete fail! ");
+                    CTMessageBox.Show("Message", "Deteted fail ", MessageBoxType.Error);
+
             }
         }
 

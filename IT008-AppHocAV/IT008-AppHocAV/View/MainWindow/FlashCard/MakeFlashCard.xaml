@@ -1,4 +1,4 @@
-﻿<Page x:Class="IT008_AppHocAV.View.MainWindow.MakeFlashCard"
+﻿<Page x:Name="MakeFlashCardPage" x:Class="IT008_AppHocAV.View.MainWindow.MakeFlashCard"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -74,7 +74,7 @@
 
         </Border>
 
-        <Border Grid.Row="1"  BorderThickness="0 0 0 1"
+        <Border Grid.Row="1"  BorderThickness="0 0 0 1" Name="Template"
                     BorderBrush="Black"
                     Margin="20 0 10 5">
             <Grid>
@@ -128,20 +128,21 @@
         </Border>
 
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="15 5 15 0"  >
-            <StackPanel x:Name="Stack" Grid.Row="2"    >
+            <StackPanel x:Name="Stack" Grid.Row="2"   >
                 <ListView  x:Name="LvListCard" HorizontalAlignment="Stretch" 
                   Width="auto"
                   Height="auto"
                   Background="Transparent"
                   BorderThickness="0"
-                       
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"     
                   d:ItemsSource="{d:SampleData ItemCount=2}" Loaded="LvListCard_Loaded" PreviewMouseWheel="LvListCard_PreviewMouseWheel"  
                            >
 
                     <ListView.ItemTemplate >
                         <!-- Defines Items Template -->
                         <DataTemplate>
-                            <Border HorizontalAlignment="Stretch"   
+                            <Border HorizontalAlignment="Stretch"     MaxWidth="{Binding ElementName=Template, Path=ActualWidth }"
                             CornerRadius="10"  
                             Background="#F4EEEE" Height="100" Width="auto"
                             Margin="0 0 0 0"   
@@ -171,7 +172,10 @@
                                                 <Grid>
                                                     <TextBox x:Name="TermBox" BorderThickness="0" Text="{Binding Question}"
                                                      Background="Transparent" VerticalAlignment="Center" TextWrapping="Wrap"  
-                                                     Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="TermBox_TextChanged"  ></TextBox>
+                                                     Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="TermBox_TextChanged" 
+                                                       VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"
+        
+                                                             ></TextBox>
                                                     <TextBlock x:Name="TermBlock"  IsHitTestVisible="False" Text="Enter term..."
                                                         VerticalAlignment="Center" FontSize="16"    
                                                          HorizontalAlignment="Left" 
@@ -202,8 +206,10 @@
                                             <Border Height="35"  BorderThickness="0 0 0 2" BorderBrush="Black">
                                                 <Grid>
                                                     <TextBox x:Name="DefineBox" BorderThickness="0" Text="{Binding Answer}"
-                                                     Background="Transparent" VerticalAlignment="Center"  TextWrapping="Wrap" 
-                                                     Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="DefineBox_TextChanged"  ></TextBox>
+                                                     Background="Transparent" VerticalAlignment="Center"  TextWrapping="Wrap"    
+                                                     Margin="5 1 5 1" FontSize="22" FontFamily="Times New Roman" TextChanged="DefineBox_TextChanged"
+                                                      VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"        
+                                                             ></TextBox>
                                                     <TextBlock x:Name="DefineBlock"  IsHitTestVisible="False" Text="Enter defination..."
                                                         VerticalAlignment="Center" FontSize="16"  
                                                          HorizontalAlignment="Left"   

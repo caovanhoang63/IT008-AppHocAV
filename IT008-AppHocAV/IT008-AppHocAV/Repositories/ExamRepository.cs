@@ -17,6 +17,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
         private readonly SqlConnection _sqlConnection;
         private List<Question> Questions;
 
+
         public ExamRepository(SqlConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
@@ -30,19 +31,19 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             int a = random.Next(1, 81);
             questionIds.Add(a);
             queslist += a.ToString();
-            while (questionIds.Count < 20)
+            while (questionIds.Count < 20) 
             {
                 int newId = random.Next(1, 81);
-                if (!questionIds.Contains(newId))
+                if (!questionIds.Contains(newId)) 
                 {
-                    questionIds.Add(newId);
+                    questionIds.Add(newId); 
                     queslist += "," + newId;
                 }
             }
             queslist += ")";
             try
             {
-                string query = "Select * from question where id in" + queslist;
+                string query = "Select * from question where id in"+queslist;
                 using (SqlCommand command = new SqlCommand(query, _sqlConnection))
                 {
                     _sqlConnection.Open();
@@ -140,7 +141,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                     command.Parameters.AddWithValue("@time_taken", Int32.Parse(exam.TimeTaken));
                     _sqlConnection.Open();
                     command.ExecuteNonQuery();
-                    MessageBox.Show("Save success");
+                    CTMessageBox.Show("Message", "Saved successfully ", MessageBoxType.Information);
                     return;
 
 
@@ -148,7 +149,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Save fail");
+                CTMessageBox.Show("Message", "Saved fail ", MessageBoxType.Information);
                 Console.WriteLine(ex);
                 return;
 
@@ -189,7 +190,6 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
 
         }
-
 
     }
 }

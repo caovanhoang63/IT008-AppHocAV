@@ -19,6 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -134,6 +135,8 @@ namespace IT008_AppHocAV.View.MainWindow
                 MessageBox.Show("Your score is " + score.ToString());
                 
                 Exam exam = new Exam(_mainWindow.UserId, level, category, score, _timetaken);
+                CTMessageBox.Show("Message", "Your score is " + score.ToString(), MessageBoxType.Information);
+
                 _mainWindow.DbConnection.ExamRepository.SaveResult(exam);
                 _mainWindow.PageCache.Remove("ShowListExam");
                 _mainWindow.PageCache.Remove("DoExamPage");
@@ -260,8 +263,10 @@ namespace IT008_AppHocAV.View.MainWindow
                     index++;
                 }
                 int score = Scoring_function(Answer, Result);
-                MessageBox.Show("Your score is " + score.ToString());
+                CTMessageBox.Show("Message", "Your score is " + score.ToString(), MessageBoxType.Information);
+
                 Exam exam = new Exam(_mainWindow.UserId, level,category, score,_timetaken);
+
                 _mainWindow.DbConnection.ExamRepository.SaveResult(exam);
                 _mainWindow.PageCache.Remove("DoExamPage");
                 _mainWindow.PageCache.Remove("ShowListExam");
