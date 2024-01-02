@@ -15,6 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <ApplicationIcon>Assets\Image\ELFLOGO.ico</ApplicationIcon>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -133,6 +134,8 @@
       <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+  
   <ItemGroup>
     <Compile Include="App\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -208,19 +211,15 @@
     <Compile Include="View\MainWindow\Exam\ShowListExamPage.xaml.cs">
       <DependentUpon>ShowListExamPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\FlashCard\EditFlashCard.xaml.cs">
       <DependentUpon>EditFlashCard.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\FlashCard\FlashCardPage.xaml.cs">
       <DependentUpon>FlashCardPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\FlashCard\MakeFlashCard.xaml.cs">
       <DependentUpon>MakeFlashCard.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\MainWindow\FlashCard\ShowFlashCardPage.xaml.cs">
       <DependentUpon>ShowFlashCardPage.xaml</DependentUpon>
     </Compile>
@@ -290,7 +289,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Styles\GptWritingPopUpStyle.xaml" />
-
     <Page Include="Assets\Styles\HomeStyle.xaml" />
     <Page Include="Assets\Styles\RoundCheckbox.xaml">
       <SubType>Designer</SubType>
@@ -392,9 +390,9 @@
     <Resource Include="Assets\Image\Loading_icegif.gif" />
     <Content Include="Assets\Image\ELFLOGO.ico" />
     <Content Include="Assets\Image\ELFLOGO.png" />
-    <Content Include="Util\SendResetPasswordMail\Template\images\image-1.png" />
-    <Content Include="Util\SendResetPasswordMail\Template\images\image-2.png" />
-    <Content Include="Util\SendResetPasswordMail\Template\index.html" />
+    <Content Include="Util\SendResetPasswordMail\MailTemplate\images\image-1.png" />
+    <Content Include="Util\SendResetPasswordMail\MailTemplate\images\image-2.png" />
+    <Content Include="Util\SendResetPasswordMail\MailTemplate\index.html" />
     <Resource Include="Assets\Image\LoadingGif.gif" />
     <Resource Include="Assets\Icon\refresh_icon.png" />
     <Resource Include="Assets\Icon\BookIcon.png" />
@@ -438,9 +436,7 @@
     <Resource Include="Assets\Icon\MaxSizeIcon.png" />
     <Resource Include="Assets\Icon\MaxiumSizeIcon.png" />
     <Resource Include="Assets\Icon\LexicalItemsIcon.png" />
-
     <Resource Include="Assets\Icon\nextbuttonFl.png" />
-
     <Content Include="Assets\Icon\NoteBookIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -450,11 +446,9 @@
     <Resource Include="Assets\Icon\DeleteIcon.png" />
     <Compile Include="Util\BitmapConverter.cs" />
     <Compile Include="Util\WordCouting.cs" />
- 
     <Compile Include="View\MainWindow\TakeNotePage.xaml.cs">
       <DependentUpon>TakeNotePage.xaml</DependentUpon>
     </Compile>
-
     <Page Include="Assets\Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -480,10 +474,9 @@
     <Compile Include="Models\Writing\SortEssayOptions.cs" />
     <Compile Include="Services\ChatGPT.cs" />
   </ItemGroup>
-    
-
-
-
-   
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <Target Name="AfterBuild" AfterTargets="Build">
+    <Exec Command="xcopy $(ProjectDir)util\sendresetpasswordmail\mailtemplate\*.* $(TargetDir)\mailtemplate\ /y /e /i" />
+  </Target>
 </Project>

@@ -9,6 +9,7 @@ using System.Windows.Media;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Services;
 using IT008_AppHocAV.Util;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -42,7 +43,6 @@ namespace IT008_AppHocAV.View.MainWindow
         /// <param name="e"></param>
         private void WritingContentPage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            
             if (_essay.Image != null)
             {
                 WritingImage.Source = _essay.Image;
@@ -55,9 +55,6 @@ namespace IT008_AppHocAV.View.MainWindow
             ContentRichTextBox.Document.Blocks.Add(new Paragraph(new Run(_essay.Content)));
             
             DataContext = _essay;
-
-            
-            
         }
 
         /// <summary>
@@ -70,7 +67,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             string richText = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
             _mainWindow.DbConnection.EssayRepository.UpdateEssayContent(_essay.Id,WordCouting.WordCount(richText),richText);
-            MessageBoxResult result = MessageBox.Show("Submit successes! Do you want to back to List Essay?","",MessageBoxButton.YesNo);
+            MessageBoxResult result = CTMessageBox.Show("Submit successes! Do you want to back to List Essay?","",MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 _mainWindow.PageCache.Remove("ShowListEssay");
@@ -98,8 +95,8 @@ namespace IT008_AppHocAV.View.MainWindow
         private void CloseButton_OnClick(object sender, RoutedEventArgs e)
         {
 
-            MessageBoxResult result =  MessageBox.Show("Your changes will be discard! \n Are you sure want to continue?", "",MessageBoxButton.OKCancel);
-            
+            MessageBoxResult result =  CTMessageBox.Show("Your changes will be discard! \n Are you sure want to continue?", "",MessageBoxButton.OKCancel);
+               
             if (result == MessageBoxResult.OK)
             {
                 _mainWindow.PageCache.Remove("WritingContent");

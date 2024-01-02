@@ -13,6 +13,8 @@ namespace IT008_AppHocAV.Util.SendResetPasswordMail
         {
             try
             {
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string htmlPath = Path.Combine(baseDirectory, "MailTemplate/index.html");
                 Random random = new Random();
                 var email = new MimeMessage();
 
@@ -23,7 +25,7 @@ namespace IT008_AppHocAV.Util.SendResetPasswordMail
 
                 // Đọc nội dung từ tệp HTML
                 string htmlBody;
-                using (StreamReader reader = new StreamReader("../../Util/SendResetPasswordMail/Template/index.html"))
+                using (StreamReader reader = new StreamReader(htmlPath))
                 {
                     htmlBody = reader.ReadToEnd();
                 }
@@ -40,8 +42,9 @@ namespace IT008_AppHocAV.Util.SendResetPasswordMail
                 imagePaths.Reverse();
                 for (int i = imagePaths.Count - 1; i >= 0; i--)
                 {
+                    string imagePath = Path.Combine(baseDirectory, $"MailTemplate/images/image-{(i + 1).ToString()}.png");
                     bodyBuilder.LinkedResources.Add(imagePaths[i], File.ReadAllBytes(
-                            $"../../Util/SendResetPasswordMail/Template/images/image-{(i + 1).ToString()}.png"),
+                            imagePath),
                         ContentType.Parse("image/png"));
                 }
                 email.Body = bodyBuilder.ToMessageBody();
@@ -49,8 +52,7 @@ namespace IT008_AppHocAV.Util.SendResetPasswordMail
                 using (var smtp = new SmtpClient())
                 {
                     smtp.Connect("smtp.gmail.com", 587, false);
-
-                    // Lưu ý: chỉ cần nếu máy chủ SMTP yêu cầu xác thực
+                    
                     smtp.Authenticate("elf.learningenglish@gmail.com", "pfdk sfon wzrc dzux");
 
                     smtp.Send(email);
@@ -58,8 +60,9 @@ namespace IT008_AppHocAV.Util.SendResetPasswordMail
                     return code;
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return -1;
             }
         }
