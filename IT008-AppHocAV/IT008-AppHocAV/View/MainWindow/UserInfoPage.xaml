@@ -22,9 +22,9 @@
         </Grid.RowDefinitions>
         <Border Grid.Row="0" BorderBrush="Black" BorderThickness="0 0 0 1"
                 Padding="0 0 0 10"
-                Margin="0 40 0 0">
+                Margin="0 30 0 0">
             <StackPanel HorizontalAlignment="Center">
-                <Button Width="100"  Height="100" Padding="0"
+                <Button Width="150"  Height="150" Padding="0"
                         Margin="0"
                         Style="{DynamicResource AvatarButtonStyle}"
                         MouseEnter="AvatarButton_MouseEnter"
@@ -32,9 +32,9 @@
                         Click="AvatarButton_OnClick">
                     <Grid>
                         <Image x:Name="AddImageIcon" Width="40" Source="../../Assets/Icon/AddImageIcon.png"  Visibility="Collapsed"></Image>
-                        <Image x:Name="AvatarImage" Width="100" Height="100" Stretch="Fill" >
+                        <Image x:Name="AvatarImage" Width="150" Height="150" Stretch="Fill" >
                             <Image.Clip>
-                                <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50"></EllipseGeometry>
+                                <EllipseGeometry Center="75,75" RadiusX="75" RadiusY="75"></EllipseGeometry>
                             </Image.Clip>
                             <Image.Style>
                                 <Style TargetType="Image">
@@ -52,19 +52,15 @@
                     </Grid>
                     
                 </Button>
-                <StackPanel Orientation="Horizontal" Margin="0 10 0 0"> 
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 20"> 
                     <TextBox x:Name="FullNameTb" BorderThickness="0"
                              FontWeight="Medium" Margin="0 0 0 0" Padding="0"
-                             VerticalAlignment="Center" IsReadOnly="True"
-                             FontSize="24" Text="{Binding User.FullName}"></TextBox>
+                             VerticalAlignment="Center" IsReadOnly="True" Height="auto"
+                             FontSize="28" Text="{Binding User.FullName}"></TextBox>
                 </StackPanel>
             </StackPanel>
         </Border>
-        <Grid Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 10 0 0 ">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Height="auto" Margin="0 10 0 0 ">
             <DockPanel Grid.Row="0" HorizontalAlignment="Stretch">
                 <Grid DockPanel.Dock="Left">
                     <Grid.ColumnDefinitions>
@@ -87,7 +83,7 @@
                 <Button  x:Name="EditInfoButton" DockPanel.Dock="Right" Style="{DynamicResource TransparentButtonStyle}" Width="auto" Height="auto"
                          HorizontalAlignment="Right" VerticalAlignment="Top"
                          Click="EditInfo_OnClick">
-                    <TextBlock FontSize="16" FontWeight="Medium" Foreground="Navy">Edit your information</TextBlock>
+                    <TextBlock FontSize="20" FontWeight="Medium" Foreground="Navy">Edit your information</TextBlock>
                 </Button>
                 <Button  x:Name="SaveInfoButton" DockPanel.Dock="Right" Style="{DynamicResource TransparentButtonStyle}" Width="auto" Height="auto"
                          HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Collapsed"
@@ -97,8 +93,8 @@
             </DockPanel>
             
             <Button Click="ChangePassword_OnClick" Grid.Row="1" Margin="0 10" Padding="0" HorizontalAlignment="Left" Width="auto" Height="auto"  Style="{DynamicResource TransparentButtonStyle}" >
-                <TextBlock FontSize="16" FontWeight="Medium" Foreground="Navy"> Change password</TextBlock>
+                <TextBlock FontSize="20" FontWeight="Medium" Foreground="Navy"> Change password</TextBlock>
             </Button>
-        </Grid>
+        </StackPanel>
     </Grid>
 </Page>
