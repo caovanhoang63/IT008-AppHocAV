@@ -458,5 +458,10 @@ namespace IT008_AppHocAV
             CategoryValue = value;
         }
 
+        private void SettingButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            SettingWindow window = new SettingWindow();
+            window.ShowDialog();
+        }
     }
 }

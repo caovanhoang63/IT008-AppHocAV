@@ -7,9 +7,11 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.Properties;
 using IT008_AppHocAV.Services;
 using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View.CustomMessageBox;
+using MessageBoxImage = IT008_AppHocAV.View.CustomMessageBox.MessageBoxImage;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -141,22 +143,32 @@ namespace IT008_AppHocAV.View.MainWindow
         /// <param name="e"></param>
         private async void GptFunc_OnClick(object sender, RoutedEventArgs e)
         {
-            GptResponsePopUpGrid.Visibility = Visibility.Visible;
-            
-            string answer = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
-            
-            string topic = TopicTextBlock.Text;
-            
-            Func func = GetGptWritingFunc(sender);
 
-            //load page load
-            GptResponsePupUpContent.Content = new LoadingPage();
+            if (string.IsNullOrEmpty(Settings.Default.ChatGptApiKey))
+            {
+                CTMessageBox.Show("", "" +
+                                      "Please visit https://platform.openai.com/api-keys to get api key and provides it in setting page", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            {
+                GptResponsePopUpGrid.Visibility = Visibility.Visible;
             
-            //request
-            await _popUp.LoadResult(func,topic,answer);
+                string answer = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
             
-            //result page
-            GptResponsePupUpContent.Content = _popUp;
+                string topic = TopicTextBlock.Text;
+            
+                Func func = GetGptWritingFunc(sender);
+
+                //load page load
+                GptResponsePupUpContent.Content = new LoadingPage();
+            
+                //request
+                await _popUp.LoadResult(func,topic,answer);
+                //result page
+                GptResponsePupUpContent.Content = _popUp;
+            }
+            
+            
 
         }
 

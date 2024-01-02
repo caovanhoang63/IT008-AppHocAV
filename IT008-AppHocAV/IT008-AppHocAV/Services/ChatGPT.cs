@@ -10,6 +10,7 @@ using System.Windows;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Properties;
 using IT008_AppHocAV.View.CustomMessageBox;
+using MessageBoxImage = System.Windows.MessageBoxImage;
 
 namespace IT008_AppHocAV.Services
 {
@@ -36,7 +37,8 @@ namespace IT008_AppHocAV.Services
                     GptResponse response = JsonSerializer.Deserialize<GptResponse>(responseString);
                     return response.Choices[0].Message.Content;
                 }
-                return $"Error: {httpResponseMessage.StatusCode} - {httpResponseMessage.ReasonPhrase}";
+                return $"Error: {httpResponseMessage.StatusCode} - {httpResponseMessage.ReasonPhrase} - Please check your API key in setting or " +
+                       $"https://platform.openai.com/api-keys";
             }
         }
 
