@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <ApplicationIcon>Assets\Image\ELFLOGO.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -389,6 +390,8 @@
     <Resource Include="Assets\MessageBoxIcon\Successed.png" />
     <Resource Include="Assets\MessageBoxIcon\Warning.png" />
     <Resource Include="Assets\Image\Loading_icegif.gif" />
+    <Content Include="Assets\Image\ELFLOGO.ico" />
+    <Content Include="Assets\Image\ELFLOGO.png" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-1.png" />
     <Content Include="Util\SendResetPasswordMail\Template\images\image-2.png" />
     <Content Include="Util\SendResetPasswordMail\Template\index.html" />

@@ -76,7 +76,7 @@ namespace IT008_AppHocAV.View
                 
                 if (newUserId != 0)
                 {
-                    MessageBoxResult result = MessageBox.Show(
+                    MessageBoxResult result = CTMessageBox.Show(
                         "Congratulation, you have a new account!\n" +
                         "Back to Login!","Sign up success",MessageBoxButton.OK);
                     if (result == MessageBoxResult.OK)
@@ -87,7 +87,7 @@ namespace IT008_AppHocAV.View
                 }
                 else
                 {
-                    MessageBoxResult result = MessageBox.Show(
+                    MessageBoxResult result = CTMessageBox.Show(
                         "Fail to create new account =(( \n" +
                         "Wanna try again?","Sign up fail", MessageBoxButton.YesNo);
                     if (result == MessageBoxResult.No)

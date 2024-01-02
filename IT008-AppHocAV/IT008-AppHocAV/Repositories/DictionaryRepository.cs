@@ -102,13 +102,13 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                             
                             meaning.synonyms = new List<Text>();
 
-                            foreach (var text in reader["synonyms"].ToString().Split('\n').ToList() )
+                            foreach (var text in reader["synonyms"].ToString().Split('_').ToList() )
                             {
                                 meaning.synonyms.Add(new Text(text));
                             }
 
                             meaning.antonyms = new List<Text>();
-                            foreach (var text in reader["antonyms"].ToString().Split('\n').ToList())
+                            foreach (var text in reader["antonyms"].ToString().Split('_').ToList())
                             {
                                 meaning.antonyms.Add(new Text(text));
                             }
@@ -153,13 +153,13 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                             definition.example = reader["example"].ToString();
                             
                             definition.synonyms = new List<Text>();
-                            foreach (var text in reader["synonyms"].ToString().Split('\n').ToList() )
+                            foreach (var text in reader["synonyms"].ToString().Split('_').ToList() )
                             {
                                 definition.synonyms.Add(new Text(text));
                                 
                             }
                             definition.antonyms = new List<Text>();
-                            foreach (var text in reader["antonyms"].ToString().Split('\n').ToList())
+                            foreach (var text in reader["antonyms"].ToString().Split('_').ToList())
                             {
                                 definition.antonyms.Add(new Text(text));
                             }
