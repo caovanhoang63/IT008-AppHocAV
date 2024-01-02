@@ -45,5 +45,45 @@ namespace IT008_AppHocAV.View.MainWindow
             _mainWindow.PageCache.Remove("Exam");
             _mainWindow.NavigateToPage("Exam");
         }
+        private void LevelCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int value = 0;
+            switch ((LevelCombobox.SelectedItem as ComboBoxItem)?.Content.ToString())
+            {
+                case "Easy":
+                    value = 1;
+                    break;
+                case "Advanced":
+                    value = 2;
+                    break;
+            }
+
+            _mainWindow.SetLevelValue(value);
+            if (LevelCombobox.SelectedItem != null && Category.SelectedItem != null)
+            {
+                StartExam.IsEnabled = true;
+            }
+            else
+            {
+                StartExam.IsEnabled = false;
+            }
+        }
+
+        private void Category_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _mainWindow.SetCategoryValue((Category.SelectedItem as ComboBoxItem)?.Content.ToString());
+
+            if (LevelCombobox.SelectedItem != null && Category.SelectedItem != null)
+            {
+                StartExam.IsEnabled = true;
+            }
+            else
+            {
+                StartExam.IsEnabled = false;
+            }
+
+
+        }
+
     }
 }
