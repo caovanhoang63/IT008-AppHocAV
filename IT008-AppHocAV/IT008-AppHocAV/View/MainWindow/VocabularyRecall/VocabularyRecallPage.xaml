@@ -61,19 +61,39 @@
                 </DockPanel>
             </Border>
             <ScrollViewer Grid.Row="1">
-                <DataGrid Grid.Row="1"  AutoGenerateColumns="False" Margin="20 20 20 0 "
+                <DataGrid AutoGenerateColumns="False" Margin="20 20 20 0 "
                           CanUserAddRows="false"
                           VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Disabled">
+                          HorizontalScrollBarVisibility="Disabled"
+                          x:Name="HeaderDataGrid">
+
                     <DataGrid.Columns>
-                        
-                        <DataGridTemplateColumn Width="3*" Header="Word"> </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Width="3*" Header="Word" >
+                        </DataGridTemplateColumn>
                         
                         <DataGridTemplateColumn Width="3*" Header="Meaning"> </DataGridTemplateColumn>
                         
                         <DataGridTemplateColumn Width="3*" Header="Example"> </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Width="110" Header=" Date "  x:Name="HeaderDataGridDateColumn" Visibility="Collapsed"></DataGridTemplateColumn>
+
                         
                         <DataGridTemplateColumn Width="auto" Header=" Successful " ></DataGridTemplateColumn>
+                        
+                        
+
+                        
+                        <DataGridTemplateColumn Width="40">
+                            <DataGridTemplateColumn.CellTemplate >
+                                <DataTemplate>
+                                    <Button Style="{DynamicResource TransparentButtonStyle}"
+                                            Click="DeleteRow_OnClick">
+                                        <Image Source="../../../Assets/Icon/DeleteIcon.png"></Image>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         
                         
                     </DataGrid.Columns>
@@ -85,9 +105,9 @@
                     <DataGrid Name="DataGrid" AutoGenerateColumns="False" Margin="20 0 20 0 "
                               CanUserAddRows="false"
                               VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled" HeadersVisibility="None">
+                              HorizontalScrollBarVisibility="Disabled" HeadersVisibility="None"
+                              >
                         <DataGrid.Columns>
-                            
                             <DataGridTemplateColumn Width="3*" Header="Word"> 
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -116,6 +136,17 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             
+                            <DataGridTemplateColumn Width="110" Header="Date" x:Name="DataGridDateColumn" Visibility="Collapsed"> 
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox IsReadOnly="True"
+                                                 Text="{Binding CreatedAt, StringFormat='{}{0:dd/MM/yyyy}'}" 
+                                                 TextAlignment="Center" Style="{DynamicResource DataGridTextBox}" ></TextBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
+                            
                             <DataGridTemplateColumn Width="auto" Header=" Successful "  >
                                 <DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate>
@@ -131,6 +162,17 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             
+                            <DataGridTemplateColumn Width="40">
+                                <DataGridTemplateColumn.CellTemplate >
+
+                                    <DataTemplate>
+                                        <Button Style="{DynamicResource TransparentButtonStyle}"
+                                                Click="DeleteRow_OnClick">
+                                            <Image Source="../../../Assets/Icon/DeleteIcon.png"></Image>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             
                         </DataGrid.Columns>
                     </DataGrid>
@@ -138,7 +180,7 @@
                 </StackPanel>
             </ScrollViewer>
             <ScrollViewer Grid.Row="3" >
-                <Button  Click="AddNewRecallLog_OnClick" 
+                <Button Click="AddNewRecallLog_OnClick" 
                          Margin="20 0 20 0" Background="#F4EEEE" BorderBrush="#DDDDDD" HorizontalContentAlignment="Left">
                     <Image Margin="3" Width="15" Source="../../../Assets/Icon/PlusIcon1.png"></Image>
                 </Button>

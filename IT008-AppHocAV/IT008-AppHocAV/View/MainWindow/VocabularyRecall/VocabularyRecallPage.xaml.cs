@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Threading;
 using IT008_AppHocAV.Models;
@@ -42,6 +43,15 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             VocabularyRecallLog vocabularyRecallLog = new VocabularyRecallLog(_mainWindow.UserId);
             _data.Add(vocabularyRecallLog);
+            try
+            {
+                vocabularyRecallLog.Id = _dbConnection.RecallRepository.AddNewWord(vocabularyRecallLog.UserId, vocabularyRecallLog.Word);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            
             DataGrid.Items.Refresh();
         }
 
@@ -73,6 +83,8 @@ namespace IT008_AppHocAV.View.MainWindow
                     DataGrid.Items.Refresh();
                     _isAlready = true;
                     IsSeeAll = false;
+                    DataGridDateColumn.Visibility = Visibility.Collapsed;
+                    HeaderDataGridDateColumn.Visibility = Visibility.Collapsed;
                 }
             }
             catch (Exception exception)
@@ -99,7 +111,12 @@ namespace IT008_AppHocAV.View.MainWindow
                 _debounceTimer.Tick += async (s, args) =>
                 {
                     _debounceTimer.Stop();
-                    _dbConnection.RecallRepository.UpdateRecallLog(rowData);
+                    if (rowData != null)
+                    {
+                        if (rowData.Id != null && rowData.Id != 0)
+                            _dbConnection.RecallRepository.UpdateRecallLog(rowData);
+                    }
+                    
                 };
                 // start countdown after 500ms when nothing change
                 _debounceTimer.Start();
@@ -129,6 +146,9 @@ namespace IT008_AppHocAV.View.MainWindow
                 DataGrid.Items.Refresh();
                 _isAlready = true;
                 IsSeeAll = true;
+                DataGridDateColumn.Visibility = Visibility.Visible;
+                HeaderDataGridDateColumn.Visibility = Visibility.Visible;
+                
             }
             catch (Exception exception)
             {
@@ -181,5 +201,18 @@ namespace IT008_AppHocAV.View.MainWindow
             _mainWindow.Content.Navigate(makeFlashCard);
 
         }
+
+        private void DeleteRow_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                VocabularyRecallLog rowData = button.DataContext as VocabularyRecallLog;
+                _dbConnection.RecallRepository.DeleteById(rowData.Id);
+                _data.Remove(rowData);
+                DataGrid.Items.Refresh();
+            }
+        }
+
+
     }
 }
