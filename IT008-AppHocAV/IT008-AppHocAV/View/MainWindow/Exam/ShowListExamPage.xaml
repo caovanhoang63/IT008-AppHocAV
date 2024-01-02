@@ -114,10 +114,10 @@
                                     </Grid.RowDefinitions>
                                     
                                     <Label Grid.Row="0" FontSize="16" HorizontalAlignment="Left" Margin="0">
-                                        <TextBlock  xml:space="preserve" TextAlignment="Left" HorizontalAlignment="Left" ><Run Text="{Binding Category}"></Run> - <Run Text="{Binding Level}"/> </TextBlock>
+                                        <TextBlock  xml:space="preserve" TextAlignment="Left" HorizontalAlignment="Left" FontWeight="Medium" ><Run Text="{Binding Category}"></Run> - <Run Text="{Binding Level}"/> </TextBlock>
                                     </Label>
                                     
-                                    <Label Grid.Row="1"   FontSize="16">
+                                    <Label Grid.Row="1"   FontSize="16" FontWeight="Medium">
                                         <TextBlock>
                                             <Run Text="Score: "/>
                                             <Run Text="{Binding Score}"/>
