@@ -257,6 +257,7 @@ namespace IT008_AppHocAV
                         break;
                     case "UserInfo":
                         page = new UserInfoPage(this);
+                        StatusBarCurrentPage.Text = "User Info";
                         break;
 
                     case "EditFlashCard":
