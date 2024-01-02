@@ -1,6 +1,20 @@
-# IT008-AppHocAV
+![UIT](https://img.shields.io/badge/from-UIT%20VNUHCM-blue?style=for-the-badge&link=https%3A%2F%2Fwww.uit.edu.vn%2F)
+# English Learning Friend 
 
-IT008-AppHocAV is an English learning application developed as a project for the Visual Programming course.
+<img src="https://github.com/caovanhoang63/IT008-AppHocAV/blob/master/IT008-AppHocAV/IT008-AppHocAV/Assets/Image/Logo.png" width="250"  />
+
+English Learning Friend is an application developed as a project for the Visual Programming course.
+
+## Contributors:
+
+ 
+ * Cao Văn Hoàng - 22520457 - [Github]( https://github.com/caovanhoang63)  (Leader)
+ * Đỗ Nguyễn Hoàng Huy - 22520538 - [Github]( https://github.com/dohuy0708)
+ * Đoàn Quan Huy - 22520539 - [Github]( https://github.com/huydq58)
+
+### Supervisors:
+
+* Ths.Nguyễn Tấn Toàn -  Email: toannt@uit.edu.vn
 
 ## Description
 
@@ -11,7 +25,7 @@ This is an English learning app with the main functions:
 - Take English grammar tests
 - Review learned vocabulary  
 - Take notes while learning
-- ...
+- Create flashcards
 
 The app helps users improve their vocabulary, practice grammar, and consolidate English knowledge through learning and practicing features.
 
@@ -28,11 +42,6 @@ The app is built with:
  - Pexels API: Image and video search & usage
  - Dictionary API: English - English dictionary lookup
  
-## Team members
-
-- Cao Van Hoang
-- Do Nguyen Hoang Huy
-- Doan Quang Huy
 
 ## Installation guide
 
