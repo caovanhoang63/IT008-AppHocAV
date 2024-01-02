@@ -121,6 +121,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
                  
             }
+            index = -1;
         }
         private void DeleteImageButton_Click(object sender, RoutedEventArgs e)
         {
@@ -162,7 +163,7 @@ namespace IT008_AppHocAV.View.MainWindow
             }
 
 
-
+            index = -1;
 
         }
         
