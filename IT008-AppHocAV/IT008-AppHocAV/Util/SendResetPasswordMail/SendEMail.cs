@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MimeKit;
-namespace IT008_AppHocAV.Util
+namespace IT008_AppHocAV.Util.SendResetPasswordMail
 {
     public class SendEMail
     {

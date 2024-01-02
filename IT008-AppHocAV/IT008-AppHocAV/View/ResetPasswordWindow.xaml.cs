@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using IT008_AppHocAV.Repositories.DbConnection;
+using IT008_AppHocAV.Util.SendResetPasswordMail;
 using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.View.MainWindow
@@ -107,7 +108,7 @@ namespace IT008_AppHocAV.View.MainWindow
             InputPinContainer.Visibility = Visibility.Visible;
             _timer.Start();
             
-            _code = await Task.Run( () => Util.SendEMail.Send(email));
+            _code = await Task.Run( () => SendEMail.Send(email));
         }
 
         
@@ -144,7 +145,7 @@ namespace IT008_AppHocAV.View.MainWindow
             string email = EmailTextBox.Text.Trim();
             _timeCount = 5 * 60;
             _timer.Start();
-            _code = await Task.Run( () => Util.SendEMail.Send(email));
+            _code = await Task.Run( () => SendEMail.Send(email));
         }
 
         private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
