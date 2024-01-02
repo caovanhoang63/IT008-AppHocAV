@@ -295,6 +295,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Styles\MessageBoxStyle.xaml" />
+    <Page Include="Assets\Styles\RoundComboBox.xaml" />
     <Page Include="Assets\Styles\UserInfoStyle.xaml" />
     <Page Include="Assets\Styles\VocabularyRecallPageStyle.xaml" />
     <Page Include="Assets\Styles\WordPageStyle.xaml" />
