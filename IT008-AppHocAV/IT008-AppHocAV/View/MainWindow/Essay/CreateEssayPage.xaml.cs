@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.View.CustomMessageBox;
 using Microsoft.Win32;
 
 namespace IT008_AppHocAV.View.MainWindow
@@ -55,8 +56,9 @@ namespace IT008_AppHocAV.View.MainWindow
                 _essay.Id =  _mainWindow.DbConnection.EssayRepository.CreateEssay(_essay);
                 if (_essay.Id == 0)
                 {
-                    MessageBox.Show("Fail to create new essay!");
-                    return;
+                 MessageBoxResult result = CTMessageBox.Show("Error", "Fail to create new essay!", MessageBoxType.Error);
+
+                return;
                 }
                 _mainWindow.NavigateToPage("WritingContent");
                 _mainWindow.PageCache.Remove("CreateEssay");
@@ -89,8 +91,10 @@ namespace IT008_AppHocAV.View.MainWindow
 
             private void CloseButton_OnClick(object sender, RoutedEventArgs e)
             {
-                MessageBoxResult result = MessageBox.Show("Are you sure want to continue?","",MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+            //  MessageBoxResult result = MessageBox.Show("Are you sure want to continue?","",MessageBoxButton.YesNo);
+            MessageBoxResult result = CTMessageBox.Show("Message", "Are you sure want to continue?", MessageBoxType.ConfirmationWithYesNo);
+
+            if (result == MessageBoxResult.Yes)
                 {
                     _mainWindow.PageCache.Remove("Writing");
                     _mainWindow.PageCache.Remove("CreateEssay");

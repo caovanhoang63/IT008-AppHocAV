@@ -1,5 +1,6 @@
 ﻿using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Repositories.DbConnection;
+using IT008_AppHocAV.View.CustomMessageBox;
 using Microsoft.Win32;
 using System;
 using System.Collections;
@@ -67,7 +68,7 @@ namespace IT008_AppHocAV.View.MainWindow
         }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure want to continue?", "", MessageBoxButton.YesNo);
+            MessageBoxResult result = CTMessageBox.Show("Message", "Are you sure want to continue?", MessageBoxType.ConfirmationWithYesNo);
             if (result == MessageBoxResult.Yes)
             {
                 mainWindow.NavigateToPage("FlashCard");
@@ -169,7 +170,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             if (LvListCard.Items.Count ==0)
             {
-                MessageBox.Show("Please add card!");
+                CTMessageBox.Show("Message", "Please add card!", MessageBoxType.Information);
             }
             else
             {
@@ -192,10 +193,10 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
                 if (_data.Id==0)
                 {
-                    MessageBox.Show("Fail to create new essay!");
+                    CTMessageBox.Show("Message", "Fail to create new essay ", MessageBoxType.Error);
                     return;
                 }
-                MessageBox.Show("Successed!");
+                CTMessageBox.Show("Message", "Successfully", MessageBoxType.Information);
 
                 mainWindow.PageCache.Remove("FlashCard");
                 mainWindow.PageCache.Remove("MakeFlashCard");
@@ -349,7 +350,8 @@ namespace IT008_AppHocAV.View.MainWindow
         // Import File
         public void ImportFileButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("The request is to format a file.txt with the following pattern:(Term + ' : '+ Definition).", "Attention");
+
+            CTMessageBox.Show("Message", "The request form is: Term + ' ' + Define", MessageBoxType.Information);
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "File|*.txt;...";
             if (openFileDialog.ShowDialog() != true)
@@ -366,7 +368,8 @@ namespace IT008_AppHocAV.View.MainWindow
                     string[] text = line.Trim().Split(':');
                     if (text.Length !=2)
                     {
-                        MessageBox.Show(" Invalid format pattern! ");
+
+                        CTMessageBox.Show("Message", "Form is not correct!", MessageBoxType.Error);
                         return;
                     }
 
@@ -377,7 +380,7 @@ namespace IT008_AppHocAV.View.MainWindow
                 }
 
             }
-            MessageBox.Show("Success!");
+            CTMessageBox.Show("Message", "Successfully", MessageBoxType.Information);
 
             foreach (var item in _datatemp)
             {

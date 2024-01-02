@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Repositories.DbConnection;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -91,11 +92,13 @@ namespace IT008_AppHocAV.View.MainWindow
             {
                 _dbConnection.UserRepository.UpdateUserInfo(_mainWindow.UserId, FullNameTb.Text, EmailTb.Text,
                     PhoneNumberTb.Text, DateOfBirthPicker.SelectedDate.Value);
-                MessageBox.Show("Save successfully!");
+               
+                 CTMessageBox.Show("Message", "Saved successfully!", MessageBoxType.Information);
+
             }
             catch
             {
-                MessageBox.Show("Save failed!");
+                CTMessageBox.Show("Message", "Saved fail!", MessageBoxType.Error);
 
             }   
             

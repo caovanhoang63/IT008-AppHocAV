@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Repositories;
 using IT008_AppHocAV.Repositories.DbConnection;
+using IT008_AppHocAV.View.CustomMessageBox;
 using IT008_AppHocAV.View.MainWindow;
 
 namespace IT008_AppHocAV.View
@@ -114,13 +115,16 @@ namespace IT008_AppHocAV.View
                 }
                 else
                 {
-                    MessageBox.Show("Invalid user name or password! \n" +
-                                    "Try again!", "Fail to login", MessageBoxButton.OK);
+                
+                     CTMessageBox.Show("Message", "Invalid user name or password! \n" +
+                                    "Try again!",   MessageBoxType.Error);
+
                 }
             }
             else
             {
-                MessageBox.Show("Please enter your user name and password!", "", MessageBoxButton.OK);
+               
+                CTMessageBox.Show("Message", "Please enter your user name and password!", MessageBoxType.Error);
             }
         }
         

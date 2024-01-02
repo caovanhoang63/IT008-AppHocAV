@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IT008_AppHocAV.View.CustomMessageBox;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,8 @@ namespace IT008_AppHocAV.View.MainWindow
         }
         private void CloseButton_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure want to leave?", "", MessageBoxButton.YesNo);
+            MessageBoxResult result = CTMessageBox.Show("Message", "Are you sure want to leave?", MessageBoxType.ConfirmationWithYesNo);
+
             if (result == MessageBoxResult.Yes)
             {
                 _mainWindow.NavigateToPage("ShowListExam");

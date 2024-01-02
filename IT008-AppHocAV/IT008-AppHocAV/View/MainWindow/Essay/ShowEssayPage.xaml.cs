@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -64,9 +65,9 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void DeleteEssayButton_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this essay?","",MessageBoxButton.OKCancel);
-            
-            if (result == MessageBoxResult.Cancel)
+            MessageBoxResult result = CTMessageBox.Show("Message", "Are you sure want to delete this essay?", MessageBoxType.ConfirmationWithYesNo);
+
+            if (result == MessageBoxResult.No)
                 return;
             
             _mainWindow.DbConnection.EssayRepository.DeleteEssayById(_essay.Id);

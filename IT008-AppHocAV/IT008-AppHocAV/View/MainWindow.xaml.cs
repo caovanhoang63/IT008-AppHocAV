@@ -15,6 +15,7 @@ using IT008_AppHocAV.Repositories.DbConnection;
 using IT008_AppHocAV.Util;
 using IT008_AppHocAV.View;
 using IT008_AppHocAV.View.MainWindow;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV
 {
@@ -191,8 +192,9 @@ namespace IT008_AppHocAV
             
             private void LogOutMenuItem_OnClick(object sender, RoutedEventArgs e)
             {
-                MessageBoxResult result = MessageBox.Show("Are you sure you want to log out!?","",MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+            MessageBoxResult result = CTMessageBox.Show("Message", "Are you sure want to log out?", MessageBoxType.ConfirmationWithYesNo);
+
+            if (result == MessageBoxResult.Yes)
                 {
                     _loginWindow.Show();
                     Close();

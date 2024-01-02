@@ -1,6 +1,7 @@
 ﻿using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Repositories.DbConnection;
 using IT008_AppHocAV.Util;
+using IT008_AppHocAV.View.CustomMessageBox;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,7 @@ namespace IT008_AppHocAV.View.MainWindow
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure want to continue?", "", MessageBoxButton.YesNo);
+            MessageBoxResult result = CTMessageBox.Show("Message", "Are you sure want to continue?", MessageBoxType.ConfirmationWithYesNo);
             if (result == MessageBoxResult.Yes)
             {
                 _mainWindow.NavigateToPage("FlashCard");
@@ -80,7 +81,8 @@ namespace IT008_AppHocAV.View.MainWindow
                 
                 _mainWindow.DbConnection.CardRepository.UpdateCardContent(item.Id, item.Question, item.Answer,item.Image);
             }    
-            MessageBoxResult result = MessageBox.Show("Submit successes! Do you want to back to List FlashCard?", "", MessageBoxButton.YesNo);
+            MessageBoxResult result = CTMessageBox.Show("Message", "Submit successes! Do you want to back to List FlashCard?", MessageBoxType.ConfirmationWithYesNo);
+
             if (result == MessageBoxResult.Yes)
             {
                 _mainWindow.PageCache.Remove("FlashCard");
@@ -105,9 +107,10 @@ namespace IT008_AppHocAV.View.MainWindow
                 _datatemp.Add(card);
             }
             else
-                MessageBox.Show("Fail!");
-          
-           // RefreshPage();
+                CTMessageBox.Show("Message", "Fail to add card ", MessageBoxType.Error);
+
+
+            // RefreshPage();
 
         }
         private void AddImageButton_Click(object sender, RoutedEventArgs e)
@@ -277,10 +280,11 @@ namespace IT008_AppHocAV.View.MainWindow
              
             }
             else
-                MessageBox.Show("Delete fail! ");
+                CTMessageBox.Show("Message", "Deleted fail", MessageBoxType.Error);
+
 
         }
-       
+
 
         private void TermBox_TextChanged(object sender, TextChangedEventArgs e)
         {

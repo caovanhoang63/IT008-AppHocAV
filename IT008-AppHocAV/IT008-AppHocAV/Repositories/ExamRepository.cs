@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using IT008_AppHocAV.Models;
 using IT008_AppHocAV.Util;
+using IT008_AppHocAV.View.CustomMessageBox;
 using PexelsDotNetSDK.Models;
 
 namespace IT008_AppHocAV.Repositories.DbConnection
@@ -106,11 +107,11 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                                 reader.GetDateTime(reader.GetOrdinal("created_at")),
                                 reader.GetInt32(reader.GetOrdinal("time_taken")));
                             result.Add(Exam);
-                            MessageBox.Show(reader.GetInt32(reader.GetOrdinal("time_taken")).ToString());
+                          //  MessageBox.Show(reader.GetInt32(reader.GetOrdinal("time_taken")).ToString());
                         }
                     }
 
-                    MessageBox.Show(result[1].Id.ToString());
+                //    MessageBox.Show(result[1].Id.ToString());
 
                 }
                 return result;
@@ -141,7 +142,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
                     command.Parameters.AddWithValue("@time_taken", Int32.Parse(exam.TimeTaken));
                     _sqlConnection.Open();
                     command.ExecuteNonQuery();
-                    MessageBox.Show("Save success");
+                    CTMessageBox.Show("Message", "Saved successfully ", MessageBoxType.Information);
                     return;
 
 
@@ -149,7 +150,7 @@ namespace IT008_AppHocAV.Repositories.DbConnection
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Save fail");
+                CTMessageBox.Show("Message", "Saved fail ", MessageBoxType.Information);
                 Console.WriteLine(ex);
                 return;
 

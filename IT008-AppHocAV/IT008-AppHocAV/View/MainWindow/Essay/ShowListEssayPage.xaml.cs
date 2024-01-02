@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using IT008_AppHocAV.Components.RadioButtonMenuItem;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -58,9 +59,10 @@ namespace IT008_AppHocAV.View.MainWindow
             private void DeleteEssayButton_OnClick(object sender, RoutedEventArgs e)
             {
                 e.Handled = true;
-                MessageBoxResult result =
-                    MessageBox.Show("You sure you want to delete this essay", null, MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+                 
+            MessageBoxResult result = CTMessageBox.Show("Message", "Are you sure want to delete this essay?", MessageBoxType.ConfirmationWithYesNo);
+
+            if (result == MessageBoxResult.Yes)
                 {
                     Essay modelEssay = (Essay)((FrameworkElement)sender).DataContext;
                     if (_mainWindow.DbConnection.EssayRepository.DeleteEssayById(modelEssay.Id))
@@ -75,14 +77,16 @@ namespace IT008_AppHocAV.View.MainWindow
                             }
                         }
                         
-                        MessageBox.Show("Delete successes! ");
-                        
-                        RefreshPage();
+                      
+                      CTMessageBox.Show("Message", "Delete successfully?", MessageBoxType.Information);
+
+                    RefreshPage();
                     }
-                    else 
-                        MessageBox.Show("Delete fail! ");
-                }
+                    else
+                    CTMessageBox.Show("Message", "Delete  fail?", MessageBoxType.Information);
+
             }
+        }
 
         #endregion
 

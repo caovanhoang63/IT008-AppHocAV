@@ -19,6 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using IT008_AppHocAV.Models;
+using IT008_AppHocAV.View.CustomMessageBox;
 
 namespace IT008_AppHocAV.View.MainWindow
 {
@@ -75,7 +76,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private void Submit_btn_Click(object sender, RoutedEventArgs e)
         {
             _countdownTimer.Stop();
-            MessageBoxResult Submit = MessageBox.Show("Are you sure want to submit?", "", MessageBoxButton.YesNo);
+            MessageBoxResult Submit = CTMessageBox.Show("Message", "Are you sure want to submit?", MessageBoxType.ConfirmationWithYesNo);
 
             if (Submit == MessageBoxResult.Yes)
             {
@@ -126,8 +127,8 @@ namespace IT008_AppHocAV.View.MainWindow
                     index++;
                 }
                 int score = Scoring_function(Answer, Result);
-                MessageBox.Show("Your score is " + score.ToString());
-                
+                CTMessageBox.Show("Message", "Your score is " + score.ToString(), MessageBoxType.Information);
+
                 Exam exam = new Exam(_mainWindow.UserId, 1, score, _timetaken);
                 _mainWindow.DbConnection.ExamRepository.SaveResult(exam);
                 _mainWindow.PageCache.Remove("ShowListExam");
@@ -255,7 +256,8 @@ namespace IT008_AppHocAV.View.MainWindow
                     index++;
                 }
                 int score = Scoring_function(Answer, Result);
-                MessageBox.Show("Your score is " + score.ToString());
+                 CTMessageBox.Show("Message", "Your score is " + score.ToString(), MessageBoxType.Information);
+
                 Exam exam = new Exam(_mainWindow.UserId, 1, score,_timetaken);
                 _mainWindow.DbConnection.ExamRepository.SaveResult(exam);
                 _mainWindow.PageCache.Remove("DoExamPage");
