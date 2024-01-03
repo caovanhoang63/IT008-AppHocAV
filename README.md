@@ -50,7 +50,7 @@ The app is built with:
 
 ## Installation guide
 
-You just need to download [this installation](https://drive.google.com/file/d/1jbNFpl2lyPlSbiY7TepX40uNWBwFyJlL/view?usp=sharing) file and run
+You just need to download [this installation](https://drive.google.com/drive/folders/1j8pwX1biSJScjHhnUngA9qiA8RYSUWgI?usp=drive_link) file and run
 
 ## Additional information:
 
