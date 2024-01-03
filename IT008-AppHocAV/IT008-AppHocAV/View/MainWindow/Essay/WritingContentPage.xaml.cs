@@ -69,7 +69,7 @@ namespace IT008_AppHocAV.View.MainWindow
         {
             string richText = new TextRange(ContentRichTextBox.Document.ContentStart, ContentRichTextBox.Document.ContentEnd).Text;
             _mainWindow.DbConnection.EssayRepository.UpdateEssayContent(_essay.Id,WordCouting.WordCount(richText),richText);
-            MessageBoxResult result = CTMessageBox.Show("Submit successes! Do you want to back to List Essay?","",MessageBoxButton.YesNo);
+            MessageBoxResult result = CTMessageBox.Show("Submit successes!","Submit successes! Do you want to back to List Essay?",MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 _mainWindow.PageCache.Remove("ShowListEssay");
@@ -97,7 +97,7 @@ namespace IT008_AppHocAV.View.MainWindow
         private void CloseButton_OnClick(object sender, RoutedEventArgs e)
         {
 
-            MessageBoxResult result =  CTMessageBox.Show("Your changes will be discard! \n Are you sure want to continue?", "",MessageBoxButton.OKCancel);
+            MessageBoxResult result =  CTMessageBox.Show("", "Your changes will be discard! \n Are you sure want to continue?",MessageBoxButton.OKCancel);
                
             if (result == MessageBoxResult.OK)
             {
